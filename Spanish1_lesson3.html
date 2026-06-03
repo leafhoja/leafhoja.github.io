@@ -2084,10 +2084,6 @@ document.getElementById('cover-search-results').addEventListener('click', functi
 });
 
 // フローティング検索バー
-function openSearch() {
-  document.getElementById('search-bar').classList.add('open');
-  setTimeout(() => document.getElementById('search-input').focus(), 180);
-}
 document.getElementById('search-input').addEventListener('input', function() {
   const q = this.value.trim();
   const box = document.getElementById('search-results');
