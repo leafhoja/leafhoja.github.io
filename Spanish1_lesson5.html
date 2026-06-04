@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>if (!sessionStorage.getItem('accessToken')) { location.replace('index.html'); }</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WB0WVZSEHT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-WB0WVZSEHT");
+</script>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lección 5 文法解説</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="spanish1-common.css">
+</head>
+<body>
+
+<!-- dict modal -->
+<div id="dict-overlay" onclick="if(event.target===this)closeDictModal()">
+  <div id="dict-modal">
+    <div id="dict-modal-head">
+      <span id="dict-modal-word"></span>
+      <span id="dict-modal-pos"></span>
+      <button id="dict-modal-close" onclick="closeDictModal()" title="閉じる">✕</button>
+    </div>
+    <div id="dict-modal-body"></div>
+  </div>
+</div>
+<div id="search-bar">
+  <label>検索</label>
+  <input id="search-input" type="text" placeholder="単語・文法用語…" autocomplete="off" autocorrect="off" spellcheck="false">
+  <button id="search-close" onclick="closeSearch()" title="閉じる">✕</button>
+</div>
+<div id="search-results"></div>
+
+<div id="top-nav">
+  <div id="top-toc-menu">
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;">📚 文法解説タブ</span>
+    <a class="fn-item" href="#sec1" data-tab="grammar" onclick="jumpToSection('sec1'); closeToc(); return false;">① 再帰動詞</a>
+    <a class="fn-item" href="#sec2" data-tab="grammar" onclick="jumpToSection('sec2'); closeToc(); return false;">② 点過去形（規則活用）</a>
+    <a class="fn-item" href="#sec3" data-tab="grammar" onclick="jumpToSection('sec3'); closeToc(); return false;">③ 時間の表現</a>
+    <a class="fn-item" href="#sec4" data-tab="grammar" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 点過去 vs 現在形</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">✏️ 練習問題タブ</span>
+    <a class="fn-item" href="#sec5" data-tab="renshu" onclick="jumpToSection('sec5'); closeToc(); return false;">⑤ 練習問題</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">📖 語彙・まとめタブ</span>
+    <a class="fn-item" href="#sec6" data-tab="vocab" onclick="jumpToSection('sec6'); closeToc(); return false;">⑥ 語彙リスト</a>
+    <a class="fn-item" href="#sec7" data-tab="vocab" onclick="jumpToSection('sec7'); closeToc(); return false;">⑦ まとめ</a>
+  </div>
+  <a id="home-btn" href="index.html">🏠 ホーム</a>
+  <span id="top-nav-title">Lección 5 文法解説</span>
+  <button id="pdf-print-btn" onclick="savePdf()">🖨 PDFで保存</button>
+  <button id="top-toc-toggle" onclick="toggleToc()">☰ 目次</button>
+  <button id="top-search-btn" onclick="openSearch()">🔍 検索</button>
+</div>
+
+<!-- ══ 表紙 ══ -->
+<div class="cover">
+  <div class="cover-title">Lección 5　文法解説
+  </div>
+  <div class="cover-sub">スペイン語一列　Gramática</div>
+  <div class="toc">
+    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 再帰動詞</a>
+    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 点過去形（規則活用）</a>
+    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ 時間の表現</a>
+    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 点過去 vs 現在形</a>
+    <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 練習問題</a>
+    <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 語彙リスト</a>
+    <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ まとめ</a>
+  </div>
+  <div class="cover-search">
+    <div class="cover-search-label">単語・活用形・文法用語を検索</div>
+    <input id="cover-search-input" type="text" class="cover-search-box"
+      placeholder="例：levanto　／　起きる　／　再帰動詞…"
+      autocomplete="off" autocorrect="off" spellcheck="false">
+    <span class="cover-search-hint">スペイン語・日本語・文法用語で検索 → タッチで該当箇所へジャンプ</span>
+  </div>
+</div>
+<div id="cover-search-results"></div>
+
+<div class="tab-nav">
+  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
+  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
+  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙・まとめ</button>
+</div>
+
+<div id="tab-grammar" class="tab-content active">
+
+<!-- ① 再帰動詞 -->
+<div id="sec1" class="sec-heading">
+  <span class="sec-num">①</span>
+  <span class="sec-title">再帰動詞</span>
+  <span class="sec-es">Verbos reflexivos</span>
+</div>
+
+<p>再帰動詞（verbos reflexivos）は「自分自身に〜する」という行為を表す動詞で、必ず<span class="hi">再帰代名詞</span>（me, te, se, nos, os, se）とともに使います。英語の "get up" や "wash oneself" に相当します。</p>
+
+<div class="sub">再帰代名詞の一覧表</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>人称</th>
+      <th>再帰代名詞</th>
+      <th>例（levantarse）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-key td-c">yo</td><td class="mono td-c hi">me</td><td class="mono td-c">me levanto</td></tr>
+    <tr><td class="td-key td-c">tú</td><td class="mono td-c hi">te</td><td class="mono td-c">te levantas</td></tr>
+    <tr><td class="td-key td-c">él/ella/usted</td><td class="mono td-c hi">se</td><td class="mono td-c">se levanta</td></tr>
+    <tr><td class="td-key td-c">nosotros/as</td><td class="mono td-c hi">nos</td><td class="mono td-c">nos levantamos</td></tr>
+    <tr><td class="td-key td-c">vosotros/as</td><td class="mono td-c hi">os</td><td class="mono td-c">os levantáis</td></tr>
+    <tr><td class="td-key td-c">ellos/ustedes</td><td class="mono td-c hi">se</td><td class="mono td-c">se levantan</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div id="reiki-rules" class="sub">再帰代名詞の語順ルール</div>
+
+<div class="box box-rule">
+  <div class="box-title">ルール①　活用した動詞のすぐ前に置く</div>
+  <div class="ex"><span class="ex-sp"><span class="hi">Me</span> levanto a las siete.</span><span class="ex-ja">私は7時に起きます。</span></div>
+  <div class="ex"><span class="ex-sp">No <span class="hi">me</span> levanto tarde.</span><span class="ex-ja">私は遅くに起きません。</span></div>
+</div>
+
+<div class="box box-rule">
+  <div class="box-title">ルール②　不定詞（原形）の後ろにつけることもできる</div>
+  <div class="ex">
+    <span class="ex-sp">Quiero duchar<span class="hi">me</span>.</span>
+    <span class="ex-arrow">＝</span>
+    <span class="ex-sp"><span class="hi">Me</span> quiero duchar.</span>
+    <span class="ex-ja">シャワーを浴びたい。</span>
+  </div>
+</div>
+
+<div class="box box-rule">
+  <div class="box-title">ルール③　現在分詞（-ando/-iendo）の後ろにつけることもできる</div>
+  <div class="ex">
+    <span class="ex-sp">Estoy lavándo<span class="hi">me</span> las manos.</span>
+    <span class="ex-arrow">＝</span>
+    <span class="ex-sp"><span class="hi">Me</span> estoy lavando las manos.</span>
+    <span class="ex-ja">手を洗っています。</span>
+  </div>
+  <div class="caution">⚠ 現在分詞の後ろに代名詞をつけるとアクセント記号が必要になることがあります（lavándo<b>me</b>）。</div>
+</div>
+
+<div class="box box-rule">
+  <div class="box-title">ルール④　命令形の後ろにつける（肯定命令のみ）</div>
+  <div class="ex"><span class="ex-sp">¡Levánta<span class="hi">te</span>!</span><span class="ex-ja">起きなさい！（肯定命令：後置）</span></div>
+  <div class="ex"><span class="ex-sp">No <span class="hi">te</span> levantes.</span><span class="ex-ja">起きないで。（否定命令：前置）</span></div>
+</div>
+
+<div class="sub">主な再帰動詞一覧</div>
+<div class="verb-grid-wrap">
+  <div class="verb-col verb-col-ar">
+    <div class="verb-col-head badge-ar">身支度</div>
+    <div class="verb-card-list">
+      <div class="vcard"><span class="vc-es">despertarse</span><span class="vc-ja">目が覚める</span></div>
+      <div class="vcard"><span class="vc-es">levantarse</span><span class="vc-ja">起きる</span></div>
+      <div class="vcard"><span class="vc-es">ducharse</span><span class="vc-ja">シャワーを浴びる</span></div>
+      <div class="vcard"><span class="vc-es">lavarse</span><span class="vc-ja">洗う</span></div>
+      <div class="vcard"><span class="vc-es">cepillarse</span><span class="vc-ja">磨く</span></div>
+      <div class="vcard"><span class="vc-es">afeitarse</span><span class="vc-ja">ひげをそる</span></div>
+      <div class="vcard"><span class="vc-es">peinarse</span><span class="vc-ja">髪をとかす</span></div>
+      <div class="vcard"><span class="vc-es">vestirse</span><span class="vc-ja">着る</span></div>
+    </div>
+  </div>
+  <div class="verb-col verb-col-er">
+    <div class="verb-col-head badge-er">動作・状態変化</div>
+    <div class="verb-card-list">
+      <div class="vcard"><span class="vc-es">acostarse</span><span class="vc-ja">寝る・横になる</span></div>
+      <div class="vcard"><span class="vc-es">sentarse</span><span class="vc-ja">座る</span></div>
+      <div class="vcard"><span class="vc-es">ponerse</span><span class="vc-ja">〜になる</span></div>
+      <div class="vcard"><span class="vc-es">quedarse</span><span class="vc-ja">留まる</span></div>
+      <div class="vcard"><span class="vc-es">cansarse</span><span class="vc-ja">疲れる</span></div>
+      <div class="vcard"><span class="vc-es">aburrirse</span><span class="vc-ja">退屈する</span></div>
+      <div class="vcard"><span class="vc-es">alegrarse</span><span class="vc-ja">喜ぶ</span></div>
+      <div class="vcard"><span class="vc-es">enfermarse</span><span class="vc-ja">病気になる</span></div>
+    </div>
+  </div>
+  <div class="verb-col verb-col-ir">
+    <div class="verb-col-head badge-ir">相互・慣用</div>
+    <div class="verb-card-list">
+      <div class="vcard"><span class="vc-es">llamarse</span><span class="vc-ja">〜という名だ</span></div>
+      <div class="vcard"><span class="vc-es">encontrarse</span><span class="vc-ja">会う・見つかる</span></div>
+      <div class="vcard"><span class="vc-es">irse</span><span class="vc-ja">去る</span></div>
+      <div class="vcard"><span class="vc-es">casarse</span><span class="vc-ja">結婚する</span></div>
+      <div class="vcard"><span class="vc-es">divorciarse</span><span class="vc-ja">離婚する</span></div>
+      <div class="vcard"><span class="vc-es">olvidarse</span><span class="vc-ja">忘れる</span></div>
+      <div class="vcard"><span class="vc-es">preocuparse</span><span class="vc-ja">心配する</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　語幹変化を持つ再帰動詞も多くあります。levantarse（規則）、despertarse（ie変化: me <b>despiert</b>o）、vestirse（i変化: me <b>vist</b>o）、acostarse（ue変化: me <b>acuest</b>o）のように語幹母音変化を持つ再帰動詞があります。活用全体を通じて変化する点は非再帰形と同じです。</span>
+</div>
+
+<div class="box" style="border-left-color:var(--accent2); background:#edf6f4; margin-top:8px;">
+  <div class="box-title">再帰代名詞 se のその他の用法</div>
+  <p style="font-size:13px; margin-bottom:8px;">再帰代名詞 <span class="mono hi">se</span> には「自分に〜する」以外にも：</p>
+  <ol style="font-size:13px; padding-left:18px; margin:0;">
+    <li style="margin-bottom:6px;"><strong>相互用法</strong>：<span class="mono">Se abrazan.</span>　<span class="td-ja">彼らは抱き合う。</span></li>
+    <li style="margin-bottom:6px;"><strong>受動用法</strong>：<span class="mono">Aquí se habla español.</span>　<span class="td-ja">ここではスペイン語が話されています。</span></li>
+    <li style="margin-bottom:0;"><strong>非人称用法</strong>：<span class="mono">Se come bien en España.</span>　<span class="td-ja">スペインはよく食べられます（スペインの食事はおいしい）。</span></li>
+  </ol>
+</div>
+
+<!-- ② 点過去形の規則活用 -->
+<div id="sec2" class="sec-heading">
+  <span class="sec-num">②</span>
+  <span class="sec-title">点過去形の規則活用</span>
+  <span class="sec-es">Pretérito indefinido regular</span>
+</div>
+
+<p>点過去形（Pretérito indefinido）は<span class="hi">完了した過去の行為・出来事</span>を表します。英語の "Simple Past" に相当し、「昨日〜した」「先週〜した」など完結した動作に使います。</p>
+
+<div class="sub">-ar動詞の点過去活用（hablar）</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">人称</th>
+      <th style="background:#dde8f5;color:var(--accent)">-ar 動詞<br><small>hablar（話す）</small></th>
+      <th style="background:#dde8f5;color:var(--accent)">-ar 語尾</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono">hablé</td><td class="td-c td-rule">-é</td></tr>
+    <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono">hablaste</td><td class="td-c td-rule">-aste</td></tr>
+    <tr><td class="td-key td-c">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono">habló</td><td class="td-c td-rule">-ó</td></tr>
+    <tr><td class="td-key td-c">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono">habl<b>amos</b></td><td class="td-c td-rule">-amos</td></tr>
+    <tr><td class="td-key td-c">vosotros/as</td><td class="td-ja">君たち（スペイン）</td><td class="td-c mono">habl<b>asteis</b></td><td class="td-c td-rule">-asteis</td></tr>
+    <tr><td class="td-key td-c">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono">hablaron</td><td class="td-c td-rule">-aron</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:10px">-er/-ir動詞の点過去活用（comer / vivir）</div>
+<div class="two-col">
+  <div>
+    <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">人称</th>
+          <th style="background:#d8eeea;color:var(--accent2)">-er 動詞<br><small>comer（食べる）</small></th>
+          <th style="background:#d8eeea;color:var(--accent2)">語尾</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono">comí</td><td class="td-c td-rule">-í</td></tr>
+        <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono">comiste</td><td class="td-c td-rule">-iste</td></tr>
+        <tr><td class="td-key td-c">él/ella</td><td class="td-ja">彼/彼女</td><td class="td-c mono">comió</td><td class="td-c td-rule">-ió</td></tr>
+        <tr><td class="td-key td-c">nosotros</td><td class="td-ja">私たち</td><td class="td-c mono">com<b>imos</b></td><td class="td-c td-rule">-imos</td></tr>
+        <tr><td class="td-key td-c">vosotros</td><td class="td-ja">君たち</td><td class="td-c mono">com<b>isteis</b></td><td class="td-c td-rule">-isteis</td></tr>
+        <tr><td class="td-key td-c">ellos/ellas</td><td class="td-ja">彼ら</td><td class="td-c mono">comieron</td><td class="td-c td-rule">-ieron</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div>
+    <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">人称</th>
+          <th style="background:#f0e8dd;color:#8b5020">-ir 動詞<br><small>vivir（住む）</small></th>
+          <th style="background:#f0e8dd;color:#8b5020">語尾</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono">viví</td><td class="td-c td-rule">-í</td></tr>
+        <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono">viviste</td><td class="td-c td-rule">-iste</td></tr>
+        <tr><td class="td-key td-c">él/ella</td><td class="td-ja">彼/彼女</td><td class="td-c mono">vivió</td><td class="td-c td-rule">-ió</td></tr>
+        <tr><td class="td-key td-c">nosotros</td><td class="td-ja">私たち</td><td class="td-c mono">viv<b>imos</b></td><td class="td-c td-rule">-imos</td></tr>
+        <tr><td class="td-key td-c">vosotros</td><td class="td-ja">君たち</td><td class="td-c mono">viv<b>isteis</b></td><td class="td-c td-rule">-isteis</td></tr>
+        <tr><td class="td-key td-c">ellos/ellas</td><td class="td-ja">彼ら</td><td class="td-c mono">vivieron</td><td class="td-c td-rule">-ieron</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<div id="preterito-points" class="box">
+  <div class="box-title">重要ポイント</div>
+  <ul style="font-size:13px; padding-left:18px; margin:0;">
+    <li style="margin-bottom:5px;"><strong>-ar と -er/-ir の点過去語尾は異なります</strong>（-é/-aste/-ó vs -í/-iste/-ió）</li>
+    <li style="margin-bottom:5px;"><strong>nosotros 形は -ar動詞の場合、現在形と点過去形が同形</strong>（hablamos）→ 文脈で判断</li>
+    <li style="margin-bottom:0;"><strong>yo 形と él/ella 形にはアクセント記号が必要</strong>（hablé, habló / comí, comió）</li>
+  </ul>
+</div>
+
+<div id="preterito-spell" class="sub">-ar語幹変化の注意（スペル変化）</div>
+<p>以下の場合、<span class="hi-r">yo形のスペル</span>が変わります（発音を保つため）：</p>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>語尾</th><th>変化ルール</th><th>例</th><th>yo形</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">-car 動詞</td><td class="td-c">c → qu</td><td class="mono td-c">buscar</td><td class="mono td-c hi-r">busqué</td></tr>
+    <tr><td class="td-rule">-gar 動詞</td><td class="td-c">g → gu</td><td class="mono td-c">llegar</td><td class="mono td-c hi-r">llegué</td></tr>
+    <tr><td class="td-rule">-zar 動詞</td><td class="td-c">z → c</td><td class="mono td-c">empezar</td><td class="mono td-c hi-r">empecé</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ③ 時間の表現 -->
+<div id="sec3" class="sec-heading">
+  <span class="sec-num">③</span>
+  <span class="sec-title">時間の表現</span>
+  <span class="sec-es">Expresiones de tiempo</span>
+</div>
+
+<p>点過去形とよく使う時間表現の一覧です。これらの表現が文中にあれば、点過去形を使うサインになります。</p>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>時間表現</th><th>意味</th><th>例文</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule mono">ayer</td><td class="td-ja">昨日</td><td><span class="mono">Ayer estudié mucho.</span>　<span class="td-ja">昨日たくさん勉強した。</span></td></tr>
+    <tr><td class="td-rule mono">anoche</td><td class="td-ja">昨夜</td><td><span class="mono">Anoche comí pizza.</span>　<span class="td-ja">昨夜ピザを食べた。</span></td></tr>
+    <tr><td class="td-rule mono">esta mañana</td><td class="td-ja">今朝</td><td><span class="mono">Esta mañana me levanté tarde.</span>　<span class="td-ja">今朝遅く起きた。</span></td></tr>
+    <tr><td class="td-rule mono">la semana pasada</td><td class="td-ja">先週</td><td><span class="mono">La semana pasada viajé a Tokio.</span>　<span class="td-ja">先週東京へ旅行した。</span></td></tr>
+    <tr><td class="td-rule mono">el mes pasado</td><td class="td-ja">先月</td><td><span class="mono">El mes pasado aprendí a bailar.</span>　<span class="td-ja">先月踊り方を学んだ。</span></td></tr>
+    <tr><td class="td-rule mono">el año pasado</td><td class="td-ja">去年</td><td><span class="mono">El año pasado viví en España.</span>　<span class="td-ja">去年スペインに住んでいた。</span></td></tr>
+    <tr><td class="td-rule mono">hace X días</td><td class="td-ja">X日前</td><td><span class="mono">Hace tres días llegué a Madrid.</span>　<span class="td-ja">3日前にマドリードに着いた。</span></td></tr>
+    <tr><td class="td-rule mono">hace X años</td><td class="td-ja">X年前</td><td><span class="mono">Hace dos años empecé a estudiar español.</span>　<span class="td-ja">2年前にスペイン語を勉強し始めた。</span></td></tr>
+    <tr><td class="td-rule mono">en + 年号</td><td class="td-ja">〜年に</td><td><span class="mono">En 2020 nació mi sobrino.</span>　<span class="td-ja">2020年に甥が生まれた。</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　<span class="mono hi">hace + 時間 + que + 点過去形</span> で「〜前に〜した」。<span class="mono hi2">hace + 時間 + que + 現在形</span> で「〜前から〜している（今も）」という継続を表します。例：<span class="mono">Hace dos años que estudio español.</span>（2年前からスペイン語を勉強している）</span>
+</div>
+
+<!-- ④ 点過去 vs 現在形 -->
+<div id="sec4" class="sec-heading">
+  <span class="sec-num">④</span>
+  <span class="sec-title">点過去 vs 現在形</span>
+  <span class="sec-es">Pretérito indefinido vs Presente</span>
+</div>
+
+<div class="box">
+  <div class="box-title">現在形と点過去形の使い分け</div>
+  <ul style="font-size:13px; padding-left:18px; margin:0 0 10px 0;">
+    <li style="margin-bottom:5px;"><strong>現在形</strong>は「今している・いつもしている」習慣・状態・近未来を表す</li>
+    <li style="margin-bottom:5px;"><strong>点過去形</strong>は「過去に完結した」行為を表す</li>
+    <li style="margin-bottom:0;">「今朝〜した」「昨日〜した」のように完了した出来事 → <span class="hi-r">点過去</span></li>
+  </ul>
+</div>
+
+<div class="tbl-wrap" style="margin-top:10px">
+<table>
+  <thead><tr><th>状況</th><th style="background:#d8eeea;color:var(--accent2)">現在形（習慣・今）</th><th style="background:#dde8f5;color:var(--accent)">点過去形（完了した過去）</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-rule">今日 vs 昨日</td>
+      <td><span class="mono">Hoy estudio.</span>　<span class="td-ja">今日勉強する。</span></td>
+      <td><span class="mono">Ayer estudié.</span>　<span class="td-ja">昨日勉強した。</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">習慣 vs 過去の出来事</td>
+      <td><span class="mono">Todos los días como arroz.</span>　<span class="td-ja">毎日ご飯を食べる。</span></td>
+      <td><span class="mono">El lunes comí sushi.</span>　<span class="td-ja">月曜日に寿司を食べた。</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div><!-- /tab-grammar -->
+
+<div id="tab-renshu" class="tab-content">
+
+<!-- ⑤ 練習問題 -->
+<div id="sec5" class="sec-heading">
+  <span class="sec-num">⑤</span>
+  <span class="sec-title">練習問題と解答</span>
+  <span class="sec-es">Ejercicios y soluciones</span>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">1.</span>
+  <span class="daimon-title">再帰動詞を正しく活用させなさい。</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">問題と解答</div>
+
+  <div class="q-item">
+    <span class="q-badge blue">1</span>
+    <div class="q-content">
+      <div class="q-sentence">Me <span class="blank">______</span> (llamarse) Ana. Soy española.</div>
+      <div class="q-ja">私はアナという名前です。スペイン人です。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Me <span class="ans-fill">llamo</span> Ana. Soy española.</span>
+      </div>
+      <div class="q-exp">llamarse の1人称単数。再帰代名詞 me + <b>llamo</b>（llamar の活用形）。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">2</span>
+    <div class="q-content">
+      <div class="q-sentence">¿A qué hora te <span class="blank">______</span> (despertarse) normalmente?</div>
+      <div class="q-ja">ふだん何時に目が覚めますか？</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿A qué hora te <span class="ans-fill">despiertas</span> normalmente?</span>
+      </div>
+      <div class="q-exp">despertarse の2人称単数。ie語幹母音変化：despertar → <b>despiert</b>a。再帰代名詞 te + <b>despiertas</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">3</span>
+    <div class="q-content">
+      <div class="q-sentence">Mi padre <span class="blank">______</span> (afeitarse) cada mañana.</div>
+      <div class="q-ja">私の父は毎朝ひげをそります。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Mi padre <span class="ans-fill">se afeita</span> cada mañana.</span>
+      </div>
+      <div class="q-exp">afeitarse の3人称単数。afeitarse は規則活用。再帰代名詞 se + <b>afeita</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">4</span>
+    <div class="q-content">
+      <div class="q-sentence">Nosotros <span class="blank">______</span> (acostarse) tarde los fines de semana.</div>
+      <div class="q-ja">私たちは週末に遅く寝ます。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Nosotros <span class="ans-fill">nos acostamos</span> tarde los fines de semana.</span>
+      </div>
+      <div class="q-exp">acostarse の1人称複数。ue語幹変化は1・2人称複数には起きない（nos <b>acostamos</b> ← acostar の規則形）。</div>
+    </div>
+  </div>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">2.</span>
+  <span class="daimon-title">点過去形で答えなさい。</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">問題と解答</div>
+
+  <div class="q-item">
+    <span class="q-badge teal">1</span>
+    <div class="q-content">
+      <div class="q-sentence">¿Qué <span class="blank">______</span> (comer) ayer?</div>
+      <div class="q-ja">昨日何を食べましたか？</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿Qué <span class="ans-fill">comiste</span> ayer?　→　<span class="ans-fill">Comí</span> una pizza. （例）</span>
+      </div>
+      <div class="q-exp">comer の点過去2人称単数は <b>comiste</b>。答えは1人称単数 <b>comí</b>（-er動詞語尾 -í、アクセント記号付き）。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">2</span>
+    <div class="q-content">
+      <div class="q-sentence">María <span class="blank">______</span> (llegar) a Madrid hace dos días.</div>
+      <div class="q-ja">マリアは2日前にマドリードに到着した。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">María <span class="ans-fill">llegó</span> a Madrid hace dos días.</span>
+      </div>
+      <div class="q-exp">llegar の3人称単数点過去。-ar動詞語尾 <b>-ó</b>（アクセント記号付き）。※llegar の yo形は llegué（g→gu）だが、3人称は通常の llegó。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">3</span>
+    <div class="q-content">
+      <div class="q-sentence">Nosotros <span class="blank">______</span> (hablar) con el profesor ayer.</div>
+      <div class="q-ja">私たちは昨日先生と話した。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Nosotros <span class="ans-fill">hablamos</span> con el profesor ayer.</span>
+      </div>
+      <div class="q-exp">hablar の1人称複数点過去。<b>hablamos</b> は現在形と同形のため文脈（ayer）で点過去と判断する。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">4</span>
+    <div class="q-content">
+      <div class="q-sentence">Yo <span class="blank">______</span> (empezar) a estudiar español el año pasado.</div>
+      <div class="q-ja">私は去年スペイン語を勉強し始めた。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Yo <span class="ans-fill">empecé</span> a estudiar español el año pasado.</span>
+      </div>
+      <div class="q-exp">empezar の1人称単数点過去。-zar動詞の yo形は z→c に変化（empezar → <b>empecé</b>）。</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /tab-renshu -->
+
+<div id="tab-vocab" class="tab-content">
+
+<!-- ⑥ 語彙リスト -->
+<div id="sec6" class="sec-heading">
+  <span class="sec-num">⑥</span>
+  <span class="sec-title">語彙リスト</span>
+  <span class="sec-es">Vocabulario</span>
+</div>
+
+<div class="vocab-category">日課・身支度</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">despertarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">目が覚める</span></span>
+  <span class="pill"><span class="pill-es">levantarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">起きる</span></span>
+  <span class="pill"><span class="pill-es">ducharse</span><span class="pill-pos">再帰動</span><span class="pill-ja">シャワーを浴びる</span></span>
+  <span class="pill"><span class="pill-es">bañarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">入浴する</span></span>
+  <span class="pill"><span class="pill-es">lavarse la cara</span><span class="pill-pos">再帰動</span><span class="pill-ja">顔を洗う</span></span>
+  <span class="pill"><span class="pill-es">cepillarse los dientes</span><span class="pill-pos">再帰動</span><span class="pill-ja">歯を磨く</span></span>
+  <span class="pill"><span class="pill-es">afeitarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">ひげをそる</span></span>
+  <span class="pill"><span class="pill-es">maquillarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">化粧する</span></span>
+  <span class="pill"><span class="pill-es">vestirse</span><span class="pill-pos">再帰動</span><span class="pill-ja">着替える</span></span>
+  <span class="pill"><span class="pill-es">peinarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">髪をとかす</span></span>
+  <span class="pill"><span class="pill-es">desayunar</span><span class="pill-pos">動</span><span class="pill-ja">朝食をとる</span></span>
+  <span class="pill"><span class="pill-es">acostarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">寝る</span></span>
+</div>
+
+<div class="vocab-category">時間の表現（点過去で使うもの）</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">ayer</span><span class="pill-pos">副</span><span class="pill-ja">昨日</span></span>
+  <span class="pill"><span class="pill-es">anoche</span><span class="pill-pos">副</span><span class="pill-ja">昨夜</span></span>
+  <span class="pill"><span class="pill-es">esta mañana</span><span class="pill-pos">副</span><span class="pill-ja">今朝</span></span>
+  <span class="pill"><span class="pill-es">ayer por la tarde</span><span class="pill-pos">副</span><span class="pill-ja">昨日の午後</span></span>
+  <span class="pill"><span class="pill-es">la semana pasada</span><span class="pill-pos">副</span><span class="pill-ja">先週</span></span>
+  <span class="pill"><span class="pill-es">el mes pasado</span><span class="pill-pos">副</span><span class="pill-ja">先月</span></span>
+  <span class="pill"><span class="pill-es">el año pasado</span><span class="pill-pos">副</span><span class="pill-ja">去年</span></span>
+  <span class="pill"><span class="pill-es">hace X días</span><span class="pill-pos">副</span><span class="pill-ja">X日前</span></span>
+  <span class="pill"><span class="pill-es">hace X años</span><span class="pill-pos">副</span><span class="pill-ja">X年前</span></span>
+  <span class="pill"><span class="pill-es">en + 年号</span><span class="pill-pos">副</span><span class="pill-ja">〜年に</span></span>
+</div>
+
+<!-- ⑦ まとめ -->
+<div id="sec7" class="sec-heading">
+  <span class="sec-num">⑦</span>
+  <span class="sec-title">総まとめ：重要ポイント一覧</span>
+  <span class="sec-es">Resumen</span>
+</div>
+
+<div class="tbl-wrap">
+<table class="summary">
+  <thead><tr><th style="width:28%">テーマ</th><th>重要ポイント</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">再帰代名詞</td><td>me / te / se / nos / os / se。活用形の前 or 原形・現在分詞の後</td></tr>
+    <tr><td class="td-rule">再帰動詞の語幹変化</td><td>despertarse（ie）、vestirse（i）、acostarse（ue）。1・2人称複数には変化なし</td></tr>
+    <tr><td class="td-rule">se の特殊用法</td><td>相互用法（Se abrazan.）、受動用法（Se habla español.）、非人称用法（Se come bien.）</td></tr>
+    <tr><td class="td-rule">点過去 -ar語尾</td><td class="mono">-é / -aste / -ó / -amos / -asteis / -aron</td></tr>
+    <tr><td class="td-rule">点過去 -er/-ir語尾</td><td class="mono">-í / -iste / -ió / -imos / -isteis / -ieron</td></tr>
+    <tr><td class="td-rule">スペル変化（yo形）</td><td>-car → -qué（busqué）、-gar → -gué（llegué）、-zar → -cé（empecé）</td></tr>
+    <tr><td class="td-rule">点過去の時間表現</td><td>ayer, anoche, hace X días, la semana pasada, el año pasado など</td></tr>
+    <tr><td class="td-rule">nosotros形の注意</td><td>-ar動詞：現在形 = 点過去形（hablamos）→ 文脈で判断</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p style="text-align:center; color:var(--muted); font-size:12px; margin-top:36px;">Lección 5 文法解説ページ</p>
+
+</div><!-- /tab-vocab -->
+
+<div id="float-nav">
+  <div id="float-nav-menu">
+    <button class="fn-search-btn" id="fn-search-btn">単語を検索</button>
+    <a class="fn-item" href="#sec1">① 再帰動詞</a>
+    <a class="fn-item" href="#sec2">② 点過去形（規則活用）</a>
+    <a class="fn-item" href="#sec3">③ 時間の表現</a>
+    <a class="fn-item" href="#sec4">④ 点過去 vs 現在形</a>
+    <a class="fn-item" href="#sec5">⑤ 練習問題</a>
+    <a class="fn-item" href="#sec6">⑥ 語彙リスト</a>
+    <a class="fn-item" href="#sec7">⑦ まとめ</a>
+  </div>
+  <button id="float-nav-toggle">目次</button>
+</div>
+
+<script>
+// =====================================================
+// タブ切り替え（グローバル関数）
+// =====================================================
+function switchTab(tabId, btnEl) {
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].style.display = 'none';
+    tabs[i].classList.remove('active');
+  }
+  var target = document.getElementById('tab-' + tabId);
+  if (target) {
+    target.style.display = 'block';
+    target.classList.add('active');
+  }
+  var btns = document.getElementsByClassName('tab-btn');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
+  }
+  if (btnEl) btnEl.classList.add('active-' + tabId);
+  window.scrollTo(0, 0);
+}
+
+function jumpToSection(sectionId) {
+  var el = document.getElementById(sectionId);
+  if (!el) return;
+  var node = el.parentElement;
+  while (node && node.className.indexOf('tab-content') < 0) {
+    node = node.parentElement;
+  }
+  if (node && node.className.indexOf('active') < 0) {
+    var tabId = node.id.replace('tab-', '');
+    var btns = document.getElementsByClassName('tab-btn');
+    var targetBtn = null;
+    for (var i = 0; i < btns.length; i++) {
+      var oc = btns[i].getAttribute('onclick') || '';
+      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
+    }
+    switchTab(tabId, targetBtn);
+  }
+  setTimeout(function() {
+    var el2 = document.getElementById(sectionId);
+    if (el2) el2.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }, 80);
+}
+
+function toggleToc() {
+  var menu = document.getElementById('top-toc-menu');
+  var btn = document.getElementById('top-toc-toggle');
+  var isOpen = menu.classList.toggle('open');
+  btn.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
+}
+function closeToc() {
+  var menu = document.getElementById('top-toc-menu');
+  if (menu) menu.classList.remove('open');
+  var btn = document.getElementById('top-toc-toggle');
+  if (btn) btn.textContent = '☰ 目次';
+}
+
+function savePdf() {
+  document.body.classList.add('is-printing');
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
+  setTimeout(function() { window.print(); }, 50);
+}
+window.addEventListener('afterprint', function() {
+  document.body.classList.remove('is-printing');
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
+  }
+});
+
+function openSearch() {
+  var bar = document.getElementById('search-bar');
+  if (bar) bar.classList.add('open');
+  setTimeout(function() {
+    var inp = document.getElementById('search-input');
+    if (inp) inp.focus();
+  }, 180);
+}
+function closeSearch() {
+  var bar = document.getElementById('search-bar');
+  if (bar) bar.classList.remove('open');
+  var res = document.getElementById('search-results');
+  if (res) res.classList.remove('has-results');
+  var inp = document.getElementById('search-input');
+  if (inp) inp.value = '';
+  var cres = document.getElementById('cover-search-results');
+  if (cres) cres.classList.remove('has-results');
+}
+
+(function initAnswerToggles() {
+  var items = document.getElementsByClassName('q-item');
+  for (var k = 0; k < items.length; k++) {
+    (function(item) {
+      var answerRow = item.querySelector('.q-answer-row');
+      var exp = item.querySelector('.q-exp');
+      if (!answerRow) return;
+      var btn = document.createElement('button');
+      btn.className = 'ans-toggle-btn';
+      btn.textContent = '答えを確認';
+      btn.onclick = function() {
+        var revealed = answerRow.classList.toggle('visible');
+        if (exp) exp.classList.toggle('visible', revealed);
+        btn.classList.toggle('revealed', revealed);
+        btn.textContent = revealed ? '答えを隠す' : '答えを確認';
+      };
+      answerRow.parentNode.insertBefore(btn, answerRow);
+    })(items[k]);
+  }
+})();
+
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('top-nav');
+  if (nav && !nav.contains(e.target)) closeToc();
+  var searchBar = document.getElementById('search-bar');
+  var searchRes = document.getElementById('search-results');
+  var searchBtn = document.getElementById('top-search-btn');
+  if (searchBar && searchRes && !searchBar.contains(e.target) &&
+      !searchRes.contains(e.target) && e.target !== searchBtn) {
+    searchRes.classList.remove('has-results');
+  }
+  var coverSearch = document.querySelector('.cover-search');
+  var coverRes = document.getElementById('cover-search-results');
+  if (coverRes && coverSearch && !coverSearch.contains(e.target) &&
+      !coverRes.contains(e.target)) {
+    coverRes.classList.remove('has-results');
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeSearch();
+    closeToc();
+    if (typeof closeDictModal === 'function') closeDictModal();
+  }
+});
+
+// search-input listener
+document.getElementById('search-input').addEventListener('input', function() {
+  var q = this.value.trim();
+  var box = document.getElementById('search-results');
+  if (q.length < 1) { box.classList.remove('has-results'); return; }
+  var sr = searchVocab(q);
+  renderTo('search-results', sr.results, sr.grammar, q, sr.conjMatch);
+});
+document.getElementById('cover-search-input').addEventListener('input', function() {
+  var q = this.value.trim();
+  var box = document.getElementById('cover-search-results');
+  if (q.length < 1) { box.classList.remove('has-results'); return; }
+  var sr = searchVocab(q);
+  renderTo('cover-search-results', sr.results, sr.grammar, q, sr.conjMatch);
+});
+
+// 文法用語のジャンプ先マッピング
+// ════════════════════════════════════════════════════
+const GRAMMAR_TERMS = [
+  { terms: ['再帰動詞','再帰代名詞','reflexivo','reflexivos'], id: 'sec1', label: '再帰動詞（①節）' },
+  { terms: ['再帰代名詞語順','語順ルール','reiki-rules'], id: 'reiki-rules', label: '再帰代名詞の語順ルール（①節）' },
+  { terms: ['点過去','pretérito indefinido','preterito'], id: 'sec2', label: '点過去形の規則活用（②節）' },
+  { terms: ['スペル変化','スペル','yo形'], id: 'preterito-spell', label: '点過去スペル変化（②節）' },
+  { terms: ['時間の表現','tiempo','hace'], id: 'sec3', label: '時間の表現（③節）' },
+  { terms: ['点過去vs現在形','点過去 vs','現在形との違い'], id: 'sec4', label: '点過去 vs 現在形（④節）' },
+  { terms: ['練習問題','練習'], id: 'sec5', label: '練習問題（⑤節）' },
+  { terms: ['語彙','Vocabulario'], id: 'sec6', label: '語彙リスト（⑥節）' },
+  { terms: ['まとめ','Resumen'], id: 'sec7', label: 'まとめ（⑦節）' },
+];
+
+function findGrammarMatch(q) {
+  const norm = q.trim().toLowerCase();
+  for (const g of GRAMMAR_TERMS) {
+    for (const t of g.terms) {
+      if (t.toLowerCase().includes(norm) || norm.includes(t.toLowerCase())) {
+        return g;
+      }
+    }
+  }
+  return null;
+}
+
+// ════════════════════════════════════════════════════
+// 語彙データベース
+// ════════════════════════════════════════════════════
+const VOCAB_BASE = [
+  // 再帰動詞（身支度）
+  {es:"despertarse",  ja:"目が覚める",             pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1",
+    irreg:{yo:"me despierto", tu:"te despiertas", el:"se despierta", nos:"nos despertamos", vos:"os despertáis", ellos:"se despiertan"}},
+  {es:"levantarse",   ja:"起きる",                 pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
+  {es:"ducharse",     ja:"シャワーを浴びる",       pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
+  {es:"bañarse",      ja:"入浴する",               pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec6"},
+  {es:"lavarse",      ja:"洗う",                   pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
+  {es:"cepillarse",   ja:"磨く",                   pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
+  {es:"afeitarse",    ja:"ひげをそる",             pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
+  {es:"peinarse",     ja:"髪をとかす",             pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
+  {es:"maquillarse",  ja:"化粧する",               pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec6"},
+  {es:"vestirse",     ja:"着替える",               pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ir", anchor:"sec1",
+    irreg:{yo:"me visto", tu:"te vistes", el:"se viste", nos:"nos vestimos", vos:"os vestís", ellos:"se visten"}},
+  // 再帰動詞（動作・状態変化）
+  {es:"acostarse",    ja:"寝る・横になる",         pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1",
+    irreg:{yo:"me acuesto", tu:"te acuestas", el:"se acuesta", nos:"nos acostamos", vos:"os acostáis", ellos:"se acuestan"}},
+  {es:"sentarse",     ja:"座る",                   pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1",
+    irreg:{yo:"me siento", tu:"te sientas", el:"se sienta", nos:"nos sentamos", vos:"os sentáis", ellos:"se sientan"}},
+  {es:"ponerse",      ja:"〜になる",               pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_er", anchor:"sec1"},
+  {es:"quedarse",     ja:"留まる",                 pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
+  {es:"cansarse",     ja:"疲れる",                 pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
+  {es:"aburrirse",    ja:"退屈する",               pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ir", anchor:"sec1"},
+  {es:"alegrarse",    ja:"喜ぶ",                   pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
+  {es:"enfermarse",   ja:"病気になる",             pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
+  // 再帰動詞（相互・慣用）
+  {es:"llamarse",     ja:"〜という名だ",           pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
+  {es:"encontrarse",  ja:"会う・見つかる",         pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1",
+    irreg:{yo:"me encuentro", tu:"te encuentras", el:"se encuentra", nos:"nos encontramos", vos:"os encontráis", ellos:"se encuentran"}},
+  {es:"irse",         ja:"去る",                   pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ir", anchor:"sec1"},
+  {es:"casarse",      ja:"結婚する",               pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
+  {es:"divorciarse",  ja:"離婚する",               pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
+  {es:"olvidarse",    ja:"忘れる",                 pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
+  {es:"preocuparse",  ja:"心配する",               pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
+  // 点過去で使う動詞（規則 -ar）
+  {es:"hablar",       ja:"話す",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
+  {es:"estudiar",     ja:"勉強する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
+  {es:"llegar",       ja:"到着する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
+  {es:"viajar",       ja:"旅行する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
+  {es:"aprender",     ja:"学ぶ",                   pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec2"},
+  {es:"nacer",        ja:"生まれる",               pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec3"},
+  {es:"buscar",       ja:"探す",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
+  {es:"empezar",      ja:"始める・始まる",         pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2",
+    irreg:{yo:"empiezo", tu:"empiezas", el:"empieza", nos:"empezamos", vos:"empezáis", ellos:"empiezan"}},
+  // 点過去で使う動詞（-er/-ir）
+  {es:"comer",        ja:"食べる",                 pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec2"},
+  {es:"vivir",        ja:"住む",                   pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec2"},
+  // 日課名詞
+  {es:"desayuno",     ja:"朝食",                   pos:"名詞m.", tag:"語彙 日課", anchor:"sec6"},
+  {es:"diente",       ja:"歯",                     pos:"名詞m.", tag:"語彙 身体", anchor:"sec6"},
+  {es:"cara",         ja:"顔",                     pos:"名詞f.", tag:"語彙 身体", anchor:"sec6"},
+  {es:"mano",         ja:"手",                     pos:"名詞f.", tag:"語彙 身体", anchor:"sec1"},
+  // 時間表現
+  {es:"ayer",         ja:"昨日",                   pos:"副詞",  tag:"時間表現", anchor:"sec3"},
+  {es:"anoche",       ja:"昨夜",                   pos:"副詞",  tag:"時間表現", anchor:"sec3"},
+  {es:"mañana",       ja:"朝・明日",               pos:"名詞f./副詞", tag:"時間表現", anchor:"sec3"},
+  {es:"tarde",        ja:"午後・遅い",             pos:"名詞f./副詞", tag:"時間表現", anchor:"sec3"},
+  {es:"semana",       ja:"週",                     pos:"名詞f.", tag:"時間表現", anchor:"sec3"},
+  {es:"mes",          ja:"月",                     pos:"名詞m.", tag:"時間表現", anchor:"sec3"},
+  {es:"año",          ja:"年",                     pos:"名詞m.", tag:"時間表現", anchor:"sec3"},
+  {es:"pasado",       ja:"過去・〜前の（形容詞）", pos:"形容詞", tag:"時間表現", anchor:"sec3"},
+  {es:"hace",         ja:"〜前（時間表現）",       pos:"動詞形", tag:"時間表現", anchor:"sec3"},
+  // 例文の語
+  {es:"español",      ja:"スペイン語・スペイン人", pos:"名詞m./形容詞", tag:"例文の語", anchor:"sec1"},
+  {es:"española",     ja:"スペイン人（女性）",     pos:"名詞f./形容詞", tag:"例文の語", anchor:"sec5"},
+  {es:"normalmente",  ja:"ふだん・普通",           pos:"副詞",  tag:"例文の語", anchor:"sec5"},
+  {es:"padre",        ja:"父・親",                 pos:"名詞m.", tag:"例文の語", anchor:"sec5"},
+  {es:"pizza",        ja:"ピザ",                   pos:"名詞f.", tag:"例文の語", anchor:"sec3"},
+  {es:"Madrid",       ja:"マドリード",             pos:"固有名詞", tag:"例文の語", anchor:"sec3"},
+  {es:"profesor",     ja:"先生・教授",             pos:"名詞m.", tag:"例文の語", anchor:"sec5"},
+  {es:"sobrino",      ja:"甥",                     pos:"名詞m.", tag:"例文の語", anchor:"sec3"},
+  {es:"sushi",        ja:"寿司",                   pos:"名詞m.", tag:"例文の語", anchor:"sec4"},
+  {es:"arroz",        ja:"米・ごはん",             pos:"名詞m.", tag:"例文の語", anchor:"sec4"},
+  // 曜日
+  {es:"lunes",        ja:"月曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"martes",       ja:"火曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"miércoles",    ja:"水曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"jueves",       ja:"木曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"viernes",      ja:"金曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"sábado",       ja:"土曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"domingo",      ja:"日曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+];
+
+// 活用形を自動生成（不定詞のみVOCABに収録＝動詞は不定詞1件だけ検索表示）
+const PERSONAS = [
+  {label:"yo",          sfx_ar:"o",    sfx_er:"o",    sfx_ir:"o"},
+  {label:"tú",          sfx_ar:"as",   sfx_er:"es",   sfx_ir:"es"},
+  {label:"él/ella",     sfx_ar:"a",    sfx_er:"e",    sfx_ir:"e"},
+  {label:"nosotros",    sfx_ar:"amos", sfx_er:"emos", sfx_ir:"imos"},
+  {label:"vosotros",    sfx_ar:"áis",  sfx_er:"éis",  sfx_ir:"ís"},
+  {label:"ellos/ellas", sfx_ar:"an",   sfx_er:"en",   sfx_ir:"en"},
+];
+
+// VOCAB_INF: 不定詞のみ（検索結果UI用）
+const VOCAB_INF = VOCAB_BASE.map(item => ({...item, form:"不定詞"}));
+
+// VOCAB_CONJ: 活用形（活用形で検索したときに不定詞を返す）
+// CONJ_MAP: conjugated → {item, persona, conj} のマッピング
+const CONJ_MAP = {}; // conjugated → {item, persona, conj}
+
+// 各動詞の活用形一覧を返す（不規則対応）
+function getConjForms(item) {
+  const t = item.type || '';
+  if (!t.startsWith('verb_')) return [];
+  const ending = t === 'verb_ar' ? 'ar' : t === 'verb_er' ? 'er' : 'ir';
+  if (!item.es.endsWith(ending)) return [];
+
+  if (item.irreg) {
+    // 不規則活用：irreg オブジェクトから直接取得
+    const ir = item.irreg;
+    const pmap = [
+      {label:'yo',          form: ir.yo},
+      {label:'tú',          form: ir.tu},
+      {label:'él/ella',     form: ir.el},
+      {label:'nosotros',    form: ir.nos},
+      {label:'vosotros',    form: ir.vos},
+      {label:'ellos/ellas', form: ir.ellos},
+    ];
+    return pmap;
+  }
+
+  // 規則活用
+  const stem = item.es.slice(0, -2);
+  return PERSONAS.map(p => {
+    const sfx = ending==='ar' ? p.sfx_ar : ending==='er' ? p.sfx_er : p.sfx_ir;
+    return {label: p.label, form: stem + sfx};
+  });
+}
+
+for (const item of VOCAB_BASE) {
+  const forms = getConjForms(item);
+  for (const {label, form} of forms) {
+    const key = stripAccents(form);
+    if (!CONJ_MAP[key]) CONJ_MAP[key] = {item, persona: label, conj: form};
+  }
+}
+
+function stripAccents(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+}
+function editDistance(a, b) {
+  const m=a.length, n=b.length;
+  if (Math.abs(m-n)>3) return 99;
+  const dp=Array.from({length:m+1},(_,i)=>[i]);
+  for(let j=1;j<=n;j++) dp[0][j]=j;
+  for(let i=1;i<=m;i++)
+    for(let j=1;j<=n;j++)
+      dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+function searchVocab(q) {
+  if (!q || q.trim().length < 1) return {results:[], grammar:null, conjMatch:null};
+  const raw = q.trim();
+  const norm = stripAccents(raw).toLowerCase();
+  const isJa = /[　-鿿゠-ヿ]/.test(raw);
+
+  // 文法用語チェック
+  const grammar = findGrammarMatch(raw);
+
+  // 活用形チェック
+  let conjMatch = null;
+  let conjPrefixMatches = [];
+  if (!isJa) {
+    const cm = CONJ_MAP[norm];
+    if (cm) conjMatch = cm;
+
+    if (!conjMatch && norm.length >= 2) {
+      for (const [key, val] of Object.entries(CONJ_MAP)) {
+        if (key.startsWith(norm) && key !== norm) {
+          conjPrefixMatches.push(val);
+        }
+      }
+    }
+  }
+
+  const seen = new Set();
+  const results = [];
+
+  if (conjMatch) {
+    const item = conjMatch.item;
+    results.push({
+      ...item,
+      form: '活用形',
+      conjForm: conjMatch.conj,
+      conjPersona: conjMatch.persona,
+      score: 0
+    });
+    return {results, grammar, conjMatch};
+  }
+
+  if (conjPrefixMatches.length > 0) {
+    for (const cm of conjPrefixMatches) {
+      const key = cm.item.es + '_' + cm.conj;
+      if (seen.has(key)) continue;
+      results.push({
+        ...cm.item,
+        form: '活用形',
+        conjForm: cm.conj,
+        conjPersona: cm.persona,
+        score: 0
+      });
+      seen.add(key);
+    }
+    results.sort((a,b) => {
+      const an = stripAccents(a.conjForm), bn = stripAccents(b.conjForm);
+      return an < bn ? -1 : an > bn ? 1 : 0;
+    });
+    return {results: results.slice(0, 12), grammar, conjMatch: null};
+  }
+
+  for (const item of VOCAB_INF) {
+    const key = item.es;
+    if (seen.has(key)) continue;
+    let score = 999;
+    if (isJa) {
+      if (item.ja.includes(raw)) score = 0;
+    } else {
+      const esN = stripAccents(item.es);
+      if      (esN === norm)           score = 0;
+      else if (esN.startsWith(norm))   score = 1;
+      else if (esN.includes(norm))     score = 2;
+      else {
+        const d = editDistance(norm, esN);
+        if (d <= Math.max(1, Math.floor(norm.length/4))) score = 10 + d;
+      }
+      if (score > 3 && item.ja.includes(raw)) score = Math.min(score, 2);
+    }
+    if (score < 50) { results.push({...item, score}); seen.add(key); }
+  }
+
+  results.sort((a,b) => a.score - b.score);
+  return {results: results.slice(0, 12), grammar, conjMatch};
+}
+
+function highlight(text, query) {
+  const n = stripAccents(query).toLowerCase();
+  const t = stripAccents(text).toLowerCase();
+  const i = t.indexOf(n);
+  if (i === -1) return text;
+  return text.slice(0,i) + '<mark>' + text.slice(i, i+n.length) + '</mark>' + text.slice(i+n.length);
+}
+
+function scrollToAnchor(anchor) {
+  activateTabContaining(anchor);
+  setTimeout(function() {
+    var el = document.getElementById(anchor);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 60);
+}
+
+function activateTabContaining(anchorId) {
+  var el = document.getElementById(anchorId);
+  if (!el) return;
+  var node = el.parentElement;
+  while (node && node.className.indexOf('tab-content') < 0) {
+    node = node.parentElement;
+  }
+  if (node && node.className.indexOf('active') < 0) {
+    var tabId = node.id.replace('tab-', '');
+    var btns = document.getElementsByClassName('tab-btn');
+    var targetBtn = null;
+    for (var i = 0; i < btns.length; i++) {
+      var oc = btns[i].getAttribute('onclick') || '';
+      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
+    }
+    switchTab(tabId, targetBtn);
+  }
+}
+
+// ═══ 辞書モーダル ═══
+let _srItems = [];
+
+function openDictModal(item, conjInfo) {
+  const overlay = document.getElementById('dict-overlay');
+  const wordEl  = document.getElementById('dict-modal-word');
+  const posEl   = document.getElementById('dict-modal-pos');
+  const bodyEl  = document.getElementById('dict-modal-body');
+
+  wordEl.textContent = conjInfo ? conjInfo.conj : item.es;
+  posEl.textContent  = item.pos || '';
+
+  let body = '';
+
+  if (conjInfo) {
+    body += '<div class="dict-conj-badge">入力した形：' + conjInfo.conj
+      + '　＝　' + conjInfo.persona + ' の現在形</div>';
+  }
+
+  body += '<div class="dict-ja-big">' + item.ja + '</div>';
+
+  if (conjInfo) {
+    body += '<div class="dict-row"><span class="dict-label">不定詞</span>'
+      + '<span class="dict-val"><span class="mono" style="font-weight:700;color:var(--accent);font-size:14px;">'
+      + item.es + '</span>　' + item.ja + '</span></div>';
+  }
+
+  body += '<div class="dict-row"><span class="dict-label">分類</span><span class="dict-val">'
+    + '<span class="dict-tag">' + item.tag + '</span>'
+    + (item.pos ? '<span class="dict-tag">' + item.pos + '</span>' : '')
+    + '</span></div>';
+
+  const t = item.type || '';
+  if (t.startsWith('verb_')) {
+    const ending = t === 'verb_ar' ? 'ar' : t === 'verb_er' ? 'er' : 'ir';
+    if (item.es.endsWith(ending)) {
+      const forms = getConjForms(item);
+      const isIrreg = !!item.irreg;
+      body += '<div class="dict-row"><span class="dict-label">現在形活用</span><span class="dict-val" style="overflow-x:auto;display:block">';
+      if (isIrreg) {
+        body += '<div style="font-size:10.5px;color:var(--warn);margin-bottom:4px;font-weight:700;">⚠ 不規則活用</div>';
+      }
+      body += '<table class="dict-conj-table"><thead><tr><th>人称</th><th>活用形</th></tr></thead><tbody>';
+      for (const {label, form} of forms) {
+        const hi = conjInfo && stripAccents(conjInfo.conj) === stripAccents(form);
+        body += '<tr' + (hi ? ' class="dict-conj-row-hi"' : '') + '>'
+          + '<td>' + label + '</td>'
+          + '<td>' + form + (hi ? '　◀ 入力形' : '') + '</td></tr>';
+      }
+      body += '</tbody></table></span></div>';
+    }
+  }
+
+  if (item.tag && item.tag.includes('再帰動詞')) {
+    body += '<div class="dict-row"><span class="dict-label">用法</span><span class="dict-val">'
+      + '再帰代名詞（me/te/se/nos/os/se）と共に使う。活用形の前 or 不定詞の後に置く</span></div>';
+  }
+
+  if (item.anchor && document.getElementById(item.anchor)) {
+    body += '<button class="dict-jump-btn" onclick="scrollToAnchor(\'' + item.anchor + '\'); closeDictModal();">→ 解説ページへジャンプ</button>';
+  }
+
+  bodyEl.innerHTML = body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDictModal() {
+  document.getElementById('dict-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buildResultsHTML(results, grammar, q, conjMatch) {
+  _srItems = results;
+  let html = '';
+
+  if (grammar) {
+    html += '<div class="sr-item" onclick="scrollToAnchor(\'' + grammar.id + '\'); closeSearch();" style="border-left:3px solid var(--accent2);">'
+      + '<span class="sr-es" style="color:var(--accent2)">文法</span>'
+      + '<span class="sr-ja">' + grammar.label + '</span>'
+      + '<span class="sr-jump">→ ジャンプ</span>'
+      + '</div>';
+  }
+
+  if (!results.length && !grammar) {
+    return '<div class="sr-none">「' + q + '」に一致する単語が見つかりません</div>';
+  }
+
+  if (results.length) {
+    html += '<div class="sr-header">'
+      + (conjMatch ? '活用形' : '単語') + ' ' + results.length + '件'
+      + '<span style="font-size:10px;color:var(--muted);margin-left:8px;">タップで辞書カードを表示</span></div>';
+    for (let i = 0; i < results.length; i++) {
+      const r = results[i];
+      if (r.form === '活用形' && r.conjForm) {
+        const esHl = '<mark>' + r.conjForm + '</mark>';
+        html += '<div class="sr-item" style="cursor:pointer" data-idx="' + i + '" data-mode="conj" onclick="handleSrItemClick(this)">'
+          + '<span class="sr-es">' + esHl + '<span class="sr-form">活用形</span></span>'
+          + '<span class="sr-ja">' + r.ja + '</span>'
+          + '<span class="sr-jump" style="font-size:13px">&#x1F4D6;</span>'
+          + '</div>';
+      } else {
+        const esHl = highlight(r.es, q);
+        const badge = r.pos ? '<span class="sr-pos">' + r.pos + '</span>' : '';
+        html += '<div class="sr-item" style="cursor:pointer" data-idx="' + i + '" data-mode="word" onclick="handleSrItemClick(this)">'
+          + '<span class="sr-es">' + esHl + badge + '</span>'
+          + '<span class="sr-ja">' + r.ja + '</span>'
+          + '<span class="sr-jump" style="font-size:13px">&#x1F4D6;</span>'
+          + '</div>';
+      }
+    }
+  }
+  return html;
+}
+
+function handleSrItemClick(el) {
+  const idx  = parseInt(el.dataset.idx, 10);
+  const mode = el.dataset.mode;
+  const r = _srItems[idx];
+  if (!r) return;
+  if (mode === 'conj') {
+    openDictModal(r, {conj: r.conjForm, persona: r.conjPersona});
+  } else {
+    openDictModal(r, null);
+  }
+}
+function renderTo(targetId, results, grammar, q, conjMatch) {
+  const box = document.getElementById(targetId);
+  box.innerHTML = buildResultsHTML(results, grammar, q, conjMatch);
+  box.classList.add('has-results');
+}
+
+function closeSearch() {
+  document.getElementById('search-bar').classList.remove('open');
+  document.getElementById('search-results').classList.remove('has-results');
+  document.getElementById('search-input').value = '';
+  document.getElementById('cover-search-results').classList.remove('has-results');
+}
+
+// 表紙検索
+document.getElementById('cover-search-input').addEventListener('input', function() {
+  const q = this.value.trim();
+  const box = document.getElementById('cover-search-results');
+  if (q.length < 1) { box.classList.remove('has-results'); return; }
+  const {results, grammar, conjMatch} = searchVocab(q);
+  renderTo('cover-search-results', results, grammar, q, conjMatch);
+});
+
+// 検索結果のジャンプ：表紙検索用
+document.getElementById('cover-search-results').addEventListener('click', function(e) {
+  const item = e.target.closest('.sr-item');
+  if (!item) return;
+  document.getElementById('cover-search-results').classList.remove('has-results');
+});
+
+// フローティング検索バー
+document.getElementById('search-input').addEventListener('input', function() {
+  const q = this.value.trim();
+  const box = document.getElementById('search-results');
+  if (q.length < 1) { box.classList.remove('has-results'); return; }
+  const {results, grammar, conjMatch} = searchVocab(q);
+  renderTo('search-results', results, grammar, q, conjMatch);
+});
+document.getElementById('search-close').addEventListener('click', closeSearch);
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#search-bar') && !e.target.closest('#search-results') && !e.target.closest('#top-search-btn'))
+    document.getElementById('search-results').classList.remove('has-results');
+  if (!e.target.closest('.cover-search') && !e.target.closest('#cover-search-results'))
+    document.getElementById('cover-search-results').classList.remove('has-results');
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeSearch(); closeDictModal(); }
+});
+
+// フローティングナビ
+(function initFloatNav() {
+  var toggle = document.getElementById('float-nav-toggle');
+  var menu   = document.getElementById('float-nav-menu');
+  var searchBtn = document.getElementById('fn-search-btn');
+  if (toggle) toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+  if (searchBtn) searchBtn.addEventListener('click', function() {
+    menu.classList.remove('open');
+    openSearch();
+  });
+  document.addEventListener('click', function(e) {
+    if (menu && !menu.contains(e.target) && e.target !== toggle) {
+      menu.classList.remove('open');
+    }
+  });
+  var fnLinks = menu ? menu.querySelectorAll('a.fn-item') : [];
+  fnLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var href = link.getAttribute('href');
+      var sectionId = href ? href.replace('#','') : '';
+      if (sectionId) jumpToSection(sectionId);
+      menu.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+<!-- 辞書データ読み込み -->
+<script>
+(function() {
+  if (typeof RAW === 'undefined') return;
+  var _LABELS = ['yo','tú','él/ella','nosotros','vosotros','ellos/ellas'];
+
+  /* ── RAWエントリを既存モーダルで表示 ── */
+  function openModalFromRAW(idx) {
+    var e = RAW[idx];
+    var overlay = document.getElementById('dict-overlay');
+    var wordEl  = document.getElementById('dict-modal-word');
+    var posEl   = document.getElementById('dict-modal-pos');
+    var bodyEl  = document.getElementById('dict-modal-body');
+    wordEl.textContent = e[F.word];
+    posEl.textContent  = e[F.pos];
+    var body = '<div class="dict-ja-big">' + esc(e[F.meaning]) + '</div>';
+    if (e[F.gender]) {
+      body += '<div class="dict-row"><span class="dict-label">性</span><span class="dict-val">' +
+        (e[F.gender]==='m' ? '男性名詞' : e[F.gender]==='f' ? '女性名詞' : esc(e[F.gender])) +
+        '</span></div>';
+    }
+    if (e[F.plural]) {
+      body += '<div class="dict-row"><span class="dict-label">複数形</span><span class="dict-val" style="font-family:var(--mono);color:var(--accent)">' + esc(e[F.plural]) + '</span></div>';
+    }
+    if (e[F.vtype]) {
+      body += '<div class="dict-row"><span class="dict-label">動詞型</span><span class="dict-val">' + esc(e[F.vtype]) + '</span></div>';
+    }
+    if (e[F.conj]) {
+      var forms = e[F.conj].split(/,\s*/);
+      body += '<div class="dict-row"><span class="dict-label">現在活用</span><span class="dict-val" style="overflow-x:auto;display:block"><table class="dict-conj-table"><thead><tr><th>人称</th><th>活用形</th></tr></thead><tbody>';
+      forms.forEach(function(f, i) {
+        body += '<tr><td>' + (_LABELS[i] || '') + '</td><td>' + esc(f.trim()) + '</td></tr>';
+      });
+      body += '</tbody></table></span></div>';
+    }
+    if (e[F.adj]) {
+      var aForms = e[F.adj].split(/,\s*/);
+      body += '<div class="dict-row"><span class="dict-label">形容詞変化</span><span class="dict-val">';
+      aForms.forEach(function(f, i) {
+        body += '<span class="dict-tag" style="font-family:var(--mono)">' + esc(f.trim()) + '</span>';
+      });
+      body += '</span></div>';
+    }
+    if (e[F.note]) {
+      body += '<div class="dict-row"><span class="dict-label">備考</span><span class="dict-val" style="color:var(--mid);font-size:12px">' + esc(e[F.note]) + '</span></div>';
+    }
+    if (typeof DICT_EXAMPLES !== 'undefined' && DICT_EXAMPLES[e[F.word]]) {
+      var ex = DICT_EXAMPLES[e[F.word]];
+      body += '<div style="margin-top:10px;padding:8px 12px;background:#ecf3fa;border-left:3px solid #2a5298;border-radius:0 4px 4px 0">' +
+        '<div style="font-size:10px;font-weight:700;color:#2a5298;letter-spacing:.05em;margin-bottom:4px">例文</div>' +
+        '<div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:2px">' + esc(ex.es) + '</div>' +
+        '<div style="font-size:12px;color:var(--muted);font-style:italic">' + esc(ex.ja) + '</div>' +
+        '</div>';
+    }
+    bodyEl.innerHTML = body;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+  /* ── 辞書検索 ── */
+  function sAcc(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+  var isJaS = function(s){ return /[　-鿿゠-ヿ]/.test(s); };
+
+  function searchDictRAW(q) {
+    var norm = sAcc(q), ja = isJaS(q), seen = {}, results = [];
+    for (var i = 0; i < RAW.length; i++) {
+      var e = RAW[i];
+      var word = e[F.word], meaning = e[F.meaning], conj = e[F.conj] || '';
+      if (seen[word]) continue;
+      var score = 999;
+      if (ja) {
+        if (meaning.includes(q)) score = 0;
+      } else {
+        var wn = sAcc(word);
+        if      (wn === norm)         score = 0;
+        else if (wn.startsWith(norm)) score = 1;
+        else if (wn.includes(norm))   score = 2;
+        if (score > 2 && conj) {
+          conj.split(/,\s*/).forEach(function(f) {
+            var fn = sAcc(f.trim());
+            if (fn === norm)         score = Math.min(score, 0.5);
+            if (fn.startsWith(norm)) score = Math.min(score, 1.5);
+          });
+        }
+      }
+      if (score < 50) { results.push({i:i, word:word, meaning:meaning, pos:e[F.pos], score:score}); seen[word]=1; }
+    }
+    results.sort(function(a,b){ return a.score-b.score; });
+    return results.slice(0,15);
+  }
+
+  /* ── renderTo のフック（辞書検索のみ追加） ── */
+  var _origRenderTo = renderTo;
+  var _dictHits1 = [];
+  renderTo = function(targetId, results, grammar, q, conjMatch) {
+    _origRenderTo(targetId, results, grammar, q, conjMatch);
+    if (!q) return;
+    _dictHits1 = searchDictRAW(q);
+    if (!_dictHits1.length) return;
+    var box = document.getElementById(targetId);
+    box.classList.add('has-results');
+    var html = '<div class="sr-header">辞書（' + _dictHits1.length + '件）— クリックで詳細表示</div>';
+    _dictHits1.forEach(function(h, i) {
+      html += '<div class="sr-item" style="cursor:pointer" data-rawdictidx="'+i+'">' +
+        '<span class="sr-es" style="color:var(--rd)">' + esc(h.word) + '<span class="sr-pos">' + esc(h.pos) + '</span></span>' +
+        '<span class="sr-ja">' + esc(h.meaning.slice(0,50)) + '</span>' +
+        '<span class="sr-jump" style="font-size:13px">📖</span>' +
+        '</div>';
+    });
+    box.innerHTML += html;
+    box.querySelectorAll('[data-rawdictidx]').forEach(function(el) {
+      var i = parseInt(el.dataset.rawdictidx);
+      el.addEventListener('click', function() { openModalFromRAW(_dictHits1[i].i); });
+    });
+  };
+})();
+</script>
+</body>
+</html>
