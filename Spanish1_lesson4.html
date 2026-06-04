@@ -22,16 +22,17 @@
 <body>
 
 <nav id="top-nav">
-  <a href="index.html" id="nav-home">← ホーム</a>
+  <a href="index.html" id="home-btn">← ホーム</a>
   <span id="top-nav-title">Lección 4 文法解説</span>
-  <button id="top-toc-toggle" onclick="toggleToc()">目次 ▾</button>
+  <button id="top-toc-toggle" onclick="toggleToc()">☰ 目次</button>
+  <button id="pdf-print-btn" onclick="savePdf()">🖨 PDF保存</button>
   <div id="top-toc-menu">
-    <a class="fn-item" href="#sec1">１ 不規則活用</a>
-    <a class="fn-item" href="#sec2">２ 関係詞</a>
-    <a class="fn-item" href="#sec3">３ 比較表現</a>
-    <a class="fn-item" href="#sec4">４ 無主語文</a>
-    <a class="fn-item" href="#exercises">練習問題</a>
-    <a class="fn-item" href="#vocab">語彙</a>
+    <a class="fn-item" href="#sec1" onclick="jumpToSection('sec1'); closeToc(); return false;">１ 不規則活用</a>
+    <a class="fn-item" href="#sec2" onclick="jumpToSection('sec2'); closeToc(); return false;">２ 関係詞</a>
+    <a class="fn-item" href="#sec3" onclick="jumpToSection('sec3'); closeToc(); return false;">３ 比較表現</a>
+    <a class="fn-item" href="#sec4" onclick="jumpToSection('sec4'); closeToc(); return false;">４ 無主語文</a>
+    <a class="fn-item" href="#exercises" onclick="jumpToSection('exercises'); closeToc(); return false;">✏️ 練習問題</a>
+    <a class="fn-item" href="#vocab" onclick="jumpToSection('vocab'); closeToc(); return false;">📖 語彙</a>
   </div>
 </nav>
 
@@ -40,14 +41,22 @@
   <div class="cover-title">Lección 4 &nbsp;文法解説</div>
   <div class="cover-sub">スペイン語一列 ／ Gramática</div>
   <div class="toc">
-    <a class="toc-item" href="#sec1">１ 直説法現在形不規則活用</a>
-    <a class="toc-item" href="#sec2">２ 関係詞</a>
-    <a class="toc-item" href="#sec3">３ 比較表現</a>
-    <a class="toc-item" href="#sec4">４ 無主語文</a>
-    <a class="toc-item" href="#exercises">練習問題</a>
-    <a class="toc-item" href="#vocab">語彙</a>
+    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">１ 直説法現在形不規則活用</a>
+    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">２ 関係詞</a>
+    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">３ 比較表現</a>
+    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">４ 無主語文</a>
+    <a class="toc-item" href="#exercises" onclick="jumpToSection('exercises'); return false;">✏️ 練習問題</a>
+    <a class="toc-item" href="#vocab" onclick="jumpToSection('vocab'); return false;">📖 語彙</a>
   </div>
 </div>
+
+<div class="tab-nav">
+  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
+  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
+  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙</button>
+</div>
+
+<div id="tab-grammar" class="tab-content active">
 
 <!-- ══════════════════════════════════════════
      Section 1: 直説法現在形不規則活用
@@ -682,6 +691,10 @@
   例）Hay que estudiar. ←一般論。Tengo que estudiar. ←私が勉強しなければならない。</span>
 </div>
 
+</div><!-- /tab-grammar -->
+
+<div id="tab-renshu" class="tab-content">
+
 <!-- ══════════════════════════════════════════
      練習問題
 ════════════════════════════════════════════ -->
@@ -823,6 +836,10 @@
   </div>
 </div>
 
+</div><!-- /tab-renshu -->
+
+<div id="tab-vocab" class="tab-content">
+
 <!-- ══════════════════════════════════════════
      語彙
 ════════════════════════════════════════════ -->
@@ -895,19 +912,81 @@
   <span class="pill"><span class="pill-es">popular</span><span class="pill-ja">人気ある・大衆的な</span></span>
 </div>
 
+</div><!-- /tab-vocab -->
+
 <script>
+// ── タブ切り替え ──
+function switchTab(tabId, btnEl) {
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].style.display = 'none';
+    tabs[i].classList.remove('active');
+  }
+  var target = document.getElementById('tab-' + tabId);
+  if (target) { target.style.display = 'block'; target.classList.add('active'); }
+  var btns = document.getElementsByClassName('tab-btn');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
+  }
+  if (btnEl) btnEl.classList.add('active-' + tabId);
+  window.scrollTo(0, 0);
+}
+
+// ── タブを跨いだセクションジャンプ ──
+function jumpToSection(sectionId) {
+  var el = document.getElementById(sectionId);
+  if (!el) return;
+  var node = el.parentElement;
+  while (node && node.className.indexOf('tab-content') < 0) { node = node.parentElement; }
+  if (node && node.className.indexOf('active') < 0) {
+    var tabId = node.id.replace('tab-', '');
+    var btns = document.getElementsByClassName('tab-btn');
+    var targetBtn = null;
+    for (var i = 0; i < btns.length; i++) {
+      var oc = btns[i].getAttribute('onclick') || '';
+      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
+    }
+    switchTab(tabId, targetBtn);
+  }
+  setTimeout(function() {
+    var el2 = document.getElementById(sectionId);
+    if (el2) el2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+// ── 目次トグル ──
 function toggleToc() {
   var menu = document.getElementById('top-toc-menu');
-  menu.classList.toggle('open');
+  var btn = document.getElementById('top-toc-toggle');
+  var isOpen = menu.classList.toggle('open');
+  btn.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
+}
+function closeToc() {
+  var menu = document.getElementById('top-toc-menu');
+  if (menu) menu.classList.remove('open');
+  var btn = document.getElementById('top-toc-toggle');
+  if (btn) btn.textContent = '☰ 目次';
 }
 document.addEventListener('click', function(e) {
-  var menu = document.getElementById('top-toc-menu');
-  var btn = document.getElementById('top-toc-toggle');
-  if (!menu.contains(e.target) && e.target !== btn) {
-    menu.classList.remove('open');
+  if (!e.target.closest('#top-nav')) closeToc();
+});
+
+// ── PDF保存 ──
+function savePdf() {
+  document.body.classList.add('is-printing');
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
+  setTimeout(function() { window.print(); }, 50);
+}
+window.addEventListener('afterprint', function() {
+  document.body.classList.remove('is-printing');
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
   }
 });
 
+// ── 解答トグル ──
 function toggleAns(btn) {
   var item = btn.closest('.q-content');
   var ansRow = item.querySelector('.q-answer-row');
