@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<script>if (!sessionStorage.getItem('visitedHome')) { location.replace('index.html'); }</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WB0WVZSEHT"></script>
 <script>
@@ -10,6 +11,7 @@
   gtag("config", "G-WB0WVZSEHT");
 </script>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>スペイン語辞書</title>
 <style>
@@ -152,7 +154,7 @@
 <body>
 
 <div id="top-nav">
-  <a id="nav-home" href="../index.html">🏠 ホーム</a>
+  <a id="nav-home" href="index.html">🏠 ホーム</a>
   <span id="nav-title">🇪🇸 スペイン語辞書</span>
   
 </div>

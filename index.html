@@ -10,9 +10,12 @@
   gtag("config", "G-WB0WVZSEHT");
 </script>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://partner.googleadservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>スペイン語学習ポータル</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Google AdSense: ca-pub-XXXXXXXXXX を自分のパブリッシャーIDに書き換えてください -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6045613757008970" crossorigin="anonymous"></script>
 <style>
   :root {
     --ink: #1c1c1e; --mid: #48484a; --muted: #8e8e93;
@@ -123,9 +126,125 @@
     header h1 { font-size: 20px; }
     .card-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ── サイトポリシー同意オーバーレイ ── */
+  #policy-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99999;
+    background: rgba(0,0,0,.5);
+    align-items: center; justify-content: center;
+  }
+  .policy-inner {
+    background: var(--surface); border-radius: 10px;
+    padding: 30px 28px 26px; width: min(400px, 92vw);
+    box-shadow: 0 12px 48px rgba(0,0,0,.28);
+  }
+  .policy-logo {
+    font-family: var(--serif); font-size: 17px; font-weight: 700;
+    color: var(--accent); border-left: 3px solid var(--accent);
+    padding-left: 10px; margin-bottom: 4px;
+  }
+  .policy-lead { font-size: 11px; color: var(--muted); margin-bottom: 18px; padding-left: 13px; }
+  .policy-items { margin-bottom: 22px; }
+  .policy-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--ink); line-height: 1.7;
+    padding: 10px 0; border-bottom: 1px solid var(--rule);
+  }
+  .policy-item:first-child { border-top: 1px solid var(--rule); }
+  .policy-item-num {
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    background: var(--head-bg); border-radius: 3px;
+    padding: 2px 6px; flex-shrink: 0; margin-top: 3px;
+  }
+  .policy-item a { color: var(--accent); text-decoration: underline; }
+  .policy-item a:hover { color: #1d3d7a; }
+  .policy-btn-row { display: flex; gap: 8px; margin-top: 4px; }
+  .policy-agree-btn {
+    flex: 1; background: var(--accent); color: #fff; border: none;
+    border-radius: 6px; padding: 12px;
+    font-family: var(--sans); font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: background .15s;
+    box-shadow: 0 3px 12px rgba(42,82,152,.22);
+  }
+  .policy-agree-btn:hover { background: #1d3d7a; }
+  .policy-decline-btn {
+    flex: 1; background: transparent; color: var(--muted);
+    border: 1.5px solid var(--rule); border-radius: 6px; padding: 12px;
+    font-family: var(--sans); font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all .15s;
+  }
+  .policy-decline-btn:hover { border-color: var(--muted); color: var(--mid); }
+
+  /* ── 広告オーバーレイ ── */
+  #ad-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99999;
+    background: rgba(0,0,0,.6);
+    align-items: center; justify-content: center;
+  }
+  .ad-inner {
+    background: var(--surface); border-radius: 10px;
+    padding: 24px 28px 22px; width: min(480px, 94vw);
+    box-shadow: 0 12px 48px rgba(0,0,0,.28); text-align: center;
+  }
+  .ad-label {
+    font-size: 10px; color: var(--muted); letter-spacing: .08em;
+    margin-bottom: 12px;
+  }
+  .ad-unit { min-height: 160px; margin-bottom: 16px; }
+  .ad-back-btn {
+    display: inline-block; background: none; border: 1.5px solid var(--rule);
+    border-radius: 6px; padding: 9px 28px;
+    font-family: var(--sans); font-size: 13px; color: var(--mid);
+    cursor: pointer; transition: all .15s;
+  }
+  .ad-back-btn:hover { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
+
+<!-- サイトポリシー同意オーバーレイ -->
+<div id="policy-overlay">
+  <div class="policy-inner">
+    <div class="policy-logo">スペイン語学習ポータル</div>
+    <div class="policy-lead">ご利用の前に以下をご確認ください</div>
+    <div class="policy-items">
+      <div class="policy-item">
+        <span class="policy-item-num">1</span>
+        <span>私は東京大学の1年生です。</span>
+      </div>
+      <div class="policy-item">
+        <span class="policy-item-num">2</span>
+        <span>私は「スペイン語学習の羅針盤」を所有しています。</span>
+      </div>
+      <div class="policy-item">
+        <span class="policy-item-num">3</span>
+        <span>私は<a href="policy.html" target="_blank">サイトポリシー</a>に同意します。</span>
+      </div>
+    </div>
+    <div class="policy-btn-row">
+      <button class="policy-agree-btn" onclick="agreePolicy()">同意する</button>
+      <button class="policy-decline-btn" onclick="declinePolicy()">同意しない</button>
+    </div>
+  </div>
+</div>
+
+<!-- 広告オーバーレイ -->
+<div id="ad-overlay">
+  <div class="ad-inner">
+    <div class="ad-label">広 告</div>
+    <div class="ad-unit">
+      <!-- ↓ data-ad-client と data-ad-slot を自分のAdSense値に書き換えてください -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6045613757008970"
+           data-ad-slot="6045613757008970"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <button class="ad-back-btn" onclick="closeAd()">閉じてポリシー確認に戻る</button>
+  </div>
+</div>
 
 <header>
   <h1>スペイン語学習ポータル</h1>
@@ -223,20 +342,24 @@
 <!-- ── 単語帳 ── -->
 <div class="section-block">
   <div class="section-title tango">単語帳<span class="section-sub">Vocabulario</span></div>
-  <a href="単語帳/spanish_dictionary.html" class="tango-card">
+  <a href="spanish_dictionary.html" class="tango-card">
     <div class="tango-title">スペイン語辞書・単語帳</div>
     <div class="tango-desc">授業で登場した語彙を検索・確認できます。スペイン語・日本語どちらでも検索可能。</div>
     <div class="tango-tag">単語帳/ フォルダ → spanish_dictionary.html</div>
   </a>
 </div>
 
+<script>sessionStorage.setItem('visitedHome', '1');</script>
+
 <footer>
   スペイン語 一列・二列 解説 — 2026年度
 </footer>
 
-<div style="text-align:center; margin-top:32px; padding-bottom:24px;">
+<div style="text-align:center; margin-top:32px; padding-bottom:24px; display:flex; justify-content:center; gap:20px;">
   <a href="#" onclick="adminLogin(); return false;"
      style="font-size:11px; color:#aaa; text-decoration:none;">管理者ページ</a>
+  <a href="policy.html" target="_blank"
+     style="font-size:11px; color:#aaa; text-decoration:none;">サイトポリシー</a>
 </div>
 
 <!-- 管理者ログインモーダル -->
@@ -260,15 +383,27 @@
     <button onclick="adminClose()"
             style="width:100%; background:none; border:1px solid #d6d6ce;
                    border-radius:4px; padding:8px; font-size:13px;
-                   color:#8e8e93; cursor:pointer;">キャンセル</button>
+                   color:#8e8e93; cursor:pointer;">← ホームに戻る</button>
     <div id="admin-err" style="font-size:12px; color:#a8281a; margin-top:8px; min-height:16px;"></div>
   </div>
 </div>
 
 <script>
+var ADMIN_HASH = '9af15b336e6a9619928537df30b2e6a2376569fcf9d7e773eccede65606529a0';
+var ADMIN_MAX_ATTEMPTS = 5;
+var ADMIN_LOCKOUT_MS = 5 * 60 * 1000;
+
 function adminLogin() {
+  var lockUntil = parseInt(sessionStorage.getItem('adminLockUntil') || '0');
   var ov = document.getElementById('admin-overlay');
+  var errEl = document.getElementById('admin-err');
   ov.style.display = 'flex';
+  if (Date.now() < lockUntil) {
+    var min = Math.ceil((lockUntil - Date.now()) / 60000);
+    errEl.textContent = 'ロック中。あと約 ' + min + ' 分後にお試しください。';
+    return;
+  }
+  errEl.textContent = '';
   setTimeout(function(){ document.getElementById('admin-pw').focus(); }, 50);
 }
 function adminClose() {
@@ -276,12 +411,34 @@ function adminClose() {
   document.getElementById('admin-pw').value = '';
   document.getElementById('admin-err').textContent = '';
 }
-function adminCheck() {
-  if (document.getElementById('admin-pw').value === '0000') {
+async function adminCheck() {
+  var errEl = document.getElementById('admin-err');
+  var lockUntil = parseInt(sessionStorage.getItem('adminLockUntil') || '0');
+  if (Date.now() < lockUntil) {
+    var min = Math.ceil((lockUntil - Date.now()) / 60000);
+    errEl.textContent = 'ロック中。あと約 ' + min + ' 分後にお試しください。';
+    document.getElementById('admin-pw').value = '';
+    return;
+  }
+  var pw = document.getElementById('admin-pw').value;
+  var encoded = new TextEncoder().encode(pw);
+  var hashBuf = await crypto.subtle.digest('SHA-256', encoded);
+  var hashHex = Array.from(new Uint8Array(hashBuf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  if (hashHex === ADMIN_HASH) {
+    sessionStorage.removeItem('adminAttempts');
+    sessionStorage.removeItem('adminLockUntil');
     adminClose();
     window.open('https://analytics.google.com/', '_blank');
   } else {
-    document.getElementById('admin-err').textContent = 'パスワードが違います。';
+    var attempts = parseInt(sessionStorage.getItem('adminAttempts') || '0') + 1;
+    if (attempts >= ADMIN_MAX_ATTEMPTS) {
+      sessionStorage.setItem('adminLockUntil', String(Date.now() + ADMIN_LOCKOUT_MS));
+      sessionStorage.removeItem('adminAttempts');
+      errEl.textContent = '試行回数の上限に達しました。5分間ロックします。';
+    } else {
+      sessionStorage.setItem('adminAttempts', String(attempts));
+      errEl.textContent = 'パスワードが違います。（残り ' + (ADMIN_MAX_ATTEMPTS - attempts) + ' 回）';
+    }
     document.getElementById('admin-pw').value = '';
     document.getElementById('admin-pw').focus();
   }
@@ -289,6 +446,23 @@ function adminCheck() {
 document.getElementById('admin-overlay').addEventListener('click', function(e) {
   if (e.target === this) adminClose();
 });
+
+// サイトポリシー同意
+if (!localStorage.getItem('agreedPolicy')) {
+  document.getElementById('policy-overlay').style.display = 'flex';
+}
+function agreePolicy() {
+  localStorage.setItem('agreedPolicy', '1');
+  document.getElementById('policy-overlay').style.display = 'none';
+}
+function declinePolicy() {
+  document.getElementById('policy-overlay').style.display = 'none';
+  document.getElementById('ad-overlay').style.display = 'flex';
+}
+function closeAd() {
+  document.getElementById('ad-overlay').style.display = 'none';
+  document.getElementById('policy-overlay').style.display = 'flex';
+}
 </script>
 
 </body>
