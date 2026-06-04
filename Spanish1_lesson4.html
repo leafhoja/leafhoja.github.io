@@ -21,20 +21,23 @@
 </head>
 <body>
 
-<nav id="top-nav">
-  <a href="index.html" id="home-btn">← ホーム</a>
-  <span id="top-nav-title">Lección 4 文法解説</span>
-  <button id="top-toc-toggle" onclick="toggleToc()">☰ 目次</button>
-  <button id="pdf-print-btn" onclick="savePdf()">🖨 PDF保存</button>
+<div id="top-nav">
   <div id="top-toc-menu">
-    <a class="fn-item" href="#sec1" onclick="jumpToSection('sec1'); closeToc(); return false;">１ 不規則活用</a>
-    <a class="fn-item" href="#sec2" onclick="jumpToSection('sec2'); closeToc(); return false;">２ 関係詞</a>
-    <a class="fn-item" href="#sec3" onclick="jumpToSection('sec3'); closeToc(); return false;">３ 比較表現</a>
-    <a class="fn-item" href="#sec4" onclick="jumpToSection('sec4'); closeToc(); return false;">４ 無主語文</a>
-    <a class="fn-item" href="#exercises" onclick="jumpToSection('exercises'); closeToc(); return false;">✏️ 練習問題</a>
-    <a class="fn-item" href="#vocab" onclick="jumpToSection('vocab'); closeToc(); return false;">📖 語彙</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;">📚 文法解説タブ</span>
+    <a class="fn-item" href="#sec1" onclick="jumpToSection('sec1'); closeToc(); return false;">① 直説法現在形不規則活用</a>
+    <a class="fn-item" href="#sec2" onclick="jumpToSection('sec2'); closeToc(); return false;">② 関係詞</a>
+    <a class="fn-item" href="#sec3" onclick="jumpToSection('sec3'); closeToc(); return false;">③ 比較表現</a>
+    <a class="fn-item" href="#sec4" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 無主語文</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">✏️ 練習問題タブ</span>
+    <a class="fn-item" href="#exercises" onclick="jumpToSection('exercises'); closeToc(); return false;">⑤ 練習問題</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">📖 語彙タブ</span>
+    <a class="fn-item" href="#vocab" onclick="jumpToSection('vocab'); closeToc(); return false;">⑥ 語彙</a>
   </div>
-</nav>
+  <a id="home-btn" href="index.html">🏠 ホーム</a>
+  <span id="top-nav-title">Lección 4 文法解説</span>
+  <button id="pdf-print-btn" onclick="savePdf()">🖨 PDFで保存</button>
+  <button id="top-toc-toggle" onclick="toggleToc()">☰ 目次</button>
+</div>
 
 <!-- 表紙 -->
 <div class="cover">
