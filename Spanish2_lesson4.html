@@ -16,675 +16,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Lección 4 会話・読解解説</title>
-<style>
-/* ══════════════════════════════════════════════
-   Spanish2 共通スタイルシート
-   スペイン語二列 — 会話・読解解説シリーズ
-   ══════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
-
-:root {
-  --ink: #1c1c1e; --mid: #48484a; --muted: #8e8e93;
-  --accent: #2a5298; --accent2: #1b7a68; --warn: #a8281a;
-  --gold: #6b5418; --bg: #f5f5f0; --surface: #ffffff;
-  --rule: #d6d6ce; --head-bg: #ebeff8; --sub-bg: #e4f0ec;
-  --alt-bg: #f0f0eb; --ex-bg: #ecf3fa; --tip-bg: #eef6ee;
-  --warn-bg: #faeeed;
-  --serif: 'Noto Serif JP', serif; --sans: 'Noto Sans JP', sans-serif;
-  --mono: 'IBM Plex Mono', monospace;
-  --rd: #6b4f9e; --rd-bg: #f3eff9; --rd-head: #ede8f5;
-  --ex-tab: #c0392b; --ex-head: #fdecea;
-  --pit: #7a4a00; --pit-bg: #fff8ec; --pit-border: #e8a830;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--sans); font-size: 14px; line-height: 1.8;
-  color: var(--ink); background: var(--bg);
-  max-width: 900px; margin: 0 auto; padding: 32px 22px 80px;
-  position: relative;
-}
-
-/* ── 上部固定ナビ ── */
-#top-nav {
-  position: sticky; top: 0; z-index: 900;
-  background: var(--surface); border-bottom: 2px solid var(--accent);
-  display: flex; align-items: center; gap: 8px;
-  padding: 6px 12px; box-shadow: 0 2px 8px rgba(0,0,0,.10);
-  margin: -32px -22px 24px;
-}
-#top-nav-title {
-  font-family: var(--serif); font-size: 12px; font-weight: 700;
-  color: var(--accent); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-#top-toc-toggle {
-  background: var(--accent); color: #fff; border: none;
-  border-radius: 3px; padding: 5px 12px; font-size: 12px; font-weight: 700;
-  cursor: pointer; font-family: var(--sans); transition: background .12s;
-}
-#top-toc-toggle:hover { background: #1d3e72; }
-#pdf-print-btn {
-  background: #444; color: #fff; border: none;
-  border-radius: 3px; padding: 5px 12px; font-size: 12px; font-weight: 700;
-  cursor: pointer; font-family: var(--sans);
-  transition: background .12s; white-space: nowrap;
-}
-#pdf-print-btn:hover { background: #222; }
-#home-btn {
-  background: var(--accent2); color: #fff; border: none;
-  border-radius: 3px; padding: 5px 12px; font-size: 12px; font-weight: 700;
-  cursor: pointer; font-family: var(--sans); text-decoration: none;
-  transition: background .12s; white-space: nowrap; display: inline-flex; align-items: center;
-}
-#home-btn:hover { background: #155f50; }
-#top-toc-menu {
-  position: absolute; top: 100%; left: -12px; right: -12px;
-  background: var(--surface); border-bottom: 2px solid var(--accent);
-  box-shadow: 0 6px 20px rgba(0,0,0,.15);
-  padding: 8px 10px; display: none; flex-wrap: wrap; gap: 5px; z-index: 800;
-}
-#top-toc-menu.open { display: flex; }
-.fn-item {
-  display: inline-block; font-size: 12px; color: var(--accent);
-  text-decoration: none; padding: 5px 11px; font-weight: 500;
-  border: 1px solid var(--rule); border-radius: 3px; transition: background .1s;
-}
-.fn-item:hover { background: var(--head-bg); }
-
-/* ── 表紙 ── */
-.cover {
-  border-top: 3px solid var(--accent); border-bottom: 1px solid var(--rule);
-  padding: 24px 0 20px; margin-bottom: 24px;
-}
-.cover-title {
-  font-family: var(--serif); font-size: 22px; font-weight: 700;
-  color: var(--accent); margin-bottom: 4px;
-}
-.cover-sub { font-size: 12px; color: var(--muted); }
-
-/* ── タブ ── */
-.tab-nav {
-  display: flex; gap: 0; margin: 24px 0 0;
-  border-bottom: 2px solid var(--rule); flex-wrap: wrap;
-}
-.tab-btn {
-  padding: 10px 22px; font-family: var(--sans); font-size: 13px; font-weight: 700;
-  cursor: pointer; border: none; border-bottom: 3px solid transparent;
-  margin-bottom: -2px; background: transparent; color: var(--muted);
-  transition: color .15s, border-color .15s, background .15s;
-  border-radius: 4px 4px 0 0;
-}
-.tab-btn:hover { color: var(--accent); background: var(--head-bg); }
-.tab-btn.active-kaiwa { color: var(--accent); border-bottom-color: var(--accent); background: var(--head-bg); }
-.tab-btn.active-dokkai { color: var(--rd); border-bottom-color: var(--rd); background: var(--rd-head); }
-.tab-btn.active-renshu { color: var(--ex-tab); border-bottom-color: var(--ex-tab); background: var(--ex-head); }
-.tab-content { display: none; padding-top: 10px; }
-.tab-content.active { display: block; }
-
-/* ── セクション見出し ── */
-.sec-heading {
-  display: flex; align-items: baseline; gap: 10px;
-  border-left: 4px solid var(--accent); padding: 8px 12px;
-  margin: 36px 0 15px; background: var(--head-bg);
-  scroll-margin-top: 60px; flex-wrap: wrap;
-}
-.sec-num { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--accent); white-space: nowrap; }
-.sec-title { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); }
-.sec-es { font-size: 11px; color: var(--muted); font-style: italic; margin-left: auto; }
-.sec-heading-rd {
-  display: flex; align-items: baseline; gap: 10px;
-  border-left: 4px solid var(--rd); padding: 8px 12px;
-  margin: 36px 0 15px; background: var(--rd-head);
-  scroll-margin-top: 60px; flex-wrap: wrap;
-}
-.sec-num-rd { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--rd); white-space: nowrap; }
-.sec-title-rd { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); }
-.sec-es-rd { font-size: 11px; color: var(--muted); font-style: italic; margin-left: auto; }
-.sec-heading-ex {
-  display: flex; align-items: baseline; gap: 10px;
-  border-left: 4px solid var(--ex-tab); padding: 8px 12px;
-  margin: 36px 0 15px; background: var(--ex-head);
-  scroll-margin-top: 60px; flex-wrap: wrap;
-}
-.sec-num-ex { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--ex-tab); white-space: nowrap; }
-.sec-title-ex { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--ink); }
-.sec-es-ex { font-size: 11px; color: var(--muted); font-style: italic; margin-left: auto; }
-
-/* ── サブ見出し ── */
-.sub {
-  font-size: 12.5px; font-weight: 700; color: var(--accent);
-  border-bottom: 1px solid var(--rule); padding-bottom: 3px; margin: 22px 0 9px;
-}
-.sub::before { content: "◆ "; color: var(--accent2); }
-.sub-rd {
-  font-size: 12.5px; font-weight: 700; color: var(--rd);
-  border-bottom: 1px solid #d0c0e8; padding-bottom: 3px; margin: 22px 0 9px;
-}
-.sub-rd::before { content: "◆ "; color: var(--rd); opacity: .6; }
-
-/* ── 本文 ── */
-p { margin-bottom: 8px; font-size: 13.5px; }
-.note { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
-
-/* ── テーブル ── */
-.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px 0; }
-.tbl-wrap table { margin: 0; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 320px; }
-th {
-  background: var(--head-bg); color: var(--accent); font-weight: 700;
-  padding: 7px 10px; border: 1px solid var(--rule); text-align: center; font-size: 12px;
-}
-td { padding: 7px 10px; border: 1px solid var(--rule); vertical-align: middle; }
-tr:nth-child(even) td { background: var(--alt-bg); }
-tr:nth-child(odd)  td { background: var(--surface); }
-.td-key { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: 13px; }
-.td-ja { color: var(--mid); }
-.td-c { text-align: center; }
-.td-note { color: var(--muted); font-size: 12px; }
-.th-rd { background: var(--rd-head); color: var(--rd); }
-
-/* ── ボックス ── */
-.box {
-  border: 1px solid var(--rule); border-left: 4px solid var(--accent);
-  background: var(--ex-bg); padding: 12px 16px; margin: 10px 0;
-  border-radius: 0 4px 4px 0;
-}
-.box-title { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 7px; text-transform: uppercase; letter-spacing: .06em; }
-.box-rd {
-  border: 1px solid #d0c0e8; border-left: 4px solid var(--rd);
-  background: var(--rd-bg); padding: 12px 16px; margin: 10px 0;
-  border-radius: 0 4px 4px 0;
-}
-.box-rd-title { font-size: 12px; font-weight: 700; color: var(--rd); margin-bottom: 7px; }
-
-/* ── 例文 ── */
-.ex { margin: 5px 0 5px 8px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.ex-sp { font-family: var(--mono); font-size: 13.5px; font-weight: 600; color: var(--ink); }
-.ex-ja { font-size: 12.5px; color: var(--muted); font-style: italic; }
-.ex-arrow { color: var(--accent2); font-weight: 700; }
-
-/* ── ポイント・注意 ── */
-.point, .caution { margin: 5px 0 5px 8px; font-size: 13px; display: flex; gap: 7px; }
-.point::before { content: "✔"; color: var(--accent2); font-weight: 700; flex-shrink: 0; }
-.caution::before { content: "⚠"; color: var(--warn); font-weight: 700; flex-shrink: 0; }
-.caution { color: var(--warn); }
-
-/* ── 初学者の落とし穴 ── */
-.pitfall {
-  display: flex; align-items: flex-start; gap: 8px;
-  background: var(--pit-bg); border-left: 3px solid var(--pit-border);
-  padding: 8px 12px; margin: 8px 0;
-  font-size: 12.5px; color: var(--pit); line-height: 1.7;
-  border-radius: 0 4px 4px 0;
-}
-.pitfall::before { content: "🪤"; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
-.pitfall-label {
-  font-weight: 700; font-size: 10px;
-  background: var(--pit); color: #fff; padding: 1px 5px; border-radius: 2px;
-  margin-right: 4px; vertical-align: middle; white-space: nowrap;
-}
-
-/* ── 豆知識 ── */
-.trivia {
-  display: flex; align-items: flex-start; gap: 7px;
-  background: var(--tip-bg); border-left: 3px solid #6bab6b;
-  padding: 8px 12px; margin: 12px 0;
-  font-size: 12.5px; color: var(--gold); line-height: 1.65;
-}
-.trivia-icon { font-size: 13px; flex-shrink: 0; margin-top: 2px; }
-.trivia-label {
-  font-weight: 700; margin-right: 4px; font-size: 10px;
-  background: var(--gold); color: #fff; padding: 1px 5px; border-radius: 2px;
-  vertical-align: middle;
-}
-
-/* ── 強調 ── */
-.hi { color: var(--accent); font-weight: 700; }
-.hi2 { color: var(--accent2); font-weight: 700; }
-.hi-r { color: var(--warn); font-weight: 700; }
-.hi-v { color: var(--rd); font-weight: 700; }
-.mono { font-family: var(--mono); font-size: 13px; }
-
-/* ── 対話ボックス ── */
-.dialog-box {
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 6px; overflow: hidden; margin: 12px 0 20px;
-}
-.dialog-box-title {
-  background: var(--accent); color: #fff; font-size: 11px;
-  font-weight: 700; letter-spacing: .07em; padding: 5px 14px;
-}
-.dialog-body { padding: 10px 14px; }
-.dl-line {
-  display: grid; grid-template-columns: 80px 1fr;
-  gap: 6px 14px; padding: 5px 0;
-  border-bottom: 1px solid var(--rule); align-items: baseline; font-size: 13px;
-}
-.dl-line:last-child { border-bottom: none; }
-.dl-speaker { font-weight: 700; color: var(--accent); font-size: 12.5px; white-space: nowrap; }
-.dl-speaker.sp2 { color: var(--accent2); }
-.dl-speaker.sp3 { color: var(--gold); }
-.dl-es { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); }
-.dl-ja { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 2px; }
-
-/* ── 発話カード ── */
-.utterance-card {
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 6px; margin: 16px 0; overflow: hidden;
-}
-.utt-header {
-  display: flex; align-items: center; gap: 12px;
-  background: var(--head-bg); padding: 8px 14px;
-  border-bottom: 1px solid var(--rule); flex-wrap: wrap;
-}
-.utt-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; background: var(--accent); color: #fff;
-  border-radius: 50%; font-size: 13px; font-weight: 700; flex-shrink: 0;
-}
-.utt-speaker { font-weight: 700; font-size: 13px; color: var(--accent); }
-.utt-speaker.sp2 { color: var(--accent2); }
-.utt-speaker.sp3 { color: var(--gold); }
-.utt-es { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); }
-.utt-body { padding: 10px 14px 12px; }
-.utt-ja { font-size: 13px; color: var(--mid); font-style: italic; margin-bottom: 8px; }
-
-/* ── 単語リスト ── */
-.word-list { margin: 6px 0 10px 4px; }
-.word-item {
-  display: grid; grid-template-columns: 160px 1fr;
-  gap: 3px 10px; padding: 3px 0;
-  border-bottom: 1px dotted var(--rule); font-size: 12.5px; align-items: baseline;
-}
-.word-item:last-child { border-bottom: none; }
-.w-es { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: 13px; }
-.w-def { color: var(--mid); }
-
-/* ── 文法ブロック ── */
-.gram-block {
-  background: var(--ex-bg); border-left: 3px solid var(--accent);
-  padding: 8px 12px; margin-top: 8px; border-radius: 0 4px 4px 0; font-size: 13px;
-}
-.gram-label { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px; }
-
-/* ── 読解テキストカード ── */
-.text-card {
-  background: var(--surface); border: 1px solid #d0c0e8;
-  border-radius: 6px; overflow: hidden; margin: 12px 0 20px;
-}
-.text-card-title {
-  background: var(--rd); color: #fff; font-size: 11px;
-  font-weight: 700; letter-spacing: .07em; padding: 5px 14px;
-}
-.text-card-body { padding: 12px 16px; font-size: 13.5px; line-height: 2.0; }
-.text-sentence { display: block; margin-bottom: 4px; }
-
-/* ── 文カード（読解） ── */
-.sent-card {
-  background: var(--surface); border: 1px solid #d0c0e8;
-  border-radius: 6px; margin: 16px 0; overflow: hidden;
-}
-.sent-header {
-  display: flex; align-items: flex-start; gap: 12px;
-  background: var(--rd-head); padding: 8px 14px;
-  border-bottom: 1px solid #d0c0e8;
-}
-.sent-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 26px; height: 26px; background: var(--rd); color: #fff;
-  border-radius: 50%; font-size: 13px; font-weight: 700; flex-shrink: 0;
-}
-.sent-es { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.6; }
-.sent-body { padding: 10px 14px 12px; }
-.sent-ja { font-size: 13px; color: var(--mid); font-style: italic; margin-bottom: 8px; }
-.gram-block-rd {
-  background: var(--rd-bg); border-left: 3px solid var(--rd);
-  padding: 8px 12px; margin-top: 8px; border-radius: 0 4px 4px 0; font-size: 13px;
-}
-.gram-label-rd { font-size: 11px; font-weight: 700; color: var(--rd); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px; }
-
-/* ── 翻訳ボックス ── */
-.trans-box {
-  background: #f8f5ff; border: 1px solid #c8b4e4; border-radius: 6px;
-  padding: 14px 18px; margin: 12px 0 20px;
-  font-size: 13.5px; line-height: 2.0; color: var(--mid); font-style: italic;
-}
-
-/* ── 練習問題 ── */
-.daimon {
-  display: flex; align-items: center; gap: 9px;
-  background: var(--ex-head); border-left: 3px solid var(--ex-tab);
-  padding: 7px 13px; margin: 18px 0 10px;
-}
-.daimon-num { font-family: var(--serif); font-size: 16px; font-weight: 700; color: var(--ex-tab); }
-.daimon-title { font-size: 13px; font-weight: 700; color: var(--ink); }
-.q-block {
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 6px; padding: 14px 16px; margin: 12px 0;
-}
-.q-item {
-  display: grid; grid-template-columns: 28px 1fr;
-  gap: 0 9px; margin-bottom: 22px; align-items: start;
-}
-.q-item:last-child { margin-bottom: 0; }
-.q-badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 24px; height: 24px; border-radius: 50%;
-  font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
-  background: var(--ex-tab); color: #fff;
-}
-.q-content { display: flex; flex-direction: column; gap: 6px; }
-.q-instruction { font-size: 13.5px; color: var(--ink); line-height: 1.75; }
-.q-hint { font-size: 12px; color: var(--muted); }
-.q-answer-row {
-  display: none; align-items: baseline; gap: 8px;
-  background: #edf5f3; border-left: 2px solid var(--accent2);
-  padding: 7px 12px; flex-wrap: wrap; border-radius: 0 4px 4px 0; margin-top: 4px;
-}
-.q-answer-row.visible { display: flex; }
-.ans-label { font-size: 10.5px; font-weight: 700; color: var(--accent2); white-space: nowrap; }
-.ans-text { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent2); }
-.ans-fill {
-  display: inline-block; background: var(--accent2); color: #fff;
-  padding: 1px 6px; font-family: var(--mono); font-weight: 700; font-size: 13px; border-radius: 2px;
-}
-.ans-toggle-btn {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: none; border: 1px dashed var(--ex-tab); color: var(--ex-tab);
-  padding: 3px 10px; font-size: 11.5px; font-weight: 700;
-  font-family: var(--sans); cursor: pointer; border-radius: 2px; transition: background .1s; margin-top: 2px;
-}
-.ans-toggle-btn:hover { background: var(--ex-head); }
-.ans-toggle-btn.revealed { border-style: solid; background: var(--ex-head); }
-.ans-exp { display: none; font-size: 12px; color: var(--muted); line-height: 1.7; }
-.ans-exp.visible { display: block; }
-
-/* ── 印刷 ── */
-body.is-printing .tab-content     { display: block !important; }
-body.is-printing .q-answer-row    { display: flex  !important; }
-body.is-printing .ans-exp         { display: block !important; color: #444; }
-body.is-printing .tab-nav,
-body.is-printing #top-nav,
-body.is-printing .ans-toggle-btn  { display: none  !important; }
-body.is-printing #tab-dokkai      { break-before: always; page-break-before: always; }
-body.is-printing #tab-renshu      { break-before: always; page-break-before: always; }
-
-@page { size: A4; margin: 20mm 15mm 18mm; }
-
-@media print {
-  /* ── グレースケール出力 ── */
-  html {
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-  }
-  .tab-content  { display: block !important; }
-  .q-answer-row { display: flex  !important; }
-  .ans-exp      { display: block !important; color: #444; }
-  :root {
-    --ink: #000; --mid: #222; --muted: #555;
-    --accent: #000; --accent2: #000; --warn: #000;
-    --gold: #333; --bg: #fff; --surface: #fff;
-    --rule: #aaa; --head-bg: #f4f4f4; --sub-bg: #f4f4f4;
-    --alt-bg: #fafafa; --ex-bg: #f4f4f4; --tip-bg: #f4f4f4;
-    --warn-bg: #f4f4f4;
-    --rd: #000; --rd-bg: #f4f4f4; --rd-head: #f4f4f4;
-    --ex-tab: #000; --ex-head: #f4f4f4;
-    --pit: #333; --pit-bg: #fafafa; --pit-border: #999;
-  }
-  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { padding: 0; max-width: 100%; font-size: 10pt; line-height: 1.65; background: #fff; color: #000; }
-  .tab-nav, #top-nav, .ans-toggle-btn { display: none !important; }
-  body.is-printing #tab-kaiwa::before  { content: "会話（Diálogo）"; display: block;
-    font-family: var(--serif); font-size: 14pt; font-weight: 700;
-    border-top: 2pt solid #000; border-bottom: 1pt solid #888;
-    padding: 8pt 0 6pt; margin-bottom: 18pt; }
-  body.is-printing #tab-dokkai::before { content: "読解（Lectura）"; display: block;
-    font-family: var(--serif); font-size: 14pt; font-weight: 700;
-    border-top: 2pt solid #000; border-bottom: 1pt solid #888;
-    padding: 8pt 0 6pt; margin-bottom: 18pt; }
-  body.is-printing #tab-renshu::before { content: "練習問題"; display: block;
-    font-family: var(--serif); font-size: 14pt; font-weight: 700;
-    border-top: 2pt solid #000; border-bottom: 1pt solid #888;
-    padding: 8pt 0 6pt; margin-bottom: 18pt; }
-  .utterance-card, .sent-card, .text-card, .dialog-box,
-  .box, .box-rd, .gram-block, .gram-block-rd, .q-block,
-  .tbl-wrap { overflow: visible; }
-  .word-item, .dl-line, .pitfall, .trivia, .point, .caution, .ex {
-    break-inside: avoid; page-break-inside: avoid;
-  }
-  .utterance-card, .sent-card, .dialog-box, .q-block {
-    break-inside: avoid; page-break-inside: avoid;
-  }
-  /* ── 見出し直後の要素を同ページに ── */
-  .sec-heading, .sec-heading-rd, .sec-heading-ex, .sub, .sub-rd, .daimon {
-    break-after: avoid; page-break-after: avoid;
-  }
-  .sec-heading + .utterance-card,
-  .sec-heading + .dialog-box,
-  .sec-heading + .tbl-wrap,
-  .sec-heading + p,
-  .sec-heading + .box,
-  .sec-heading-rd + .text-card,
-  .sec-heading-rd + .sent-card,
-  .sec-heading-rd + .sub-rd,
-  .sec-heading-rd + .trans-box,
-  .sec-heading-rd + .tbl-wrap,
-  .sec-heading-ex + .daimon,
-  .sec-heading-ex + .q-block,
-  .sec-heading-ex + p {
-    break-before: avoid !important; page-break-before: avoid !important;
-  }
-  .cover-title { font-size: 16pt; }
-  .cover-sub   { font-size: 9pt; }
-  .sec-num, .sec-num-rd, .sec-num-ex { font-size: 13pt; }
-  .sec-title, .sec-title-rd, .sec-title-ex { font-size: 11pt; }
-  p, .point, .caution { font-size: 10pt; }
-  .note { font-size: 8.5pt; }
-  .hi, .hi2, .hi-r, .hi-v { color: #000 !important; }
-  .td-key, .w-es, .dl-es, .utt-es, .sent-es, .ex-sp,
-  .ans-text, .dl-speaker, .utt-speaker { color: #000 !important; }
-  th { background: none !important; color: #000 !important; border-bottom: 2pt solid #000 !important; }
-  tr:nth-child(even) td { background: none !important; }
-  .dialog-box-title, .text-card-title {
-    background: none !important; color: #000 !important; border-bottom: 1.5pt solid #000 !important; }
-  /* ── 番号バッジ：丸廃止 → 太字数字＋ピリオド ── */
-  .utt-num, .sent-num {
-    background: none !important; color: #000 !important;
-    border: none !important; border-radius: 0 !important;
-    width: auto !important; height: auto !important;
-    min-width: 0 !important; padding: 0 2pt 0 0 !important;
-    display: inline !important; font-weight: 700 !important; font-size: 11pt !important; }
-  .utt-num::after, .sent-num::after { content: '.'; }
-  .q-badge {
-    background: none !important; color: #000 !important;
-    border: none !important; border-radius: 0 !important;
-    width: auto !important; height: auto !important;
-    font-weight: 700 !important; padding: 0 2pt 0 0 !important; }
-  .q-badge::after { content: '.'; }
-  .sec-heading, .sec-heading-rd, .sec-heading-ex {
-    background: none !important; border-left-color: #000 !important; border-bottom: 1pt solid #bbb !important; }
-  .utt-header  { background: none !important; border-bottom: 1pt solid #aaa !important; }
-  .sent-header { background: none !important; border-bottom: 1pt solid #aaa !important; }
-  .daimon { background: none !important; border-left-color: #333 !important; }
-  .pitfall-label, .trivia-label {
-    background: none !important; color: #000 !important; border: 1pt solid #555 !important; }
-  .pitfall { border-left-color: #888 !important; background: none !important; }
-  .trivia   { border-left-color: #777 !important; background: none !important; }
-  .ans-fill { background: none !important; color: #000 !important;
-    border: 1pt solid #000 !important; font-weight: 700 !important; border-radius: 2px !important; }
-  .ans-label { background: none !important; color: #000 !important; }
-  .box      { border-left-color: #444 !important; background: none !important; }
-  .box-rd   { border-left-color: #444 !important; border-color: #aaa !important; background: none !important; }
-  .gram-block    { background: #f4f4f4 !important; border-left-color: #444 !important; }
-  .gram-block-rd { background: #f4f4f4 !important; border-left-color: #444 !important; }
-  .gram-label, .gram-label-rd { color: #000 !important; }
-  .box-title { color: #000 !important; }
-  .trans-box { background: none !important; border-color: #aaa !important; color: #222 !important; }
-  .sub::before, .sub-rd::before { color: #444 !important; }
-}
-
-@media (max-width: 620px) {
-  body { padding: 14px 12px 72px; }
-  .word-item { grid-template-columns: 120px 1fr; }
-  .dl-line { grid-template-columns: 65px 1fr; }
-  .cover-title { font-size: 18px; }
-  .utt-es { font-size: 12px; }
-}
-
-/* ══════════════════════════════════════════
-   検索UI
-   ══════════════════════════════════════════ */
-#search-btn {
-  background: var(--accent2); color: #fff; border: none;
-  border-radius: 3px; padding: 5px 12px; font-size: 12px; font-weight: 700;
-  cursor: pointer; font-family: var(--sans); transition: background .12s; white-space: nowrap;
-}
-#search-btn:hover { background: #155f50; }
-
-/* ── 検索バー：ナビバーの下に表示（ナビを隠さない） ── */
-#s2-search-bar {
-  position: fixed; top: 46px; left: 0; right: 0; z-index: 2000;
-  background: var(--surface); border-bottom: 2px solid var(--accent2);
-  padding: 7px 14px; display: flex; align-items: center; gap: 9px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.12);
-  transform: translateY(-200%); transition: transform .18s ease;
-}
-#s2-search-bar.open { transform: translateY(0); }
-#s2-search-bar label { font-size: 12px; font-weight: 700; color: var(--accent2); white-space: nowrap; }
-#s2-search-input {
-  flex: 1; border: 1px solid var(--rule); padding: 5px 9px;
-  font-size: 16px; font-family: var(--sans); color: var(--ink);
-  outline: none; max-width: 340px;
-}
-#s2-search-input:focus { border-color: var(--accent2); }
-#s2-search-close {
-  background: none; border: none; cursor: pointer;
-  font-size: 15px; color: var(--muted); padding: 2px 5px;
-}
-#s2-search-close:hover { color: var(--ink); }
-
-#s2-search-results {
-  position: fixed; top: 92px; left: 50%; transform: translateX(-50%);
-  z-index: 2001; background: var(--surface); border: 1px solid var(--rule);
-  box-shadow: 0 6px 20px rgba(0,0,0,.13);
-  width: min(500px, calc(100vw - 20px));
-  max-height: 55vh; overflow-y: auto; display: none;
-}
-#s2-search-results.open { display: block; }
-.s2-sr-header {
-  font-size: 10.5px; font-weight: 700; color: var(--muted);
-  padding: 5px 12px 4px; border-bottom: 1px solid var(--rule);
-  background: var(--alt-bg); text-transform: uppercase; letter-spacing: .05em;
-}
-.s2-sr-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 12px; border-bottom: 1px solid var(--rule);
-  cursor: pointer; transition: background .1s;
-}
-.s2-sr-item:last-child { border-bottom: none; }
-.s2-sr-item:hover { background: var(--head-bg); }
-.s2-sr-es {
-  font-family: var(--mono); font-size: 13px; font-weight: 700;
-  color: var(--accent); min-width: 110px; flex-shrink: 0;
-}
-.s2-sr-es mark { background: #fff3a0; color: var(--ink); padding: 0 1px; }
-.s2-sr-es.is-dict { color: var(--rd); }
-.s2-sr-ja { font-size: 12px; color: var(--mid); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.s2-sr-tag {
-  font-size: 10px; color: var(--muted); background: var(--alt-bg);
-  padding: 2px 5px; white-space: nowrap; flex-shrink: 0;
-}
-.s2-sr-tag.is-lesson { background: var(--head-bg); color: var(--accent); }
-.s2-sr-tag.is-dict   { background: var(--rd-head); color: var(--rd); }
-.s2-sr-none { padding: 16px; text-align: center; font-size: 12.5px; color: var(--muted); }
-
-/* ── 辞書モーダル ── */
-#s2-dict-overlay {
-  display: none; position: fixed; inset: 0; z-index: 3000;
-  background: rgba(0,0,0,.38); align-items: center; justify-content: center;
-}
-#s2-dict-overlay.open { display: flex; }
-#s2-dict-modal {
-  background: var(--surface); border-top: 4px solid var(--rd);
-  box-shadow: 0 8px 32px rgba(0,0,0,.22);
-  width: min(500px, calc(100vw - 28px)); max-height: 82vh;
-  overflow-y: auto; position: relative;
-  animation: s2DictIn .15s ease;
-}
-@keyframes s2DictIn {
-  from { transform: translateY(10px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
-#s2-dict-head {
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 16px 10px; border-bottom: 1px solid var(--rule);
-  position: sticky; top: 0; background: var(--surface); z-index: 1;
-}
-#s2-dict-word {
-  font-family: var(--mono); font-size: 22px; font-weight: 700;
-  color: var(--rd); flex: 1;
-}
-#s2-dict-pos {
-  font-size: 11px; color: var(--muted);
-  background: var(--alt-bg); padding: 2px 8px; border-radius: 2px; white-space: nowrap;
-}
-#s2-dict-close {
-  background: none; border: none; cursor: pointer;
-  font-size: 18px; color: var(--muted); padding: 2px 6px; line-height: 1; transition: color .1s;
-}
-#s2-dict-close:hover { color: var(--ink); }
-#s2-dict-body { padding: 14px 16px 22px; }
-.s2-dict-meaning {
-  font-size: 19px; font-weight: 700; color: var(--ink);
-  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); line-height: 1.5;
-}
-.s2-dict-row {
-  display: flex; gap: 8px; align-items: flex-start;
-  margin-bottom: 9px; font-size: 13px;
-}
-.s2-dict-label {
-  font-size: 10px; font-weight: 700; color: var(--muted);
-  background: var(--alt-bg); padding: 2px 6px;
-  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
-}
-.s2-dict-val { color: var(--ink); line-height: 1.8; flex: 1; }
-.s2-dict-conj {
-  font-family: var(--mono); font-size: 12px; color: var(--accent2);
-  background: var(--sub-bg); padding: 1px 6px; border-radius: 2px;
-  margin-right: 3px; display: inline-block; margin-bottom: 3px;
-}
-.s2-dict-adj {
-  font-family: var(--mono); font-size: 12px; color: var(--rd);
-  background: var(--rd-head); padding: 1px 6px; border-radius: 2px;
-  margin-right: 3px; display: inline-block; margin-bottom: 3px;
-}
-.s2-dict-gender-m { color: var(--accent); font-weight: 700; font-size: 11px; }
-.s2-dict-gender-f { color: var(--warn); font-weight: 700; font-size: 11px; }
-.s2-dict-note {
-  font-size: 12px; color: var(--gold); background: var(--tip-bg);
-  border-left: 3px solid #6bab6b; padding: 7px 10px; margin-top: 10px; line-height: 1.65;
-}
-.s2-dict-example {
-  margin-top: 12px; padding: 9px 12px; border-radius: 4px;
-  background: var(--ex-bg); border-left: 3px solid var(--accent);
-}
-.s2-dict-ex-label {
-  font-size: 10px; font-weight: 700; color: var(--accent);
-  text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px;
-}
-.s2-dict-ex-es {
-  font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink);
-  margin-bottom: 3px; line-height: 1.6;
-}
-.s2-dict-ex-ja {
-  font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.6;
-}
-.s2-dict-dict-link {
-  display: block; margin-top: 14px; font-size: 12px; color: var(--accent2);
-  text-decoration: none; border-top: 1px solid var(--rule); padding-top: 10px;
-}
-.s2-dict-dict-link:hover { text-decoration: underline; }
-
-</style>
+<link rel="stylesheet" href="spanish2-common.css">
 </head>
 <body>
 
@@ -730,18 +62,18 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="dialog-box">
     <div class="dialog-box-title">日本語訳</div>
     <div class="dialog-body">
-      <div class="dl-line"><span class="dl-speaker">アカリ</span><div><div class="dl-es">なんてきれいな場所！どこにあるの？</div></div></div>
-      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">えっ、知らないの？これはペルーのインカの遺跡、マチュ・ピチュの写真よ。</div></div></div>
-      <div class="dl-line"><span class="dl-speaker">アカリ</span><div><div class="dl-es">ペルーに旅行するの？</div></div></div>
-      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">そう。8月にいくつかの都市を訪れるつもりよ、あそこは冬だから。クスコとマチュ・ピチュを見てみたいの。世界遺産なのよ。</div></div></div>
-      <div class="dl-line"><span class="dl-speaker">アカリ</span><div><div class="dl-es">とても古い場所なの？</div></div></div>
-      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">そう。どちらにもインカの建造物があって、とても興味深い歴史があるのよ。</div></div></div>
-      <div class="dl-line"><span class="dl-speaker">アカリ</span><div><div class="dl-es">そうだよね。世界遺産に登録されるには、場所は歴史的あるいは自然的な価値を持っていなければならないものね。</div></div></div>
-      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">マチュ・ピチュは山の頂上にある城塞よ。</div></div></div>
-      <div class="dl-line"><span class="dl-speaker">アカリ</span><div><div class="dl-es">富士山より高いの？低いの？</div></div></div>
-      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">より低いわ。そこへ行くにはクスコから電車で出発しなければならないのよ。クスコはペルーで最も観光地として人気のある都市なの。</div></div></div>
-      <div class="dl-line"><span class="dl-speaker">アカリ</span><div><div class="dl-es">何日間そこにいるの？</div></div></div>
-      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">たった2週間。滞在を利用して近くの他の場所も見て回るつもりよ。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker">アキラ</span><div><div class="dl-es">なんて素敵な場所なんだ！ どこにあるの？</div></div></div>
+      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">あぁ、知らないの？ これはマチュピチュっていう、ペルーのインカ遺跡の写真だよ。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker">アキラ</span><div><div class="dl-es">ペルーに旅行する予定なの？</div></div></div>
+      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">うん。あちらが冬になる8月にいくつかの町を訪れようと思っているの。世界遺産のクスコとマチュピチュに行ってみたいの。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker">アキラ</span><div><div class="dl-es">とても古い場所なの？</div></div></div>
+      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">うん。どちらの場所にもインカの建築物があって、どちらもとても興味深い歴史を持っているの。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker">アキラ</span><div><div class="dl-es">そうだと思うよ。世界遺産であるからには歴史的価値か自然としての価値があるはずだからね。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">マチュピチュは山の高いところにある要塞なの。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker">アキラ</span><div><div class="dl-es">富士山よりも高いの？低いの？</div></div></div>
+      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">高いよ。そこに着くためには、ペルーで一番の観光都市であるクスコから列車で行かなければいけないの。</div></div></div>
+      <div class="dl-line"><span class="dl-speaker">アキラ</span><div><div class="dl-es">何日間あっちにいる予定なの？</div></div></div>
+      <div class="dl-line"><span class="dl-speaker sp2">エルビラ</span><div><div class="dl-es">2週間だけ。その滞在期間を利用して、近くの他の場所にも行くつもり。</div></div></div>
     </div>
   </div>
 
@@ -772,7 +104,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">1</span><span class="utt-speaker">Akari</span><span class="utt-es">¡Qué lugar tan bonito! ¿Dónde queda?</span></div>
     <div class="utt-body">
-      <div class="utt-ja">なんてきれいな場所！どこにあるの？</div>
+      <div class="utt-ja">なんて素敵な場所なんだ！ どこにあるの？</div>
       <div class="sub" style="margin-top:4px;">単語の意味</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">¡Qué...!</span><span class="w-def">感嘆詞。「なんて〜！」</span></div>
@@ -814,7 +146,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">3</span><span class="utt-speaker">Akari</span><span class="utt-es">¿Vas a viajar a Perú?</span></div>
     <div class="utt-body">
-      <div class="utt-ja">ペルーに旅行するの？</div>
+      <div class="utt-ja">ペルーに旅行する予定なの？</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Vas a viajar</span><span class="w-def">ir a ＋ 原形（近未来）。「〜するつもりだ・〜する予定だ」。vas は ir の2人称単数形。</span></div>
         <div class="word-item"><span class="w-es">a Perú</span><span class="w-def">「ペルーへ」。移動の方向を表す前置詞 a ＋ 地名。</span></div>
@@ -830,14 +162,14 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">4</span><span class="utt-speaker sp2">Elvira</span><span class="utt-es">Sí. Pienso visitar varias ciudades en agosto, cuando allá es invierno. Quiero conocer Cusco y Machu Picchu, que son Patrimonio de la Humanidad.</span></div>
     <div class="utt-body">
-      <div class="utt-ja">そう。8月にいくつかの都市を訪れるつもりよ、あそこは冬だから。クスコとマチュ・ピチュを見てみたいの。世界遺産なのよ。</div>
+      <div class="utt-ja">うん。あちらが冬になる8月にいくつかの町を訪れようと思っているの。世界遺産のクスコとマチュピチュに行ってみたいの。</div>
       <div class="sub" style="margin-top:4px;">単語の意味</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Pienso visitar</span><span class="w-def">pensar ＋ 原形。「〜するつもりだ（計画）」。pienso は pensar の1人称単数形（語幹母音変化 e→ie）。</span></div>
         <div class="word-item"><span class="w-es">varias</span><span class="w-def">形容詞（女複）。「いくつかの・様々な」。ciudades（女複）に性数一致。</span></div>
-        <div class="word-item"><span class="w-es">cuando allá es invierno</span><span class="w-def">「あそこが冬のとき」。cuando（〜のとき）＋ allá（あそこ）＋ es invierno（冬だ）。</span></div>
+        <div class="word-item"><span class="w-es">cuando allá es invierno</span><span class="w-def">「あちらが冬になる（ときに）」。cuando（〜のとき）＋ allá（あそこ・あちら。南米を漠然と指す）＋ es invierno（無主語文・冬だ）。南半球のペルーは日本の夏（8月）が冬になる。スペイン語では季節も無主語文で表す。</span></div>
         <div class="word-item"><span class="w-es">Quiero conocer</span><span class="w-def">querer ＋ 原形（願望）。「〜したい」。quiero は querer の1人称単数形（語幹母音変化 e→ie）。</span></div>
-        <div class="word-item"><span class="w-es">que son Patrimonio de la Humanidad</span><span class="w-def">関係代名詞節。「世界遺産である（クスコとマチュ・ピチュ）」。</span></div>
+        <div class="word-item"><span class="w-es">que son Patrimonio de la Humanidad</span><span class="w-def">関係代名詞節（限定用法）。先行詞はCusco y Machu Picchu（複数）。<strong>Patrimonio de la Humanidad</strong>（世界遺産）はユネスコが定める正式名称で、「人類の遺産・世界の財産」の意。Patrimonio＝遺産・財産（英語の heritage）、Humanidad＝人類。</span></div>
       </div>
       <div class="gram-block">
         <div class="gram-label">文法・ポイント</div>
@@ -869,7 +201,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">6</span><span class="utt-speaker sp2">Elvira</span><span class="utt-es">Sí. En ambos hay construcciones incaicas y tienen una historia muy interesante.</span></div>
     <div class="utt-body">
-      <div class="utt-ja">そう。どちらにもインカの建造物があって、とても興味深い歴史があるのよ。</div>
+      <div class="utt-ja">うん。どちらの場所にもインカの建築物があって、どちらもとても興味深い歴史を持っているの。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">En ambos</span><span class="w-def">「どちらにも・両方に」。ambos は「両方の・二つとも」を意味する形容詞・代名詞（男複）。</span></div>
         <div class="word-item"><span class="w-es">construcciones incaicas</span><span class="w-def">「インカの建造物」（女複）。construcción の複数形 ＋ 形容詞 incaicas（女複）。</span></div>
@@ -888,7 +220,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">7</span><span class="utt-speaker">Akari</span><span class="utt-es">Ya lo creo. Para ser Patrimonio de la Humanidad los lugares deben tener valor histórico o natural.</span></div>
     <div class="utt-body">
-      <div class="utt-ja">そうだよね。世界遺産に登録されるには、場所は歴史的あるいは自然的な価値を持っていなければならないものね。</div>
+      <div class="utt-ja">そうだと思うよ。世界遺産であるからには歴史的価値か自然としての価値があるはずだからね。</div>
       <div class="sub" style="margin-top:4px;">単語の意味</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Ya lo creo</span><span class="w-def">慣用表現。「そうだよね・もちろんそうだ」。直訳は「もうそれを信じる」。</span></div>
@@ -910,11 +242,11 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">8</span><span class="utt-speaker sp2">Elvira</span><span class="utt-es">Machu Picchu es una ciudadela que está en lo alto de una montaña.</span></div>
     <div class="utt-body">
-      <div class="utt-ja">マチュ・ピチュは山の頂上にある城塞よ。</div>
+      <div class="utt-ja">マチュピチュは山の高いところにある要塞なの。</div>
       <div class="word-list">
-        <div class="word-item"><span class="w-es">ciudadela</span><span class="w-def">名詞（女単）。「城塞・要塞都市」。</span></div>
-        <div class="word-item"><span class="w-es">que está</span><span class="w-def">関係代名詞 que ＋ estar の3人称単数形。「〜にある（城塞）」。</span></div>
-        <div class="word-item"><span class="w-es">en lo alto de</span><span class="w-def">「〜の高いところに・〜の頂上に」。lo alto は中性定冠詞 lo ＋ 形容詞 alto（「高いところ」という名詞句）。</span></div>
+        <div class="word-item"><span class="w-es">ciudadela</span><span class="w-def">名詞（女単）。「城砦都市・要塞（化された町）」。castillo（城・城壁）より広義で、要塞として機能する都市全体を指す。マチュピチュの文脈ではインカ帝国の要塞集落を意味する。</span></div>
+        <div class="word-item"><span class="w-es">que está</span><span class="w-def">関係代名詞 que（先行詞 ciudadela）＋ estar の3単現。位置・場所を表すので ser ではなく estar。「〜に位置している（城砦）」。</span></div>
+        <div class="word-item"><span class="w-es">en lo alto de</span><span class="w-def">「〜の高いところに」。lo alto ＝ 中性定冠詞 lo ＋ 形容詞 alto で「高い部分・高いところ」という名詞句を形成。lo + 形容詞 は「〜な部分・〜なこと」という意味になる（lo importante＝重要なこと、lo mejor＝最良のもの）。en lo alto de montaña で「山の高いところに」（頂上ではなく、高地の意）。</span></div>
       </div>
       <div class="gram-block">
         <div class="gram-label">文法・ポイント</div>
@@ -928,7 +260,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">9</span><span class="utt-speaker">Akari</span><span class="utt-es">¿Es más alta o menos alta que el Monte Fuji?</span></div>
     <div class="utt-body">
-      <div class="utt-ja">富士山より高いの？低いの？</div>
+      <div class="utt-ja">富士山よりも高いの？低いの？</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">más alta</span><span class="w-def">「より高い」。más ＋ 形容詞 alta（女単）で優等比較級。</span></div>
         <div class="word-item"><span class="w-es">menos alta</span><span class="w-def">「より低い（より高くない）」。menos ＋ 形容詞 alta で劣等比較級。</span></div>
@@ -946,7 +278,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">10</span><span class="utt-speaker sp2">Elvira</span><span class="utt-es">Es menos alta. Para llegar hay que salir desde Cusco en tren, que es la ciudad más turística de Perú.</span></div>
     <div class="utt-body">
-      <div class="utt-ja">より低いわ。そこへ行くにはクスコから電車で出発しなければならないのよ。クスコはペルーで最も観光地として人気のある都市なの。</div>
+      <div class="utt-ja">高いよ。そこに着くためには、ペルーで一番の観光都市であるクスコから列車で行かなければいけないの。</div>
       <div class="sub" style="margin-top:4px;">単語の意味</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Para llegar</span><span class="w-def">「そこへ着くためには」。para ＋ 原形（目的・条件）。</span></div>
@@ -969,7 +301,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">11</span><span class="utt-speaker">Akari</span><span class="utt-es">¿Cuántos días vas a estar allí?</span></div>
     <div class="utt-body">
-      <div class="utt-ja">何日間そこにいるの？</div>
+      <div class="utt-ja">何日間あっちにいる予定なの？</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Cuántos</span><span class="w-def">疑問形容詞（男複）。「何〜・いくつの」。días（男複）に性数一致。</span></div>
         <div class="word-item"><span class="w-es">vas a estar</span><span class="w-def">ir a ＋ 原形（近未来）。「〜にいる予定だ」。</span></div>
@@ -986,7 +318,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="utterance-card">
     <div class="utt-header"><span class="utt-num">12</span><span class="utt-speaker sp2">Elvira</span><span class="utt-es">Solo dos semanas. Voy a aprovechar la estancia para conocer otros lugares cercanos.</span></div>
     <div class="utt-body">
-      <div class="utt-ja">たった2週間。滞在を利用して近くの他の場所も見て回るつもりよ。</div>
+      <div class="utt-ja">2週間だけ。その滞在期間を利用して、近くの他の場所にも行くつもり。</div>
       <div class="sub" style="margin-top:4px;">単語の意味</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Solo</span><span class="w-def">副詞。「ただ〜だけ・たった」。</span></div>
@@ -1061,15 +393,8 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
 
   <div class="sub-rd">日本語全訳</div>
   <div class="trans-box">
-    それらは歴史的、自然的、文化的に大きな価値を持つ場所です。<br>
-    世界中にたくさんあります。<br>
-    大勢の人々がその美しさを知り、鑑賞するために訪れます。<br>
-    それらの場所を訪れるとき、私たちは勧告に従い、将来の世代のために保護しなければなりません。<br>
-    世界遺産に登録されたそれらの場所は非常に魅力的です。<br>
-    ラテンアメリカで最も多く訪れられるものの中には、メキシコのテオティワカン、グアテマラのティカル国立公園、ベネズエラのカナイマ国立公園、そしてブラジル・パラグアイ・アルゼンチンにまたがるイグアスの滝があります。<br>
-    他にも様々な国にたくさんあります。<br>
-    これらの場所はすべて何か特別なものを持っており、より大きいものもあれば、より古いものもありますが、重要性において劣るものは一つもありません。<br>
-    ぜひ見て回りましょう！
+    世界遺産は、大きな歴史的価値、自然としての価値、文化的価値を持った場所である。それは世界中にたくさんある。とても多くの人たちが、その美しさに触れ、楽しむために旅をする。それらの場所を訪れるとき、未来の世代のために、注意事項に配慮し、それらの場所を大切にしなければならない。<br>
+    世界遺産として認定された場所はとても魅力的だ。ラテンアメリカで最も訪れられている場所としては、例えば、メキシコのテオティワカン、グアテマラのティカル国立公園、ベネズエラのカナイマ国立公園、そしてブラジルとパラグアイとアルゼンチンの間にあるイグアスの滝などがある。ほかにもたくさん、いろいろな国にある。これらの場所はみんな、何か特別なものを持っている。大きいものもあれば、古いものもある。しかし重要でないものは一つもない。ぜひ実際に見てみよう！
   </div>
 
   <div id="dokkai-sec2" class="sec-heading-rd">
@@ -1081,7 +406,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">1</span><span class="sent-es">Son lugares que poseen un gran valor histórico, natural y cultural.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">それらは歴史的、自然的、文化的に大きな価値を持つ場所です。</div>
+      <div class="sent-ja">世界遺産は、大きな歴史的価値、自然としての価値、文化的価値を持った場所である。</div>
       <div class="sub-rd" style="margin-top:4px;">単語の意味</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Son</span><span class="w-def">動詞 ser の3人称複数形（現在）。主語は世界遺産（文脈から省略）。</span></div>
@@ -1100,7 +425,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">2</span><span class="sent-es">Hay muchos en todo el mundo.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">世界中にたくさんあります。</div>
+      <div class="sent-ja">それは世界中にたくさんある。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Hay</span><span class="w-def">haber の非人称形。「〜がある・〜がいる」。</span></div>
         <div class="word-item"><span class="w-es">muchos</span><span class="w-def">代名詞（男複）。「たくさん（のもの）」。前文の lugares を受けて代名詞的に使用。</span></div>
@@ -1116,7 +441,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">3</span><span class="sent-es">Una gran cantidad de personas viaja para conocer y apreciar su belleza.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">大勢の人々がその美しさを知り、鑑賞するために訪れます。</div>
+      <div class="sent-ja">とても多くの人たちが、その美しさに触れ、楽しむために旅をする。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Una gran cantidad de personas</span><span class="w-def">「大勢の人々」。量を表す女性単数名詞 cantidad ＋ de ＋ 複数名詞（personas）。</span></div>
         <div class="word-item"><span class="w-es">viaja</span><span class="w-def">動詞 viajar の3人称単数形。主語の核は cantidad（単数）なので動詞も単数形。</span></div>
@@ -1134,11 +459,12 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">4</span><span class="sent-es">Cuando visitamos esos lugares debemos atender las recomendaciones y cuidarlos para las futuras generaciones.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">それらの場所を訪れるとき、私たちは勧告に従い、将来の世代のために保護しなければなりません。</div>
+      <div class="sent-ja">それらの場所を訪れるとき、未来の世代のために、注意事項に配慮し、それらの場所を大切にしなければならない。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Cuando visitamos</span><span class="w-def">「〜を訪れるとき」。cuando（〜のとき）＋ visitar の1人称複数形。</span></div>
         <div class="word-item"><span class="w-es">esos lugares</span><span class="w-def">「それらの場所」。esos は指示形容詞（男複、中間の距離）。</span></div>
-        <div class="word-item"><span class="w-es">debemos atender</span><span class="w-def">「〜に従わなければならない」。deber（義務）＋ 原形 atender（注意を向ける・従う）。</span></div>
+        <div class="word-item"><span class="w-es">debemos atender</span><span class="w-def">「〜に配慮しなければならない・〜に従わなければならない」。deber（義務）＋ 原形 atender。atender は「注意を向ける・気を配る・（規則や指示に）従う」の意で、aquí ＝「注意事項・指示（las recomendaciones）に従う」。英語の attend to に相当。</span></div>
+        <div class="word-item"><span class="w-es">las recomendaciones</span><span class="w-def">名詞（女複）。「注意事項・推奨事項・勧告」。recomendar（勧める・推奨する）の名詞形。現地の保護・観光ルールを指す。</span></div>
         <div class="word-item"><span class="w-es">cuidarlos</span><span class="w-def">「それらを保護する・世話をする」。cuidar の原形 ＋ 直接目的語代名詞 los（男複、lugares を指す）。</span></div>
         <div class="word-item"><span class="w-es">las futuras generaciones</span><span class="w-def">「将来の世代」。futuras（形容詞・女複、名詞前に置く）＋ generaciones（女複）。</span></div>
       </div>
@@ -1153,7 +479,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">5</span><span class="sent-es">Son muy atractivos aquellos sitios declarados Patrimonio de la Humanidad.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">世界遺産に登録されたそれらの場所は非常に魅力的です。</div>
+      <div class="sent-ja">世界遺産として認定された場所はとても魅力的だ。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">muy atractivos</span><span class="w-def">「非常に魅力的な」。muy（非常に）＋ atractivos（男複形容詞）。</span></div>
         <div class="word-item"><span class="w-es">aquellos sitios</span><span class="w-def">「あれらの場所」。aquellos は指示形容詞（男複、遠い距離）。este（近）→ ese（中間）→ aquel（遠）の3段階。</span></div>
@@ -1170,7 +496,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">6</span><span class="sent-es">Entre los más visitados en América Latina están Teotihuacán, en México; el Parque Nacional Tikal, en Guatemala; el Parque Nacional Canaima, en Venezuela y las Cataratas del Iguazú, que quedan entre Brasil, Paraguay y Argentina.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">ラテンアメリカで最も多く訪れられるものの中には、メキシコのテオティワカン、グアテマラのティカル国立公園、ベネズエラのカナイマ国立公園、そしてブラジル・パラグアイ・アルゼンチンにまたがるイグアスの滝があります。</div>
+      <div class="sent-ja">ラテンアメリカで最も訪れられている場所としては、例えば、メキシコのテオティワカン、グアテマラのティカル国立公園、ベネズエラのカナイマ国立公園、そしてブラジルとパラグアイとアルゼンチンの間にあるイグアスの滝などがある。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Entre</span><span class="w-def">前置詞。「〜の中に・〜の間に」。</span></div>
         <div class="word-item"><span class="w-es">los más visitados</span><span class="w-def">「最も多く訪れられるもの」。最上級の表現。visitados は過去分詞の形容詞的用法。</span></div>
@@ -1188,7 +514,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">7</span><span class="sent-es">Hay muchos otros en distintos países.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">他にも様々な国にたくさんあります。</div>
+      <div class="sent-ja">ほかにもたくさん、いろいろな国にある。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">muchos otros</span><span class="w-def">「他にも多くの（もの）」。muchos（多くの）＋ otros（他の・男複）。</span></div>
         <div class="word-item"><span class="w-es">distintos países</span><span class="w-def">「様々な国々」。distintos（異なる・様々な・男複）＋ países（国・男複）。</span></div>
@@ -1200,7 +526,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">8</span><span class="sent-es">Todos estos lugares tienen algo especial, algunos son más grandes, otros más antiguos, pero ninguno es menos importante.</span></div>
     <div class="sent-body">
-      <div class="sent-ja">これらの場所はすべて何か特別なものを持っており、より大きいものもあれば、より古いものもありますが、重要性において劣るものは一つもありません。</div>
+      <div class="sent-ja">これらの場所はみんな、何か特別なものを持っている。大きいものもあれば、古いものもある。しかし重要でないものは一つもない。</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Todos estos lugares</span><span class="w-def">「これらすべての場所」。todos（すべての）＋ estos（これらの）＋ lugares（男複）。</span></div>
         <div class="word-item"><span class="w-es">algo especial</span><span class="w-def">「何か特別なもの」。algo（何か・不定代名詞）＋ especial（特別な・男女同形）。</span></div>
@@ -1218,7 +544,7 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
   <div class="sent-card">
     <div class="sent-header"><span class="sent-num">9</span><span class="sent-es">¡Vamos a conocerlos!</span></div>
     <div class="sent-body">
-      <div class="sent-ja">ぜひ見て回りましょう！</div>
+      <div class="sent-ja">ぜひ実際に見てみよう！</div>
       <div class="word-list">
         <div class="word-item"><span class="w-es">Vamos a conocerlos</span><span class="w-def">ir a ＋ 原形（勧誘）。conocer（知る・訪れる）の原形 ＋ los（直接目的語代名詞・男複。lugares を指す）。</span></div>
       </div>
