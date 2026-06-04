@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script>if (!sessionStorage.getItem('visitedHome')) { location.replace('index.html'); }</script>
+<script>if (!sessionStorage.getItem('accessToken')) { location.replace('index.html'); }</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WB0WVZSEHT"></script>
 <script>
@@ -11,7 +11,9 @@
   gtag("config", "G-WB0WVZSEHT");
 </script>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>スペイン語辞書</title>
 <style>
@@ -435,7 +437,7 @@ function getPosClass(pos) {
 }
 
 function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
 function highlightEs(text, query) {

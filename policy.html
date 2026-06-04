@@ -3,97 +3,336 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none';">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>サイトポリシー — スペイン語学習ポータル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1c1c1e; --mid: #48484a; --muted: #8e8e93;
-    --accent: #2a5298; --bg: #f5f5f0; --surface: #ffffff;
-    --rule: #d6d6ce; --head-bg: #ebeff8;
-    --serif: 'Noto Serif JP', serif; --sans: 'Noto Sans JP', sans-serif;
+    --ink: #2c2c2e; --mid: #555; --muted: #999;
+    --accent: #2a5298; --bg: #f5f5f0; --surface: #fff;
+    --rule: #ddd; --sans: 'Noto Sans JP', sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: var(--sans); font-size: 14px; line-height: 1.8;
+    font-family: var(--sans); font-size: 11.5px; line-height: 1.65;
     color: var(--ink); background: var(--bg);
-    max-width: 720px; margin: 0 auto; padding: 40px 22px 80px;
+    max-width: 780px; margin: 0 auto; padding: 32px 20px 80px;
   }
   header {
-    border-top: 3px solid var(--accent); border-bottom: 1px solid var(--rule);
-    padding: 24px 0 20px; margin-bottom: 36px;
+    border-top: 2px solid var(--accent); border-bottom: 1px solid var(--rule);
+    padding: 18px 0 14px; margin-bottom: 22px;
   }
-  header h1 {
-    font-family: var(--serif); font-size: 22px; font-weight: 700;
-    color: var(--accent); margin-bottom: 4px;
+  header h1 { font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 3px; }
+  header p { font-size: 10px; color: var(--muted); }
+  .preamble {
+    font-size: 11px; color: var(--mid); background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 12px 16px; margin-bottom: 16px; line-height: 1.7;
   }
-  header p { font-size: 12px; color: var(--muted); }
-  .section {
+  .article { margin-bottom: 14px; }
+  .article-title {
+    font-size: 12px; font-weight: 700; color: var(--ink);
+    background: #ebebeb; padding: 5px 10px;
+    border-left: 3px solid var(--accent); margin-bottom: 6px;
+  }
+  .article-body {
     background: var(--surface); border: 1px solid var(--rule);
-    border-radius: 6px; padding: 20px 24px; margin-bottom: 14px;
+    padding: 10px 14px;
   }
-  .section-title {
-    font-family: var(--serif); font-size: 15px; font-weight: 700;
-    color: var(--accent); margin-bottom: 10px;
-    padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+  .article-body p {
+    font-size: 11.5px; color: var(--mid); line-height: 1.65; margin-bottom: 5px;
   }
-  .section p { font-size: 13px; color: var(--mid); line-height: 1.9; }
+  .article-body p:last-child { margin-bottom: 0; }
+  .article-body ol, .article-body ul { padding-left: 18px; margin: 4px 0; }
+  .article-body ol li, .article-body ul li {
+    font-size: 11.5px; color: var(--mid); line-height: 1.65; margin-bottom: 2px;
+  }
+  .article-body .sub {
+    font-size: 11px; color: #888; padding-left: 12px;
+    border-left: 2px solid #ddd; margin-top: 5px; line-height: 1.6;
+  }
   .back-btn {
-    display: inline-block; margin-top: 32px;
+    display: inline-block; margin-top: 28px;
     background: var(--accent); color: #fff; border: none;
-    border-radius: 4px; padding: 10px 28px;
-    font-family: var(--sans); font-size: 13px; font-weight: 700;
-    cursor: pointer; text-decoration: none; transition: background .15s;
+    border-radius: 4px; padding: 8px 24px;
+    font-size: 12px; font-weight: 700; font-family: var(--sans);
+    cursor: pointer; text-decoration: none;
   }
-  .back-btn:hover { background: #1d3d7a; }
   footer {
-    border-top: 1px solid var(--rule); padding-top: 20px;
-    font-size: 11px; color: var(--muted); text-align: center; margin-top: 48px;
+    border-top: 1px solid var(--rule); padding-top: 16px;
+    font-size: 10px; color: var(--muted); text-align: center; margin-top: 40px;
   }
   @media (max-width: 540px) {
-    body { padding: 20px 14px 60px; }
-    header h1 { font-size: 18px; }
+    body { padding: 16px 12px 60px; font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>サイトポリシー</h1>
-  <p>スペイン語学習ポータル</p>
+  <h1>サイトポリシー（利用規約・免責事項・プライバシーポリシー・クッキーポリシー・セキュリティポリシー）</h1>
+  <p>スペイン語学習ポータル　最終更新：2026年6月　版数：Rev.4.0</p>
 </header>
 
-<div class="section">
-  <div class="section-title">1. 利用目的</div>
-  <p>本サイトは、スペイン語学習を目的とした個人制作のページです。東京大学のスペイン語授業（一列・二列）で扱った内容の復習・確認を目的としており、商用利用を意図しておりません。</p>
+<div class="preamble">
+本文書（以下「本ポリシー」）は、スペイン語学習ポータル（以下「本サイト」）の利用規約、免責事項、プライバシーポリシー、クッキーポリシー、アクセス制限方針、著作権取扱指針、セキュリティポリシー、広告ポリシー、ならびにその他すべての運営上の方針を統合的に定めるものです。本サイトにアクセスした時点で、利用者は本ポリシーのすべての条項を読了し理解したうえでこれらに同意したものとみなされます。本ポリシーは法令の改正・サービス内容の変更等に伴い予告なく、かつ遡及的に改定される場合があります。本ポリシーの解釈・適用・執行に関するすべての決定権は運営者が単独かつ排他的に保持します。
 </div>
 
-<div class="section">
-  <div class="section-title">2. 利用資格</div>
-  <p>本サイトは、東京大学1年生で、かつ「スペイン語学習の羅針盤」を所有している方を対象としています。該当しない方の利用はご遠慮ください。</p>
+<div class="article">
+  <div class="article-title">第1条（定義）</div>
+  <div class="article-body">
+    <p>本ポリシーにおいて使用する主な用語の定義は以下のとおりです。なお、定義の解釈に疑義が生じた場合は、運営者の解釈を最終的なものとします。</p>
+    <ol>
+      <li>「本サイト」とは、運営者が管理・運営するスペイン語学習ポータルおよびこれに付随するすべてのページ・コンテンツをいいます。</li>
+      <li>「運営者」とは、本サイトを個人として制作・管理する東京大学1年生をいいます。</li>
+      <li>「利用者」とは、本サイトにアクセスしまたは本サイトのコンテンツを閲覧するすべての者をいいます。</li>
+      <li>「コンテンツ」とは、本サイト上に掲載されている文章・語彙データ・解説・図表・デザイン・ソースコードその他一切の情報をいいます。</li>
+      <li>「利用資格者」とは、第3条第1項に定めるすべての条件を満たすと運営者が認める者をいいます。</li>
+      <li>「違反行為」とは、本ポリシーのいずれかの条項に違反する行為であって、その認定は運営者の単独の判断による。</li>
+    </ol>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title">3. アクセス解析</div>
-  <p>本サイトでは Google Analytics を使用しており、Cookie を利用してアクセス情報を収集しています。収集された情報は個人を特定するものではなく、Google のプライバシーポリシーに基づいて管理されます。</p>
+<div class="article">
+  <div class="article-title">第2条（サイトの性質および運営主体）</div>
+  <div class="article-body">
+    <p>1. 本サイトは、東京大学に在籍する1年生（以下「運営者」）が、個人の学習を補助する目的で趣味として制作・運営する非公式の個人サイトです。運営者が所属するいかなる組織・団体・大学の公式見解を代表するものではありません。</p>
+    <p>2. 本サイトに掲載されているコンテンツは、運営者自身の授業受講・自主学習を通じて形成した理解・解釈・整理をもとに運営者が独自に作成したものであり、特定の書籍・教材・出版物の内容を意図的に複製・転載することを目的として制作されたものではありません。</p>
+    <p>3. 内容の性質上、授業で使用される教材と類似する記述・表現・構成が含まれる場合がありますが、これは運営者の学習過程において自然に形成された知識体系の反映であり、意図的な転載ではありません。</p>
+    <p>4. 運営者は本サイトの継続的な運営・可用性・正確性について、いかなる義務も保証も負いません。運営者は理由の如何を問わず、いつでも予告なくコンテンツの削除・変更・サイトの閉鎖を行う絶対的な権利を有します。</p>
+    <p>5. 本サイトの性質は個人の学習ノートおよび学習補助ツールであり、教育機関・出版社・第三者との間にいかなる公式な関係も存在しません。</p>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title">4. 著作権・禁止事項</div>
-  <p>掲載しているコンテンツ（解説文・単語データ・レイアウト等）の無断転載・複製・再配布・商用利用を禁じます。学習目的での個人利用の範囲内でご使用ください。</p>
+<div class="article">
+  <div class="article-title">第3条（利用資格および厳格なアクセス制限）</div>
+  <div class="article-body">
+    <p>1. 本サイトへのアクセスおよび利用は、以下の条件をすべて同時に満たすと運営者が認める者のみに許可されます。</p>
+    <ol>
+      <li>東京大学に現在在籍している1年生であること</li>
+      <li>「スペイン語学習の羅針盤」を正規の方法で購入し、現在所有していること</li>
+      <li>本ポリシーのすべての条項を読了し、内容を理解したうえで同意していること</li>
+    </ol>
+    <p>2. 前項の条件を1つでも満たさない者によるアクセスは、運営者が想定および許可するアクセスの範囲外であり、当該者は本サイトを直ちに離脱する義務を負います。</p>
+    <p>3. 利用資格の最終的な判断は運営者が単独で行い、その判断に対する異議申し立ては認められません。</p>
+    <p>4. 運営者は、理由を開示することなく、任意のタイミングで任意の者のアクセスを遮断・拒否する絶対的な権利を有します。アクセスを拒否・遮断された者に対して、運営者はいかなる説明・補償・代替手段の提供も行いません。</p>
+    <p>5. 本サイトは特定の閉じたコミュニティを対象とした学習補助ツールであり、一般公開を意図したものではありません。偶発的にURLを入手した方も、前項の資格を満たさない場合は本サイトを利用することができません。</p>
+    <p>6. 利用資格は一身専属的なものであり、第三者に譲渡・貸与・共有することはできません。</p>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title">5. 免責事項</div>
-  <p>コンテンツの正確性には十分配慮していますが、内容の誤りや変更によって生じた損害について責任を負いかねます。また、外部リンク先のサービスについて一切の責任を負いません。</p>
+<div class="article">
+  <div class="article-title">第4条（利用者の義務および禁止事項）</div>
+  <div class="article-body">
+    <p>1. 利用者は、本サイトの利用にあたり、本ポリシーおよび適用される法令を遵守する義務を負います。何が「遵守」に当たるかの判断は運営者が単独で行います。</p>
+    <p>2. 以下の行為は、利用資格の有無にかかわらず厳に禁止します。</p>
+    <ol>
+      <li>本サイトのコンテンツの全部または一部を、いかなる媒体においても複製・転載・翻案・編集・配布すること</li>
+      <li>スクリーンショット・印刷・PDF化・録画その他の方法でコンテンツを保存・複製し、第三者に共有・配布すること</li>
+      <li>本サイトのURLを不特定多数の者が閲覧できる場所（SNS・掲示板・メッセージアプリ・メール等）を通じて拡散すること</li>
+      <li>本サイトのコンテンツを直接または間接的に商業的目的に利用すること</li>
+      <li>本サイトの運営を妨害する行為、またはサーバーに過度の負荷をかける行為</li>
+      <li>本サイトへの自動的なアクセス（クローリング・スクレイピング・ボット等）</li>
+      <li>本サイトのセキュリティ機構を回避・無効化・改ざんしようとする行為</li>
+      <li>運営者または第三者を詐称・偽装して本サイトにアクセスする行為</li>
+      <li>本サイトを通じて違法なコンテンツ・情報を収集または拡散する行為</li>
+      <li>前各号に準ずる行為として運営者が不適切と判断した一切の行為</li>
+    </ol>
+    <p>3. 第2項各号の該当性は運営者が単独で判断し、その判断は最終的かつ不可争のものとします。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第5条（知的財産権および権利侵害への対応）</div>
+  <div class="article-body">
+    <p>1. 本サイト上の文章・構成・デザイン・ソースコードその他の表現物に関する権利は、法令の定める範囲において運営者に帰属します。</p>
+    <p>2. 利用者は、本ポリシーにより許諾された範囲を超えて、本サイトのコンテンツを利用することはできません。</p>
+    <p>3. 本サイトのコンテンツが第三者の著作権その他の知的財産権を侵害していると主張する者は、運営者に通知することができます。ただし、通知を受けた場合であっても、運営者は対応の要否・内容・時期を単独の裁量で決定し、いかなる対応も行わない場合を含めて、通知者に対して一切の説明・回答・報告義務を負いません。</p>
+    <p>4. 権利侵害の申し立てを行った者は、その申し立てが虚偽・不当であった場合、運営者に生じた一切の損害を賠償する責任を負います。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第6条（プライバシーポリシー）</div>
+  <div class="article-body">
+    <p>1. 本サイトでは、利用状況の把握を目的として Google LLC が提供する Google Analytics を導入しています。同サービスは Cookie を使用してアクセス情報（ページビュー数・滞在時間・参照元・使用デバイス・ブラウザ種別・おおよその地理的位置情報等）を収集します。</p>
+    <p>2. 収集される情報は個人を直接特定するものではありませんが、Google のデータ処理規約に従って Google のサーバーに送信・保管される場合があります。運営者はこれらのデータ処理について一切の責任を負いません。</p>
+    <p>3. 本サイトでは Google AdSense を通じた広告配信を行っており、同サービスも Cookie を使用してパーソナライズ広告を表示する場合があります。</p>
+    <p>4. 運営者が自ら収集・保持する個人情報はありませんが、将来的に変更する可能性があり、その場合は本ポリシーへの掲載をもって通知に代えます。</p>
+    <p>5. 運営者は、法令に基づく開示要請がある場合、運営者が適切と判断した場合、またはサービス提供・権利保護のために必要と判断した場合に、情報を開示することができます。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第7条（クッキーポリシー）</div>
+  <div class="article-body">
+    <p>1. 本サイトでは以下の目的でCookieおよびこれに類する技術を使用します。</p>
+    <ol>
+      <li>アクセス解析（Google Analytics）：利用状況の把握および改善</li>
+      <li>広告配信（Google AdSense）：利用者の興味関心に基づく広告の表示</li>
+      <li>セッション管理：利用者のアクセス経路の確認（sessionStorage）</li>
+      <li>同意管理：ポリシー同意状態の記録（localStorage）</li>
+    </ol>
+    <p>2. 本サイトのCookieを拒否した場合、本サイトへのアクセスが制限される場合があります。Cookie拒否によるいかなる不利益についても、運営者は責任を負いません。</p>
+    <p>3. 本サイトが使用するサードパーティCookieについては、各サービスプロバイダーのポリシーが適用され、運営者はこれらについて一切の責任を負いません。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第8条（広告ポリシー）</div>
+  <div class="article-body">
+    <p>1. 本サイトでは Google AdSense を通じた広告を掲載しています。広告の内容・品質・適切性について、運営者は一切の保証および責任を負いません。</p>
+    <p>2. 広告のクリックや閲覧によって生じる第三者との取引・損害・トラブルについて、運営者は一切の責任を負いません。</p>
+    <p>3. 本サイトは広告収益の有無・金額を公開する義務を負いません。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第9条（セキュリティポリシー）</div>
+  <div class="article-body">
+    <p>1. 本サイトのセキュリティについて、運営者はいかなる水準の安全性も保証しません。本サイトへのアクセスに伴うセキュリティリスク（マルウェア感染・情報漏洩・フィッシング等）は利用者が自己責任で対処するものとします。</p>
+    <p>2. 本サイトに対するセキュリティ上の脆弱性を発見した場合は、悪用することなく通知することができます。ただし、運営者は当該通知への対応義務を負わず、対応の有無・内容・時期を単独の裁量で決定します。</p>
+    <p>3. 本サイトへの不正アクセス・改ざん・サービス妨害等の行為は、不正アクセス禁止法その他の法令により処罰される場合があります。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第10条（免責事項）</div>
+  <div class="article-body">
+    <p>1. 本サイトおよびそのコンテンツは「現状有姿（AS IS）」「利用可能な状態で（AS AVAILABLE）」提供されます。運営者は、明示・黙示・法定を問わず、正確性・完全性・最新性・有用性・特定目的への適合性・商品性・非侵害性その他一切の保証を行いません。</p>
+    <p>2. 本サイトの利用、利用不能、または本サイトへの信頼により生じた直接的・間接的・付随的・特別・懲罰的・結果的損害（逸失利益・データ損失・学業上の不利益・信用毀損を含むがこれらに限定されない）について、運営者は、その可能性について事前に知らされていた場合も含め、一切の責任を負いません。</p>
+    <p>3. 運営者の責任が認められる場合であっても、利用者に対する損害賠償の累積総額は、利用者が過去12か月間に本サイトの利用のために支払った金額（無償の場合は0円）を絶対的な上限とします。</p>
+    <p>4. 本サイトからリンクされた外部サイトのコンテンツ・運営・セキュリティ・可用性について、運営者は一切の責任を負いません。</p>
+    <p>5. 利用者が本ポリシーに違反して本サイトを利用したことにより生じた損害は、利用者が全額負担します。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第11条（運営者の最終解釈権および絶対的裁量）</div>
+  <div class="article-body">
+    <p>1. 本ポリシーの解釈・適用・執行に関するすべての事項において、運営者の判断は最終的かつ拘束力を有するものとし、利用者はこれに異議を申し立てることができません。</p>
+    <p>2. 本ポリシーの条項に曖昧さ・矛盾・欠缺が存在する場合、その解釈は常に運営者に最大限有利なものとして確定します。</p>
+    <p>3. 運営者は、本ポリシーに定めのない事項についても、単独の裁量により決定を下す絶対的な権限を有します。</p>
+    <p>4. 運営者が本ポリシーの特定の条項を特定の利用者に対して執行しないことは、当該条項についての権利放棄を構成せず、他の利用者・将来の状況への執行権限は完全に留保されます。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第12条（違約金）</div>
+  <div class="article-body">
+    <p>1. 利用者が第4条第2項各号に定める禁止行為を行った場合、当該利用者は運営者に対し、違反行為1件につき金10万円の違約金を支払う義務を負います。</p>
+    <p>2. 前項の違約金は損害賠償額の予定であり、運営者は実損害の証明なく請求できます。また、実損害が違約金額を超える場合、運営者は超過分についても別途請求することができます。</p>
+    <p>3. 違反行為の件数・内容の認定は運営者が単独で行い、その認定は推定として扱われます。</p>
+    <p>4. 運営者は、違反行為を発見した時点から2年以内であれば、いつでも違約金を請求することができます。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第13条（損害賠償・補償）</div>
+  <div class="article-body">
+    <p>1. 利用者は、本ポリシーへの違反・適用法令への違反・第三者の権利侵害・虚偽の表明により、運営者・第三者に損害を与えた場合、その損害（弁護士費用・調査費用・対応費用を含む一切の費用）を全額賠償する義務を負います。</p>
+    <p>2. 利用者が本サイトのコンテンツを無断で複製・転載したことにより、著作権者または第三者から運営者に対してクレーム・請求・訴訟が発生した場合、当該利用者は運営者に生じた一切の損害・費用・負担を補償するものとします。</p>
+    <p>3. 利用者の違反行為により運営者がサイトを閉鎖せざるを得なくなった場合、利用者は運営者が被った一切の機会損失を含む損害を賠償するものとします。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第14条（利用者の唯一の救済手段）</div>
+  <div class="article-body">
+    <p>1. 本サイトの利用に関して利用者が不満・異議・苦情を有する場合、利用者に認められる唯一かつ排他的な救済手段は、本サイトの利用を停止することのみです。</p>
+    <p>2. 利用者は、本サイトに関していかなる差止請求・仮処分申請・強制執行その他の法的救済も求めることができません。</p>
+    <p>3. 利用者が本サイトに関して運営者に対して法的請求を行う場合、当該請求は、請求原因が生じた日から7日以内に提起されなければならず、この期間を経過した請求権は時効によって消滅したものとみなします。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第15条（サービスの変更・停止・終了）</div>
+  <div class="article-body">
+    <p>1. 運営者は、いかなる理由の開示も義務なく、いつでも一方的に本サイトのコンテンツの変更・一部停止・全部停止・永久閉鎖を行うことができます。これらの措置について、運営者は利用者に対していかなる通知・説明・補償も行いません。</p>
+    <p>2. 本サイトのサービス変更・停止・終了により利用者に生じた損害について、運営者は一切の責任を負いません。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第16条（不可抗力）</div>
+  <div class="article-body">
+    <p>運営者は、天災・戦争・テロ・感染症・停電・インターネット障害・法令の変更・政府の命令・運営者の個人的事情・学業上の都合・その他運営者が不可抗力と判断した事象により本ポリシーの義務を履行できない場合、当該不履行について一切の責任を負いません。不可抗力の該当性は運営者が単独で判断します。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第17条（権利の不譲渡）</div>
+  <div class="article-body">
+    <p>1. 利用者は、本ポリシーに基づく本サイトの利用権その他の権利を第三者に譲渡・再許諾・担保提供することはできません。</p>
+    <p>2. 運営者は、本ポリシーに基づく権利・義務・契約上の地位のすべてを、利用者の同意なく自由に第三者に譲渡・移転することができます。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第18条（関係の性質）</div>
+  <div class="article-body">
+    <p>本ポリシーは、利用者と運営者との間に、雇用・代理・パートナーシップ・合弁・フランチャイズその他いかなる法的関係も創設するものではありません。本サイトの利用は、運営者が一方的に設定した条件への従属を意味します。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第19条（第三者受益者の不存在）</div>
+  <div class="article-body">
+    <p>本ポリシーは運営者のために設けられたものであり、利用者はこれを援用することができません。本ポリシーのいかなる規定も、利用者その他の第三者に対して権利・利益・抗弁を付与するものではありません。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第20条（分離可能性）</div>
+  <div class="article-body">
+    <p>本ポリシーのいずれかの条項が管轄裁判所により無効・違法または執行不能と判断された場合でも、残余の条項は引き続き完全な効力を有します。無効とされた条項は、当該条項の趣旨に最も近く、かつ運営者に最大限有利な内容に読み替えるものとします。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第21条（完全合意）</div>
+  <div class="article-body">
+    <p>本ポリシーは、本サイトの利用に関する運営者と利用者との間の完全な合意を構成し、本件に関する従前のすべての合意・表明・保証・交渉・通信に優先します。利用者は、本ポリシーに明記されていない事項について、運営者がいかなる約束・表明もしていないことを認めます。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第22条（電磁的手段による同意）</div>
+  <div class="article-body">
+    <p>1. 本サイトへのアクセスおよびホームページにおける「同意する」ボタンの押下は、本ポリシーに対する有効・拘束力・撤回不能な同意を構成します。</p>
+    <p>2. 利用者は、本ポリシーへの同意後にいかなる理由においても同意を撤回することができません。</p>
+    <p>3. 利用者は、自己が本ポリシーに同意する完全な法的能力を有することを表明・保証します。この表明が虚偽であった場合、利用者は運営者に生じた一切の損害を賠償するものとします。</p>
+    <p>4. 未成年者（18歳未満）が本サイトを利用した場合は、保護者が本ポリシーに同意したものとみなします。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第23条（準拠法および管轄）</div>
+  <div class="article-body">
+    <p>1. 本ポリシーの解釈および適用は、抵触法の規定にかかわらず、日本国法令に準拠します。</p>
+    <p>2. 本サイトの利用に関して紛争が生じた場合は、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+    <p>3. 訴訟費用（弁護士費用を含む）は、勝訴・敗訴を問わず利用者が負担するものとします。</p>
+  </div>
+</div>
+
+<div class="article">
+  <div class="article-title">第24条（ポリシーの改定）</div>
+  <div class="article-body">
+    <p>1. 運営者は、必要に応じて本ポリシーを予告なく改定することができます。改定は遡及的に適用される場合を含め、本ページに掲載された時点で即時に効力を生じます。</p>
+    <p>2. 利用者への通知は本ページへの掲載をもって代えるものとし、運営者は個別の通知義務を一切負いません。</p>
+    <p>3. 改定後も本サイトを利用した場合は改定後のポリシーに同意したものとみなします。また、本サイトを利用しなかった場合でも、改定前の利用に関しては改定後のポリシーが適用されます。</p>
+  </div>
 </div>
 
 <div>
-  <a href="javascript:window.close()" class="back-btn">このページを閉じる</a>
+  <button onclick="window.close()" class="back-btn">このページを閉じる</button>
 </div>
 
 <footer>
-  スペイン語学習ポータル — サイトポリシー
+  スペイン語学習ポータル — サイトポリシー Rev.4.0（利用規約・免責事項・プライバシーポリシー・クッキーポリシー・セキュリティポリシー）<br>
+  本ポリシーは日本国著作権法・不正アクセス禁止法・個人情報保護法・電気通信事業法・不正競争防止法その他関連法令に準拠します。
 </footer>
 
 </body>
