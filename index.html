@@ -441,7 +441,13 @@ async function adminCheck() {
     sessionStorage.removeItem('adminAttempts');
     sessionStorage.removeItem('adminLockUntil');
     adminClose();
-    window.open('https://analytics.google.com/', '_blank');
+    var a = document.createElement('a');
+    a.href = 'https://analytics.google.com/';
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   } else {
     var attempts = parseInt(sessionStorage.getItem('adminAttempts') || '0') + 1;
     if (attempts >= ADMIN_MAX_ATTEMPTS) {
