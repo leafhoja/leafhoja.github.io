@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script src="access-control.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WB0WVZSEHT"></script>
+
+<!-- ============================================================
+  ★ ページ公開設定 ★（変更箇所はここだけ）
+  ============================================================
+  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
+
+    1 → 公開（通常通り表示）
+    0 → ロック（閲覧不可ページへリダイレクト）
+
+  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
+  ============================================================ -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
-  gtag("config", "G-WB0WVZSEHT");
+/* ★ ページ公開設定 ★ ここの数値を変更してください */
+var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 </script>
+
+<script src="access-control.js"></script>
+<script src="ga.js"></script>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
