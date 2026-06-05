@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script>if (!sessionStorage.getItem('adminAuth')) { location.replace('index.html'); }</script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>管理者ページ — スペイン語学習ポータル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1c1e; --mid: #48484a; --muted: #8e8e93;
+    --accent: #2a5298; --accent2: #1b7a68; --warn: #a8281a;
+    --bg: #f5f5f0; --surface: #ffffff;
+    --rule: #d6d6ce; --head-bg: #ebeff8;
+    --serif: 'Noto Serif JP', serif; --sans: 'Noto Sans JP', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans); font-size: 14px; line-height: 1.8;
+    color: var(--ink); background: var(--bg);
+    max-width: 700px; margin: 0 auto; padding: 32px 22px 80px;
+  }
+  header {
+    border-top: 3px solid var(--accent); border-bottom: 1px solid var(--rule);
+    padding: 20px 0 16px; margin-bottom: 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  header h1 {
+    font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--accent);
+  }
+  .logout-btn {
+    font-size: 12px; color: var(--muted); background: none;
+    border: 1px solid var(--rule); border-radius: 4px; padding: 6px 14px;
+    cursor: pointer; font-family: var(--sans); flex-shrink: 0; transition: all .15s;
+  }
+  .logout-btn:hover { border-color: var(--muted); color: var(--mid); }
+
+  .section {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 8px; margin-bottom: 24px; overflow: hidden;
+  }
+  .section-header {
+    background: var(--head-bg); padding: 14px 20px; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .section-header h2 {
+    font-family: var(--serif); font-size: 16px; font-weight: 700; color: var(--accent);
+  }
+  .section-body { padding: 20px; }
+
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0; border-bottom: 1px solid var(--rule);
+  }
+  .toggle-row:last-child { border-bottom: none; }
+  .toggle-row:first-child { padding-top: 0; }
+  .toggle-label { font-size: 14px; color: var(--ink); }
+  .toggle-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .toggle {
+    position: relative; width: 46px; height: 26px; flex-shrink: 0;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .toggle-slider {
+    position: absolute; inset: 0; border-radius: 26px;
+    background: #ccc; cursor: pointer; transition: background .2s;
+  }
+  .toggle-slider:before {
+    content: ''; position: absolute;
+    left: 3px; bottom: 3px; width: 20px; height: 20px;
+    border-radius: 50%; background: white;
+    transition: transform .2s; box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  }
+  .toggle input:checked + .toggle-slider { background: var(--warn); }
+  .toggle input:checked + .toggle-slider:before { transform: translateX(20px); }
+  .toggle.green input:checked + .toggle-slider { background: var(--accent2); }
+
+  .pages-header {
+    font-size: 13px; font-weight: 700; color: var(--mid);
+    margin: 20px 0 10px;
+  }
+  .page-list { border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+  .page-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 14px; border-bottom: 1px solid var(--rule); gap: 10px;
+  }
+  .page-item:last-child { border-bottom: none; }
+  .page-item-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .page-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: .04em;
+    padding: 2px 7px; border-radius: 3px; white-space: nowrap;
+    background: var(--head-bg); color: var(--accent); flex-shrink: 0;
+  }
+  .page-name { font-size: 13px; color: var(--mid); }
+
+  .pw-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  .pw-section-title { font-size: 13px; font-weight: 700; color: var(--mid); margin-bottom: 12px; }
+  .pw-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .pw-input {
+    flex: 1; border: 1.5px solid var(--rule); border-radius: 4px;
+    padding: 10px 12px; font-size: 14px; font-family: var(--sans);
+    outline: none; transition: border-color .15s; min-width: 0;
+  }
+  .pw-input:focus { border-color: var(--accent); }
+  .pw-btn {
+    background: var(--accent); color: #fff; border: none; border-radius: 4px;
+    padding: 10px 18px; font-size: 13px; font-weight: 700; font-family: var(--sans);
+    cursor: pointer; white-space: nowrap; transition: background .15s;
+  }
+  .pw-btn:hover { background: #1d3d7a; }
+  .pw-status {
+    font-size: 12px; padding: 8px 12px; border-radius: 4px;
+    margin-top: 6px; display: none;
+  }
+  .pw-status.ok { background: #edf7f0; color: var(--accent2); }
+  .pw-status.err { background: #fdecea; color: var(--warn); }
+  .pw-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  .warn-box {
+    background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px;
+    padding: 12px 16px; font-size: 12px; color: #7a5c00;
+    margin-bottom: 16px; line-height: 1.7;
+  }
+
+  .save-badge {
+    font-size: 11px; color: var(--accent2);
+    opacity: 0; transition: opacity .3s; white-space: nowrap;
+  }
+  .save-badge.show { opacity: 1; }
+
+  .ext-link-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 15px 20px; text-decoration: none; color: inherit;
+    border-bottom: 1px solid var(--rule); transition: background .15s;
+  }
+  .ext-link-row:last-child { border-bottom: none; }
+  .ext-link-row:hover { background: var(--head-bg); }
+  .ext-link-icon { font-size: 22px; flex-shrink: 0; }
+  .ext-link-text { flex: 1; min-width: 0; }
+  .ext-link-label { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .ext-link-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .ext-link-arrow { font-size: 16px; color: var(--muted); flex-shrink: 0; }
+
+  @media (max-width: 540px) {
+    body { padding: 16px 14px 60px; }
+    header h1 { font-size: 18px; }
+    .pw-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔧 管理者ページ</h1>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <a href="index.html" class="logout-btn" style="text-decoration:none;">← ホーム</a>
+    <button class="logout-btn" onclick="adminLogout()">ログアウト</button>
+  </div>
+</header>
+
+<!-- 1. サイト公開設定 -->
+<div class="section">
+  <div class="section-header">
+    <h2>1. サイト公開設定</h2>
+    <span class="save-badge" id="save1">✓ 保存しました</span>
+  </div>
+  <div class="section-body">
+    <div class="warn-box">
+      ⚠️ サイト全体を非公開にすると、すべてのページに「現在閲覧できません」と表示されます。ページ個別設定より優先されます。
+    </div>
+
+    <div class="toggle-row" style="padding-top:0">
+      <div>
+        <div class="toggle-label">🔴 サイト全体を非公開にする</div>
+        <div class="toggle-sub">すべてのページへのアクセスを一時停止します</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggle-site-disabled" onchange="saveSiteDisabled()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="pages-header">ページごとの公開設定（オンで公開・オフで非公開）</div>
+    <div class="page-list" id="page-list"></div>
+  </div>
+</div>
+
+<!-- 2. 閲覧パスワード設定 -->
+<div class="section">
+  <div class="section-header">
+    <h2>2. 閲覧パスワード設定</h2>
+    <span class="save-badge" id="save2">✓ 保存しました</span>
+  </div>
+  <div class="section-body">
+    <div class="toggle-row" style="padding-top:0">
+      <div>
+        <div class="toggle-label">🔑 閲覧パスワードを有効にする</div>
+        <div class="toggle-sub">ホームページ訪問時にパスワードを要求します（一度認証すると他のページはそのまま閲覧可）</div>
+      </div>
+      <label class="toggle green">
+        <input type="checkbox" id="toggle-pw-enabled" onchange="savePwEnabled()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="pw-section">
+      <div class="pw-section-title">パスワードを設定・変更する</div>
+      <div class="pw-row">
+        <input type="password" class="pw-input" id="new-pw" placeholder="新しいパスワード" maxlength="32"
+               onkeydown="if(event.key==='Enter')document.getElementById('new-pw2').focus()">
+        <input type="password" class="pw-input" id="new-pw2" placeholder="確認（再入力）" maxlength="32"
+               onkeydown="if(event.key==='Enter')setViewerPassword()">
+        <button class="pw-btn" onclick="setViewerPassword()">設定する</button>
+      </div>
+      <div class="pw-status" id="pw-status"></div>
+      <div class="pw-note" id="pw-note"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. 外部ツール -->
+<div class="section">
+  <div class="section-header">
+    <h2>3. 外部ツール</h2>
+  </div>
+  <div class="section-body" style="padding: 8px 0;">
+    <a href="https://developers.google.com/analytics?hl=ja" target="_blank" rel="noopener noreferrer" class="ext-link-row">
+      <div class="ext-link-icon">📊</div>
+      <div class="ext-link-text">
+        <div class="ext-link-label">Webページの閲覧状況を確認する</div>
+        <div class="ext-link-sub">Google Analytics</div>
+      </div>
+      <div class="ext-link-arrow">↗</div>
+    </a>
+    <a href="https://adsense.google.com/intl/ja_jp/start/" target="_blank" rel="noopener noreferrer" class="ext-link-row">
+      <div class="ext-link-icon">💰</div>
+      <div class="ext-link-text">
+        <div class="ext-link-label">広告を管理する</div>
+        <div class="ext-link-sub">Google AdSense</div>
+      </div>
+      <div class="ext-link-arrow">↗</div>
+    </a>
+  </div>
+</div>
+
+<script>
+var PAGES = [
+  { file: 'index.html',               label: 'ホーム',                badge: 'ホーム' },
+  { file: 'Spanish1_lesson3.html',    label: '一列 Lección 3',        badge: '一列' },
+  { file: 'Spanish1_lesson4.html',    label: '一列 Lección 4',        badge: '一列' },
+  { file: 'Spanish1_lesson5.html',    label: '一列 Lección 5',        badge: '一列' },
+  { file: 'Spanish1_lesson6.html',    label: '一列 Lección 6',        badge: '一列' },
+  { file: 'Spanish1_lesson7.html',    label: '一列 Lección 7',        badge: '一列' },
+  { file: 'Spanish2_lesson1.html',    label: '二列 Lección 1',        badge: '二列' },
+  { file: 'Spanish2_lesson2.html',    label: '二列 Lección 2',        badge: '二列' },
+  { file: 'Spanish2_lesson3.html',    label: '二列 Lección 3',        badge: '二列' },
+  { file: 'Spanish2_lesson4.html',    label: '二列 Lección 4',        badge: '二列' },
+  { file: 'Spanish2_lesson5.html',    label: '二列 Lección 5',        badge: '二列' },
+  { file: 'Spanish2_lesson6.html',    label: '二列 Lección 6',        badge: '二列' },
+  { file: 'spanish_dictionary.html',  label: '単語帳・辞書',           badge: '辞書' },
+];
+
+var PW_ITER = 100000;
+
+function getSettings() {
+  var s = {};
+  try { s = JSON.parse(localStorage.getItem('adminSettings') || '{}'); } catch (e) { }
+  return s;
+}
+function saveSettings(s) {
+  localStorage.setItem('adminSettings', JSON.stringify(s));
+}
+function flashSave(id) {
+  var el = document.getElementById(id);
+  el.classList.add('show');
+  clearTimeout(el._timer);
+  el._timer = setTimeout(function () { el.classList.remove('show'); }, 2000);
+}
+
+function init() {
+  var s = getSettings();
+  document.getElementById('toggle-site-disabled').checked = s.siteDisabled === true;
+  document.getElementById('toggle-pw-enabled').checked = s.viewerPasswordEnabled === true;
+
+  var list = document.getElementById('page-list');
+  list.innerHTML = '';
+  PAGES.forEach(function (p) {
+    var isDisabled = s.pageDisabled && s.pageDisabled[p.file] === true;
+    var div = document.createElement('div');
+    div.className = 'page-item';
+    div.innerHTML =
+      '<div class="page-item-left">'
+      + '<span class="page-badge">' + p.badge + '</span>'
+      + '<span class="page-name">' + p.label + '</span>'
+      + '</div>'
+      + '<label class="toggle green">'
+      + '<input type="checkbox" data-file="' + p.file + '" '
+      + (isDisabled ? '' : 'checked') + ' onchange="savePageToggle(this)">'
+      + '<span class="toggle-slider"></span>'
+      + '</label>';
+    list.appendChild(div);
+  });
+
+  var note = document.getElementById('pw-note');
+  note.textContent = s.viewerPasswordHash
+    ? '※ パスワードは設定済みです。変更する場合は新しいパスワードを入力してください。'
+    : '※ まだパスワードが設定されていません。';
+}
+
+function saveSiteDisabled() {
+  var s = getSettings();
+  s.siteDisabled = document.getElementById('toggle-site-disabled').checked;
+  saveSettings(s);
+  flashSave('save1');
+}
+
+function savePageToggle(cb) {
+  var s = getSettings();
+  if (!s.pageDisabled) s.pageDisabled = {};
+  s.pageDisabled[cb.dataset.file] = !cb.checked;
+  saveSettings(s);
+  flashSave('save1');
+}
+
+function savePwEnabled() {
+  var s = getSettings();
+  s.viewerPasswordEnabled = document.getElementById('toggle-pw-enabled').checked;
+  saveSettings(s);
+  flashSave('save2');
+}
+
+async function setViewerPassword() {
+  var pw  = document.getElementById('new-pw').value;
+  var pw2 = document.getElementById('new-pw2').value;
+  var statusEl = document.getElementById('pw-status');
+
+  function showErr(msg) {
+    statusEl.className = 'pw-status err';
+    statusEl.textContent = msg;
+    statusEl.style.display = 'block';
+  }
+  if (!pw) { showErr('パスワードを入力してください。'); return; }
+  if (pw.length < 4) { showErr('パスワードは4文字以上にしてください。'); return; }
+  if (pw !== pw2) { showErr('確認用パスワードが一致しません。'); return; }
+
+  var saltRaw = Array.from(crypto.getRandomValues(new Uint8Array(8)))
+    .map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  var salt = 'vp_' + saltRaw;
+  var enc = new TextEncoder();
+  var keyMat = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveBits']);
+  var bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: enc.encode(salt), iterations: PW_ITER, hash: 'SHA-256' },
+    keyMat, 256
+  );
+  var hashHex = Array.from(new Uint8Array(bits))
+    .map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+
+  var s = getSettings();
+  s.viewerPasswordHash = hashHex;
+  s.viewerPasswordSalt = salt;
+  s.viewerPasswordIter = PW_ITER;
+  saveSettings(s);
+
+  document.getElementById('new-pw').value = '';
+  document.getElementById('new-pw2').value = '';
+  statusEl.className = 'pw-status ok';
+  statusEl.textContent = '✓ パスワードを設定しました。';
+  statusEl.style.display = 'block';
+  document.getElementById('pw-note').textContent =
+    '※ パスワードは設定済みです。変更する場合は新しいパスワードを入力してください。';
+  flashSave('save2');
+}
+
+function adminLogout() {
+  sessionStorage.removeItem('adminAuth');
+  window.location.replace('index.html');
+}
+
+init();
+</script>
+</body>
+</html>

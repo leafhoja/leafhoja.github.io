@@ -131,8 +131,34 @@
   /* ── サイトポリシー同意オーバーレイ ── */
   #policy-overlay {
     display: none; position: fixed; inset: 0; z-index: 99999;
-    background: rgba(0,0,0,.5);
+    background: #ffffff;
     align-items: center; justify-content: center;
+  }
+
+  /* ── 閲覧パスワードオーバーレイ ── */
+  #viewer-pw-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99998;
+    background: #ffffff;
+    align-items: center; justify-content: center;
+  }
+  .viewer-pw-input {
+    width: 100%; border: 1.5px solid var(--rule); border-radius: 4px;
+    padding: 10px; font-size: 18px; text-align: center; letter-spacing: .2em;
+    outline: none; margin-bottom: 10px; font-family: monospace;
+    transition: border-color .15s;
+  }
+  .viewer-pw-input:focus { border-color: var(--accent); }
+
+  /* ── サイト停止オーバーレイ ── */
+  #site-blocked-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99997;
+    background: var(--bg);
+    align-items: center; justify-content: center;
+  }
+  .blocked-box {
+    text-align: center; padding: 48px 32px; max-width: 400px;
+    background: var(--surface); border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.1);
   }
   .policy-inner {
     background: var(--surface); border-radius: 10px;
@@ -178,7 +204,7 @@
 
   /* ── 広告オーバーレイ ── */
   #ad-overlay {
-    display: none; position: fixed; inset: 0; z-index: 99999;
+    display: none; position: fixed; inset: 0; z-index: 100000;
     background: rgba(0,0,0,.6);
     align-items: center; justify-content: center;
   }
@@ -205,6 +231,33 @@
 </style>
 </head>
 <body>
+
+<!-- サイト停止オーバーレイ -->
+<div id="site-blocked-overlay">
+  <div class="blocked-box">
+    <div style="font-size:52px; margin-bottom:20px;">🔒</div>
+    <h2 style="font-family:var(--serif); font-size:20px; color:var(--accent); margin-bottom:12px;" id="blocked-msg">現在閲覧できません</h2>
+    <p style="font-size:13px; color:var(--muted); line-height:1.8;">このページは現在ご利用いただけません。<br>ご不明な点はサイト管理者にお問い合わせください。</p>
+  </div>
+</div>
+
+<!-- 閲覧パスワードオーバーレイ -->
+<div id="viewer-pw-overlay">
+  <div class="policy-inner">
+    <div class="policy-logo">スペイン語学習ポータル</div>
+    <div class="policy-lead">閲覧にはパスワードが必要です</div>
+    <input id="viewer-pw" type="password" maxlength="32" placeholder="●●●●"
+           class="viewer-pw-input"
+           onkeydown="if(event.key==='Enter') checkViewerPw()">
+    <button onclick="checkViewerPw()"
+            style="width:100%; background:var(--accent); color:#fff; border:none;
+                   border-radius:6px; padding:12px; font-family:var(--sans);
+                   font-size:14px; font-weight:700; cursor:pointer; margin-bottom:8px;
+                   box-shadow:0 3px 12px rgba(42,82,152,.22); transition:background .15s;"
+            onmouseover="this.style.background='#1d3d7a'" onmouseout="this.style.background='var(--accent)'">確認する</button>
+    <div id="viewer-pw-err" style="font-size:12px; color:var(--warn); margin-top:6px; min-height:16px;"></div>
+  </div>
+</div>
 
 <!-- サイトポリシー同意オーバーレイ -->
 <div id="policy-overlay">
@@ -398,11 +451,6 @@
   </a>
 </div>
 
-<script>
-var _t = Array.from(crypto.getRandomValues(new Uint8Array(16))).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-sessionStorage.setItem('accessToken', _t);
-</script>
-
 <footer>
   スペイン語 一列・二列 解説 — 2026年度
 </footer>
@@ -417,7 +465,7 @@ sessionStorage.setItem('accessToken', _t);
 </div>
 
 <!-- 管理者ログインモーダル -->
-<div id="admin-overlay" style="display:none; position:fixed; inset:0; z-index:9999;
+<div id="admin-overlay" style="display:none; position:fixed; inset:0; z-index:100001;
      background:rgba(0,0,0,.45); align-items:center; justify-content:center;">
   <div style="background:#fff; border-radius:8px; padding:36px 44px; text-align:center;
               box-shadow:0 8px 40px rgba(0,0,0,.25); width:min(320px,90vw);">
@@ -487,14 +535,9 @@ async function adminCheck() {
   if (hashHex === ADMIN_HASH) {
     sessionStorage.removeItem('adminAttempts');
     sessionStorage.removeItem('adminLockUntil');
+    sessionStorage.setItem('adminAuth', '1');
     adminClose();
-    var a = document.createElement('a');
-    a.href = 'https://analytics.google.com/';
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    window.location.href = 'admin.html';
   } else {
     var attempts = parseInt(sessionStorage.getItem('adminAttempts') || '0') + 1;
     if (attempts >= ADMIN_MAX_ATTEMPTS) {
@@ -513,13 +556,88 @@ document.getElementById('admin-overlay').addEventListener('click', function(e) {
   if (e.target === this) adminClose();
 });
 
-// サイトポリシー同意
-if (!localStorage.getItem('agreedPolicy')) {
-  document.getElementById('policy-overlay').style.display = 'flex';
+// アクセスコントロール（ホームページ）
+function getAdminSettings() {
+  var s = {};
+  try { s = JSON.parse(localStorage.getItem('adminSettings') || '{}'); } catch(e) {}
+  return s;
 }
+function checkAndShowOverlay() {
+  var s = getAdminSettings();
+  var pageDisabled = s.pageDisabled && s.pageDisabled['index.html'] === true;
+  if (s.siteDisabled === true || pageDisabled) {
+    var msg = s.siteDisabled ? 'このサイトは現在閲覧できません' : 'このページは現在閲覧できません';
+    document.getElementById('blocked-msg').textContent = msg;
+    document.getElementById('site-blocked-overlay').style.display = 'flex';
+    return;
+  }
+  if (!localStorage.getItem('agreedPolicy')) {
+    document.getElementById('policy-overlay').style.display = 'flex';
+    return;
+  }
+  if (s.viewerPasswordEnabled === true && !sessionStorage.getItem('viewerAuthenticated')) {
+    document.getElementById('viewer-pw-overlay').style.display = 'flex';
+    setTimeout(function(){ document.getElementById('viewer-pw').focus(); }, 50);
+    return;
+  }
+}
+checkAndShowOverlay();
+
 function agreePolicy() {
   localStorage.setItem('agreedPolicy', '1');
   document.getElementById('policy-overlay').style.display = 'none';
+  var s = getAdminSettings();
+  if (s.viewerPasswordEnabled === true && !sessionStorage.getItem('viewerAuthenticated')) {
+    document.getElementById('viewer-pw-overlay').style.display = 'flex';
+    setTimeout(function(){ document.getElementById('viewer-pw').focus(); }, 50);
+  }
+}
+
+var VIEWER_MAX_ATTEMPTS = 5;
+var VIEWER_LOCKOUT_MS = 5 * 60 * 1000;
+async function checkViewerPw() {
+  var errEl = document.getElementById('viewer-pw-err');
+  var lockUntil = parseInt(sessionStorage.getItem('viewerLockUntil') || '0');
+  if (Date.now() < lockUntil) {
+    var min = Math.ceil((lockUntil - Date.now()) / 60000);
+    errEl.textContent = 'ロック中。あと約 ' + min + ' 分後にお試しください。';
+    document.getElementById('viewer-pw').value = '';
+    return;
+  }
+  var pw = document.getElementById('viewer-pw').value;
+  if (!pw) { errEl.textContent = 'パスワードを入力してください。'; return; }
+  var s = getAdminSettings();
+  if (!s.viewerPasswordHash || !s.viewerPasswordSalt) {
+    errEl.textContent = 'パスワードが設定されていません。';
+    return;
+  }
+  var enc = new TextEncoder();
+  var keyMat = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveBits']);
+  var bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: enc.encode(s.viewerPasswordSalt), iterations: s.viewerPasswordIter || 100000, hash: 'SHA-256' },
+    keyMat, 256
+  );
+  var hashHex = Array.from(new Uint8Array(bits)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  if (hashHex === s.viewerPasswordHash) {
+    sessionStorage.removeItem('viewerAttempts');
+    sessionStorage.removeItem('viewerLockUntil');
+    sessionStorage.setItem('viewerAuthenticated', '1');
+    document.getElementById('viewer-pw-overlay').style.display = 'none';
+    document.getElementById('viewer-pw').value = '';
+    errEl.textContent = '';
+  } else {
+    var attempts = parseInt(sessionStorage.getItem('viewerAttempts') || '0') + 1;
+    if (attempts >= VIEWER_MAX_ATTEMPTS) {
+      sessionStorage.setItem('viewerLockUntil', String(Date.now() + VIEWER_LOCKOUT_MS));
+      sessionStorage.removeItem('viewerAttempts');
+      errEl.textContent = '試行回数の上限に達しました。5分間ロックします。';
+    } else {
+      sessionStorage.setItem('viewerAttempts', String(attempts));
+      errEl.textContent = 'パスワードが違います。（残り ' + (VIEWER_MAX_ATTEMPTS - attempts) + ' 回）';
+    }
+    document.getElementById('viewer-pw').value = '';
+    document.getElementById('viewer-pw').focus();
+  }
 }
 var AD_SECONDS = 7;
 function declinePolicy() {

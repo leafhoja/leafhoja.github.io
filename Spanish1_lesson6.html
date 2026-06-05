@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script>if (!sessionStorage.getItem('accessToken')) { location.replace('index.html'); }</script>
+<script src="access-control.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WB0WVZSEHT"></script>
 <script>
@@ -1072,7 +1072,7 @@ function openDictModal(item, conjInfo) {
   if (conjInfo) {
     body += '<div class="dict-row"><span class="dict-label">不定詞</span>'
       + '<span class="dict-val"><span class="mono" style="font-weight:700;color:var(--accent);font-size:14px;">'
-      + item.es + '</span>　' + item.ja + '</span></div>';
+      + esc(item.es) + '</span>　' + esc(item.ja) + '</span></div>';
   }
 
   body += '<div class="dict-row"><span class="dict-label">分類</span><span class="dict-val">'
@@ -1093,8 +1093,8 @@ function openDictModal(item, conjInfo) {
     for (const {label, form} of forms) {
       const hi = conjInfo && stripAccents(conjInfo.conj) === stripAccents(form);
       body += '<tr' + (hi ? ' class="dict-conj-row-hi"' : '') + '>'
-        + '<td>' + label + '</td>'
-        + '<td>' + form + (hi ? '　◀ 入力形' : '') + '</td></tr>';
+        + '<td>' + esc(label) + '</td>'
+        + '<td>' + esc(form) + (hi ? '　◀ 入力形' : '') + '</td></tr>';
     }
     body += '</tbody></table></span></div>';
   } else if (t === 'verb_irreg_imperf' && item.irreg_imperf) {
@@ -1109,8 +1109,8 @@ function openDictModal(item, conjInfo) {
     for (const {label, form} of forms) {
       const hi = conjInfo && stripAccents(conjInfo.conj) === stripAccents(form);
       body += '<tr' + (hi ? ' class="dict-conj-row-hi"' : '') + '>'
-        + '<td>' + label + '</td>'
-        + '<td>' + form + (hi ? '　◀ 入力形' : '') + '</td></tr>';
+        + '<td>' + esc(label) + '</td>'
+        + '<td>' + esc(form) + (hi ? '　◀ 入力形' : '') + '</td></tr>';
     }
     body += '</tbody></table></span></div>';
   } else if (t.startsWith('verb_')) {
@@ -1126,8 +1126,8 @@ function openDictModal(item, conjInfo) {
       for (const {label, form} of forms) {
         const hi = conjInfo && stripAccents(conjInfo.conj) === stripAccents(form);
         body += '<tr' + (hi ? ' class="dict-conj-row-hi"' : '') + '>'
-          + '<td>' + label + '</td>'
-          + '<td>' + form + (hi ? '　◀ 入力形' : '') + '</td></tr>';
+          + '<td>' + esc(label) + '</td>'
+          + '<td>' + esc(form) + (hi ? '　◀ 入力形' : '') + '</td></tr>';
       }
       body += '</tbody></table></span></div>';
     }
