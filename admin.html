@@ -166,15 +166,15 @@
   </div>
   <div class="section-body">
     <div class="warn-box">
-      ⚠️ サイト全体を非公開にすると、すべてのページに「現在閲覧できません」と表示されます。ページ個別設定より優先されます。
+      ⚠️ オフにするとすべてのページが「現在閲覧できません」と表示されます。ページ個別設定より優先されます。
     </div>
 
     <div class="toggle-row" style="padding-top:0">
       <div>
-        <div class="toggle-label">🔴 サイト全体を非公開にする</div>
-        <div class="toggle-sub">すべてのページへのアクセスを一時停止します</div>
+        <div class="toggle-label">🌐 サイトを公開する</div>
+        <div class="toggle-sub">オン：サイト全体を公開　／　オフ：サイト全体を非公開（全ページ閲覧不可）</div>
       </div>
-      <label class="toggle">
+      <label class="toggle green">
         <input type="checkbox" id="toggle-site-disabled" onchange="saveSiteDisabled()">
         <span class="toggle-slider"></span>
       </label>
@@ -245,7 +245,6 @@
 
 <script>
 var PAGES = [
-  { file: 'index.html',               label: 'ホーム',                badge: 'ホーム' },
   { file: 'Spanish1_lesson3.html',    label: '一列 Lección 3',        badge: '一列' },
   { file: 'Spanish1_lesson4.html',    label: '一列 Lección 4',        badge: '一列' },
   { file: 'Spanish1_lesson5.html',    label: '一列 Lección 5',        badge: '一列' },
@@ -279,7 +278,7 @@ function flashSave(id) {
 
 function init() {
   var s = getSettings();
-  document.getElementById('toggle-site-disabled').checked = s.siteDisabled === true;
+  document.getElementById('toggle-site-disabled').checked = s.siteDisabled !== true;
   document.getElementById('toggle-pw-enabled').checked = s.viewerPasswordEnabled === true;
 
   var list = document.getElementById('page-list');
@@ -309,7 +308,7 @@ function init() {
 
 function saveSiteDisabled() {
   var s = getSettings();
-  s.siteDisabled = document.getElementById('toggle-site-disabled').checked;
+  s.siteDisabled = !document.getElementById('toggle-site-disabled').checked;
   saveSettings(s);
   flashSave('save1');
 }
