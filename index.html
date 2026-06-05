@@ -557,6 +557,8 @@ document.getElementById('admin-overlay').addEventListener('click', function(e) {
 });
 
 // アクセスコントロール（ホームページ）
+var SITE_LOCKED = false; // toggle-lock.js が書き換える行（変更しないこと）
+
 function getAdminSettings() {
   var s = {};
   try { s = JSON.parse(localStorage.getItem('adminSettings') || '{}'); } catch(e) {}
@@ -565,8 +567,8 @@ function getAdminSettings() {
 function checkAndShowOverlay() {
   var s = getAdminSettings();
   var pageDisabled = s.pageDisabled && s.pageDisabled['index.html'] === true;
-  if (s.siteDisabled === true || pageDisabled) {
-    var msg = s.siteDisabled ? 'このサイトは現在閲覧できません' : 'このページは現在閲覧できません';
+  if (SITE_LOCKED || s.siteDisabled === true || pageDisabled) {
+    var msg = (SITE_LOCKED || s.siteDisabled) ? 'このサイトは現在閲覧できません' : 'このページは現在閲覧できません';
     document.getElementById('blocked-msg').textContent = msg;
     document.getElementById('site-blocked-overlay').style.display = 'flex';
     return;

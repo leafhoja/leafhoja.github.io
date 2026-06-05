@@ -1,10 +1,12 @@
 // access-control.js — レッスンページ共通のアクセスコントロール
+var SITE_LOCKED = false; // toggle-lock.js が書き換える行（変更しないこと）
+
 (function () {
   var s = {};
   try { s = JSON.parse(localStorage.getItem('adminSettings') || '{}'); } catch (e) { }
   var page = window.location.pathname.split('/').pop() || 'index.html';
 
-  if (s.siteDisabled === true) {
+  if (SITE_LOCKED || s.siteDisabled === true) {
     window.location.replace('blocked.html');
     return;
   }
