@@ -666,6 +666,35 @@ body.is-printing #tab-renshu      { break-before: always; page-break-before: alw
 .s2-dict-dict-link:hover { text-decoration: underline; }
 
 
+/* ── 語彙タブ ── */
+.tab-btn.active-vocab { color: var(--accent2); border-bottom-color: var(--accent2); background: var(--sub-bg); }
+.s2-vocab-group { margin-bottom: 20px; }
+.s2-vocab-group-title {
+  font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .05em;
+  padding: 4px 10px; margin: 20px 0 10px;
+  border-left: 3px solid var(--accent2); background: var(--sub-bg); border-radius: 0 4px 4px 0;
+}
+.s2-vocab-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.s2-vp {
+  display: flex; flex-direction: column; gap: 3px; padding: 8px 12px;
+  min-width: 120px; max-width: 230px;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+  cursor: pointer; transition: box-shadow .15s, border-color .15s;
+}
+.s2-vp:hover { box-shadow: 0 2px 8px rgba(0,0,0,.12); border-color: var(--accent2); }
+.s2-vp-es { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); }
+.s2-vp-def { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+/* ── 単語タップ機能 ── */
+.word-item.tappable { cursor: pointer; transition: background .12s; border-radius: 4px; }
+.word-item.tappable:hover { background: var(--sub-bg); }
+.word-item.tappable::after {
+  content: '▸詳細';
+  font-size: 9px; color: var(--accent2); font-weight: 700;
+  margin-left: 6px; opacity: 0; transition: opacity .12s;
+}
+.word-item.tappable:hover::after { opacity: 1; }
+
 /* ═══════════════════════════════════════════════
    タップジャンプ・印刷番号（共通JS連携）
    ═══════════════════════════════════════════════ */

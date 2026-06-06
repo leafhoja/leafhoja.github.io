@@ -7,6 +7,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   initDialogueJump();
   initLecturaJump();
+  initVocabTab();
 });
 
 /* ── 対話文 → 発話カードへのジャンプ ── */
@@ -68,4 +69,164 @@ function jumpToEl(id, color) {
     el.style.outline = '';
     el.style.outlineOffset = '';
   }, 1600);
+}
+
+/* ── 語彙タブ（全Spanish2レッスン共通） ── */
+function initVocabTab() {
+  var tabNav = document.querySelector('.tab-nav');
+  if (!tabNav || document.getElementById('tab-vocab')) return;
+
+  var wordItems = document.querySelectorAll('.word-item');
+  if (!wordItems.length) return;
+
+  // 語彙タブボタン追加
+  var vocabBtn = document.createElement('button');
+  vocabBtn.id = 'vocab-tab-btn';
+  vocabBtn.className = 'tab-btn';
+  vocabBtn.textContent = '📖　語彙';
+  tabNav.appendChild(vocabBtn);
+
+  // タブコンテンツ生成
+  var vocabDiv = document.createElement('div');
+  vocabDiv.id = 'tab-vocab';
+  vocabDiv.className = 'tab-content';
+  vocabDiv.innerHTML =
+    '<div class="sec-heading" id="vocab-sec1">' +
+      '<span class="sec-num">④</span>' +
+      '<span class="sec-title">語彙リスト（Vocabulario）</span>' +
+    '</div>';
+
+  var groups = [
+    { id: 'tab-kaiwa',  label: '💬 会話（Diálogo）の語彙' },
+    { id: 'tab-dokkai', label: '📖 読解（Lectura）の語彙' }
+  ];
+
+  groups.forEach(function (g) {
+    var tabEl = document.getElementById(g.id);
+    if (!tabEl) return;
+    var items = tabEl.querySelectorAll('.word-item');
+    if (!items.length) return;
+
+    var seen = {};
+    var pills = [];
+    items.forEach(function (item) {
+      var esEl = item.querySelector('.w-es');
+      var defEl = item.querySelector('.w-def');
+      if (!esEl || !defEl) return;
+      var es = esEl.textContent.trim();
+      if (seen[es.toLowerCase()]) return;
+      seen[es.toLowerCase()] = true;
+      var def = defEl.textContent.trim();
+      var shortDef = def.length > 42 ? def.slice(0, 40) + '…' : def;
+      pills.push({ es: es, def: def, shortDef: shortDef, item: item, tabId: g.id });
+    });
+    if (!pills.length) return;
+
+    var groupDiv = document.createElement('div');
+    groupDiv.className = 's2-vocab-group';
+
+    var titleDiv = document.createElement('div');
+    titleDiv.className = 's2-vocab-group-title';
+    titleDiv.textContent = g.label;
+    groupDiv.appendChild(titleDiv);
+
+    var pillsDiv = document.createElement('div');
+    pillsDiv.className = 's2-vocab-pills';
+
+    pills.forEach(function (p) {
+      var pill = document.createElement('span');
+      pill.className = 's2-vp';
+      pill.title = p.def;
+      pill.innerHTML =
+        '<span class="s2-vp-es">' + s2EscHtml(p.es) + '</span>' +
+        '<span class="s2-vp-def">' + s2EscHtml(p.shortDef) + '</span>';
+
+      pill.addEventListener('click', function () {
+        // 対象タブを開いて word-item にスクロール
+        var targetTab = document.getElementById(p.tabId);
+        if (targetTab && !targetTab.classList.contains('active')) {
+          var tabName = p.tabId.replace('tab-', '');
+          var tabBtn = document.querySelector('.tab-btn[onclick*="\'' + tabName + '\'"]');
+          if (tabBtn) tabBtn.click();
+        }
+        setTimeout(function () {
+          p.item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          var prev = p.item.style.outline;
+          p.item.style.outline = '2px solid var(--accent2)';
+          p.item.style.outlineOffset = '2px';
+          setTimeout(function () {
+            p.item.style.outline = prev;
+            p.item.style.outlineOffset = '';
+          }, 1600);
+        }, 160);
+      });
+
+      pillsDiv.appendChild(pill);
+    });
+
+    groupDiv.appendChild(pillsDiv);
+    vocabDiv.appendChild(groupDiv);
+  });
+
+  // 末尾段落の前に挿入
+  var endP = document.querySelector('p[style*="margin-top:48px"]');
+  if (endP) endP.parentNode.insertBefore(vocabDiv, endP);
+  else document.body.appendChild(vocabDiv);
+
+  // switchTab をパッチして active-vocab の除去に対応
+  var _orig = window.switchTab;
+  if (_orig) {
+    window.switchTab = function (tabId, btn) {
+      _orig(tabId, btn);
+      if (tabId !== 'vocab') {
+        document.querySelectorAll('.tab-btn').forEach(function (b) {
+          b.classList.remove('active-vocab');
+        });
+      }
+    };
+  }
+
+  // 語彙ボタンのクリック処理
+  vocabBtn.addEventListener('click', function () {
+    document.querySelectorAll('.tab-content').forEach(function (el) { el.classList.remove('active'); });
+    vocabDiv.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(function (b) {
+      b.classList.remove('active-kaiwa', 'active-dokkai', 'active-renshu', 'active-vocab');
+    });
+    vocabBtn.classList.add('active-vocab');
+    var tocMenu = document.getElementById('top-toc-menu');
+    if (tocMenu) tocMenu.classList.remove('open');
+    var tocToggle = document.getElementById('top-toc-toggle');
+    if (tocToggle) tocToggle.textContent = '☰ 目次';
+  });
+
+  // TOC に語彙リンクを追加
+  var tocMenu = document.getElementById('top-toc-menu');
+  if (tocMenu) {
+    var sep = document.createElement('span');
+    sep.style.cssText = 'font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%';
+    sep.textContent = '📖 語彙タブ';
+    var lnk = document.createElement('a');
+    lnk.className = 'fn-item';
+    lnk.href = '#vocab-sec1';
+    lnk.dataset.tab = 'vocab';
+    lnk.textContent = '④ 語彙リスト';
+    lnk.addEventListener('click', function (e) {
+      e.preventDefault();
+      vocabBtn.click();
+      var sec = document.getElementById('vocab-sec1');
+      if (sec) setTimeout(function () { sec.scrollIntoView({ behavior: 'smooth' }); }, 60);
+    });
+    tocMenu.appendChild(sep);
+    tocMenu.appendChild(lnk);
+  }
+}
+
+function s2EscHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }

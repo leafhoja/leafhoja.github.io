@@ -1131,6 +1131,91 @@ window.addEventListener('afterprint', function() {
     document.getElementById('s2-dict-overlay').classList.remove('open');
   }
 
+  /* ── 単語タップ機能（Lección 5） ── */
+  var LESSON5_VOCAB = {
+    'voy':                    { pos:'動詞（ir）', conj:'voy, vas, va, vamos, vais, van', vtype:'不規則変化', note:'ir a + 原形 で「〜するつもり（近未来）」。英語の be going to に相当。', example:{es:'Voy al estadio con mis amigos.',ja:'友達とスタジアムへ行きます。'} },
+    'vas a hacer':             { pos:'動詞句（ir a + 原形）', note:'vas = ir の2人称単数形。ir a + 原形 で近未来を表す。「あなたは〜するつもり」。', example:{es:'¿Qué vas a hacer este fin de semana?',ja:'今週末、何をするつもり？'} },
+    'fin de semana':           { pos:'名詞句・男性', note:'fin（終わり）+ de（〜の）+ semana（週）。este fin de semana で「今週末」。', example:{es:'¿Qué planes tienes este fin de semana?',ja:'今週末の予定は？'} },
+    'este fin de semana':      { pos:'表現', note:'este（この・近称指示形容詞）+ fin de semana（週末）。', example:{es:'Voy al estadio este fin de semana.',ja:'今週末スタジアムへ行きます。'} },
+    'hay':                     { pos:'動詞（haber）非人称形', note:'haber の非人称形。単複関わらず常に hay。存在・有無を表す。', example:{es:'Hay un partido de fútbol.',ja:'サッカーの試合がある。'} },
+    'un partido':              { pos:'名詞句・男性', note:'partido（試合）は「政党」の意味もある。', example:{es:'Hay un partido importante hoy.',ja:'今日重要な試合がある。'} },
+    'de fútbol':               { pos:'表現', note:'de + 名詞 で「〜の（属性）」。fútbol は男性名詞で定冠詞なし。', example:{es:'Veo un partido de fútbol.',ja:'サッカーの試合を見る。'} },
+    'equipo':                  { pos:'名詞・男性', note:'「チーム」と「机」の2つの意味がある。競技の文脈では必ず「チーム」。', example:{es:'¿De qué equipo eres aficionado?',ja:'どのチームのファンですか？'} },
+    'aficionado':              { pos:'名詞/形容詞', note:'女性形は aficionada。ser aficionado/a a 〜 で「〜のファンである」。', example:{es:'Soy aficionado al Barcelona.',ja:'私はバルセロナのファンです。'} },
+    'siempre':                 { pos:'副詞', note:'「いつも・常に」。動詞の前後どちらにも置ける。', example:{es:'El Clásico siempre es emocionante.',ja:'エル・クラシコはいつも興奮する。'} },
+    'emocionante':             { pos:'形容詞（男女同形）', note:'語尾 -e で男女同形。複数は emocionantes。emocionar（感動させる）の現在分詞形。', example:{es:'El partido de fútbol es muy emocionante.',ja:'サッカーの試合はとても興奮します。'} },
+    'practicas':               { pos:'動詞（practicar）', conj:'practico, practicas, practica, practicamos, practicáis, practican', vtype:'ar動詞（規則変化）', example:{es:'¿Practicas algún deporte?',ja:'何かスポーツをしていますか？'} },
+    'algún':                   { pos:'不定形容詞', note:'alguno の短縮形（男性単数名詞の前で使う）。否定文では ningún になる。', example:{es:'¿Tienes algún problema?',ja:'何か問題がありますか？'} },
+    'deporte':                 { pos:'名詞・男性', note:'複数形: deportes。「スポーツ全般」。', example:{es:'El fútbol es el deporte más popular del mundo.',ja:'サッカーは世界で最も人気のスポーツです。'} },
+    'juego':                   { pos:'動詞（jugar）', conj:'juego, juegas, juega, jugamos, jugáis, juegan', vtype:'ar動詞（ue語幹母音変化）', note:'jugar a + スポーツ で「（スポーツ）をする」。', example:{es:'Juego al tenis los martes y jueves.',ja:'火曜と木曜にテニスをします。'} },
+    'al tenis':                { pos:'表現', note:'jugar al tenis で「テニスをする」。al = a + el の縮約形。', example:{es:'Juego al tenis dos veces a la semana.',ja:'週に2回テニスをします。'} },
+    'los martes y los jueves': { pos:'表現', note:'定冠詞 los + 複数曜日名 で「毎週〜曜日」を表す。', example:{es:'Juego al tenis los martes y los jueves.',ja:'毎週火曜と木曜にテニスをします。'} },
+    'la natación':             { pos:'名詞・女性', note:'nadar（泳ぐ）の動名詞形。定冠詞 la が必要。', example:{es:'La natación es muy buena para la salud.',ja:'水泳は健康にとても良い。'} },
+    'bailo':                   { pos:'動詞（bailar）', conj:'bailo, bailas, baila, bailamos, bailáis, bailan', vtype:'ar動詞（規則変化）', example:{es:'Bailo flamenco dos veces a la semana.',ja:'週に2回フラメンコを踊っています。'} },
+    'flamenco':                { pos:'名詞・男性', note:'アンダルシア発祥のスペイン伝統舞踊・音楽。冠詞なしで使うことが多い。', example:{es:'El flamenco es muy difícil pero me encanta.',ja:'フラメンコはとても難しいけど大好きです。'} },
+    'dos veces a la semana':   { pos:'表現', note:'veces は vez（回）の複数形。a la semana で「1週間に」。', example:{es:'Voy al gimnasio dos veces a la semana.',ja:'週に2回ジムに行きます。'} },
+    'difícil':                 { pos:'形容詞（男女同形）', note:'語尾 -l で男女同形。複数は difíciles。アクセントは -cil の i。', example:{es:'El español no es tan difícil.',ja:'スペイン語はそんなに難しくない。'} },
+    'compañeros':              { pos:'名詞・男性複数', note:'compañero/a（仲間・クラスメート）の複数形。混合グループは男性複数形。', example:{es:'Mis compañeros de clase son muy simpáticos.',ja:'クラスメートたちはとても感じがいい。'} },
+    'aprender':                { pos:'動詞・er動詞（規則変化）', conj:'aprendo, aprendes, aprende, aprendemos, aprendéis, aprenden', example:{es:'Quiero aprender algo nuevo este año.',ja:'今年は何か新しいことを学びたい。'} },
+    'recomiendes':             { pos:'動詞（recomendar）', conj:'recomiendo, recomiendas, recomienda, recomendamos, recomendáis, recomiendan', vtype:'ar動詞（ie語幹母音変化）', note:'¿Recomiendas el flamenco? = フラメンコを薦めますか？', example:{es:'¿Qué deporte recomiendas?',ja:'どのスポーツを薦めますか？'} },
+    'normalmente':             { pos:'副詞', note:'normal（形容詞）の女性形 + -mente。「通常は・普通は」。', example:{es:'Normalmente los hombres aprenden guitarra.',ja:'普通、男性はギターを習います。'} },
+    'perfecto':                { pos:'形容詞（男単）', note:'女性形は perfecta。感嘆的に「完璧！・最高！」とも使う。', example:{es:'¡Perfecto! Siempre he querido tocar la guitarra.',ja:'完璧！いつもギターを弾きたいと思っていた。'} },
+    'tocar':                   { pos:'動詞・ar動詞（規則変化）', conj:'toco, tocas, toca, tocamos, tocáis, tocan', note:'tocar + 楽器 で「（楽器）を弾く・演奏する」。', example:{es:'Quiero tocar la guitarra.',ja:'ギターを弾きたい。'} },
+    'en octubre':              { pos:'表現', note:'en + 月名 で「〜月に」。月名はスペイン語では小文字で書く。', example:{es:'El curso empieza en octubre.',ja:'コースは10月に始まります。'} },
+    'juntos':                  { pos:'形容詞（男複）', note:'junto/a の複数形。副詞的に「一緒に」として使う。女性グループなら juntas。', example:{es:'¡Vamos juntos al curso!',ja:'一緒にコースへ行こう！'} },
+    'estadio':                 { pos:'名詞・男性', note:'複数形: estadios。スポーツ競技場。', example:{es:'El estadio está lleno de aficionados.',ja:'スタジアムはファンでいっぱいだ。'} },
+    'partido':                 { pos:'名詞・男性', note:'「試合・ゲーム（スポーツ）」。また「政党」の意味も。', example:{es:'¡Es un partido muy emocionante!',ja:'とても興奮する試合だ！'} },
+  };
+
+  function openWordModal(esText, defText) {
+    var key = esText.trim().toLowerCase();
+    var entry = LESSON5_VOCAB[key] || {};
+
+    document.getElementById('s2-dict-word').textContent = esText;
+    document.getElementById('s2-dict-pos').textContent  = entry.pos || '';
+
+    var body = '<div class="s2-dict-meaning">' + esc(defText) + '</div>';
+
+    if (entry.note) {
+      body += '<div class="s2-dict-note">📝 ' + esc(entry.note) + '</div>';
+    }
+
+    if (entry.vtype) {
+      body += '<div class="s2-dict-row"><span class="s2-dict-label">動詞型</span><span class="s2-dict-val">' + esc(entry.vtype) + '</span></div>';
+    }
+
+    if (entry.conj) {
+      var cHtml = entry.conj.split(/,\s*/).map(function (f) {
+        return '<span class="s2-dict-conj">' + esc(f.trim()) + '</span>';
+      }).join('');
+      body += '<div class="s2-dict-row"><span class="s2-dict-label">現在活用</span><span class="s2-dict-val">' + cHtml + '</span></div>';
+    }
+
+    if (entry.example) {
+      body += '<div class="s2-dict-example">' +
+        '<div class="s2-dict-ex-label">例文</div>' +
+        '<div class="s2-dict-ex-es">' + esc(entry.example.es) + '</div>' +
+        '<div class="s2-dict-ex-ja">' + esc(entry.example.ja) + '</div>' +
+        '</div>';
+    }
+
+    document.getElementById('s2-dict-body').innerHTML = body;
+    document.getElementById('s2-dict-overlay').classList.add('open');
+  }
+
+  // word-item をタップ可能にする
+  document.querySelectorAll('.word-item').forEach(function (item) {
+    item.classList.add('tappable');
+    item.title = 'タップして詳細を確認';
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var esEl = item.querySelector('.w-es');
+      var defEl = item.querySelector('.w-def');
+      if (!esEl || !defEl) return;
+      openWordModal(esEl.textContent.trim(), defEl.textContent.trim());
+    });
+  });
+
   /* ── イベントリスナー ── */
   searchBtn.addEventListener('click', openSearch);
   document.getElementById('s2-search-close').addEventListener('click', closeSearch);
