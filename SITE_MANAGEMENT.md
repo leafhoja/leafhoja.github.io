@@ -11,7 +11,6 @@
 ├── qrcode.html                # QRコードページ
 ├── access-control.js          # 各レッスンページの入場制御（共通）
 ├── ga.js                      # Google Analytics（共通スクリプト）
-├── toggle-lock.js             # ロック・公開切替スクリプト（※現在非対応、後述）
 │
 ├── Spanish1_lesson2〜7.html   # 一列（文法）解説
 ├── Spanish2_lesson1〜6.html   # 二列（会話・読解）解説
@@ -21,7 +20,6 @@
 ├── spanish2-common.css        # 二列ページ共通スタイル
 ├── spanish2-common.js         # 二列ページ共通スクリプト
 │
-├── .vscode/tasks.json         # VS Code タスク定義（toggle-lock.js を呼び出す）
 └── SITE_MANAGEMENT.md         # このファイル
 ```
 
@@ -70,29 +68,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 
 ---
 
-## ③ VS Code タスク（toggle-lock.js）について
-
-`.vscode/tasks.json` には以下のタスクが定義されています（Ctrl+Shift+B または「ターミナル → タスクの実行」から起動）：
-
-| タスク | 内容 |
-|--------|------|
-| 🔒 サイトをロック | `node toggle-lock.js lock` |
-| 🔓 サイトを公開する | `node toggle-lock.js unlock` |
-| 📋 ロック状態を確認 | `node toggle-lock.js status` |
-
-### ⚠️ 現在は動作しません
-
-`toggle-lock.js` は `access-control.js` 内の `var SITE_LOCKED = ...;` という行を書き換える仕組みで動作しますが、**現在の `access-control.js` にはその行がありません**。実行すると以下のエラーが出て終了します：
-
-```
-❌ access-control.js に SITE_LOCKED 行が見つかりません。
-```
-
-**現在の運用方法**: ① の手順に従い、`index.html` の `PAGE_OPEN` を手動で書き換えて push してください。
-
----
-
-## ④ 管理者ページ（admin.html）
+## ③ 管理者ページ（admin.html）
 
 URL: `https://leafhoja.github.io/admin.html`
 
@@ -107,7 +83,7 @@ URL: `https://leafhoja.github.io/admin.html`
 
 ---
 
-## ⑤ 閲覧者がホームに来たときの流れ
+## ④ 閲覧者がホームに来たときの流れ
 
 ```
 アクセス
@@ -122,7 +98,7 @@ URL: `https://leafhoja.github.io/admin.html`
 
 ---
 
-## ⑥ レッスンページのアクセス制御
+## ⑤ レッスンページのアクセス制御
 
 各レッスンページには `access-control.js` が読み込まれており、以下をチェックしています：
 
@@ -132,7 +108,7 @@ URL: `https://leafhoja.github.io/admin.html`
 
 ---
 
-## ⑦ AdSense について（要対応）
+## ⑥ AdSense について（要対応）
 
 > ⚠️ **現状の実装は未完成です。広告は正しく表示されていません。**
 
@@ -153,7 +129,7 @@ URL: `https://leafhoja.github.io/admin.html`
 
 ---
 
-## ⑧ 新しいレッスンページを追加するとき
+## ⑦ 新しいレッスンページを追加するとき
 
 1. 既存のレッスンファイルをコピーして作成
 2. ファイル先頭の `PAGE_OPEN` 変数ブロックがあることを確認（コピー元にあれば自動でコピーされる）
@@ -162,7 +138,7 @@ URL: `https://leafhoja.github.io/admin.html`
 
 ---
 
-## ⑨ 管理者パスワードについて
+## ⑧ 管理者パスワードについて
 
 管理者パスワードは `index.html` 内に PBKDF2 ハッシュとして埋め込まれています。変更する場合はソースを直接編集して push してください。
 
