@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<!-- ============================================================
+  ★ ページ公開設定 ★（変更箇所はここだけ）
+  ============================================================
+  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
+
+    1 → 公開（通常通り表示）
+    0 → ロック（閲覧不可ページへリダイレクト）
+
+  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
+  ============================================================ -->
+<script>
+/* ★ ページ公開設定 ★ ここの数値を変更してください */
+var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
+</script>
+
+<script src="access-control.js"></script>
+<script src="ga.js"></script>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lección 2 文法解説</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="spanish1-common.css">
+</head>
+<body>
+
+<!-- dict modal -->
+<div id="dict-overlay" onclick="if(event.target===this)closeDictModal()">
+  <div id="dict-modal">
+    <div id="dict-modal-head">
+      <span id="dict-modal-word"></span>
+      <span id="dict-modal-pos"></span>
+      <button id="dict-modal-close" onclick="closeDictModal()" title="閉じる">✕</button>
+    </div>
+    <div id="dict-modal-body"></div>
+  </div>
+</div>
+
+<div id="search-bar">
+  <label>検索</label>
+  <input id="search-input" type="text" placeholder="単語・文法用語…" autocomplete="off" autocorrect="off" spellcheck="false">
+  <button id="search-close" onclick="closeSearch()" title="閉じる">✕</button>
+</div>
+<div id="search-results"></div>
+
+<!-- top nav -->
+<div id="top-nav">
+  <div id="top-toc-menu">
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;">📚 文法解説タブ</span>
+    <a class="fn-item" href="#sec1" data-tab="grammar" onclick="jumpToSection('sec1'); closeToc(); return false;">① 名詞の性と数・冠詞</a>
+    <a class="fn-item" href="#sec2" data-tab="grammar" onclick="jumpToSection('sec2'); closeToc(); return false;">② 主語人称代名詞・ser と estar</a>
+    <a class="fn-item" href="#sec3" data-tab="grammar" onclick="jumpToSection('sec3'); closeToc(); return false;">③ さまざまな前置詞</a>
+    <a class="fn-item" href="#sec4" data-tab="grammar" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 形容詞と性数変化</a>
+    <a class="fn-item" href="#sec5" data-tab="grammar" onclick="jumpToSection('sec5'); closeToc(); return false;">⑤ 所有形容詞・haber（hay）</a>
+    <a class="fn-item" href="#sec6" data-tab="grammar" onclick="jumpToSection('sec6'); closeToc(); return false;">⑥ 文の構造・否定文・疑問詞</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">✏️ 練習問題タブ</span>
+    <a class="fn-item" href="#sec7" data-tab="renshu" onclick="jumpToSection('sec7'); closeToc(); return false;">⑦ 練習問題</a>
+    <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">📖 語彙・まとめタブ</span>
+    <a class="fn-item" href="#sec8" data-tab="vocab" onclick="jumpToSection('sec8'); closeToc(); return false;">⑧ 語彙リスト</a>
+    <a class="fn-item" href="#sec9" data-tab="vocab" onclick="jumpToSection('sec9'); closeToc(); return false;">⑨ まとめ</a>
+  </div>
+  <a id="home-btn" href="index.html">🏠 ホーム</a>
+  <span id="top-nav-title">Lección 2 文法解説</span>
+  <button id="pdf-print-btn" onclick="savePdf()">🖨 PDFで保存</button>
+  <button id="top-toc-toggle" onclick="toggleToc()">☰ 目次</button>
+  <button id="top-search-btn" onclick="openSearch()">🔍 検索</button>
+</div>
+
+<!-- 表紙 -->
+<div class="cover">
+  <div class="cover-title">Lección 2　文法解説</div>
+  <div class="cover-sub">スペイン語一列　Gramática</div>
+  <div class="toc">
+    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 名詞の性と数・冠詞</a>
+    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 主語人称代名詞・ser と estar</a>
+    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ さまざまな前置詞</a>
+    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 形容詞と性数変化</a>
+    <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 所有形容詞・haber（hay）</a>
+    <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 文の構造・否定文・疑問詞</a>
+    <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ 練習問題</a>
+    <a class="toc-item" href="#sec8" onclick="jumpToSection('sec8'); return false;">⑧ 語彙リスト</a>
+    <a class="toc-item" href="#sec9" onclick="jumpToSection('sec9'); return false;">⑨ まとめ</a>
+  </div>
+  <div class="cover-search">
+    <div class="cover-search-label">単語・活用形・文法用語を検索</div>
+    <input id="cover-search-input" type="text" class="cover-search-box"
+      placeholder="例：estás　／　高い　／　所有形容詞…"
+      autocomplete="off" autocorrect="off" spellcheck="false">
+    <span class="cover-search-hint">スペイン語・日本語・文法用語で検索 → タッチで該当箇所へジャンプ</span>
+  </div>
+</div>
+<div id="cover-search-results"></div>
+
+<div class="tab-nav">
+  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
+  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
+  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙・まとめ</button>
+</div>
+
+<!-- ══ 文法解説タブ ══ -->
+<div id="tab-grammar" class="tab-content active">
+
+<!-- ① 名詞の性と数・冠詞 -->
+<div id="sec1" class="sec-heading">
+  <span class="sec-num">①</span>
+  <span class="sec-title">名詞の性と数・冠詞</span>
+  <span class="sec-es">Género, número y artículos</span>
+</div>
+
+<p>スペイン語の名詞はすべて<span class="hi">男性</span>か<span class="hi2">女性</span>のどちらかの性を持ちます。語尾の形でおおよその性が判断できます。</p>
+
+<div class="sub">名詞の性（ジェンダー）</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="background:#dde8f5;color:var(--accent)">男性名詞の特徴</th>
+      <th style="background:#d8eeea;color:var(--accent2)">女性名詞の特徴</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>語尾 <span class="mono hi">-o</span> が多い<br><small>例：<span class="mono">libro</span>（本）、<span class="mono">amigo</span>（友人）</small></td>
+      <td>語尾 <span class="mono hi2">-a</span> が多い<br><small>例：<span class="mono">mesa</span>（机）、<span class="mono">amiga</span>（友人）</small></td>
+    </tr>
+    <tr>
+      <td>語尾 <span class="mono hi">-or, -ón, -és, -aje</span><br><small>例：<span class="mono">color, avión, japonés, viaje</span></small></td>
+      <td>語尾 <span class="mono hi2">-dad, -ión, -sión, -ez</span><br><small>例：<span class="mono">ciudad, nación, pensión, vez</span></small></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="note">※ 語尾が <span class="mono">-ma, -pa, -ta</span> の名詞は多くが男性（例：<span class="mono">problema, mapa, idioma</span>）。また <span class="mono">persona</span>（人）は指す相手が男性でも女性名詞です。</p>
+
+<div class="sub">複数形の作り方</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>語末の種類</th><th>複数形の作り方</th><th>例</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">母音（a/e/i/o/u）で終わる</td><td class="td-c mono hi">+ s</td><td><span class="mono">libro → libros　　mesa → mesas</span></td></tr>
+    <tr><td class="td-rule">子音で終わる</td><td class="td-c mono hi">+ es</td><td><span class="mono">ciudad → ciudades　　color → colores</span></td></tr>
+    <tr><td class="td-rule"><span class="mono">-z</span> で終わる</td><td class="td-c mono hi">-z → -ces</td><td><span class="mono">lápiz → lápices　　vez → veces</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" id="kanshi-hyou">冠詞</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">種類</th>
+      <th colspan="2" style="background:#dde8f5;color:var(--accent)">男性</th>
+      <th colspan="2" style="background:#d8eeea;color:var(--accent2)">女性</th>
+    </tr>
+    <tr>
+      <th>単数</th><th>複数</th><th>単数</th><th>複数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-rule">定冠詞<br><small>（特定の「その〜」）</small></td>
+      <td class="td-c mono hi"><b>el</b></td>
+      <td class="td-c mono hi"><b>los</b></td>
+      <td class="td-c mono hi2"><b>la</b></td>
+      <td class="td-c mono hi2"><b>las</b></td>
+    </tr>
+    <tr>
+      <td class="td-rule">不定冠詞<br><small>（不特定の「ある〜」）</small></td>
+      <td class="td-c mono">un</td>
+      <td class="td-c mono">unos</td>
+      <td class="td-c mono">una</td>
+      <td class="td-c mono">unas</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div id="keiyakukei" class="box">
+  <div class="box-title">縮約形：al と del</div>
+  <p>前置詞 <span class="mono hi">a</span> または <span class="mono hi">de</span> が定冠詞 <span class="mono hi">el</span>（男性単数）と続くときは<strong>必ず縮約</strong>します。</p>
+  <div class="tbl-wrap" style="margin-top:8px">
+  <table>
+    <thead><tr><th>前置詞 ＋ el</th><th>縮約形</th><th>例文</th></tr></thead>
+    <tbody>
+      <tr><td class="td-c mono">a + el</td><td class="td-c mono hi"><b>al</b></td><td><span class="mono">Voy <b>al</b> mercado.</span>　<span class="td-ja">市場へ行く。</span></td></tr>
+      <tr><td class="td-c mono">de + el</td><td class="td-c mono hi"><b>del</b></td><td><span class="mono">Es el libro <b>del</b> profesor.</span>　<span class="td-ja">先生の本だ。</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note" style="margin-top:6px">※ <span class="mono">él</span>（主語代名詞「彼」）とは縮約しません：<span class="mono">de él</span>（彼の）はそのまま。</p>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　<span class="mono">agua</span>（水）は女性名詞ですが、単数では <span class="mono hi2">el agua</span> と男性定冠詞を使います。語頭のアクセントのある <span class="mono">a-</span> の前で発音しやすくするための慣習です。複数は通常通り <span class="mono hi2">las aguas</span>。</span>
+</div>
+
+<!-- ② 主語人称代名詞・ser と estar -->
+<div id="sec2" class="sec-heading">
+  <span class="sec-num">②</span>
+  <span class="sec-title">主語人称代名詞・ser と estar</span>
+  <span class="sec-es">Pronombres personales, ser y estar</span>
+</div>
+
+<div class="sub">主語人称代名詞</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr><th colspan="2">単数</th><th colspan="2">複数</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-key td-c mono">yo</td><td class="td-ja">私</td>
+      <td class="td-key td-c mono">nosotros / nosotras</td><td class="td-ja">私たち（男女混合 / 女性のみ）</td>
+    </tr>
+    <tr>
+      <td class="td-key td-c mono">tú</td><td class="td-ja">君（親しい間柄）</td>
+      <td class="td-key td-c mono">vosotros / vosotras <span style="font-weight:400;font-size:11px">※</span></td><td class="td-ja">君たち（スペイン）</td>
+    </tr>
+    <tr>
+      <td class="td-key td-c mono">él / ella</td><td class="td-ja">彼 / 彼女</td>
+      <td class="td-key td-c mono">ellos / ellas</td><td class="td-ja">彼ら / 彼女たち</td>
+    </tr>
+    <tr>
+      <td class="td-key td-c mono">usted</td><td class="td-ja">あなた（丁寧）</td>
+      <td class="td-key td-c mono">ustedes</td><td class="td-ja">あなたがた</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="note">※ vosotros/as はスペインのみ使用。中南米では ustedes を使います。動詞の活用形から主語が分かるため、主語代名詞はしばしば省略されます（特に yo / tú / nosotros / vosotros）。</p>
+
+<div class="sub" id="ser-katsuyo">ser の活用と用法</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">人称</th>
+      <th style="background:#dde8f5;color:var(--accent)">ser（〜である・〜だ）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-key td-c mono">yo</td><td class="td-ja">私</td><td class="td-c mono hi"><b>soy</b></td></tr>
+    <tr><td class="td-key td-c mono">tú</td><td class="td-ja">君</td><td class="td-c mono hi"><b>eres</b></td></tr>
+    <tr><td class="td-key td-c mono">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono hi"><b>es</b></td></tr>
+    <tr><td class="td-key td-c mono">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono hi"><b>somos</b></td></tr>
+    <tr><td class="td-key td-c mono">vosotros/as</td><td class="td-ja">君たち</td><td class="td-c mono hi"><b>sois</b></td></tr>
+    <tr><td class="td-key td-c mono">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono hi"><b>son</b></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="tbl-wrap" style="margin-top:10px">
+<table>
+  <thead><tr><th>ser の主な用法</th><th>例文と訳</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">出身・国籍</td><td><span class="mono">Soy de Japón. / Soy japonés.</span>　<span class="td-ja">日本出身です。/ 日本人です。</span></td></tr>
+    <tr><td class="td-rule">職業・身分</td><td><span class="mono">Mi madre es médica.</span>　<span class="td-ja">私の母は医者です。</span></td></tr>
+    <tr><td class="td-rule">固有の性質・特徴</td><td><span class="mono">El español es interesante.</span>　<span class="td-ja">スペイン語はおもしろい。</span></td></tr>
+    <tr><td class="td-rule">時刻・日付・曜日</td><td><span class="mono">Son las tres de la tarde.</span>　<span class="td-ja">午後3時です。</span></td></tr>
+    <tr><td class="td-rule">素材・内容</td><td><span class="mono">La mesa es de madera.</span>　<span class="td-ja">その机は木でできている。</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" id="estar-katsuyo">estar の活用と用法</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">人称</th>
+      <th style="background:#d8eeea;color:var(--accent2)">estar（いる・ある・〜の状態だ）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-key td-c mono">yo</td><td class="td-ja">私</td><td class="td-c mono hi2"><b>estoy</b></td></tr>
+    <tr><td class="td-key td-c mono">tú</td><td class="td-ja">君</td><td class="td-c mono hi2"><b>estás</b></td></tr>
+    <tr><td class="td-key td-c mono">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono hi2"><b>está</b></td></tr>
+    <tr><td class="td-key td-c mono">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono hi2"><b>estamos</b></td></tr>
+    <tr><td class="td-key td-c mono">vosotros/as</td><td class="td-ja">君たち</td><td class="td-c mono hi2"><b>estáis</b></td></tr>
+    <tr><td class="td-key td-c mono">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono hi2"><b>están</b></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="tbl-wrap" style="margin-top:10px">
+<table>
+  <thead><tr><th>estar の主な用法</th><th>例文と訳</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">場所・所在</td><td><span class="mono">Madrid está en España.</span>　<span class="td-ja">マドリードはスペインにある。</span></td></tr>
+    <tr><td class="td-rule">一時的な状態（体調・感情）</td><td><span class="mono">Estoy cansado.</span>　<span class="td-ja">私は疲れている。</span></td></tr>
+    <tr><td class="td-rule">変化した状態（見た目）</td><td><span class="mono">¡Estás muy guapo hoy!</span>　<span class="td-ja">今日はとても素敵だね！</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title" style="color:var(--warn)">ser vs estar — どちらを使う？</div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>ser（本質・固有の特性）</th><th>estar（状態・場所・一時的）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="mono">El cielo es azul.</span><br><span class="td-ja">空は青い。（本質）</span></td>
+        <td><span class="mono">La puerta está abierta.</span><br><span class="td-ja">ドアが開いている。（状態）</span></td>
+      </tr>
+      <tr>
+        <td><span class="mono">Ana es inteligente.</span><br><span class="td-ja">アナは頭がいい。（性格）</span></td>
+        <td><span class="mono">Ana está enferma.</span><br><span class="td-ja">アナは病気だ。（体調）</span></td>
+      </tr>
+      <tr>
+        <td><span class="mono">Mi padre es médico.</span><br><span class="td-ja">父は医者だ。（職業）</span></td>
+        <td><span class="mono">Mi padre está en casa.</span><br><span class="td-ja">父は家にいる。（場所）</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ③ さまざまな前置詞 -->
+<div id="sec3" class="sec-heading">
+  <span class="sec-num">③</span>
+  <span class="sec-title">さまざまな前置詞</span>
+  <span class="sec-es">Preposiciones</span>
+</div>
+
+<div class="sub">前置詞一覧</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th style="width:10%">前置詞</th><th style="width:35%">主な意味・用法</th><th>例文と訳</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-c mono hi"><b>a</b></td>
+      <td>方向（〜へ）・間接目的語マーカー（→al 縮約）</td>
+      <td><span class="mono">Voy <b>al</b> mercado.</span>　<span class="td-ja">市場へ行く。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>con</b></td>
+      <td>〜と一緒に・〜を持って</td>
+      <td><span class="mono">Vivo <b>con</b> mi familia.</span>　<span class="td-ja">家族と住んでいる。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>de</b></td>
+      <td>所有（〜の）・出身（〜出身）・素材（→del 縮約）</td>
+      <td><span class="mono">Soy <b>de</b> Tokio.</span>　<span class="td-ja">東京出身です。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>en</b></td>
+      <td>場所（〜に・〜で）・時間（〜に）</td>
+      <td><span class="mono">Estoy <b>en</b> casa.</span>　<span class="td-ja">家にいる。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>por</b></td>
+      <td>原因・理由（〜のために・〜のせいで）・通過・交換</td>
+      <td><span class="mono">Gracias <b>por</b> todo.</span>　<span class="td-ja">すべてに感謝します。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>sin</b></td>
+      <td>〜なしに・〜せずに</td>
+      <td><span class="mono">café <b>sin</b> azúcar</span>　<span class="td-ja">砂糖なしのコーヒー</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>para</b></td>
+      <td>目的（〜のために）・受益者（〜向けに）・期限（〜までに）</td>
+      <td><span class="mono">Estudio <b>para</b> el examen.</span>　<span class="td-ja">試験のために勉強する。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>hasta</b></td>
+      <td>〜まで（到達点・終点）</td>
+      <td><span class="mono">Trabajo <b>hasta</b> las seis.</span>　<span class="td-ja">6時まで働く。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>desde</b></td>
+      <td>〜から（起点）</td>
+      <td><span class="mono">Vivo aquí <b>desde</b> 2020.</span>　<span class="td-ja">2020年からここに住んでいる。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>sobre</b></td>
+      <td>〜の上に（接触）・〜について</td>
+      <td><span class="mono">El libro está <b>sobre</b> la mesa.</span>　<span class="td-ja">本はテーブルの上にある。</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box">
+  <div class="box-title">con の特別形：conmigo / contigo</div>
+  <p>前置詞 <span class="mono hi">con</span> は1・2人称単数の強調代名詞（<span class="mono">mí, ti</span>）と結合して特別な形になります。</p>
+  <div class="tbl-wrap" style="margin-top:8px">
+  <table>
+    <thead><tr><th>組み合わせ</th><th>形</th><th>意味</th><th>例文</th></tr></thead>
+    <tbody>
+      <tr><td class="td-c mono">con + mí</td><td class="td-c mono hi"><b>conmigo</b></td><td class="td-ja">私と一緒に</td><td><span class="mono">¿Vienes conmigo?</span>　<span class="td-ja">私と来る？</span></td></tr>
+      <tr><td class="td-c mono">con + ti</td><td class="td-c mono hi"><b>contigo</b></td><td class="td-ja">君と一緒に</td><td><span class="mono">Quiero estar contigo.</span>　<span class="td-ja">君と一緒にいたい。</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note" style="margin-top:6px">3人称は通常通り：<span class="mono">con él / con ella / con usted / con ellos</span></p>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　<span class="mono hi">por</span> と <span class="mono hi2">para</span> はどちらも「〜のために」と訳されることがありますが意味が異なります。<span class="mono hi2">para</span> は目的・受益者（前向き）、<span class="mono hi">por</span> は原因・交換・経路（後ろ向き・背景）です。例：<span class="mono">Estudio <b>para</b> el examen.</span>（試験に向けて）vs <span class="mono">Lo hago <b>por</b> amor.</span>（愛のゆえに）。</span>
+</div>
+
+<!-- ④ 形容詞と性数変化 -->
+<div id="sec4" class="sec-heading">
+  <span class="sec-num">④</span>
+  <span class="sec-title">形容詞と性数変化</span>
+  <span class="sec-es">Adjetivos y concordancia</span>
+</div>
+
+<p>形容詞は修飾する名詞の<span class="hi">性</span>（男性・女性）と<span class="hi">数</span>（単数・複数）に合わせて語尾が変わります（性数一致）。</p>
+
+<div class="sub">基本パターン</div>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>パターン</th>
+      <th>男性単数</th><th>女性単数</th><th>男性複数</th><th>女性複数</th>
+      <th>例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-rule">① -o で終わる</td>
+      <td class="td-c mono hi">-o</td><td class="td-c mono hi2">-a</td>
+      <td class="td-c mono hi">-os</td><td class="td-c mono hi2">-as</td>
+      <td><span class="mono">alto / alta / altos / altas</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">② -o 以外で終わる<br><small>（-e、子音）</small></td>
+      <td class="td-c mono">変化なし</td><td class="td-c mono">変化なし</td>
+      <td class="td-c mono">+s / +es</td><td class="td-c mono">+s / +es</td>
+      <td><span class="mono">inteligente / inteligente / inteligentes</span><br><span class="mono">azul / azul / azules</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">③ 国籍・地名由来<br>（子音で終わる）</td>
+      <td class="td-c mono hi">そのまま</td><td class="td-c mono hi2">+a</td>
+      <td class="td-c mono hi">+es</td><td class="td-c mono hi2">+as</td>
+      <td><span class="mono">japonés / japonesa / japoneses / japonesas</span><br><span class="mono">español / española / españoles / españolas</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub">注意が必要な形容詞</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>語尾のパターン</th><th>男性単数</th><th>女性単数</th><th>例</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-rule"><span class="mono">-dor / -tor / -sor</span></td>
+      <td class="td-c mono">-dor/-tor/-sor</td>
+      <td class="td-c mono hi2">-dora/-tora/-sora</td>
+      <td><span class="mono">trabajador / trabajadora</span>　<span class="td-ja">勤勉な</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule"><span class="mono">-án / -ín / -ón</span></td>
+      <td class="td-c mono">-án/-ín/-ón</td>
+      <td class="td-c mono hi2">-ana/-ina/-ona</td>
+      <td><span class="mono">holgazán / holgazana</span>　<span class="td-ja">怠け者の</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">国籍語尾 <span class="mono">-í / -ú</span></td>
+      <td class="td-c mono">-í / -ú</td>
+      <td class="td-c mono">同形</td>
+      <td><span class="mono">israelí</span>（イスラエルの）　複数：<span class="mono">israelíes</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" id="keiyoshi-ichi">形容詞の位置</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>位置</th><th>対象となる形容詞</th><th>例</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-rule">名詞の<span class="hi2">後ろ</span>（後置）<br><small>スペイン語の基本</small></td>
+      <td>性質・色・形・出身を表すほとんどの形容詞</td>
+      <td><span class="mono">un libro <b>interesante</b></span>　<span class="td-ja">おもしろい本</span><br><span class="mono">una chica <b>española</b></span>　<span class="td-ja">スペイン人の女の子</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">名詞の<span class="hi">前</span>（前置）</td>
+      <td>数量形容詞（<span class="mono">mucho/poco/varios</span>）<br>序数（<span class="mono">primero/último</span>）<br>短縮形（<span class="mono">buen/mal/gran</span>）</td>
+      <td><span class="mono"><b>muchos</b> libros</span>　<span class="td-ja">たくさんの本</span><br><span class="mono">un <b>buen</b> amigo</span>　<span class="td-ja">よい友人</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box">
+  <div class="box-title">短縮形（男性単数名詞の直前のみ）</div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>元の形</th><th>男性単数名詞の前</th><th>例</th></tr></thead>
+    <tbody>
+      <tr><td class="td-c mono">bueno</td><td class="td-c mono hi"><b>buen</b></td><td><span class="mono">un <b>buen</b> chico</span>　<span class="td-ja">よい男の子</span></td></tr>
+      <tr><td class="td-c mono">malo</td><td class="td-c mono hi"><b>mal</b></td><td><span class="mono">un <b>mal</b> día</span>　<span class="td-ja">ひどい日</span></td></tr>
+      <tr><td class="td-c mono">grande</td><td class="td-c mono hi"><b>gran</b></td><td><span class="mono">un <b>gran</b> hombre</span>　<span class="td-ja">偉大な人物（名声強調）</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note" style="margin-top:6px">※ 女性名詞・複数の前では短縮しません：<span class="mono">una buena chica、malos días</span></p>
+</div>
+
+<!-- ⑤ 所有形容詞・haber（hay） -->
+<div id="sec5" class="sec-heading">
+  <span class="sec-num">⑤</span>
+  <span class="sec-title">所有形容詞・haber（hay）</span>
+  <span class="sec-es">Adjetivos posesivos y haber</span>
+</div>
+
+<p>所有形容詞は「〜の」を表し、<span class="hi">前置形</span>（名詞の前）と<span class="hi2">後置形</span>（名詞の後ろ・動詞の後）の2種類があります。</p>
+
+<div class="sub">所有形容詞・前置形</div>
+<p>名詞の前に置いて使います。<span class="mono">nuestro / vuestro</span> のみ被所有物の性に一致し、<span class="mono">mi / tu / su</span> は性変化なし（単複のみ変化）。</p>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>所有者</th>
+      <th>単数（男・女共通）</th>
+      <th>複数（男・女共通）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-key">yo</td><td class="td-c mono hi"><b>mi</b></td><td class="td-c mono hi"><b>mis</b></td></tr>
+    <tr><td class="td-key">tú</td><td class="td-c mono hi"><b>tu</b></td><td class="td-c mono hi"><b>tus</b></td></tr>
+    <tr><td class="td-key">él / ella / usted</td><td class="td-c mono hi"><b>su</b></td><td class="td-c mono hi"><b>sus</b></td></tr>
+    <tr><td class="td-key">nosotros/as</td><td class="td-c mono hi">nuestro / <span class="hi2">nuestra</span></td><td class="td-c mono hi">nuestros / <span class="hi2">nuestras</span></td></tr>
+    <tr><td class="td-key">vosotros/as</td><td class="td-c mono hi">vuestro / <span class="hi2">vuestra</span></td><td class="td-c mono hi">vuestros / <span class="hi2">vuestras</span></td></tr>
+    <tr><td class="td-key">ellos / ellas / ustedes</td><td class="td-c mono hi"><b>su</b></td><td class="td-c mono hi"><b>sus</b></td></tr>
+  </tbody>
+</table>
+</div>
+<div class="ex"><span class="ex-sp">mi casa</span><span class="ex-ja">私の家</span></div>
+<div class="ex"><span class="ex-sp">nuestros amigos</span><span class="ex-ja">私たちの友人たち</span></div>
+<div class="ex"><span class="ex-sp">su libro</span><span class="ex-ja">彼/彼女/あなた/彼ら/あなたがたの本</span></div>
+
+<div class="sub" style="margin-top:16px">所有形容詞・後置形</div>
+<p>名詞の後ろに置くか（<span class="mono">El libro <b>mío</b></span>）、または "ser＋後置形" で所有を表します（<span class="mono">Ese libro es <b>mío</b>.</span>）。被所有物の性・数に完全一致します。</p>
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr><th>所有者</th><th>男単</th><th>女単</th><th>男複</th><th>女複</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-key">yo</td><td class="td-c mono hi2">mío</td><td class="td-c mono hi2">mía</td><td class="td-c mono hi2">míos</td><td class="td-c mono hi2">mías</td></tr>
+    <tr><td class="td-key">tú</td><td class="td-c mono hi2">tuyo</td><td class="td-c mono hi2">tuya</td><td class="td-c mono hi2">tuyos</td><td class="td-c mono hi2">tuyas</td></tr>
+    <tr><td class="td-key">él/ella/usted</td><td class="td-c mono hi2">suyo</td><td class="td-c mono hi2">suya</td><td class="td-c mono hi2">suyos</td><td class="td-c mono hi2">suyas</td></tr>
+    <tr><td class="td-key">nosotros/as</td><td class="td-c mono hi2">nuestro</td><td class="td-c mono hi2">nuestra</td><td class="td-c mono hi2">nuestros</td><td class="td-c mono hi2">nuestras</td></tr>
+    <tr><td class="td-key">vosotros/as</td><td class="td-c mono hi2">vuestro</td><td class="td-c mono hi2">vuestra</td><td class="td-c mono hi2">vuestros</td><td class="td-c mono hi2">vuestras</td></tr>
+    <tr><td class="td-key">ellos/ellas/ustedes</td><td class="td-c mono hi2">suyo</td><td class="td-c mono hi2">suya</td><td class="td-c mono hi2">suyos</td><td class="td-c mono hi2">suyas</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" id="hay-setsumeisec">hay — 存在を表す無人称動詞</div>
+<p><span class="mono hi">hay</span> は動詞 <span class="mono">haber</span> の無人称形で「〜がある・〜がいる」という存在を表します。主語を持たないため、後ろに続く名詞の数に関係なく常に <span class="mono hi">hay</span> の形のままです。</p>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>例文</th><th>訳</th></tr></thead>
+  <tbody>
+    <tr><td><span class="mono">Hay un libro en la mesa.</span></td><td class="td-ja">テーブルの上に本が1冊ある。</td></tr>
+    <tr><td><span class="mono">Hay muchos estudiantes.</span></td><td class="td-ja">学生がたくさんいる。</td></tr>
+    <tr><td><span class="mono">No hay clase hoy.</span></td><td class="td-ja">今日は授業がない。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-warn">
+  <div class="box-title" style="color:var(--warn)">hay vs estar の使い分け</div>
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>hay（存在そのものを述べる）</th>
+        <th>estar（既知の物・人の場所を述べる）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="mono">Hay <b>una farmacia</b> cerca.</span><br>
+          <span class="td-ja">近くに薬局が（1軒）ある。</span><br>
+          <small style="color:var(--muted)">不定冠詞・無冠詞と相性がよい</small>
+        </td>
+        <td>
+          <span class="mono"><b>La farmacia</b> está en la esquina.</span><br>
+          <span class="td-ja">その薬局は角にある。</span><br>
+          <small style="color:var(--muted)">定冠詞と相性がよい（「その〜」が前提）</small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ⑥ 文の構造・否定文・疑問詞 -->
+<div id="sec6" class="sec-heading">
+  <span class="sec-num">⑥</span>
+  <span class="sec-title">文の構造・否定文・疑問詞</span>
+  <span class="sec-es">Estructura oracional, negación e interrogativos</span>
+</div>
+
+<div class="sub">文の基本語順</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>文の種類</th><th>語順</th><th>例文</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-rule">平叙文</td>
+      <td><span class="mono">主語 ＋ 動詞 ＋ 補語</span><br><small>（語順は比較的自由）</small></td>
+      <td><span class="mono">Ella habla español.</span>　<span class="td-ja">彼女はスペイン語を話す。</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">否定文</td>
+      <td><span class="mono hi-r">no</span> ＋ 動詞（noを動詞の直前に置く）</td>
+      <td><span class="mono">Ella <span class="hi-r">no</span> habla inglés.</span>　<span class="td-ja">彼女は英語を話さない。</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">Yes/No 疑問文</td>
+      <td>語順は平叙文と同じ、文頭に ¿ を付ける<br><small>（イントネーションで区別）</small></td>
+      <td><span class="mono">¿Habla usted español?</span>　<span class="td-ja">スペイン語を話しますか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule">疑問詞疑問文</td>
+      <td><span class="mono">¿疑問詞 ＋ 動詞 ＋ 主語？</span></td>
+      <td><span class="mono">¿Dónde vives tú?</span>　<span class="td-ja">君はどこに住んでいますか。</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" id="gimonshi-ichiran">疑問詞一覧</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>分類</th><th>疑問詞</th><th>意味</th><th>例文</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-rule" rowspan="4">疑問代名詞</td>
+      <td class="td-c mono hi"><b>qué</b></td><td class="td-ja">何</td>
+      <td><span class="mono">¿Qué es esto?</span>　<span class="td-ja">これは何ですか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>quién / quiénes</b></td><td class="td-ja">誰 / 誰たち</td>
+      <td><span class="mono">¿Quién es ella?</span>　<span class="td-ja">彼女は誰ですか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>cuál / cuáles</b></td><td class="td-ja">どれ / どれたち</td>
+      <td><span class="mono">¿Cuál es tu número?</span>　<span class="td-ja">番号はどれですか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>cuánto/a/os/as</b></td><td class="td-ja">いくら・どれほど</td>
+      <td><span class="mono">¿Cuánto cuesta?</span>　<span class="td-ja">いくらですか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule" rowspan="4">疑問副詞</td>
+      <td class="td-c mono hi"><b>cuándo</b></td><td class="td-ja">いつ</td>
+      <td><span class="mono">¿Cuándo es la fiesta?</span>　<span class="td-ja">パーティーはいつですか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>cómo</b></td><td class="td-ja">どのように</td>
+      <td><span class="mono">¿Cómo te llamas?</span>　<span class="td-ja">お名前は？</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>dónde</b></td><td class="td-ja">どこ</td>
+      <td><span class="mono">¿Dónde vives?</span>　<span class="td-ja">どこに住んでいますか。</span></td>
+    </tr>
+    <tr>
+      <td class="td-c mono hi"><b>cuánto</b>（副詞）</td><td class="td-ja">どれくらい</td>
+      <td><span class="mono">¿Cuánto tardas?</span>　<span class="td-ja">どれくらいかかりますか。</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub">前置詞 ＋ 疑問詞</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>形</th><th>意味</th><th>例文</th></tr></thead>
+  <tbody>
+    <tr><td class="td-c mono hi"><b>de dónde</b></td><td class="td-ja">どこから（出身）</td><td><span class="mono">¿<b>De dónde</b> eres?</span>　<span class="td-ja">どこの出身ですか。</span></td></tr>
+    <tr><td class="td-c mono hi"><b>a dónde</b></td><td class="td-ja">どこへ</td><td><span class="mono">¿<b>A dónde</b> vas?</span>　<span class="td-ja">どこへ行くの？</span></td></tr>
+    <tr><td class="td-c mono hi"><b>con quién</b></td><td class="td-ja">誰と</td><td><span class="mono">¿<b>Con quién</b> vives?</span>　<span class="td-ja">誰と住んでいますか。</span></td></tr>
+    <tr><td class="td-c mono hi"><b>de quién</b></td><td class="td-ja">誰の</td><td><span class="mono">¿<b>De quién</b> es este libro?</span>　<span class="td-ja">これは誰の本ですか。</span></td></tr>
+    <tr><td class="td-c mono hi"><b>por qué</b></td><td class="td-ja">なぜ（理由を問う）</td><td><span class="mono">¿<b>Por qué</b> estudias español?</span>　<span class="td-ja">なぜスペイン語を勉強するの？</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box">
+  <div class="box-title">por qué vs porque</div>
+  <div class="ex"><span class="ex-sp">¿<span class="hi-r">Por qué</span> estudias español?</span><span class="ex-ja">なぜスペイン語を勉強するの？（2語・アクセント記号あり・疑問）</span></div>
+  <div class="ex"><span class="ex-sp"><span class="hi2">Porque</span> es interesante.</span><span class="ex-ja">なぜならおもしろいから。（1語・アクセント記号なし・答え）</span></div>
+  <p style="font-size:12.5px;color:var(--muted);margin-top:6px;">疑問詞 <span class="mono hi-r">por qué</span>（2語）で理由を問い、接続詞 <span class="mono hi2">porque</span>（1語）で理由を答えます。表記が異なるので注意。</p>
+</div>
+
+</div><!-- /tab-grammar -->
+
+<!-- ══ 練習問題タブ ══ -->
+<div id="tab-renshu" class="tab-content">
+
+<!-- ⑦ 練習問題 -->
+<div id="sec7" class="sec-heading">
+  <span class="sec-num">⑦</span>
+  <span class="sec-title">練習問題と解答</span>
+  <span class="sec-es">Ejercicios y soluciones</span>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">1.</span>
+  <span class="daimon-title">定冠詞（el / la / los / las）を空欄に入れなさい。</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">問題と解答</div>
+
+  <div class="q-item">
+    <span class="q-badge blue">1</span>
+    <div class="q-content">
+      <div class="q-sentence"><span class="blank">______</span> libro está sobre la mesa.</div>
+      <div class="q-ja">その本はテーブルの上にある。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">El</span> libro está sobre la mesa.</span>
+      </div>
+      <div class="q-exp">libro は男性単数 → <b>el</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">2</span>
+    <div class="q-content">
+      <div class="q-sentence"><span class="blank">______</span> ciudad de Tokio es muy grande.</div>
+      <div class="q-ja">東京という都市はとても大きい。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">La</span> ciudad de Tokio es muy grande.</span>
+      </div>
+      <div class="q-exp">ciudad は -dad 語尾 → 女性単数 → <b>la</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">3</span>
+    <div class="q-content">
+      <div class="q-sentence"><span class="blank">______</span> estudiantes estudian en la biblioteca.</div>
+      <div class="q-ja">その学生たちは図書館で勉強している。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">Los</span> estudiantes estudian en la biblioteca.</span>
+      </div>
+      <div class="q-exp">estudiante の複数（男女混合またはグループ全体）→ <b>los</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">4</span>
+    <div class="q-content">
+      <div class="q-sentence">Me gustan <span class="blank">______</span> flores del jardín.</div>
+      <div class="q-ja">私は庭の花々が好きです。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Me gustan <span class="ans-fill">las</span> flores del jardín.</span>
+      </div>
+      <div class="q-exp">flor は女性名詞、flores は複数 → <b>las</b>。del は de＋el の縮約。</div>
+    </div>
+  </div>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">2.</span>
+  <span class="daimon-title">ser か estar かを選び、正しい活用形を空欄に入れなさい。</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">問題と解答</div>
+
+  <div class="q-item">
+    <span class="q-badge teal">1</span>
+    <div class="q-content">
+      <div class="q-sentence">Yo <span class="blank">______</span> de Japón.</div>
+      <div class="q-ja">私は日本出身です。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Yo <span class="ans-fill">soy</span> de Japón.</span>
+      </div>
+      <div class="q-exp">出身を表す → <b>ser</b>。yo の活用形は <b>soy</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">2</span>
+    <div class="q-content">
+      <div class="q-sentence">El libro <span class="blank">______</span> en la mesa.</div>
+      <div class="q-ja">本はテーブルの上にある。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">El libro <span class="ans-fill">está</span> en la mesa.</span>
+      </div>
+      <div class="q-exp">場所・所在 → <b>estar</b>。3人称単数は <b>está</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">3</span>
+    <div class="q-content">
+      <div class="q-sentence">María <span class="blank">______</span> muy inteligente.</div>
+      <div class="q-ja">マリアはとても頭がよい。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">María <span class="ans-fill">es</span> muy inteligente.</span>
+      </div>
+      <div class="q-exp">固有の性質・特徴 → <b>ser</b>。3人称単数は <b>es</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">4</span>
+    <div class="q-content">
+      <div class="q-sentence">¿Cómo <span class="blank">______</span> tú hoy?</div>
+      <div class="q-ja">今日の調子はどうですか。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿Cómo <span class="ans-fill">estás</span> tú hoy?</span>
+      </div>
+      <div class="q-exp">体調・一時的な状態を問う → <b>estar</b>。tú の活用形は <b>estás</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">5</span>
+    <div class="q-content">
+      <div class="q-sentence">Mi padre <span class="blank">______</span> médico.</div>
+      <div class="q-ja">私の父は医者です。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Mi padre <span class="ans-fill">es</span> médico.</span>
+      </div>
+      <div class="q-exp">職業・身分 → <b>ser</b>。3人称単数は <b>es</b>。スペイン語では職業の前に不定冠詞を付けないのが基本。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge teal">6</span>
+    <div class="q-content">
+      <div class="q-sentence">La reunión <span class="blank">______</span> en la sala de conferencias.</div>
+      <div class="q-ja">会議は会議室で行われます。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">La reunión <span class="ans-fill">está</span> en la sala de conferencias.</span>
+      </div>
+      <div class="q-exp">場所・所在 → <b>estar</b>。女性単数3人称は <b>está</b>。</div>
+    </div>
+  </div>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">3.</span>
+  <span class="daimon-title">適切な疑問詞を選んで空欄に入れなさい。（Cómo / Quién / Dónde / Por qué / Cuántas）</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">問題と解答</div>
+
+  <div class="q-item">
+    <span class="q-badge blue">1</span>
+    <div class="q-content">
+      <div class="q-sentence">¿<span class="blank">______</span> te llamas? — Me llamo Ana.</div>
+      <div class="q-ja">お名前は？ — アナといいます。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿<span class="ans-fill">Cómo</span> te llamas?</span>
+      </div>
+      <div class="q-exp">名前を尋ねる定型表現 → <b>¿Cómo te llamas?</b>。llamarse（〜という名前だ）は再帰動詞。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">2</span>
+    <div class="q-content">
+      <div class="q-sentence">¿<span class="blank">______</span> es esa señora? — Es la profesora García.</div>
+      <div class="q-ja">あの女性は誰ですか。— ガルシア先生です。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿<span class="ans-fill">Quién</span> es esa señora?</span>
+      </div>
+      <div class="q-exp">人物を尋ねる → <b>quién</b>（単数）。複数の場合は quiénes。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">3</span>
+    <div class="q-content">
+      <div class="q-sentence">¿<span class="blank">______</span> vives? — Vivo en Tokio.</div>
+      <div class="q-ja">どこに住んでいますか。— 東京に住んでいます。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿<span class="ans-fill">Dónde</span> vives?</span>
+      </div>
+      <div class="q-exp">場所を尋ねる → <b>dónde</b>。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">4</span>
+    <div class="q-content">
+      <div class="q-sentence">¿<span class="blank">______</span> estudias español? — Porque es muy útil.</div>
+      <div class="q-ja">なぜスペイン語を勉強するのですか。— とても役に立つからです。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿<span class="ans-fill">Por qué</span> estudias español?</span>
+      </div>
+      <div class="q-exp">理由を尋ねる → <b>por qué</b>（2語）。答えに接続詞 <b>porque</b>（1語）を使う。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">5</span>
+    <div class="q-content">
+      <div class="q-sentence">¿<span class="blank">______</span> personas hay en tu familia? — Hay cuatro.</div>
+      <div class="q-ja">家族は何人いますか。— 4人います。</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">¿<span class="ans-fill">Cuántas</span> personas hay en tu familia?</span>
+      </div>
+      <div class="q-exp">数量を尋ねる形容詞用法 → <b>cuántas</b>（personas は女性複数なので -as）。</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /tab-renshu -->
+
+<!-- ══ 語彙・まとめタブ ══ -->
+<div id="tab-vocab" class="tab-content">
+
+<!-- ⑧ 語彙リスト -->
+<div id="sec8" class="sec-heading">
+  <span class="sec-num">⑧</span>
+  <span class="sec-title">語彙リスト</span>
+  <span class="sec-es">Vocabulario</span>
+</div>
+
+<div class="vocab-category">形容詞（性質・状態）</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">alto/a</span><span class="pill-pos">形</span><span class="pill-ja">高い・背が高い</span></span>
+  <span class="pill"><span class="pill-es">bajo/a</span><span class="pill-pos">形</span><span class="pill-ja">低い・背が低い</span></span>
+  <span class="pill"><span class="pill-es">grande</span><span class="pill-pos">形</span><span class="pill-ja">大きい</span></span>
+  <span class="pill"><span class="pill-es">pequeño/a</span><span class="pill-pos">形</span><span class="pill-ja">小さい</span></span>
+  <span class="pill"><span class="pill-es">bueno/a</span><span class="pill-pos">形</span><span class="pill-ja">良い・善い</span></span>
+  <span class="pill"><span class="pill-es">malo/a</span><span class="pill-pos">形</span><span class="pill-ja">悪い</span></span>
+  <span class="pill"><span class="pill-es">nuevo/a</span><span class="pill-pos">形</span><span class="pill-ja">新しい</span></span>
+  <span class="pill"><span class="pill-es">viejo/a</span><span class="pill-pos">形</span><span class="pill-ja">古い・年老いた</span></span>
+  <span class="pill"><span class="pill-es">joven</span><span class="pill-pos">形</span><span class="pill-ja">若い</span></span>
+  <span class="pill"><span class="pill-es">guapo/a</span><span class="pill-pos">形</span><span class="pill-ja">ハンサムな・きれいな</span></span>
+  <span class="pill"><span class="pill-es">bonito/a</span><span class="pill-pos">形</span><span class="pill-ja">きれいな・かわいい</span></span>
+  <span class="pill"><span class="pill-es">feo/a</span><span class="pill-pos">形</span><span class="pill-ja">醜い</span></span>
+  <span class="pill"><span class="pill-es">inteligente</span><span class="pill-pos">形</span><span class="pill-ja">頭のいい・知的な</span></span>
+  <span class="pill"><span class="pill-es">simpático/a</span><span class="pill-pos">形</span><span class="pill-ja">感じのいい・親しみやすい</span></span>
+  <span class="pill"><span class="pill-es">interesante</span><span class="pill-pos">形</span><span class="pill-ja">面白い・興味深い</span></span>
+  <span class="pill"><span class="pill-es">aburrido/a</span><span class="pill-pos">形</span><span class="pill-ja">退屈な</span></span>
+  <span class="pill"><span class="pill-es">difícil</span><span class="pill-pos">形</span><span class="pill-ja">難しい</span></span>
+  <span class="pill"><span class="pill-es">fácil</span><span class="pill-pos">形</span><span class="pill-ja">簡単な</span></span>
+  <span class="pill"><span class="pill-es">rico/a</span><span class="pill-pos">形</span><span class="pill-ja">おいしい・裕福な</span></span>
+  <span class="pill"><span class="pill-es">caro/a</span><span class="pill-pos">形</span><span class="pill-ja">高価な</span></span>
+  <span class="pill"><span class="pill-es">barato/a</span><span class="pill-pos">形</span><span class="pill-ja">安価な</span></span>
+</div>
+
+<div class="vocab-category">国籍形容詞（男性形／女性形）</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">español/a</span><span class="pill-pos">形</span><span class="pill-ja">スペインの</span></span>
+  <span class="pill"><span class="pill-es">japonés/a</span><span class="pill-pos">形</span><span class="pill-ja">日本の</span></span>
+  <span class="pill"><span class="pill-es">francés/a</span><span class="pill-pos">形</span><span class="pill-ja">フランスの</span></span>
+  <span class="pill"><span class="pill-es">alemán/a</span><span class="pill-pos">形</span><span class="pill-ja">ドイツの</span></span>
+  <span class="pill"><span class="pill-es">chino/a</span><span class="pill-pos">形</span><span class="pill-ja">中国の</span></span>
+  <span class="pill"><span class="pill-es">americano/a</span><span class="pill-pos">形</span><span class="pill-ja">アメリカの</span></span>
+  <span class="pill"><span class="pill-es">mexicano/a</span><span class="pill-pos">形</span><span class="pill-ja">メキシコの</span></span>
+  <span class="pill"><span class="pill-es">argentino/a</span><span class="pill-pos">形</span><span class="pill-ja">アルゼンチンの</span></span>
+  <span class="pill"><span class="pill-es">inglés/a</span><span class="pill-pos">形</span><span class="pill-ja">イギリスの</span></span>
+  <span class="pill"><span class="pill-es">italiano/a</span><span class="pill-pos">形</span><span class="pill-ja">イタリアの</span></span>
+</div>
+
+<div class="vocab-category">人を表す名詞</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">amigo</span><span class="pill-pos">m.</span><span class="pill-ja">友人（男）</span></span>
+  <span class="pill"><span class="pill-es">amiga</span><span class="pill-pos">f.</span><span class="pill-ja">友人（女）</span></span>
+  <span class="pill"><span class="pill-es">chico</span><span class="pill-pos">m.</span><span class="pill-ja">男の子・男性</span></span>
+  <span class="pill"><span class="pill-es">chica</span><span class="pill-pos">f.</span><span class="pill-ja">女の子・女性</span></span>
+  <span class="pill"><span class="pill-es">hombre</span><span class="pill-pos">m.</span><span class="pill-ja">男性・人間</span></span>
+  <span class="pill"><span class="pill-es">mujer</span><span class="pill-pos">f.</span><span class="pill-ja">女性・妻</span></span>
+  <span class="pill"><span class="pill-es">estudiante</span><span class="pill-pos">m./f.</span><span class="pill-ja">学生</span></span>
+  <span class="pill"><span class="pill-es">profesor</span><span class="pill-pos">m.</span><span class="pill-ja">先生（男）</span></span>
+  <span class="pill"><span class="pill-es">profesora</span><span class="pill-pos">f.</span><span class="pill-ja">先生（女）</span></span>
+  <span class="pill"><span class="pill-es">señor</span><span class="pill-pos">m.</span><span class="pill-ja">〜さん（男性）</span></span>
+  <span class="pill"><span class="pill-es">señora</span><span class="pill-pos">f.</span><span class="pill-ja">〜さん（女性）</span></span>
+  <span class="pill"><span class="pill-es">hermano</span><span class="pill-pos">m.</span><span class="pill-ja">兄弟</span></span>
+  <span class="pill"><span class="pill-es">hermana</span><span class="pill-pos">f.</span><span class="pill-ja">姉妹</span></span>
+  <span class="pill"><span class="pill-es">padre</span><span class="pill-pos">m.</span><span class="pill-ja">父・父親</span></span>
+  <span class="pill"><span class="pill-es">madre</span><span class="pill-pos">f.</span><span class="pill-ja">母・母親</span></span>
+  <span class="pill"><span class="pill-es">hijo</span><span class="pill-pos">m.</span><span class="pill-ja">息子</span></span>
+  <span class="pill"><span class="pill-es">hija</span><span class="pill-pos">f.</span><span class="pill-ja">娘</span></span>
+  <span class="pill"><span class="pill-es">familia</span><span class="pill-pos">f.</span><span class="pill-ja">家族</span></span>
+  <span class="pill"><span class="pill-es">persona</span><span class="pill-pos">f.</span><span class="pill-ja">人・人物</span></span>
+</div>
+
+<div class="vocab-category">場所・建物・もの</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">ciudad</span><span class="pill-pos">f.</span><span class="pill-ja">都市</span></span>
+  <span class="pill"><span class="pill-es">país</span><span class="pill-pos">m.</span><span class="pill-ja">国</span></span>
+  <span class="pill"><span class="pill-es">universidad</span><span class="pill-pos">f.</span><span class="pill-ja">大学</span></span>
+  <span class="pill"><span class="pill-es">escuela</span><span class="pill-pos">f.</span><span class="pill-ja">学校</span></span>
+  <span class="pill"><span class="pill-es">casa</span><span class="pill-pos">f.</span><span class="pill-ja">家・住宅</span></span>
+  <span class="pill"><span class="pill-es">calle</span><span class="pill-pos">f.</span><span class="pill-ja">通り・道</span></span>
+  <span class="pill"><span class="pill-es">clase</span><span class="pill-pos">f.</span><span class="pill-ja">授業・クラス</span></span>
+  <span class="pill"><span class="pill-es">libro</span><span class="pill-pos">m.</span><span class="pill-ja">本</span></span>
+  <span class="pill"><span class="pill-es">mesa</span><span class="pill-pos">f.</span><span class="pill-ja">テーブル・机</span></span>
+  <span class="pill"><span class="pill-es">silla</span><span class="pill-pos">f.</span><span class="pill-ja">椅子</span></span>
+</div>
+
+<!-- ⑨ まとめ -->
+<div id="sec9" class="sec-heading">
+  <span class="sec-num">⑨</span>
+  <span class="sec-title">総まとめ：重要ポイント一覧</span>
+  <span class="sec-es">Resumen</span>
+</div>
+
+<div class="tbl-wrap">
+<table class="summary">
+  <thead><tr><th style="width:30%">テーマ</th><th>重要ポイント</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">名詞の性</td><td>-o→男性、-a→女性が多い。-dad/-ión/-sión/-ez で終わる語は女性。</td></tr>
+    <tr><td class="td-rule">複数形</td><td>母音末 +s、子音末 +es、-z末 → -ces</td></tr>
+    <tr><td class="td-rule">定冠詞</td><td class="mono">el / la / los / las</td></tr>
+    <tr><td class="td-rule">不定冠詞</td><td class="mono">un / una / unos / unas</td></tr>
+    <tr><td class="td-rule">縮約形</td><td class="mono">a + el = al　　de + el = del</td></tr>
+    <tr><td class="td-rule">ser の活用</td><td class="mono">soy / eres / es / somos / sois / son</td></tr>
+    <tr><td class="td-rule">estar の活用</td><td class="mono">estoy / estás / está / estamos / estáis / están</td></tr>
+    <tr><td class="td-rule">ser vs estar</td><td>本質・固有特性・職業・出身 → ser　　場所・状態・一時的な様子 → estar</td></tr>
+    <tr><td class="td-rule">hay</td><td>存在の無人称動詞。後続する名詞の数に関わらず常に <span class="mono">hay</span>。</td></tr>
+    <tr><td class="td-rule">hay vs estar</td><td>存在（〜がある）→ hay ＋ 不定冠詞　　場所（〜はどこにある）→ estar ＋ 定冠詞</td></tr>
+    <tr><td class="td-rule">形容詞の性数変化</td><td>①-o/-a系、②変化なし（-e・子音）、③国籍語＋子音 → 女性形は +a</td></tr>
+    <tr><td class="td-rule">形容詞の位置</td><td>原則後置。数量形容詞・序数・短縮形（buen/mal/gran）は前置。</td></tr>
+    <tr><td class="td-rule">所有形容詞・前置形</td><td class="mono">mi / tu / su / nuestro/a / vuestro/a / su（+ 複数形）</td></tr>
+    <tr><td class="td-rule">所有形容詞・後置形</td><td class="mono">mío/a / tuyo/a / suyo/a / nuestro/a / vuestro/a（完全性数一致）</td></tr>
+    <tr><td class="td-rule">否定文</td><td>動詞の直前に <span class="mono">no</span> を置く</td></tr>
+    <tr><td class="td-rule">疑問詞</td><td class="mono">qué / quién / cuál / cuándo / cómo / dónde / cuánto</td></tr>
+    <tr><td class="td-rule">por qué vs porque</td><td><span class="mono">por qué</span>（2語・疑問）で理由を問い、<span class="mono">porque</span>（1語・答え）で理由を答える</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p style="text-align:center; color:var(--muted); font-size:12px; margin-top:36px;">Lección 2 文法解説ページ</p>
+
+</div><!-- /tab-vocab -->
+
+<!-- フローティングナビ -->
+<div id="float-nav">
+  <div id="float-nav-menu">
+    <button class="fn-search-btn" id="fn-search-btn">単語を検索</button>
+    <a class="fn-item" href="#sec1">① 名詞の性と数・冠詞</a>
+    <a class="fn-item" href="#sec2">② 主語人称代名詞・ser と estar</a>
+    <a class="fn-item" href="#sec3">③ さまざまな前置詞</a>
+    <a class="fn-item" href="#sec4">④ 形容詞と性数変化</a>
+    <a class="fn-item" href="#sec5">⑤ 所有形容詞・haber（hay）</a>
+    <a class="fn-item" href="#sec6">⑥ 文の構造・否定文・疑問詞</a>
+    <a class="fn-item" href="#sec7">⑦ 練習問題</a>
+    <a class="fn-item" href="#sec8">⑧ 語彙リスト</a>
+    <a class="fn-item" href="#sec9">⑨ まとめ</a>
+  </div>
+  <button id="float-nav-toggle">目次</button>
+</div>
+
+<script>
+// =====================================================
+// タブ切り替え
+// =====================================================
+function switchTab(tabId, btnEl) {
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].style.display = 'none';
+    tabs[i].classList.remove('active');
+  }
+  var target = document.getElementById('tab-' + tabId);
+  if (target) { target.style.display = 'block'; target.classList.add('active'); }
+  var btns = document.getElementsByClassName('tab-btn');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
+  }
+  if (btnEl) btnEl.classList.add('active-' + tabId);
+  window.scrollTo(0, 0);
+}
+
+function activateTabContaining(anchor) {
+  var el = document.getElementById(anchor);
+  if (!el) return;
+  var node = el.parentElement;
+  while (node && node.className.indexOf('tab-content') < 0) { node = node.parentElement; }
+  if (node && node.className.indexOf('active') < 0) {
+    var tabId = node.id.replace('tab-', '');
+    var btns = document.getElementsByClassName('tab-btn');
+    var targetBtn = null;
+    for (var i = 0; i < btns.length; i++) {
+      var oc = btns[i].getAttribute('onclick') || '';
+      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
+    }
+    switchTab(tabId, targetBtn);
+  }
+}
+
+function jumpToSection(sectionId) {
+  var el = document.getElementById(sectionId);
+  if (!el) return;
+  var node = el.parentElement;
+  while (node && node.className.indexOf('tab-content') < 0) { node = node.parentElement; }
+  if (node && node.className.indexOf('active') < 0) {
+    var tabId = node.id.replace('tab-', '');
+    var btns = document.getElementsByClassName('tab-btn');
+    var targetBtn = null;
+    for (var i = 0; i < btns.length; i++) {
+      var oc = btns[i].getAttribute('onclick') || '';
+      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
+    }
+    switchTab(tabId, targetBtn);
+  }
+  setTimeout(function() {
+    var el2 = document.getElementById(sectionId);
+    if (el2) el2.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }, 80);
+}
+
+function toggleToc() {
+  var menu = document.getElementById('top-toc-menu');
+  var btn  = document.getElementById('top-toc-toggle');
+  var isOpen = menu.classList.toggle('open');
+  btn.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
+}
+function closeToc() {
+  var menu = document.getElementById('top-toc-menu');
+  if (menu) menu.classList.remove('open');
+  var btn = document.getElementById('top-toc-toggle');
+  if (btn) btn.textContent = '☰ 目次';
+}
+
+function savePdf() {
+  document.body.classList.add('is-printing');
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
+  setTimeout(function() { window.print(); }, 50);
+}
+window.addEventListener('afterprint', function() {
+  document.body.classList.remove('is-printing');
+  var tabs = document.getElementsByClassName('tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
+  }
+});
+
+function openSearch() {
+  var bar = document.getElementById('search-bar');
+  if (bar) bar.classList.add('open');
+  setTimeout(function() {
+    var inp = document.getElementById('search-input');
+    if (inp) inp.focus();
+  }, 180);
+}
+function closeSearch() {
+  var bar = document.getElementById('search-bar');
+  if (bar) bar.classList.remove('open');
+  var res = document.getElementById('search-results');
+  if (res) res.classList.remove('has-results');
+  var inp = document.getElementById('search-input');
+  if (inp) inp.value = '';
+  var cres = document.getElementById('cover-search-results');
+  if (cres) cres.classList.remove('has-results');
+}
+
+function scrollToAnchor(anchor) {
+  activateTabContaining(anchor);
+  setTimeout(function() {
+    var el = document.getElementById(anchor);
+    if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }, 60);
+}
+
+// 解答トグル
+(function initAnswerToggles() {
+  var items = document.getElementsByClassName('q-item');
+  for (var k = 0; k < items.length; k++) {
+    (function(item) {
+      var answerRow = item.querySelector('.q-answer-row');
+      var exp = item.querySelector('.q-exp');
+      if (!answerRow) return;
+      var btn = document.createElement('button');
+      btn.className = 'ans-toggle-btn';
+      btn.textContent = '答えを確認';
+      btn.onclick = function() {
+        var revealed = answerRow.classList.toggle('visible');
+        if (exp) exp.classList.toggle('visible', revealed);
+        btn.classList.toggle('revealed', revealed);
+        btn.textContent = revealed ? '答えを隠す' : '答えを確認';
+      };
+      answerRow.parentNode.insertBefore(btn, answerRow);
+    })(items[k]);
+  }
+})();
+
+// フローティングナビ 検索ボタン
+var fnBtn = document.getElementById('fn-search-btn');
+if (fnBtn) fnBtn.addEventListener('click', function() { openSearch(); });
+
+// イベントリスナー
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('top-nav');
+  if (nav && !nav.contains(e.target)) closeToc();
+  var searchBar = document.getElementById('search-bar');
+  var searchRes = document.getElementById('search-results');
+  var searchBtn = document.getElementById('top-search-btn');
+  if (searchBar && searchRes && !searchBar.contains(e.target) &&
+      !searchRes.contains(e.target) && e.target !== searchBtn) {
+    searchRes.classList.remove('has-results');
+  }
+  var coverSearch = document.querySelector('.cover-search');
+  var coverRes = document.getElementById('cover-search-results');
+  if (coverRes && coverSearch && !coverSearch.contains(e.target) &&
+      !coverRes.contains(e.target)) {
+    coverRes.classList.remove('has-results');
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeSearch();
+    closeToc();
+    if (typeof closeDictModal === 'function') closeDictModal();
+  }
+});
+
+// ════════════════════════════════════════════════════
+// 文法用語ジャンプ先マッピング
+// ════════════════════════════════════════════════════
+const GRAMMAR_TERMS = [
+  { terms: ['名詞の性','性と数','冠詞','artículo','定冠詞','不定冠詞','縮約','al','del'], id: 'sec1', label: '名詞の性と数・冠詞（①節）' },
+  { terms: ['主語人称代名詞','人称代名詞','ser','estar','soy','eres','estoy','estás'], id: 'sec2', label: '主語人称代名詞・ser と estar（②節）' },
+  { terms: ['前置詞','preposición','conmigo','contigo','por','para'], id: 'sec3', label: '前置詞（③節）' },
+  { terms: ['形容詞','性数変化','adjetivo','国籍形容詞','短縮形','buen','mal','gran'], id: 'sec4', label: '形容詞と性数変化（④節）' },
+  { terms: ['所有形容詞','haber','hay','無人称','mío','tuyo','suyo','nuestro'], id: 'sec5', label: '所有形容詞・haber（hay）（⑤節）' },
+  { terms: ['疑問詞','否定文','疑問文','por qué','dónde','cuándo','porque','interrogativo'], id: 'sec6', label: '文の構造・否定文・疑問詞（⑥節）' },
+  { terms: ['練習問題','練習'], id: 'sec7', label: '練習問題（⑦節）' },
+  { terms: ['語彙','Vocabulario'], id: 'sec8', label: '語彙リスト（⑧節）' },
+  { terms: ['まとめ','Resumen'], id: 'sec9', label: 'まとめ（⑨節）' },
+];
+
+function findGrammarMatch(q) {
+  const norm = q.trim().toLowerCase();
+  for (const g of GRAMMAR_TERMS) {
+    for (const t of g.terms) {
+      if (t.toLowerCase().includes(norm) || norm.includes(t.toLowerCase())) return g;
+    }
+  }
+  return null;
+}
+
+// ════════════════════════════════════════════════════
+// 語彙データベース
+// ════════════════════════════════════════════════════
+const PERSONAS = [
+  {label:"yo",          sfx_ar:"o",    sfx_er:"o",    sfx_ir:"o"},
+  {label:"tú",          sfx_ar:"as",   sfx_er:"es",   sfx_ir:"es"},
+  {label:"él/ella",     sfx_ar:"a",    sfx_er:"e",    sfx_ir:"e"},
+  {label:"nosotros",    sfx_ar:"amos", sfx_er:"emos", sfx_ir:"imos"},
+  {label:"vosotros",    sfx_ar:"áis",  sfx_er:"éis",  sfx_ir:"ís"},
+  {label:"ellos/ellas", sfx_ar:"an",   sfx_er:"en",   sfx_ir:"en"},
+];
+
+const VOCAB_BASE = [
+  // 動詞（不規則）
+  {es:"ser",   ja:"〜である・〜だ",                pos:"動詞", tag:"動詞 不規則", type:"verb_er", anchor:"sec2",
+   irreg:{yo:"soy",tu:"eres",el:"es",nos:"somos",vos:"sois",ellos:"son"}},
+  {es:"estar", ja:"（場所に）いる・ある・〜の状態だ", pos:"動詞", tag:"動詞 不規則", type:"verb_ar", anchor:"sec2",
+   irreg:{yo:"estoy",tu:"estás",el:"está",nos:"estamos",vos:"estáis",ellos:"están"}},
+  {es:"hay",   ja:"〜がある・〜がいる（存在）",      pos:"動詞", tag:"動詞 無人称", anchor:"sec5"},
+
+  // 形容詞（性質）
+  {es:"alto",        ja:"高い・背が高い",           pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"bajo",        ja:"低い・背が低い",           pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"grande",      ja:"大きい",                   pos:"形容詞",       tag:"形容詞 性質", anchor:"sec4"},
+  {es:"pequeño",     ja:"小さい",                   pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"bueno",       ja:"良い・善い",               pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"malo",        ja:"悪い",                     pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"nuevo",       ja:"新しい",                   pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"viejo",       ja:"古い・年老いた",           pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"joven",       ja:"若い",                     pos:"形容詞",       tag:"形容詞 性質", anchor:"sec4"},
+  {es:"guapo",       ja:"ハンサムな・きれいな",     pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"bonito",      ja:"きれいな・かわいい",       pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"feo",         ja:"醜い",                     pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"inteligente", ja:"頭のいい・知的な",         pos:"形容詞",       tag:"形容詞 性質", anchor:"sec4"},
+  {es:"simpático",   ja:"感じのいい・親しみやすい", pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"interesante", ja:"面白い・興味深い",          pos:"形容詞",       tag:"形容詞 性質", anchor:"sec4"},
+  {es:"aburrido",    ja:"退屈な",                   pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"difícil",     ja:"難しい",                   pos:"形容詞",       tag:"形容詞 性質", anchor:"sec4"},
+  {es:"fácil",       ja:"簡単な",                   pos:"形容詞",       tag:"形容詞 性質", anchor:"sec4"},
+  {es:"rico",        ja:"おいしい・裕福な",         pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"caro",        ja:"高価な",                   pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+  {es:"barato",      ja:"安価な",                   pos:"形容詞 -o/-a", tag:"形容詞 性質", anchor:"sec4"},
+
+  // 国籍形容詞
+  {es:"español",   ja:"スペインの・スペイン語・スペイン人", pos:"形容詞",       tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"japonés",   ja:"日本の・日本語・日本人",   pos:"形容詞",       tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"francés",   ja:"フランスの・フランス語",   pos:"形容詞",       tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"alemán",    ja:"ドイツの・ドイツ語",       pos:"形容詞",       tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"chino",     ja:"中国の・中国語・中国人",   pos:"形容詞 -o/-a", tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"americano", ja:"アメリカの・アメリカ人",   pos:"形容詞 -o/-a", tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"mexicano",  ja:"メキシコの・メキシコ人",   pos:"形容詞 -o/-a", tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"argentino", ja:"アルゼンチンの",           pos:"形容詞 -o/-a", tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"inglés",    ja:"イギリスの・英語・イギリス人", pos:"形容詞",   tag:"形容詞 国籍", anchor:"sec4"},
+  {es:"italiano",  ja:"イタリアの・イタリア語",   pos:"形容詞 -o/-a", tag:"形容詞 国籍", anchor:"sec4"},
+
+  // 人を表す名詞
+  {es:"amigo",      ja:"友人（男性）",      pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"amiga",      ja:"友人（女性）",      pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"chico",      ja:"男の子・男性",      pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"chica",      ja:"女の子・女性",      pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"hombre",     ja:"男性・人間",        pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"mujer",      ja:"女性・妻",          pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"estudiante", ja:"学生",              pos:"名詞m./f.", tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"profesor",   ja:"先生（男性）",      pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"profesora",  ja:"先生（女性）",      pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"señor",      ja:"〜さん（男性）",    pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"señora",     ja:"〜さん（女性）",    pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"hermano",    ja:"兄弟",              pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"hermana",    ja:"姉妹",              pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"padre",      ja:"父・父親",          pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"madre",      ja:"母・母親",          pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"hijo",       ja:"息子",              pos:"名詞m.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"hija",       ja:"娘",               pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"familia",    ja:"家族",              pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+  {es:"persona",    ja:"人・人物",          pos:"名詞f.",    tag:"語彙 人・関係", anchor:"sec8"},
+
+  // 場所・もの
+  {es:"ciudad",      ja:"都市・市",         pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"país",        ja:"国",               pos:"名詞m.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"universidad", ja:"大学",             pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"escuela",     ja:"学校",             pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"casa",        ja:"家・住宅",         pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"calle",       ja:"通り・道",         pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"clase",       ja:"授業・クラス",     pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"libro",       ja:"本",               pos:"名詞m.",    tag:"語彙 場所・もの", anchor:"sec1"},
+  {es:"mesa",        ja:"テーブル・机",     pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+  {es:"silla",       ja:"椅子",             pos:"名詞f.",    tag:"語彙 場所・もの", anchor:"sec8"},
+
+  // 前置詞
+  {es:"a",      ja:"〜へ（方向）・〜を（対人目的語）", pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"con",    ja:"〜と一緒に・〜を持って",           pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"de",     ja:"〜の（所有）・〜から・〜の（素材）", pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"en",     ja:"〜に・〜で（場所）・〜に（時間）", pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"por",    ja:"〜のせいで（原因）・〜を通って・〜の代わりに", pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"sin",    ja:"〜なしに・〜せずに",               pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"para",   ja:"〜のために（目的）・〜向けに・〜までに", pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"hasta",  ja:"〜まで（到達点）",                 pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"desde",  ja:"〜から（起点）",                   pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+  {es:"sobre",  ja:"〜の上に（接触）・〜について",     pos:"前置詞", tag:"前置詞", anchor:"sec3"},
+
+  // 疑問詞
+  {es:"qué",     ja:"何（疑問代名詞）",         pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"quién",   ja:"誰（疑問代名詞）",         pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"cuál",    ja:"どれ（疑問代名詞）",       pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"cuándo",  ja:"いつ（疑問副詞）",         pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"cómo",    ja:"どのように（疑問副詞）",   pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"dónde",   ja:"どこ（疑問副詞）",         pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"cuánto",  ja:"どれくらい・いくら",       pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+  {es:"por qué", ja:"なぜ（疑問詞）",           pos:"疑問詞", tag:"疑問詞", anchor:"sec6"},
+];
+
+const VOCAB_INF = VOCAB_BASE.map(item => ({...item, form:"不定詞"}));
+const CONJ_MAP = {};
+
+function getConjForms(item) {
+  const t = item.type || '';
+  if (!t.startsWith('verb_')) return [];
+  const ending = t === 'verb_ar' ? 'ar' : t === 'verb_er' ? 'er' : 'ir';
+  if (!item.es.endsWith(ending)) return [];
+  if (item.irreg) {
+    const ir = item.irreg;
+    return [
+      {label:'yo',          form: ir.yo},
+      {label:'tú',          form: ir.tu},
+      {label:'él/ella',     form: ir.el},
+      {label:'nosotros',    form: ir.nos},
+      {label:'vosotros',    form: ir.vos},
+      {label:'ellos/ellas', form: ir.ellos},
+    ];
+  }
+  const stem = item.es.slice(0, -2);
+  return PERSONAS.map(p => {
+    const sfx = ending==='ar' ? p.sfx_ar : ending==='er' ? p.sfx_er : p.sfx_ir;
+    return {label: p.label, form: stem + sfx};
+  });
+}
+
+for (const item of VOCAB_BASE) {
+  const forms = getConjForms(item);
+  for (const {label, form} of forms) {
+    const key = stripAccents(form);
+    if (!CONJ_MAP[key]) CONJ_MAP[key] = {item, persona: label, conj: form};
+  }
+}
+
+function stripAccents(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+}
+function editDistance(a, b) {
+  const m=a.length, n=b.length;
+  if (Math.abs(m-n)>3) return 99;
+  const dp=Array.from({length:m+1},(_,i)=>[i]);
+  for(let j=1;j<=n;j++) dp[0][j]=j;
+  for(let i=1;i<=m;i++)
+    for(let j=1;j<=n;j++)
+      dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+function searchVocab(q) {
+  if (!q || q.trim().length < 1) return {results:[], grammar:null, conjMatch:null};
+  const raw = q.trim();
+  const norm = stripAccents(raw).toLowerCase();
+  const isJa = /[　-鿿゠-ヿ]/.test(raw);
+  const grammar = findGrammarMatch(raw);
+
+  let conjMatch = null, conjPrefixMatches = [];
+  if (!isJa) {
+    const cm = CONJ_MAP[norm];
+    if (cm) conjMatch = cm;
+    if (!conjMatch && norm.length >= 2) {
+      for (const [key, val] of Object.entries(CONJ_MAP)) {
+        if (key.startsWith(norm) && key !== norm) conjPrefixMatches.push(val);
+      }
+    }
+  }
+
+  const seen = new Set(), results = [];
+
+  if (conjMatch) {
+    const item = conjMatch.item;
+    results.push({...item, form:'活用形', conjForm:conjMatch.conj, conjPersona:conjMatch.persona, score:0});
+    return {results, grammar, conjMatch};
+  }
+  if (conjPrefixMatches.length > 0) {
+    for (const cm of conjPrefixMatches) {
+      const key = cm.item.es + '_' + cm.conj;
+      if (seen.has(key)) continue;
+      results.push({...cm.item, form:'活用形', conjForm:cm.conj, conjPersona:cm.persona, score:0});
+      seen.add(key);
+    }
+    results.sort((a,b) => { const an=stripAccents(a.conjForm), bn=stripAccents(b.conjForm); return an<bn?-1:an>bn?1:0; });
+    return {results: results.slice(0,12), grammar, conjMatch:null};
+  }
+
+  for (const item of VOCAB_INF) {
+    const key = item.es;
+    if (seen.has(key)) continue;
+    let score = 999;
+    if (isJa) {
+      if (item.ja.includes(raw)) score = 0;
+    } else {
+      const esN = stripAccents(item.es);
+      if      (esN === norm)           score = 0;
+      else if (esN.startsWith(norm))   score = 1;
+      else if (esN.includes(norm))     score = 2;
+      else {
+        const d = editDistance(norm, esN);
+        if (d <= Math.max(1, Math.floor(norm.length/4))) score = 10 + d;
+      }
+      if (score > 3 && item.ja.includes(raw)) score = Math.min(score, 2);
+    }
+    if (score < 50) { results.push({...item, score}); seen.add(key); }
+  }
+  results.sort((a,b) => a.score - b.score);
+  return {results: results.slice(0,12), grammar, conjMatch};
+}
+
+function highlight(text, query) {
+  const n = stripAccents(query).toLowerCase();
+  const t = stripAccents(text).toLowerCase();
+  const i = t.indexOf(n);
+  if (i === -1) return text;
+  return text.slice(0,i) + '<mark>' + text.slice(i, i+n.length) + '</mark>' + text.slice(i+n.length);
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+let _srItems = [];
+
+function openDictModal(item, conjInfo) {
+  const overlay = document.getElementById('dict-overlay');
+  const wordEl  = document.getElementById('dict-modal-word');
+  const posEl   = document.getElementById('dict-modal-pos');
+  const bodyEl  = document.getElementById('dict-modal-body');
+
+  wordEl.textContent = conjInfo ? conjInfo.conj : item.es;
+  posEl.textContent  = item.pos || '';
+
+  let body = '';
+  if (conjInfo) {
+    body += '<div class="dict-conj-badge">入力した形：' + esc(conjInfo.conj)
+      + '　＝　' + esc(conjInfo.persona) + ' の現在形</div>';
+  }
+  body += '<div class="dict-ja-big">' + esc(item.ja) + '</div>';
+  if (conjInfo) {
+    body += '<div class="dict-row"><span class="dict-label">不定詞</span>'
+      + '<span class="dict-val"><span class="mono" style="font-weight:700;color:var(--accent);font-size:14px;">'
+      + esc(item.es) + '</span>　' + esc(item.ja) + '</span></div>';
+  }
+  body += '<div class="dict-row"><span class="dict-label">分類</span><span class="dict-val">'
+    + '<span class="dict-tag">' + esc(item.tag) + '</span>'
+    + (item.pos ? '<span class="dict-tag">' + esc(item.pos) + '</span>' : '')
+    + '</span></div>';
+
+  const t = item.type || '';
+  if (t.startsWith('verb_')) {
+    const ending = t === 'verb_ar' ? 'ar' : t === 'verb_er' ? 'er' : 'ir';
+    if (item.es.endsWith(ending)) {
+      const forms = getConjForms(item);
+      const isIrreg = !!item.irreg;
+      body += '<div class="dict-row"><span class="dict-label">現在形活用</span><span class="dict-val" style="overflow-x:auto;display:block">';
+      if (isIrreg) body += '<div style="font-size:10.5px;color:var(--warn);margin-bottom:4px;font-weight:700;">⚠ 不規則活用</div>';
+      body += '<table class="dict-conj-table"><thead><tr><th>人称</th><th>活用形</th></tr></thead><tbody>';
+      for (const {label, form} of forms) {
+        const hi = conjInfo && stripAccents(conjInfo.conj) === stripAccents(form);
+        body += '<tr' + (hi ? ' class="dict-conj-row-hi"' : '') + '>'
+          + '<td>' + esc(label) + '</td>'
+          + '<td>' + esc(form) + (hi ? '　◀ 入力形' : '') + '</td></tr>';
+      }
+      body += '</tbody></table></span></div>';
+    }
+  }
+
+  if (item.tag === '前置詞') {
+    body += '<div class="dict-row"><span class="dict-label">用法</span><span class="dict-val">'
+      + '名詞・代名詞・不定詞の前に置く。al（a+el）、del（de+el）に縮約。</span></div>';
+  } else if (item.tag === '疑問詞') {
+    body += '<div class="dict-row"><span class="dict-label">用法</span><span class="dict-val">'
+      + '疑問文の文頭（¿ の直後）に置く。常にアクセント記号あり。</span></div>';
+  }
+
+  if (item.anchor && document.getElementById(item.anchor)) {
+    body += '<button class="dict-jump-btn" onclick="scrollToAnchor(\'' + item.anchor + '\'); closeDictModal();">→ 解説ページへジャンプ</button>';
+  }
+
+  bodyEl.innerHTML = body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDictModal() {
+  document.getElementById('dict-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buildResultsHTML(results, grammar, q, conjMatch) {
+  _srItems = results;
+  let html = '';
+  if (grammar) {
+    html += '<div class="sr-item" onclick="scrollToAnchor(\'' + grammar.id + '\'); closeSearch();" style="border-left:3px solid var(--accent2);">'
+      + '<span class="sr-es" style="color:var(--accent2)">文法</span>'
+      + '<span class="sr-ja">' + grammar.label + '</span>'
+      + '<span class="sr-jump">→ ジャンプ</span>'
+      + '</div>';
+  }
+  if (!results.length && !grammar) {
+    return '<div class="sr-none">「' + esc(q) + '」に一致する単語が見つかりません</div>';
+  }
+  if (results.length) {
+    html += '<div class="sr-header">'
+      + (conjMatch ? '活用形' : '単語') + ' ' + results.length + '件'
+      + '<span style="font-size:10px;color:var(--muted);margin-left:8px;">タップで辞書カードを表示</span></div>';
+    for (let i = 0; i < results.length; i++) {
+      const r = results[i];
+      if (r.form === '活用形' && r.conjForm) {
+        html += '<div class="sr-item" style="cursor:pointer" data-idx="' + i + '" data-mode="conj" onclick="handleSrItemClick(this)">'
+          + '<span class="sr-es"><mark>' + esc(r.conjForm) + '</mark><span class="sr-form">活用形</span></span>'
+          + '<span class="sr-ja">' + esc(r.ja) + '</span>'
+          + '<span class="sr-jump" style="font-size:13px">📖</span>'
+          + '</div>';
+      } else {
+        const esHl = highlight(r.es, q);
+        const badge = r.pos ? '<span class="sr-pos">' + esc(r.pos) + '</span>' : '';
+        html += '<div class="sr-item" style="cursor:pointer" data-idx="' + i + '" data-mode="word" onclick="handleSrItemClick(this)">'
+          + '<span class="sr-es">' + esHl + badge + '</span>'
+          + '<span class="sr-ja">' + esc(r.ja) + '</span>'
+          + '<span class="sr-jump" style="font-size:13px">📖</span>'
+          + '</div>';
+      }
+    }
+  }
+  return html;
+}
+
+function handleSrItemClick(el) {
+  const idx  = parseInt(el.dataset.idx, 10);
+  const mode = el.dataset.mode;
+  const r = _srItems[idx];
+  if (!r) return;
+  if (mode === 'conj') openDictModal(r, {conj: r.conjForm, persona: r.conjPersona});
+  else openDictModal(r, null);
+}
+
+function renderTo(targetId, results, grammar, q, conjMatch) {
+  const box = document.getElementById(targetId);
+  box.innerHTML = buildResultsHTML(results, grammar, q, conjMatch);
+  box.classList.add('has-results');
+}
+
+document.getElementById('search-input').addEventListener('input', function() {
+  var q = this.value.trim();
+  var box = document.getElementById('search-results');
+  if (q.length < 1) { box.classList.remove('has-results'); return; }
+  var sr = searchVocab(q);
+  renderTo('search-results', sr.results, sr.grammar, q, sr.conjMatch);
+});
+document.getElementById('cover-search-input').addEventListener('input', function() {
+  var q = this.value.trim();
+  var box = document.getElementById('cover-search-results');
+  if (q.length < 1) { box.classList.remove('has-results'); return; }
+  var sr = searchVocab(q);
+  renderTo('cover-search-results', sr.results, sr.grammar, q, sr.conjMatch);
+});
+document.getElementById('search-close').addEventListener('click', closeSearch);
+</script>
+
+</body>
+</html>

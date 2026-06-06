@@ -13,7 +13,7 @@
 ├── ga.js                      # Google Analytics（共通スクリプト）
 ├── toggle-lock.js             # ロック・公開切替スクリプト（※現在非対応、後述）
 │
-├── Spanish1_lesson3〜7.html   # 一列（文法）解説
+├── Spanish1_lesson2〜7.html   # 一列（文法）解説
 ├── Spanish2_lesson1〜6.html   # 二列（会話・読解）解説
 ├── spanish_dictionary.html    # 辞書・単語帳
 │
