@@ -817,6 +817,22 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <p style="text-align:center; color:var(--muted); font-size:12px; margin-top:48px;">── Lección 3 会話・読解解説　おわり ──</p>
 
 <script>
+/* ── Lección 3 語彙データ ── */
+window.LESSON_VOCAB = {
+  'preparamos':       { pos:'動詞（preparar）', conj:'preparo, preparas, prepara, preparamos, preparáis, preparan', vtype:'ar動詞（規則変化）', example:{es:'Preparamos una comida mexicana.',ja:'メキシコ料理を作っています。'} },
+  'estás':            { pos:'動詞（estar）', conj:'estoy, estás, está, estamos, estáis, están', vtype:'不規則変化', note:'estar の2人称単数形。一時的な状態（暇かどうか）を表す。', example:{es:'¿Estás libre esta noche?',ja:'今夜は暇ですか？'} },
+  'libre':            { pos:'形容詞（男女同形）', note:'「自由な・暇な」。語尾 -e で男女同形。複数は libres。', example:{es:'Esta tarde estoy libre.',ja:'今日の午後は暇です。'} },
+  'gusta':            { pos:'動詞（gustar）', conj:'gusto, gustas, gusta, gustamos, gustáis, gustan', note:'主語が単数または不定詞のとき gusta。「〜が気に入る・好き」構文。', example:{es:'Nos gusta recibir a los amigos.',ja:'友達を招くのが好きです。'} },
+  'gustan':           { pos:'動詞（gustar）', conj:'gusto, gustas, gusta, gustamos, gustáis, gustan', note:'主語が複数のとき gustan。', example:{es:'¿Te gustan los tacos?',ja:'タコスは好きですか？'} },
+  'debo':             { pos:'動詞（deber）', conj:'debo, debes, debe, debemos, debéis, deben', vtype:'er動詞（規則変化）', note:'deber + 原形 で「〜しなければならない」（義務・必要性）。', example:{es:'Debo esperar a unas amigas.',ja:'友達を待たなければならない。'} },
+  'esperar':          { pos:'動詞・ar動詞（規則変化）', conj:'espero, esperas, espera, esperamos, esperáis, esperan', note:'「待つ」と「期待する・希望する」の2つの意味がある。', example:{es:'Debo esperar en el aeropuerto.',ja:'空港で待たなければならない。'} },
+  'invitas':          { pos:'動詞（invitar）', conj:'invito, invitas, invita, invitamos, invitáis, invitan', vtype:'ar動詞（規則変化）', example:{es:'¿Por qué no las invitas?',ja:'彼女たちを誘ったら？'} },
+  '¡qué lástima!':    { pos:'感嘆表現', note:'lástima は「残念なこと・遺憾」（女性名詞）。¡Qué + 名詞! で感嘆を表す。', example:{es:'¡Qué lástima! No puedo ir.',ja:'残念！行けません。'} },
+  '¿por qué no...?':  { pos:'表現', note:'「〜したらどうですか？」という提案の定番表現。', example:{es:'¿Por qué no vienes con nosotros?',ja:'私たちと一緒に来たらどう？'} },
+  'tal vez':          { pos:'副詞句', note:'「たぶん・もしかしたら」。quizás とほぼ同義。', example:{es:'Tal vez les gustan los tacos.',ja:'たぶん彼女たちはタコスが好きだと思う。'} },
+  'comida':           { pos:'名詞・女性', note:'複数形: comidas。「料理・食事」。comida mexicana で「メキシコ料理」。', example:{es:'Me encanta la comida mexicana.',ja:'メキシコ料理が大好きです。'} },
+};
+
 /* ══════════════════════════════════════════════
    Spanish2 共通スクリプト
    スペイン語二列 — 会話・読解解説シリーズ
@@ -1079,8 +1095,10 @@ window.addEventListener('afterprint', function() {
     res.querySelectorAll('.s2-sr-item[data-lesson]').forEach(function(el) {
       var idx = parseInt(el.dataset.lesson);
       el.addEventListener('click', function() {
+        var entry = _lessonHits[idx].entry;
         closeSearch();
-        jumpToEntry(_lessonHits[idx].entry);
+        if (typeof openWordModal === 'function') { openWordModal(entry.es, entry.def); }
+        else { jumpToEntry(entry); }
       });
     });
     res.querySelectorAll('.s2-sr-item[data-dict]').forEach(function(el) {

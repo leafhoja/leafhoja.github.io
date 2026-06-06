@@ -256,7 +256,9 @@
     display: inline-flex; align-items: baseline; gap: 3px;
     background: var(--surface); border: 1px solid var(--rule);
     padding: 3px 8px; font-size: 12px; line-height: 1.55;
+    cursor: pointer; transition: box-shadow .12s, border-color .12s;
   }
+  .pill:hover { box-shadow: 0 1px 6px rgba(0,0,0,.12); border-color: var(--accent); }
   .pill-es  { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: 12.5px; }
   .pill-pos { font-size: 10.5px; color: var(--muted); }
   .pill-ja  { color: var(--mid); }

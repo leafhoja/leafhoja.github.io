@@ -735,6 +735,21 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <p style="text-align:center; color:var(--muted); font-size:12px; margin-top:48px;">── Lección 4 会話・読解解説　おわり ──</p>
 
 <script>
+/* ── Lección 4 語彙データ ── */
+window.LESSON_VOCAB = {
+  '¡qué...!':            { pos:'感嘆表現', note:'¡Qué + 形容詞! で「なんて〜！」の感嘆文。形容詞は主語に性数一致。', example:{es:'¡Qué bonito lugar!',ja:'なんて美しい場所！'} },
+  'bonito':              { pos:'形容詞（男単）', adj:'bonito, bonita, bonitos, bonitas', note:'「きれいな・美しい・可愛い」。', example:{es:'¡Qué lugar tan bonito!',ja:'なんて美しい場所！'} },
+  'queda':               { pos:'動詞（quedar）', conj:'quedo, quedas, queda, quedamos, quedáis, quedan', vtype:'ar動詞（規則変化）', note:'「〜にある・位置する」の意味で estar の代わりに使うことがある。', example:{es:'¿Dónde queda el museo?',ja:'美術館はどこにありますか？'} },
+  'vas a viajar':        { pos:'動詞句（ir a + 原形）', note:'ir a + 原形 で近未来。vas = ir の2人称単数形。', example:{es:'¿Cuándo vas a viajar a Perú?',ja:'いつペルーに旅行するつもりですか？'} },
+  'pienso visitar':      { pos:'動詞句（pensar + 原形）', note:'pensar + 原形 で「〜するつもり（計画）」。pienso は pensar の1人称単数（e→ie変化）。', example:{es:'Pienso visitar varias ciudades.',ja:'いくつかの都市を訪れるつもりです。'} },
+  'quiero conocer':      { pos:'動詞句（querer + 原形）', note:'querer + 原形 で「〜したい」。quiero は querer の1人称単数（e→ie変化）。', example:{es:'Quiero conocer Machu Picchu.',ja:'マチュピチュを訪れたい。'} },
+  'tienen':              { pos:'動詞（tener）', conj:'tengo, tienes, tiene, tenemos, tenéis, tienen', vtype:'不規則変化（yo形 -go）', example:{es:'Los dos lugares tienen mucho valor histórico.',ja:'両方の場所に大きな歴史的価値がある。'} },
+  'hay que salir':       { pos:'表現', note:'hay que + 原形 で「〜しなければならない（一般的義務）」。主語なしで使う。', example:{es:'Hay que salir desde Cusco en tren.',ja:'クスコから電車で出発しなければならない。'} },
+  'interesante':         { pos:'形容詞（男女同形）', note:'語尾 -e で男女同形。複数は interesantes。', example:{es:'Es un lugar muy interesante.',ja:'とても面白い場所です。'} },
+  'ya lo creo':          { pos:'慣用表現', note:'「そうだよ・もちろん・当然」。同意を強く示す。直訳は「もうそれを信じる」。', example:{es:'¿Es bonito? ¡Ya lo creo!',ja:'きれいですか？もちろんです！'} },
+  'antiguos':            { pos:'形容詞（男複）', adj:'antiguo, antigua, antiguos, antiguas', note:'「古い・古代の」。', example:{es:'Cusco es una ciudad muy antigua.',ja:'クスコはとても古い都市です。'} },
+};
+
 /* ══════════════════════════════════════════════
    Spanish2 共通スクリプト
    スペイン語二列 — 会話・読解解説シリーズ
@@ -997,8 +1012,10 @@ window.addEventListener('afterprint', function() {
     res.querySelectorAll('.s2-sr-item[data-lesson]').forEach(function(el) {
       var idx = parseInt(el.dataset.lesson);
       el.addEventListener('click', function() {
+        var entry = _lessonHits[idx].entry;
         closeSearch();
-        jumpToEntry(_lessonHits[idx].entry);
+        if (typeof openWordModal === 'function') { openWordModal(entry.es, entry.def); }
+        else { jumpToEntry(entry); }
       });
     });
     res.querySelectorAll('.s2-sr-item[data-dict]').forEach(function(el) {

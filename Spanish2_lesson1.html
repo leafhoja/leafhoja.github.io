@@ -780,6 +780,25 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <p style="text-align:center; color:var(--muted); font-size:12px; margin-top:48px;">── Lección 1 会話・読解解説　おわり ──</p>
 
 <script>
+/* ── Lección 1 語彙データ ── */
+window.LESSON_VOCAB = {
+  'eres':        { pos:'動詞（ser）', conj:'soy, eres, es, somos, sois, son', vtype:'不規則変化', note:'「〜である（性質・出身・職業）」を表す。場所・状態は estar を使う。', example:{es:'¿De dónde eres?',ja:'どこ出身ですか？'} },
+  'soy':         { pos:'動詞（ser）', conj:'soy, eres, es, somos, sois, son', vtype:'不規則変化', note:'ser の1人称単数形。出身・国籍・職業などを述べる。', example:{es:'Soy de Japón.',ja:'日本出身です。'} },
+  'vivo':        { pos:'動詞（vivir）', conj:'vivo, vives, vive, vivimos, vivís, viven', vtype:'ir動詞（規則変化）', example:{es:'Vivo en Madrid ahora.',ja:'今はマドリードに住んでいます。'} },
+  'tengo':       { pos:'動詞（tener）', conj:'tengo, tienes, tiene, tenemos, tenéis, tienen', vtype:'不規則変化（yo形 -go）', note:'tener + 数字 + años で年齢を表す。', example:{es:'Tengo diecinueve años.',ja:'19歳です。'} },
+  'estudias':    { pos:'動詞（estudiar）', conj:'estudio, estudias, estudia, estudiamos, estudiáis, estudian', vtype:'ar動詞（規則変化）', example:{es:'¿Qué estudias?',ja:'何を勉強していますか？'} },
+  'estudio':     { pos:'動詞（estudiar）', conj:'estudio, estudias, estudia, estudiamos, estudiáis, estudian', vtype:'ar動詞（規則変化）', example:{es:'Estudio español en la universidad.',ja:'大学でスペイン語を勉強しています。'} },
+  'hablas':      { pos:'動詞（hablar）', conj:'hablo, hablas, habla, hablamos, habláis, hablan', vtype:'ar動詞（規則変化）', example:{es:'¿Hablas bien el español?',ja:'スペイン語を上手に話しますか？'} },
+  'hablo':       { pos:'動詞（hablar）', conj:'hablo, hablas, habla, hablamos, habláis, hablan', vtype:'ar動詞（規則変化）', example:{es:'Hablo solo un poco.',ja:'少しだけ話します。'} },
+  'aprendo':     { pos:'動詞（aprender）', conj:'aprendo, aprendes, aprende, aprendemos, aprendéis, aprenden', vtype:'er動詞（規則変化）', example:{es:'Aprendo español muy rápido.',ja:'スペイン語を速く覚えています。'} },
+  'me llamo':    { pos:'動詞句（llamarse）', conj:'me llamo, te llamas, se llama, nos llamamos, os llamáis, se llaman', note:'再帰動詞。「私は〜という名前です」の定番表現。', example:{es:'Me llamo Ana.',ja:'私はアナといいます。'} },
+  'llamarse':    { pos:'再帰動詞', conj:'me llamo, te llamas, se llama, nos llamamos, os llamáis, se llaman', note:'「〜と呼ばれる・〜という名前だ」。英語の "be called" に相当。', example:{es:'¿Cómo te llamas?',ja:'お名前は何ですか？'} },
+  'encantada':   { pos:'形容詞（女単）', note:'話し手が女性の場合。男性なら encantado。「はじめまして・お会いできて光栄」。', example:{es:'¡Encantada de conocerte!',ja:'お会いできて嬉しいです！'} },
+  'interesante': { pos:'形容詞（男女同形）', note:'語尾 -e で男女同形。複数は interesantes。', example:{es:'El español es muy interesante.',ja:'スペイン語はとても面白い。'} },
+  'yo también':  { pos:'表現', note:'también は「〜も・また」。yo を加えて「私も」を強調。', example:{es:'Yo también tengo diecinueve años.',ja:'私も19歳です。'} },
+  'un poco':     { pos:'表現', note:'poco（少し）に不定冠詞 un を付けた副詞句。', example:{es:'Hablo español un poco.',ja:'スペイン語を少し話します。'} },
+};
+
 /* ══════════════════════════════════════════════
    Spanish2 共通スクリプト
    スペイン語二列 — 会話・読解解説シリーズ
@@ -1042,8 +1061,10 @@ window.addEventListener('afterprint', function() {
     res.querySelectorAll('.s2-sr-item[data-lesson]').forEach(function(el) {
       var idx = parseInt(el.dataset.lesson);
       el.addEventListener('click', function() {
+        var entry = _lessonHits[idx].entry;
         closeSearch();
-        jumpToEntry(_lessonHits[idx].entry);
+        if (typeof openWordModal === 'function') { openWordModal(entry.es, entry.def); }
+        else { jumpToEntry(entry); }
       });
     });
     res.querySelectorAll('.s2-sr-item[data-dict]').forEach(function(el) {

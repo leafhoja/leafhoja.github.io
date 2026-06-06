@@ -781,6 +781,23 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <p style="text-align:center; color:var(--muted); font-size:12px; margin-top:48px;">── Lección 2 会話・読解解説　おわり ──</p>
 
 <script>
+/* ── Lección 2 語彙データ ── */
+window.LESSON_VOCAB = {
+  'mira':          { pos:'動詞（mirar）命令形', conj:'miro, miras, mira, miramos, miráis, miran', vtype:'ar動詞（規則変化）', note:'mira は tú に対する肯定命令形「見て」。', example:{es:'Mira, allí está mi amiga.',ja:'見て、あそこに私の友達がいるよ。'} },
+  'está':          { pos:'動詞（estar）', conj:'estoy, estás, está, estamos, estáis, están', vtype:'不規則変化', note:'場所・所在を表す estar の3人称単数形。', example:{es:'¿Dónde está el banco?',ja:'銀行はどこですか？'} },
+  'estoy':         { pos:'動詞（estar）', conj:'estoy, estás, está, estamos, estáis, están', vtype:'不規則変化', note:'estar の1人称単数形。場所や一時的な状態を表す。', example:{es:'Estoy en Tokio para estudiar.',ja:'勉強するために東京にいます。'} },
+  'eres':          { pos:'動詞（ser）', conj:'soy, eres, es, somos, sois, son', vtype:'不規則変化', note:'ser の2人称単数形。出身・国籍などの性質を述べる。', example:{es:'¿De dónde eres?',ja:'どこ出身ですか？'} },
+  'soy':           { pos:'動詞（ser）', conj:'soy, eres, es, somos, sois, son', vtype:'不規則変化', example:{es:'Soy de Corea.',ja:'韓国出身です。'} },
+  'llamas':        { pos:'動詞（llamarse）', conj:'me llamo, te llamas, se llama, nos llamamos, os llamáis, se llaman', note:'再帰動詞 llamarse の2人称単数形。「あなたは〜という名前だ」。', example:{es:'¿Cómo te llamas?',ja:'お名前は？'} },
+  'llamo':         { pos:'動詞（llamarse）', conj:'me llamo, te llamas, se llama, nos llamamos, os llamáis, se llaman', note:'再帰動詞 llamarse の1人称単数形。', example:{es:'Me llamo Naoki.',ja:'直樹といいます。'} },
+  'mucho gusto':   { pos:'表現', note:'「はじめまして」。直訳は「大きな喜び」。初対面の挨拶。', example:{es:'Yo me llamo Naoki, mucho gusto.',ja:'僕は直樹といいます。はじめまして。'} },
+  'encantada':     { pos:'形容詞（女単）', note:'女性が言う場合は encantada、男性は encantado。「お会いできて光栄」。', example:{es:'Encantada de conocerte.',ja:'お会いできて光栄です。'} },
+  '¿verdad?':      { pos:'付加疑問表現', note:'「〜だよね？・本当に？」。英語の "right?" に相当。', example:{es:'Eres chino, ¿verdad?',ja:'中国人だよね？'} },
+  'pero':          { pos:'接続詞', note:'「しかし・でも」。逆接の接続詞。', example:{es:'Soy de Fukuoka, pero ahora vivo en Tokio.',ja:'福岡出身だが、今は東京に住んでいる。'} },
+  'para estudiar': { pos:'前置詞句', note:'para + 動詞原形 で「〜するために（目的）」。', example:{es:'Estoy en Tokio para estudiar español.',ja:'スペイン語を勉強するために東京にいます。'} },
+  'ahora':         { pos:'副詞', note:'「今・現在」。時間を表す副詞。', example:{es:'Ahora vivo en Tokio.',ja:'今は東京に住んでいます。'} },
+};
+
 /* ══════════════════════════════════════════════
    Spanish2 共通スクリプト
    スペイン語二列 — 会話・読解解説シリーズ
@@ -1043,8 +1060,10 @@ window.addEventListener('afterprint', function() {
     res.querySelectorAll('.s2-sr-item[data-lesson]').forEach(function(el) {
       var idx = parseInt(el.dataset.lesson);
       el.addEventListener('click', function() {
+        var entry = _lessonHits[idx].entry;
         closeSearch();
-        jumpToEntry(_lessonHits[idx].entry);
+        if (typeof openWordModal === 'function') { openWordModal(entry.es, entry.def); }
+        else { jumpToEntry(entry); }
       });
     });
     res.querySelectorAll('.s2-sr-item[data-dict]').forEach(function(el) {

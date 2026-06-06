@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initDialogueJump();
   initLecturaJump();
   initVocabTab();
+  initWordTap();
 });
 
 /* ── 対話文 → 発話カードへのジャンプ ── */
@@ -220,6 +221,69 @@ function initVocabTab() {
     tocMenu.appendChild(sep);
     tocMenu.appendChild(lnk);
   }
+}
+
+/* ── 単語タップ機能（全Spanish2レッスン共通） ── */
+function initWordTap() {
+  document.querySelectorAll('.word-item').forEach(function (item) {
+    if (item.classList.contains('tappable')) return;
+    item.classList.add('tappable');
+    item.title = 'タップして詳細を確認';
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var esEl = item.querySelector('.w-es');
+      var defEl = item.querySelector('.w-def');
+      if (!esEl || !defEl) return;
+      openWordModal(esEl.textContent.trim(), defEl.textContent.trim());
+    });
+  });
+}
+
+/* ── 単語詳細モーダル（グローバル関数） ── */
+function openWordModal(esText, defText) {
+  var key = esText.trim().toLowerCase();
+  var vocab = window.LESSON_VOCAB || {};
+  var entry = vocab[key] || {};
+
+  var wordEl   = document.getElementById('s2-dict-word');
+  var posEl    = document.getElementById('s2-dict-pos');
+  var bodyEl   = document.getElementById('s2-dict-body');
+  var overlayEl = document.getElementById('s2-dict-overlay');
+  if (!wordEl || !bodyEl || !overlayEl) return;
+
+  wordEl.textContent = esText;
+  posEl.textContent  = entry.pos || '';
+
+  var body = '<div class="s2-dict-meaning">' + s2EscHtml(defText) + '</div>';
+
+  if (entry.note) {
+    body += '<div class="s2-dict-note">📝 ' + s2EscHtml(entry.note) + '</div>';
+  }
+  if (entry.vtype) {
+    body += '<div class="s2-dict-row"><span class="s2-dict-label">動詞型</span><span class="s2-dict-val">' + s2EscHtml(entry.vtype) + '</span></div>';
+  }
+  if (entry.conj) {
+    var cHtml = entry.conj.split(/,\s*/).map(function (f) {
+      return '<span class="s2-dict-conj">' + s2EscHtml(f.trim()) + '</span>';
+    }).join('');
+    body += '<div class="s2-dict-row"><span class="s2-dict-label">現在活用</span><span class="s2-dict-val">' + cHtml + '</span></div>';
+  }
+  if (entry.adj) {
+    var aHtml = entry.adj.split(/,\s*/).map(function (f) {
+      return '<span class="s2-dict-adj">' + s2EscHtml(f.trim()) + '</span>';
+    }).join('');
+    body += '<div class="s2-dict-row"><span class="s2-dict-label">形容詞変化</span><span class="s2-dict-val">' + aHtml + '</span></div>';
+  }
+  if (entry.example) {
+    body += '<div class="s2-dict-example">' +
+      '<div class="s2-dict-ex-label">例文</div>' +
+      '<div class="s2-dict-ex-es">' + s2EscHtml(entry.example.es) + '</div>' +
+      '<div class="s2-dict-ex-ja">' + s2EscHtml(entry.example.ja) + '</div>' +
+      '</div>';
+  }
+
+  bodyEl.innerHTML = body;
+  overlayEl.classList.add('open');
 }
 
 function s2EscHtml(s) {

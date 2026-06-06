@@ -768,6 +768,25 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <p style="text-align:center; color:var(--muted); font-size:12px; margin-top:48px;">── Lección 6 会話・読解解説　おわり ──</p>
 
 <script>
+/* ── Lección 6 語彙データ ── */
+window.LESSON_VOCAB = {
+  'tienes':                    { pos:'動詞（tener）', conj:'tengo, tienes, tiene, tenemos, tenéis, tienen', vtype:'不規則変化', note:'tener + 数字 + años で年齢を表す。tener hermanos で「兄弟姉妹がいる」。', example:{es:'¿Cuántos hermanos tienes?',ja:'兄弟は何人いますか？'} },
+  'tiene':                     { pos:'動詞（tener）', conj:'tengo, tienes, tiene, tenemos, tenéis, tienen', vtype:'不規則変化', example:{es:'Tiene veinticinco años.',ja:'25歳です。'} },
+  'mayor':                     { pos:'形容詞（比較級）', note:'「年上の・より大きい」。grande の不規則比較級。性数変化なし（複数: mayores）。', example:{es:'Tengo un hermano mayor.',ja:'年上の兄がいます。'} },
+  'menor':                     { pos:'形容詞（比較級）', note:'「年下の・より小さい」。pequeño の不規則比較級。複数: menores。', example:{es:'Mi hermana menor estudia en la universidad.',ja:'妹は大学で勉強しています。'} },
+  'trabaja como médico':        { pos:'表現', note:'trabajar como + 職業 で「〜として働く」。como は「〜として」の意味。', example:{es:'Trabaja como médico en un hospital.',ja:'病院で医師として働いています。'} },
+  'estudia':                   { pos:'動詞（estudiar）', conj:'estudio, estudias, estudia, estudiamos, estudiáis, estudian', vtype:'ar動詞（規則変化）', example:{es:'Mi hermana menor estudia medicina.',ja:'妹は医学を勉強しています。'} },
+  'vivís':                     { pos:'動詞（vivir）vosotros形', conj:'vivo, vives, vive, vivimos, vivís, viven', vtype:'ir動詞（規則変化）', note:'vosotros（あなたがた）に対する形。スペインで主に使用。', example:{es:'¿Vivís todos juntos?',ja:'みんな一緒に住んでいますか？'} },
+  'vivimos':                   { pos:'動詞（vivir）', conj:'vivo, vives, vive, vivimos, vivís, viven', vtype:'ir動詞（規則変化）', example:{es:'Vivimos todos juntos en Salamanca.',ja:'みんなサラマンカで一緒に住んでいます。'} },
+  'viven':                     { pos:'動詞（vivir）', conj:'vivo, vives, vive, vivimos, vivís, viven', vtype:'ir動詞（規則変化）', example:{es:'Muchas familias viven con los abuelos.',ja:'多くの家族が祖父母と一緒に住んでいます。'} },
+  'cariñosa':                  { pos:'形容詞（女単）', adj:'cariñoso, cariñosa, cariñosos, cariñosas', note:'「愛情深い・優しい」。男性形は cariñoso。', example:{es:'Mi madre es muy cariñosa.',ja:'私の母はとても愛情深い。'} },
+  'trabajadora':               { pos:'形容詞（女単）', adj:'trabajador, trabajadora, trabajadores, trabajadoras', note:'「働き者の・勤勉な」。男性形は trabajador（語尾 -a なし）。', example:{es:'Mi hermano es muy trabajador.',ja:'兄はとても勤勉です。'} },
+  'típico':                    { pos:'形容詞（男単）', adj:'típico, típica, típicos, típicas', note:'「典型的な・一般的な」。', example:{es:'Es muy típico en España.',ja:'スペインではとても一般的です。'} },
+  'familiares':                { pos:'名詞（男性複数）', note:'「家族・親族」。形容詞 familiar が名詞として使われている。', example:{es:'¿Veis a vuestros familiares frecuentemente?',ja:'親族によく会いますか？'} },
+  'hijo único':                { pos:'表現', note:'「一人っ子（男）」。女性は hija única。英語の only child に相当。', example:{es:'Es hijo único y lo mimaron mucho.',ja:'一人っ子なので、とても甘やかされた。'} },
+  '¡qué familia tan grande!':  { pos:'感嘆表現', note:'¡Qué + 名詞 + tan + 形容詞! の強調感嘆文。', example:{es:'¡Qué familia tan grande tenéis!',ja:'なんて大家族なんですか！'} },
+};
+
 /* ══════════════════════════════════════════════
    Spanish2 共通スクリプト
    スペイン語二列 — 会話・読解解説シリーズ
@@ -1030,8 +1049,10 @@ window.addEventListener('afterprint', function() {
     res.querySelectorAll('.s2-sr-item[data-lesson]').forEach(function(el) {
       var idx = parseInt(el.dataset.lesson);
       el.addEventListener('click', function() {
+        var entry = _lessonHits[idx].entry;
         closeSearch();
-        jumpToEntry(_lessonHits[idx].entry);
+        if (typeof openWordModal === 'function') { openWordModal(entry.es, entry.def); }
+        else { jumpToEntry(entry); }
       });
     });
     res.querySelectorAll('.s2-sr-item[data-dict]').forEach(function(el) {

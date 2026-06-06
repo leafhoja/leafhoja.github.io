@@ -1296,6 +1296,23 @@ document.addEventListener('keydown', function(e) {
     });
   });
 })();
+
+// ── 語彙ピル タップで辞書カード表示 ──
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('#tab-vocab .pill').forEach(function(pill) {
+    pill.title = 'タップして詳細を確認';
+    pill.addEventListener('click', function() {
+      var esEl = pill.querySelector('.pill-es');
+      if (!esEl) return;
+      var es = esEl.textContent.trim().toLowerCase();
+      var found = null;
+      for (var i = 0; i < VOCAB_BASE.length; i++) {
+        if (VOCAB_BASE[i].es.toLowerCase() === es) { found = VOCAB_BASE[i]; break; }
+      }
+      if (found) openDictModal(found, null);
+    });
+  });
+});
 </script>
 
 <!-- 辞書データ読み込み -->
