@@ -1,6 +1,6 @@
 // phrase-lookup.js
 // .ex-sp をクリックすると含まれる各単語の意味を inline 表示する
-// 依存: phrase-dict.js (WORD_IDX, FORM_IDX)
+// phrase-dict.js (WORD_IDX, FORM_IDX) は初回クリック時に動的ロード
 
 (function () {
   'use strict';
@@ -174,15 +174,55 @@
     });
   }
 
-  function setup() {
-    if (typeof WORD_IDX === 'undefined' || typeof FORM_IDX === 'undefined') {
-      setTimeout(setup, 100);
-      return;
-    }
-
+  function attachAll() {
     attachClickable('.ex-sp',   '.ex');
     attachClickable('.utt-es',  '.utt-header');
     attachClickable('.sent-es', '.sent-header');
+  }
+
+  // ── 遅延ロード ──────────────────────────────
+  // phrase-dict.js は初回クリック時に動的ロードする
+
+  function setup() {
+    var candidates = document.querySelectorAll('.ex-sp, .utt-es, .sent-es');
+    if (!candidates.length) return;
+
+    // データ既ロード済み（html側で script タグ書いた場合など）
+    if (typeof WORD_IDX !== 'undefined' && typeof FORM_IDX !== 'undefined') {
+      attachAll();
+      return;
+    }
+
+    // クリック前に視覚的フィードバックだけ設定
+    candidates.forEach(function (el) {
+      el.classList.add('pb-clickable');
+      el.title = 'クリックして単語を確認';
+    });
+
+    var loading = false;
+    function onFirstClick(e) {
+      if (loading) return;
+      loading = true;
+      var originalEl = e.currentTarget;
+      // すでにロード済みなら即セットアップ
+      if (typeof WORD_IDX !== 'undefined' && typeof FORM_IDX !== 'undefined') {
+        attachAll();
+        setTimeout(function () { originalEl.click(); }, 0);
+        return;
+      }
+      var s = document.createElement('script');
+      s.src = 'phrase-dict.js';
+      s.onload = function () {
+        attachAll();
+        // 最初のクリックを再発火して結果を即表示
+        setTimeout(function () { originalEl.click(); }, 0);
+      };
+      document.head.appendChild(s);
+    }
+
+    candidates.forEach(function (el) {
+      el.addEventListener('click', onFirstClick, { once: true });
+    });
   }
 
   if (document.readyState === 'loading') {
