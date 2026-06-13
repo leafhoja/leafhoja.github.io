@@ -435,4 +435,182 @@
     ]
   };
 
+
+  /* ── 二列 Lección 4 予想問題（ir a＋原形・pensar＋原形・比較・最上級・義務・quedar 等）── */
+  QUIZ_DATA['Spanish2_lesson4.html'] = {
+    adminOnly: true,
+    title: 'Lección 4 小テスト（予想問題）',
+    intro: 'この課の重要表現（ir a＋原形・pensar/querer＋原形・比較級・最上級・hay que/deber＋原形・quedar・lo＋形容詞など）からの予想問題です。空所をタップすると解答が、「答えを確認」で解説が表示されます。',
+    sections: [
+      {
+        heading: '和文西訳（１）ir a・pensar・querer＋原形',
+        instruction: '次の日本語をスペイン語に訳しなさい。',
+        items: [
+          {
+            ja: 'ペルーに旅行する予定なの？',
+            a: '¿Vas a viajar a Perú?',
+            exp: '「〜する予定だ」= <b>ir a＋原形</b>（近未来）。vas は ir の2人称単数形。<br>⚠️ ir の活用に注意：voy / vas / va / vamos / vais / van。<br>📖 <b>語句</b>：viajar「旅行する」／a Perú「ペルーへ（移動の前置詞 a）」'
+          },
+          {
+            ja: '何日間あっちにいる予定なの？',
+            a: '¿Cuántos días vas a estar allí?',
+            exp: 'ir a＋原形 の疑問文。<b>cuántos</b> は días（男性複数）に一致。allí「そこに（特定の場所）」。<br>⚠️ cuánto は días（男複）なので cuántos（×cuántas）。<br>📖 <b>語句</b>：cuántos「いくつの（男複）」／día「日」／allí「そこに」'
+          },
+          {
+            ja: '私は滞在を利用して近くの他の場所を訪れるつもりだ。',
+            a: 'Voy a aprovechar la estancia para conocer otros lugares cercanos.',
+            exp: '<b>ir a＋原形</b>（近未来）＋<b>aprovechar＋名詞＋para＋原形</b>「〜を利用して…する」の重要構文。<br>⚠️ otros は不定冠詞なしで使う（×un otro lugar）。<br>📖 <b>語句</b>：aprovechar「活かす・利用する」／estancia「滞在」／cercano「近くの」'
+          },
+          {
+            ja: '彼女は来月メキシコに旅行する予定だ。',
+            a: 'Va a viajar a México el mes que viene.',
+            exp: 'ir a＋原形 の3人称単数形。<b>va a＋原形</b>。「来月」= <b>el mes que viene</b>。<br>⚠️ 移動先の前置詞は a（a México）。el mes próximo も正解。<br>📖 <b>語句</b>：va a＋原形「〜する予定だ（3単）」／el mes que viene「来月」'
+          },
+          {
+            ja: '私たちは今年の夏、その世界遺産を訪れるつもりだ。',
+            a: 'Vamos a conocer ese Patrimonio de la Humanidad este verano.',
+            exp: 'ir a＋原形 の1人称複数形。<b>vamos a＋原形</b>。conocer「場所を訪れる・面識をもつ」。<br>⚠️ vamos a＋原形 は「〜するつもり」。¡Vamos a＋原形! は勧誘「〜しよう」にもなる。<br>📖 <b>語句</b>：conocer「訪れる・知る（場所・人）」／Patrimonio de la Humanidad「世界遺産」／verano「夏」'
+          },
+          {
+            ja: 'あなたは何月に南米（América del Sur）に行く予定ですか？',
+            a: '¿En qué mes va usted a ir a América del Sur?',
+            exp: '「あなた」= <b>usted</b>（3人称扱い）→ ir の3単 <b>va</b>。「何月に」= <b>en qué mes</b>。<br>⚠️ usted は3人称扱いなので va（×vas）。疑問符は ¿ ? で前後を囲む。<br>📖 <b>語句</b>：usted「あなた（丁寧）」（3人称扱い）／América del Sur「南米」／en qué mes「何月に」'
+          },
+          {
+            ja: '彼らは8月にいくつかの都市を訪れる予定だ。',
+            a: 'Van a visitar varias ciudades en agosto.',
+            exp: 'ir a＋原形 の3人称複数形。<b>van a＋原形</b>。「いくつかの」= <b>varias</b>（ciudades 女性複数に一致）。<br>⚠️ van（×vanes は誤り）。varias は形容詞で名詞の性数に一致。<br>📖 <b>語句</b>：van a＋原形「〜する予定だ（3複）」／varias「いくつかの」／agosto「8月」'
+          },
+          {
+            ja: '君はいつスペインに旅行するつもりなの？',
+            a: '¿Cuándo vas a viajar a España?',
+            exp: 'ir a＋原形 の2人称単数疑問文。疑問詞 <b>cuándo</b>「いつ」。移動先は a＋地名（a España）。<br>⚠️ cuándo にアクセント記号（cuando「〜のとき」接続詞と区別）。<br>📖 <b>語句</b>：cuándo「いつ（疑問詞）」／España「スペイン」'
+          },
+          {
+            ja: 'エルビラは8月にいくつかの町を訪れようと思っている。',
+            a: 'Elvira piensa visitar varias ciudades en agosto.',
+            exp: '<b>pensar＋原形</b>「〜するつもり（計画・意図）」。pensar は e→ie 変化（ブーツ型）：<b>piensa</b>（3単）。<br>⚠️ pienso / piensas / piensa / pensamos / pensáis / piensan。1複・2複は変化なし。<br>📖 <b>語句</b>：pensar＋原形「〜するつもりだ」／varias ciudades「いくつかの都市」／agosto「8月」'
+          },
+          {
+            ja: '私はあちらが冬になる8月に南米を旅行しようと思っている。',
+            a: 'Pienso viajar a América del Sur en agosto, cuando allá es invierno.',
+            exp: '<b>pensar＋原形</b>（1単 pienso）。<b>cuando allá es invierno</b>「あちらが冬（のとき）」。南半球では8月が冬になる。<br>⚠️ cuando の後は現在形（allá es invierno）。allá「あちら（漠然と遠い場所）」。<br>📖 <b>語句</b>：cuando「〜のとき」／allá「あちら（遠い場所）」／invierno「冬」'
+          },
+          {
+            ja: '私はクスコとマチュピチュを訪れたい。',
+            a: 'Quiero conocer Cusco y Machu Picchu.',
+            exp: '<b>querer＋原形</b>「〜したい（願望）」。querer は e→ie 変化：<b>quiero</b>（1単）。conocer「場所を訪れる・面識をもつ」。<br>⚠️ quiero（×quereo は誤り）。visitar でも可。<br>📖 <b>語句</b>：querer＋原形「〜したい」／quiero「私は〜したい（1単）」／conocer「訪れる」'
+          },
+          {
+            ja: '彼女はどの世界遺産を訪れたいの？',
+            a: '¿Qué Patrimonio de la Humanidad quiere conocer ella?',
+            exp: '<b>querer＋原形</b>（3単 quiere）。疑問詞 <b>qué</b>「どの・何の」（名詞直前では疑問形容詞）。<br>⚠️ quiere（×quere は誤り）。qué は疑問形容詞として名詞を修飾。<br>📖 <b>語句</b>：qué「どの・何の（疑問形容詞）」／quiere＋原形「〜したい（3単）」'
+          },
+          {
+            ja: '私たちはその世界遺産の美しさを鑑賞したい。',
+            a: 'Queremos apreciar la belleza de ese Patrimonio de la Humanidad.',
+            exp: '<b>querer＋原形</b>（1複 queremos）。<b>apreciar</b>「鑑賞する・楽しむ」（Lectura 文3より）。belleza「美しさ」。<br>⚠️ queremos は語幹変化なし（1複はブーツ型の外）。<br>📖 <b>語句</b>：queremos「〜したい（1複）」／apreciar「鑑賞する・楽しむ」／belleza「美しさ」'
+          }
+        ]
+      },
+      {
+        heading: '和文西訳（２）比較・最上級',
+        instruction: '次の日本語をスペイン語に訳しなさい。',
+        items: [
+          {
+            ja: 'マチュピチュは富士山より低い（高くない）。',
+            a: 'Machu Picchu es menos alta que el Monte Fuji.',
+            exp: '<b>menos＋形容詞＋que</b>（劣等比較）「〜より…でない」。alta は ciudadela（女単）に合わせた女性形。<br>⚠️ menos…que の que を de にしない。baja より <b>menos alta</b> が対話の自然な表現。<br>📖 <b>語句</b>：menos alta「より低い（より高くない）」／que「〜より（比較の接続詞）」／el Monte Fuji「富士山」'
+          },
+          {
+            ja: 'マチュピチュは富士山より高いの？低いの？',
+            a: '¿Es Machu Picchu más alta o menos alta que el Monte Fuji?',
+            exp: '優等比較 <b>más＋形容詞＋que</b> と劣等比較 <b>menos＋形容詞＋que</b> の両方を使った疑問文。alta は ciudadela（女単）に一致。<br>⚠️ 比較対象は que＋el Monte Fuji（que の後）。形容詞は主語の性に一致。<br>📖 <b>語句</b>：más alta「より高い」／menos alta「より低い」／que「〜より（比較）」'
+          },
+          {
+            ja: 'クスコはリマ（Lima）より古い。',
+            a: 'Cusco es más antiguo que Lima.',
+            exp: '<b>más＋形容詞＋que</b>（優等比較）。antiguo は Cusco（都市名：男性扱い）に一致して男性単数形。<br>⚠️ Cusco は都市名で男性名詞扱い → antiguo（×antigua は誤り）。<br>📖 <b>語句</b>：antiguo「古い・古代の」（男単）／más antiguo que「〜より古い」'
+          },
+          {
+            ja: 'この場所はあの場所より興味深い歴史を持っている。',
+            a: 'Este lugar tiene una historia más interesante que aquel.',
+            exp: '<b>más＋形容詞＋que</b>（優等比較）。interesante は historia（女単）を修飾するが、-e 語尾で<b>男女同形</b>（複数は interesantes）。<br>⚠️ interesante は性変化なし（×interesanta は誤り）。<br>📖 <b>語句</b>：interesante「興味深い」（男女同形）／historia「歴史」／aquel「あの（もの）」'
+          },
+          {
+            ja: '大きなものもあれば古いものもある。しかし重要でないものは一つもない。',
+            a: 'Algunos son más grandes, otros más antiguos, pero ninguno es menos importante.',
+            exp: '<b>algunos…otros</b>「一部は〜・他は〜」（対比表現）。<b>ninguno</b>「一つも〜ない」（完全否定）。menos importante（劣等比較）。<br>⚠️ ninguno は男性単数（×ningunos は誤り）。動詞 es（単数）に注意。<br>📖 <b>語句</b>：algunos「一部は」／otros「他のものは」／ninguno「一つも〜ない」'
+          },
+          {
+            ja: 'イグアスの滝（Las Cataratas del Iguazú）はテオティワカン（Teotihuacán）よりも有名だ。',
+            a: 'Las Cataratas del Iguazú son más famosas que Teotihuacán.',
+            exp: '<b>más＋形容詞＋que</b>（優等比較）。Las Cataratas（女性複数）に一致して <b>famosas</b>（複数形）。<br>⚠️ 主語が複数なので形容詞も複数（famosas）・動詞は son。<br>📖 <b>語句</b>：famoso「有名な」（女複 famosas）／Cataratas del Iguazú「イグアスの滝」'
+          },
+          {
+            ja: 'クスコはペルーで最も観光地として人気の都市だ。',
+            a: 'Cusco es la ciudad más turística de Perú.',
+            exp: '<b>定冠詞＋más＋形容詞＋de＋範囲</b>（最上級）。la ciudad（女単）→ <b>la más turística</b>。範囲は <b>de Perú</b>。<br>⚠️ 最上級の範囲は que ではなく <b>de</b>。定冠詞は名詞の性数に合わせる。<br>📖 <b>語句</b>：turístico「観光の」（女単 turística）／de Perú「ペルーで（範囲）」'
+          },
+          {
+            ja: 'マチュピチュはペルーで最も有名な場所の一つだ。',
+            a: 'Machu Picchu es uno de los lugares más famosos de Perú.',
+            exp: '<b>uno de los＋名詞（複数）＋más＋形容詞＋de</b>「最も〜な…の一つ」。lugares（男複）→ <b>los más famosos</b>（男複）。<br>⚠️ uno de los / una de las の定冠詞は後ろの名詞に一致。famosos は複数形。<br>📖 <b>語句</b>：uno de los más…「最も〜の一つ」／famoso「有名な」（男複 famosos）'
+          },
+          {
+            ja: 'テオティワカンはラテンアメリカで最も多く訪れられる場所の一つだ。',
+            a: 'Teotihuacán es uno de los lugares más visitados en América Latina.',
+            exp: '<b>uno de los más visitados</b>（最上級）。visitado「訪れられた」は過去分詞の形容詞的用法。lugares（男複）→ <b>visitados</b>（男複）。<br>⚠️ en América Latina（de でなく en でも範囲を示せる）。visitados は複数形。<br>📖 <b>語句</b>：visitado「訪れられた・人気の」（男複 visitados）／América Latina「ラテンアメリカ」'
+          },
+          {
+            ja: 'ラテンアメリカで最も訪れられる場所の中にグアテマラのティカル国立公園がある。',
+            a: 'Entre los más visitados en América Latina está el Parque Nacional Tikal en Guatemala.',
+            exp: '<b>entre los más visitados</b>（最上級）「最も訪れられるものの中に」。<b>Entre…está(n)</b>（存在の倒置構文）。<br>⚠️ está は Parque Nacional（単数）に合わせて単数。los más visitados の定冠詞 los（男複）。<br>📖 <b>語句</b>：entre「〜の中に」／los más visitados「最も多く訪れられるもの」／Parque Nacional「国立公園」'
+          }
+        ]
+      },
+      {
+        heading: '和文西訳（３）義務・その他',
+        instruction: '次の日本語をスペイン語に訳しなさい。',
+        items: [
+          {
+            ja: 'そこに着くためにはクスコから電車で出発しなければいけない。',
+            a: 'Para llegar hay que salir desde Cusco en tren.',
+            exp: '<b>hay que＋原形</b>（一般的義務・非人称）「〜しなければならない」。<b>para＋原形</b>「〜するために」。desde「〜から（出発点）」。<br>⚠️ hay que は主語なし・非人称（特定の人に帰さない義務）。hay que の後は原形（活用しない）。<br>📖 <b>語句</b>：hay que＋原形「〜しなければならない」／desde「〜から（起点）」／en tren「電車で」'
+          },
+          {
+            ja: '世界遺産になるためには、場所は歴史的価値か自然としての価値を持たなければならない。',
+            a: 'Para ser Patrimonio de la Humanidad los lugares deben tener valor histórico o natural.',
+            exp: '<b>deber＋原形</b>（義務）「〜しなければならない」。deben は3複（主語 los lugares）。para ser「〜になるためには（条件）」。<br>⚠️ hay que（非人称）ではなく <b>deben</b>（特定の主語 los lugares に帰す義務）。<br>📖 <b>語句</b>：deber＋原形「〜しなければならない（義務）」／valor histórico「歴史的価値」／valor natural「自然の価値」'
+          },
+          {
+            ja: 'それらの場所を訪れるとき、未来の世代のためにそれらを大切にしなければならない。',
+            a: 'Cuando visitamos esos lugares, debemos cuidarlos para las futuras generaciones.',
+            exp: '<b>deber＋原形</b>（1複 debemos）。<b>cuando＋現在形</b>「〜するとき（習慣・一般条件）」。cuidarlos = cuidar＋los（直接目的語、lugares を受ける）。<br>⚠️ cuando の後は現在形（visitamos）。原形に代名詞を後置（cuidarlos）できる。<br>📖 <b>語句</b>：cuidar「大切にする・世話をする」／futuras generaciones「将来の世代」／cuando「〜するとき（接続詞）」'
+          },
+          {
+            ja: '外国（el extranjero）へ旅行するためにはパスポートを取らなければならない。',
+            a: 'Para viajar al extranjero hay que sacar el pasaporte.',
+            exp: '<b>hay que＋原形</b>（一般的義務）。para＋原形「〜するために」。al extranjero＝a＋el extranjero（縮約）。<br>⚠️ a＋el = <b>al</b>（縮約）。hay que の後は原形（sacar）。<br>📖 <b>語句</b>：al extranjero「外国へ（a＋el の縮約）」／sacar「取得する」／pasaporte「パスポート」'
+          },
+          {
+            ja: '私たちは世界遺産の注意事項（las recomendaciones）に従わなければならない。',
+            a: 'Debemos atender las recomendaciones del Patrimonio de la Humanidad.',
+            exp: '<b>deber＋原形</b>（1複 debemos）。<b>atender</b>「注意を向ける・（指示に）従う」。del＝de＋el（縮約）。<br>⚠️ atender は「待つ」ではなく「従う・気を配る」の意。las recomendaciones「注意事項」（女複）。<br>📖 <b>語句</b>：atender「従う・気を配る」／recomendaciones「注意事項」（女複）／del「〜の（de＋el 縮約）」'
+          },
+          {
+            ja: 'マチュピチュは山の高いところにある（位置する）要塞だ。',
+            a: 'Machu Picchu es una ciudadela que está en lo alto de una montaña.',
+            exp: '<b>lo＋形容詞</b>「〜なところ・〜なこと」（中性定冠詞）。lo alto＝「高いところ」。<b>en lo alto de</b>「〜の高いところに」。<br>⚠️ lo は中性定冠詞で形容詞を名詞化する。es（ser で本質・分類）と está（estar で位置）の使い分けも確認。<br>📖 <b>語句</b>：ciudadela「城砦・要塞」／lo＋形容詞「〜なところ・〜なこと」／en lo alto de「〜の高いところに」'
+          },
+          {
+            ja: 'イグアスの滝はブラジルとパラグアイとアルゼンチンの間にある。',
+            a: 'Las Cataratas del Iguazú quedan entre Brasil, Paraguay y Argentina.',
+            exp: '<b>quedar</b>「〜に位置する・〜にある」（地理的な位置の表現。estar の代わりに使う）。entre「〜の間に」。<br>⚠️ quedan（3複：Las Cataratas は複数）。発話1の ¿Dónde queda? も同じ quedar の用法。<br>📖 <b>語句</b>：quedar「〜にある・位置する（地理的）」／entre「〜の間に」／Cataratas del Iguazú「イグアスの滝」'
+          }
+        ]
+      }
+    ]
+  };
+
 })();
