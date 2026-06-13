@@ -436,6 +436,7 @@ body.is-printing #tab-renshu { break-before: always; page-break-before: always; 
 .s2-dict-dict-link:hover { text-decoration: underline; }
 
 @media print {
+  #s2-search-bar, #s2-search-results, #s2-dict-overlay { display: none !important; }
   :root {
     --rd: #000; --rd-bg: #f4f4f4; --rd-head: #f4f4f4;
     --pit: #333; --pit-bg: #fafafa; --pit-border: #999;

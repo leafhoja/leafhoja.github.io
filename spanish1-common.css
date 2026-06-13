@@ -370,6 +370,7 @@ body.is-printing .q-exp { display: block !important; }
 
 @media print {
   .ans-toggle-btn, .hint-toggle-btn, .cover-search, #dict-overlay { display: none !important; }
+  #search-bar, #search-results { display: none !important; }
   .q-exp, .q-hint { display: block !important; }
   .accent-rule-item, .vcard { break-inside: avoid; page-break-inside: avoid; }
   .sub2, .vocab-category { break-after: avoid; page-break-after: avoid; }
