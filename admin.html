@@ -96,27 +96,9 @@
   </div>
   <div style="padding: 16px 20px;">
     <p style="font-size: 13px; color: var(--mid); margin-bottom: 14px; line-height: 1.7;">
-      有効にすると所属に関係なくすべてのコンテンツを表示します。<br>
-      パスワード変更後は自動的に解除されます。
+      有効にすると所属に関係なくすべてのコンテンツを表示します。
     </p>
     <button class="action-btn primary" onclick="enableViewAll()">すべてのページを確認する</button>
-  </div>
-</div>
-
-<!-- パスワード変更 -->
-<div class="section">
-  <div class="section-header">
-    <h2>パスワード変更</h2>
-  </div>
-  <div style="padding: 16px 20px;">
-    <label class="field-label">現在のパスワード</label>
-    <input id="pw-current" type="password" maxlength="20" class="field-input" autocomplete="current-password">
-    <label class="field-label">新しいパスワード</label>
-    <input id="pw-new" type="password" maxlength="20" class="field-input" autocomplete="new-password">
-    <label class="field-label">新しいパスワード（確認）</label>
-    <input id="pw-confirm" type="password" maxlength="20" class="field-input" autocomplete="new-password" style="margin-bottom: 14px;">
-    <button id="pw-btn" class="action-btn secondary" onclick="changePassword()">パスワードを変更する</button>
-    <div id="pw-msg" style="font-size: 12px; margin-top: 10px; min-height: 16px;"></div>
   </div>
 </div>
 
@@ -180,59 +162,7 @@ function enableViewAll() {
   window.location.href = 'index.html';
 }
 
-async function changePassword() {
-  var msgEl = document.getElementById('pw-msg');
-  var btn   = document.getElementById('pw-btn');
-  var currentPw = document.getElementById('pw-current').value;
-  var newPw     = document.getElementById('pw-new').value;
-  var confirmPw = document.getElementById('pw-confirm').value;
 
-  msgEl.style.color = '#a8281a';
-  if (!currentPw || !newPw || !confirmPw) {
-    msgEl.textContent = 'すべての項目を入力してください。';
-    return;
-  }
-  if (newPw !== confirmPw) {
-    msgEl.textContent = '新しいパスワードが一致しません。';
-    return;
-  }
-  if (newPw.length < 4) {
-    msgEl.textContent = 'パスワードは4文字以上にしてください。';
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = '確認中…';
-
-  var enc = new TextEncoder();
-
-  var km1 = await crypto.subtle.importKey('raw', enc.encode(currentPw), 'PBKDF2', false, ['deriveBits']);
-  var b1  = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: enc.encode(ADMIN_SALT), iterations: ADMIN_ITER, hash: 'SHA-256' }, km1, 256);
-  var currentHash = Array.from(new Uint8Array(b1)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-
-  if (currentHash !== getAdminHash()) {
-    btn.disabled = false;
-    btn.textContent = 'パスワードを変更する';
-    msgEl.textContent = '現在のパスワードが正しくありません。';
-    return;
-  }
-
-  var km2 = await crypto.subtle.importKey('raw', enc.encode(newPw), 'PBKDF2', false, ['deriveBits']);
-  var b2  = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: enc.encode(ADMIN_SALT), iterations: ADMIN_ITER, hash: 'SHA-256' }, km2, 256);
-  var newHash = Array.from(new Uint8Array(b2)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-
-  localStorage.setItem('adminHashOverride', newHash);
-  localStorage.removeItem('adminViewAll');
-
-  btn.disabled = false;
-  btn.textContent = 'パスワードを変更する';
-  msgEl.style.color = '#1b7a68';
-  msgEl.textContent = 'パスワードを変更しました。次回ログインから有効です。';
-
-  document.getElementById('pw-current').value = '';
-  document.getElementById('pw-new').value     = '';
-  document.getElementById('pw-confirm').value = '';
-}
 </script>
 </body>
 </html>
