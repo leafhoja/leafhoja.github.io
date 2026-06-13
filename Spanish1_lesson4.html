@@ -48,9 +48,19 @@
 </div>
 
 <!-- 表紙 -->
-<div class="cover">
+<div class="cover-title-block">
+
   <div class="cover-title">Lección 4 &nbsp;文法解説</div>
   <div class="cover-sub">スペイン語一列 ／ Gramática</div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
+  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
+  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙</button>
+</div>
+
+<div class="cover">
   <div class="toc">
     <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">１ 直説法現在形不規則活用</a>
     <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">２ 関係詞</a>
@@ -61,11 +71,7 @@
   </div>
 </div>
 
-<div class="tab-nav">
-  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
-  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
-  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙</button>
-</div>
+
 
 <div id="tab-grammar" class="tab-content active">
 

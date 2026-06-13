@@ -221,4 +221,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* 解答トグル初期化 */
   initAnswerToggles();
+
+  /* ページ先頭へ戻るボタン */
+  var bttBtn = document.createElement('button');
+  bttBtn.id = 'back-to-top';
+  bttBtn.setAttribute('aria-label', 'ページ先頭へ');
+  bttBtn.textContent = '↑';
+  document.body.appendChild(bttBtn);
+  bttBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      bttBtn.classList.add('visible');
+    } else {
+      bttBtn.classList.remove('visible');
+    }
+  }, { passive: true });
 });

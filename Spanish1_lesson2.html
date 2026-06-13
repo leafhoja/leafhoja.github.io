@@ -61,9 +61,19 @@
 </div>
 
 <!-- 表紙 -->
-<div class="cover">
+<div class="cover-title-block">
+
   <div class="cover-title">Lección 2　文法解説</div>
   <div class="cover-sub">スペイン語一列　Gramática</div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
+  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
+  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙・まとめ</button>
+</div>
+
+<div class="cover">
   <div class="cover-goal"><b>このレッスンを終えると…</b><br>「私はスペイン語を勉強しています」「先生は日本人ですか？」のような文が作れるようになります。<br><small>まずは『文法解説』タブの①②から読み始め、練習問題→語彙・まとめの順に進みましょう。一度に全部読む必要はありません。</small></div>
   <div class="toc">
     <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 名詞の性と数・冠詞 <small>（文法解説）</small></a>
@@ -84,13 +94,9 @@
     <span class="cover-search-hint">スペイン語・日本語・文法用語で検索 → タッチで該当箇所へジャンプ</span>
   </div>
 </div>
+
 <div id="cover-search-results"></div>
 
-<div class="tab-nav">
-  <button class="tab-btn active-grammar" onclick="switchTab('grammar', this)">📚　文法解説</button>
-  <button class="tab-btn" onclick="switchTab('renshu', this)">✏️　練習問題</button>
-  <button class="tab-btn" onclick="switchTab('vocab', this)">📖　語彙・まとめ</button>
-</div>
 
 <!-- ══ 文法解説タブ ══ -->
 <div id="tab-grammar" class="tab-content active">

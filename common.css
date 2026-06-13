@@ -91,9 +91,13 @@ body {
 .fn-item:hover { background: var(--head-bg); }
 
 /* ── 表紙 ── */
+.cover-title-block {
+  border-top: 3px solid var(--accent);
+  padding: 20px 0 12px; margin-bottom: 0;
+}
 .cover {
-  border-top: 3px solid var(--accent); border-bottom: 1px solid var(--rule);
-  padding: 24px 0 20px; margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+  padding: 16px 0 20px; margin-bottom: 24px;
 }
 .cover-title {
   font-family: var(--serif); font-size: 22px; font-weight: 700;
@@ -103,7 +107,7 @@ body {
 
 /* ── タブ ── */
 .tab-nav {
-  display: flex; gap: 0; margin: 24px 0 0;
+  display: flex; gap: 0; margin: 0 0 24px;
   border-bottom: 2px solid var(--rule); flex-wrap: wrap;
 }
 .tab-btn {
@@ -270,6 +274,33 @@ body.is-printing #top-nav      { display: none  !important; }
   th { background: #f4f4f4 !important; color: #000 !important; }
   tr:nth-child(even) td { background: none !important; }
 }
+
+/* ── ページ先頭へ戻るボタン ── */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 16px;
+  z-index: 950;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 20px;
+  line-height: 44px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+#back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media print { #back-to-top { display: none; } }
 
 @media (max-width: 580px) {
   body { padding: 14px 12px 72px; }
