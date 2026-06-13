@@ -3,3 +3,7 @@
 参考資料/
 *.py
 new_examples.js
+qrcode*.png
+ga.js
+.claude/
+!.claude/workflows/

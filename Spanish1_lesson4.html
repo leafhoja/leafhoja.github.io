@@ -2,30 +2,18 @@
 <html lang="ja">
 <head>
 
-<!-- ============================================================
-  ★ ページ公開設定 ★（変更箇所はここだけ）
-  ============================================================
-  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
-
-    1 → 公開（通常通り表示）
-    0 → ロック（閲覧不可ページへリダイレクト）
-
-  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
-  ============================================================ -->
-<script>
-/* ★ ページ公開設定 ★ ここの数値を変更してください */
-var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
-</script>
 
 <script src="access-control.js"></script>
-<script src="ga.js"></script>
+<script src="common.js" defer></script>
+<script src="quiz-data.js" defer></script>
+<script src="quiz-predicted.js" defer></script>
+<script src="quiz.js" defer></script>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Lección 4 文法解説</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="spanish1-common.css">
 </head>
 <body>
@@ -121,7 +109,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   </tbody>
 </table>
 </div>
-<p class="note">同類：pensar, querer, preferir, empezar, sentir, mentir, herir, recomendar など</p>
+<p class="note">同類：pensar（考える）, querer（欲する・愛する）, preferir（好む）, empezar（始める）, sentir（感じる）, mentir（嘘をつく）, herir（傷つける）, recomendar（薦める）など</p>
 
 <div class="sub2" id="sec1a-oue">② o → ue 型</div>
 <div class="tbl-wrap">
@@ -143,7 +131,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   </tbody>
 </table>
 </div>
-<p class="note">同類：contar, recordar, dormir, encontrar, costar, morir など</p>
+<p class="note">同類：contar（数える・話す）, recordar（思い出す）, dormir（眠る）, encontrar（見つける）, costar（かかる）, morir（死ぬ）など</p>
 
 <div class="sub2" id="sec1a-ei">③ e → i 型（ir動詞のみ）</div>
 <div class="tbl-wrap">
@@ -165,7 +153,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   </tbody>
 </table>
 </div>
-<p class="note">同類：seguir（seguirの1単はsiguoではなくsigo）, medir, servir など。このタイプは<span class="hi">ir動詞のみ</span>。</p>
+<p class="note">同類：seguir（続ける・従う／1単は sigo）, medir（測る）, servir（仕える・役立つ）など。このタイプは<span class="hi">ir動詞のみ</span>。</p>
 
 <div class="sub2" id="sec1a-uue">④ u → ue 型（jugarのみ）</div>
 <div class="tbl-wrap">
@@ -189,8 +177,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 
 <div class="box box-rule">
   <div class="box-title">ルール</div>
-  原形が「<span class="hi">母音 + cer</span>」または「<span class="hi">母音 + cir</span>」で終わる動詞は、-cer や -cir の部分が
-  <span class="hi-r">1単のみ -zco</span>（-cir動詞は -zco）になる。1単以外は規則活用どおり。<br>
+  <span class="hi">母音 + cer</span> または <span class="hi">母音 + cir</span> で終わる動詞は、1単で c→zc となり
+  <span class="hi-r">-zco</span> になる（例：conocer→conozco, conducir→conduzco）。1単以外は規則活用どおり。<br>
+  <span style="display:block;margin-top:4px;font-size:12px;">※子音の後の -cer/-cir（vencer, esparcir 等）はこの型ではなく、正書法上 c→z（venzo, esparzo）。</span><br>
   <span class="caution" style="display:inline-flex;gap:4px;margin-top:6px;font-size:12px;color:var(--warn);">⚠ 例外：hacer（hago）・decir（digo）・cocer（cuezo）</span>
 </div>
 
@@ -229,7 +218,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     </tbody></table>
   </div>
 </div>
-<p class="note">同類：nacer → nazco, producir → produzco, traducir → traduzco</p>
+<p class="note">同類：nacer（生まれる）→ nazco, producir（生産する）→ produzco, traducir（翻訳する）→ traduzco</p>
 
 <!-- 1c: -go型 -->
 <div class="sub" id="sec1c">-go 型動詞</div>
@@ -297,7 +286,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   </tbody>
 </table>
 </div>
-<p class="note">2単・3単・3複で e の前に <span class="hi">y</span> が入る。原形・1複・2複にはアクセント記号（ï）が必要。</p>
+<p class="note">2単・3単・3複で e の前に <span class="hi">y</span> が入る。í（アクセント付きi）が必要：oír, oímos, oís。</p>
 
 <div class="sub2">④ -go ＋ 語根母音変化型</div>
 <div class="tbl-wrap">
@@ -381,7 +370,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   </tbody>
 </table>
 </div>
-<p class="note">-uir で終わる動詞はすべて同様に活用（1複・2複以外で <span class="hi">y</span> が挿入される）。同類：huir → huyo, concluir → concluyo</p>
+<p class="note">-uir で終わる動詞はすべて同様に活用（1複・2複以外で <span class="hi">y</span> が挿入される）。同類：huir（逃げる）→ huyo, concluir（結論づける・終える）→ concluyo</p>
 
 <div class="trivia">
   <span class="trivia-icon">💡</span>
@@ -714,6 +703,71 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   例）Hay que estudiar. ←一般論。Tengo que estudiar. ←私が勉強しなければならない。</span>
 </div>
 
+<!-- ══════════════════════════════════════════
+     総まとめ早見表（試験直前用）
+════════════════════════════════════════════ -->
+<div class="sub" id="sec-summary">Lección 4 総まとめ早見表</div>
+
+<div class="box box-rule">
+  <div class="box-title">① 不規則活用パターン早見表</div>
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr><th>型</th><th>代表動詞</th><th>変化箇所</th><th>1単の特徴</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>e→ie</td><td>pensar, cerrar, querer, venir</td><td>強勢のかかる語根</td><td>pienso（venirは vengo）</td></tr>
+      <tr><td>o→ue</td><td>poder, volver, llover</td><td>強勢のかかる語根</td><td>puedo</td></tr>
+      <tr><td>e→i</td><td>pedir, decir</td><td>強勢のかかる語根</td><td>pido（decirは digo）</td></tr>
+      <tr><td>u→ue</td><td>jugar のみ</td><td>強勢のかかる語根</td><td>juego</td></tr>
+      <tr><td>-zco</td><td>conocer, conducir</td><td>1単のみ c→zc</td><td class="td-red">conozco</td></tr>
+      <tr><td>-go</td><td>tener, salir, traer, hacer, poner, decir</td><td>1単のみ</td><td class="td-red">tengo, salgo, traigo</td></tr>
+      <tr><td>-uir</td><td>construir, huir</td><td>母音前に y 挿入</td><td>construyo</td></tr>
+      <tr><td>-go＋語根</td><td>venir, decir, oír</td><td>1単 -go ＋ 語根母音</td><td>vengo, digo, oigo</td></tr>
+      <tr><td>完全不規則</td><td>ir, ver, saber</td><td>全体</td><td class="td-red">voy, veo, sé</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="box box-rule">
+  <div class="box-title">② 不規則比較級早見表（性変化なし・数変化あり）</div>
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr><th>原級</th><th>比較級（単数）</th><th>複数</th><th>意味</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>bueno</td><td class="td-red">mejor</td><td>mejores</td><td>より良い</td></tr>
+      <tr><td>malo</td><td class="td-red">peor</td><td>peores</td><td>より悪い</td></tr>
+      <tr><td>grande / viejo（年齢）</td><td class="td-red">mayor</td><td>mayores</td><td>年上・より大きい</td></tr>
+      <tr><td>pequeño / joven（年齢）</td><td class="td-red">menor</td><td>menores</td><td>年下・より小さい</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <span class="caution" style="display:inline-flex;gap:4px;margin-top:6px;font-size:12px;color:var(--warn);">⚠ mejor/peor/mayor/menor は性変化しない（×mejora）。複数のみ -es。サイズの大小は más grande / más pequeño も可。</span>
+</div>
+
+<div class="box box-rule">
+  <div class="box-title">③ 時刻表現テンプレ</div>
+  ・1時 → <span class="hi">Es la una.</span>（単数）<br>
+  ・2時以降 → <span class="hi">Son las</span> dos / tres …（複数）<br>
+  ・〜分過ぎ → … <span class="hi">y</span> diez／<span class="hi">y cuarto</span>（15分）／<span class="hi">y media</span>（30分）<br>
+  ・〜分前 → … <span class="hi">menos</span> cuarto／menos diez<br>
+  ・〜時に → <span class="hi">a la</span> una／<span class="hi">a las</span> dos<br>
+  ・午前/午後 → de la mañana ／ de la tarde ／ de la noche ／ de la madrugada（未明）
+</div>
+
+<div class="box box-rule">
+  <div class="box-title">④ 無主語文の型一覧</div>
+  ・気温・天気（名詞）→ <span class="hi">hace</span> ＋ calor / frío / sol / viento / buen tiempo<br>
+  ・気象動詞（3単のみ）→ <span class="hi">llueve</span>（雨）／<span class="hi">nieva</span>（雪）<br>
+  ・存在 → <span class="hi">hay</span> ＋ 名詞<br>
+  ・一般論の義務 → <span class="hi">hay que</span> ＋ 不定詞（主語なし）<br>
+  ・特定主語の義務 → <span class="hi">tener que</span> ＋ 不定詞<br>
+  ・「〜と言われている」→ <span class="hi">dicen que</span> …（3複の無主語文）
+</div>
+
 </div><!-- /tab-grammar -->
 
 <div id="tab-renshu" class="tab-content">
@@ -731,6 +785,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <div class="daimon">
   <span class="daimon-num">1</span>
   <span class="daimon-title">不規則動詞を適切に活用させて、文を完成させなさい。</span>
+  <span class="daimon-tag src-text">教科書</span>
 </div>
 
 <div class="ex-block">
@@ -740,7 +795,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge blue">1</div>
     <div class="q-content">
       <div class="q-sentence">Yo no <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> el Lago de Maracaibo, pero <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> que está en Venezuela.</div>
-      <div class="q-ja">私はマラカイボ湖に行ったことはありませんが、それがベネズエラにあることは知っています。&nbsp;&nbsp;<em>（conocer, saber）</em></div>
+      <div class="q-ja">私はマラカイボ湖に行ったことはありませんが、それがベネズエラにあることは知っています。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（conocer, saber）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
@@ -754,7 +811,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge blue">2</div>
     <div class="q-content">
       <div class="q-sentence">Mañana <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> un partido de tenis y <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> muy temprano.</div>
-      <div class="q-ja">明日私たちはテニスの試合があるのでとても早く出かけます。&nbsp;&nbsp;<em>（tener, salir）</em></div>
+      <div class="q-ja">明日私たちはテニスの試合があるのでとても早く出かけます。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（tener, salir）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
@@ -768,7 +827,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge blue">3</div>
     <div class="q-content">
       <div class="q-sentence">Siempre me <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> algunos dulces cuando <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> a casa.</div>
-      <div class="q-ja">いつも君は家に来るときになにかスイーツを持ってきてくれますね。&nbsp;&nbsp;<em>（traer, venir）</em></div>
+      <div class="q-ja">いつも君は家に来るときになにかスイーツを持ってきてくれますね。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（traer, venir）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
@@ -782,7 +843,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge blue">4</div>
     <div class="q-content">
       <div class="q-sentence">Liliana <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> a su novio casi todos los días, y cuando no <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>, habla con él por teléfono.</div>
-      <div class="q-ja">リリアナはほぼ毎日恋人に会っているが、会えない時には電話で話す。&nbsp;&nbsp;<em>（ver, poder）</em></div>
+      <div class="q-ja">リリアナはほぼ毎日恋人に会っているが、会えない時には電話で話す。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（ver, poder）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
@@ -797,6 +860,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <div class="daimon">
   <span class="daimon-num">2</span>
   <span class="daimon-title">下線部に適切な動詞を不定詞または活用させた形で入れ、文を完成させなさい。</span>
+  <span class="daimon-tag src-text">教科書</span>
 </div>
 
 <div class="ex-block">
@@ -806,7 +870,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge teal">1</div>
     <div class="q-content">
       <div class="q-sentence">¿Adónde <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> durante las vacaciones de verano?</div>
-      <div class="q-ja">夏休みにあなたはどちらに旅行に行く予定ですか？&nbsp;&nbsp;<em>（pensar, ir）</em></div>
+      <div class="q-ja">夏休みにあなたはどちらに旅行に行く予定ですか？</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（pensar, ir）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
@@ -820,13 +886,15 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge teal">2</div>
     <div class="q-content">
       <div class="q-sentence"><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> que estudiar mucho para aprobar el curso de español.</div>
-      <div class="q-ja">スペイン語の授業の単位を取るためにたくさん勉強しなければならない。&nbsp;&nbsp;<em>（hay）</em></div>
+      <div class="q-ja">スペイン語の授業の単位を取るためにたくさん勉強しなければならない。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（tener）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text"><span class="ans-fill">Hay</span></span>
+        <span class="ans-text"><span class="ans-fill">Tengo</span></span>
       </div>
-      <div class="q-exp">Hay que ＋ 不定詞「〜しなければならない」（無主語文・一般論）。</div>
+      <div class="q-exp">tener que ＋ 不定詞「〜しなければならない」（特定の主語の義務）。主語は yo → tengo（-go型不規則）。</div>
     </div>
   </div>
 
@@ -834,7 +902,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge teal">3</div>
     <div class="q-content">
       <div class="q-sentence">La empresa de su padre <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> carreteras.</div>
-      <div class="q-ja">彼の父親の会社は、道路を建設している。&nbsp;&nbsp;<em>（construir）</em></div>
+      <div class="q-ja">彼の父親の会社は、道路を建設している。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（construir）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
@@ -848,13 +918,293 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <div class="q-badge teal">4</div>
     <div class="q-content">
       <div class="q-sentence"><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> que el queso de La Mancha es uno de los mejores de España.</div>
-      <div class="q-ja">ラ・マンチャ産のチーズは、スペインで最も質のよいチーズのひとつだと言われている。&nbsp;&nbsp;<em>（decir）</em></div>
+      <div class="q-ja">ラ・マンチャ産のチーズは、スペインで最も質のよいチーズのひとつだと言われている。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>（decir）</em></div>
       <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
         <span class="ans-text"><span class="ans-fill">Dicen</span></span>
       </div>
       <div class="q-exp">「〜と言われている」は dicen（3複）の無主語文で表現。decir → -go型で e→i変化 → 3複は dicen。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 教科書問題（大問1・2）／ 補充問題（大問3〜5）の境界 ══ -->
+<div class="ex-divider">
+  <strong>ここから先は補充問題です。</strong> 大問1・2 は教科書記載の問題、大問3〜5 はこのサイト独自の補充問題（関係詞・比較・無主語文）です。教科書の問題と区別してご利用ください。
+</div>
+
+<!-- 大問3 -->
+<div class="daimon">
+  <span class="daimon-num">3</span>
+  <span class="daimon-title">関係詞（que / lo que / donde / 前置詞＋定冠詞＋que）について、適切なものを選びなさい。</span>
+  <span class="daimon-tag src-extra">補充</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">関係詞</div>
+
+  <div class="q-item">
+    <div class="q-badge purple">1</div>
+    <div class="q-content">
+      <div class="q-sentence">La ciudad <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> vivo es muy tranquila. 〔que / donde〕</div>
+      <div class="q-ja">私が住んでいる街はとても静かだ。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>「〜する場所」を表す関係副詞</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">donde</span></span>
+      </div>
+      <div class="q-exp">場所（la ciudad）を先行詞とし「〜する所」を表すときは donde。en la que / en la cual でも可。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge purple">2</div>
+    <div class="q-content">
+      <div class="q-sentence">No entiendo <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> dices. 〔que / lo que〕</div>
+      <div class="q-ja">私は君が言っていることが理解できない。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>先行詞のない「〜こと・もの」</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">lo que</span></span>
+      </div>
+      <div class="q-exp">具体的な先行詞がなく「〜すること・もの」を指すときは lo que。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge purple">3</div>
+    <div class="q-content">
+      <div class="q-sentence">Este es el amigo <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> te hablé ayer. 〔que / del que〕</div>
+      <div class="q-ja">これは昨日君に話した友達だ。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>hablar de … → 前置詞 de が必要</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">del que</span></span>
+      </div>
+      <div class="q-exp">hablar de（〜について話す）なので前置詞 de ＋ 定冠詞 el ＋ que → del que。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge purple">4</div>
+    <div class="q-content">
+      <div class="q-sentence">Tengo un amigo <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> vive en México. 〔que / lo que〕</div>
+      <div class="q-ja">私にはメキシコに住む友達がいる。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>先行詞（un amigo）が主語になる関係詞</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">que</span></span>
+      </div>
+      <div class="q-exp">人・物どちらの先行詞でも、主語・直接目的語の関係詞は que が基本。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge purple">5</div>
+    <div class="q-content">
+      <div class="q-sentence">次の2文を関係詞 que で1文にしなさい。<br>El libro es interesante. ＋ Leo el libro.</div>
+      <div class="q-ja">私が読んでいる本は面白い。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>共通要素 el libro を que で連結</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">El libro que leo es interesante.</span></span>
+      </div>
+      <div class="q-exp">共通の el libro を先行詞にし、後ろの el libro を que に置き換えて連結する。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 大問4 -->
+<div class="daimon">
+  <span class="daimon-num">4</span>
+  <span class="daimon-title">比較・最上級の表現を完成させなさい（〔　〕は選択、空欄は適語）。</span>
+  <span class="daimon-tag src-extra">補充</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">比較・最上級</div>
+
+  <div class="q-item">
+    <div class="q-badge orange">1</div>
+    <div class="q-content">
+      <div class="q-sentence">Este coche es más caro <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> el otro. 〔que / de〕</div>
+      <div class="q-ja">この車はもう一方より高い。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>比較対象が名詞 → ?</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">que</span></span>
+      </div>
+      <div class="q-exp">比較対象（名詞・代名詞）と比べるときは más … que。数値の前だけ más de になる。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge orange">2</div>
+    <div class="q-content">
+      <div class="q-sentence">En la fiesta hay más <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> cien personas. 〔que / de〕</div>
+      <div class="q-ja">パーティーには100人以上の人がいる。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>数量（cien）の前</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">de</span></span>
+      </div>
+      <div class="q-exp">数量・数値の前では más de / menos de を使う（más de cien＝100以上）。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge orange">3</div>
+    <div class="q-content">
+      <div class="q-sentence">Mi hermano es <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> que yo.（年上）</div>
+      <div class="q-ja">私の兄は私より年上だ。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>年齢の「上」は不規則比較級</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">mayor</span></span>
+      </div>
+      <div class="q-exp">年齢が上は mayor（不規則比較級）。más grande はサイズの「大きい」で年齢には使わない。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge orange">4</div>
+    <div class="q-content">
+      <div class="q-sentence">誤りを訂正：Esta película es <span class="hi-r">más buena</span> que la otra.</div>
+      <div class="q-ja">この映画はもう一方より良い。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>bueno の比較級は不規則</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">mejor</span>（Esta película es mejor que la otra.）</span>
+      </div>
+      <div class="q-exp">bueno の比較級は不規則で mejor。más bueno とは言わない。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge orange">5</div>
+    <div class="q-content">
+      <div class="q-sentence">和文西訳：「アナはマリアと同じくらい背が高い。」（alto, tan…como）</div>
+      <div class="q-ja">アナはマリアと同じくらい背が高い。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>同等比較 tan ＋ 形容詞 ＋ como</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">Ana es tan alta como María.</span></span>
+      </div>
+      <div class="q-exp">同等比較は tan ＋ 形容詞 ＋ como。形容詞 alto は主語 Ana に性数一致して alta。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 大問5 -->
+<div class="daimon">
+  <span class="daimon-num">5</span>
+  <span class="daimon-title">無主語文（時刻・天候・義務）について、指示にしたがって答えなさい。</span>
+  <span class="daimon-tag src-extra">補充</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">無主語文</div>
+
+  <div class="q-item">
+    <div class="q-badge green">1</div>
+    <div class="q-content">
+      <div class="q-sentence">時刻を西訳：「1時です。」</div>
+      <div class="q-ja">1時です。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>1時だけ単数</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">Es la una.</span></span>
+      </div>
+      <div class="q-exp">1時だけ Es la una（単数）。2時以降は Son las dos … と複数になる。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge green">2</div>
+    <div class="q-content">
+      <div class="q-sentence">時刻を西訳：「3時15分です。」（y cuarto）</div>
+      <div class="q-ja">3時15分です。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>15分＝cuarto</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">Son las tres y cuarto.</span></span>
+      </div>
+      <div class="q-exp">「〜時15分」は y cuarto、30分は y media。Son las＋複数。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge green">3</div>
+    <div class="q-content">
+      <div class="q-sentence">天候を西訳：「今日はとても暑い。」（calor）</div>
+      <div class="q-ja">今日はとても暑い。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>hacer ＋ 名詞</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">Hoy hace mucho calor.</span></span>
+      </div>
+      <div class="q-exp">気温・天気の多くは hace ＋ 名詞（calor, frío, sol …）。calor は名詞なので「とても」は mucho。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge green">4</div>
+    <div class="q-content">
+      <div class="q-sentence">Para aprender un idioma, <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> practicar todos los días. 〔hay que / tengo que〕</div>
+      <div class="q-ja">言語を学ぶには、毎日練習しなければならない（一般論）。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>主語のない一般論</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">hay que</span></span>
+      </div>
+      <div class="q-exp">主語のない一般論の義務は hay que ＋ 不定詞。特定の主語の義務なら tener que。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <div class="q-badge green">5</div>
+    <div class="q-content">
+      <div class="q-sentence">天候を西訳：「明日は雨が降る。」（llover）</div>
+      <div class="q-ja">明日は雨が降る。</div>
+      <button class="hint-toggle-btn" onclick="toggleHint(this)">ヒントを見る ▾</button>
+      <div class="q-hint"><em>気象動詞は3単のみ</em></div>
+      <button class="ans-toggle-btn" onclick="toggleAns(this)">答えを見る ▾</button>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">Mañana llueve.</span></span>
+      </div>
+      <div class="q-exp">llover（o→ue型）は気象動詞で3単のみ使う → llueve。nevar（nieva）も同様。</div>
     </div>
   </div>
 </div>
@@ -935,80 +1285,69 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   <span class="pill"><span class="pill-es">popular</span><span class="pill-ja">人気ある・大衆的な</span></span>
 </div>
 
+<div class="vocab-category">本課の主要動詞（不規則）</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">conocer</span><span class="pill-pos">他動</span><span class="pill-ja">（体験して）知る・面識がある</span></span>
+  <span class="pill"><span class="pill-es">saber</span><span class="pill-pos">他動</span><span class="pill-ja">（知識として）知る・できる</span></span>
+  <span class="pill"><span class="pill-es">tener</span><span class="pill-pos">他動</span><span class="pill-ja">持つ・〜がある</span></span>
+  <span class="pill"><span class="pill-es">salir</span><span class="pill-pos">自動</span><span class="pill-ja">出かける・出発する</span></span>
+  <span class="pill"><span class="pill-es">traer</span><span class="pill-pos">他動</span><span class="pill-ja">持ってくる</span></span>
+  <span class="pill"><span class="pill-es">venir</span><span class="pill-pos">自動</span><span class="pill-ja">来る</span></span>
+  <span class="pill"><span class="pill-es">ver</span><span class="pill-pos">他動</span><span class="pill-ja">見る・会う</span></span>
+  <span class="pill"><span class="pill-es">poder</span><span class="pill-pos">他動</span><span class="pill-ja">〜できる</span></span>
+  <span class="pill"><span class="pill-es">pensar</span><span class="pill-pos">他動</span><span class="pill-ja">考える・〜するつもり</span></span>
+  <span class="pill"><span class="pill-es">ir</span><span class="pill-pos">自動</span><span class="pill-ja">行く</span></span>
+  <span class="pill"><span class="pill-es">construir</span><span class="pill-pos">他動</span><span class="pill-ja">建設する</span></span>
+  <span class="pill"><span class="pill-es">decir</span><span class="pill-pos">他動</span><span class="pill-ja">言う</span></span>
+  <span class="pill"><span class="pill-es">cerrar</span><span class="pill-pos">他動</span><span class="pill-ja">閉める</span></span>
+  <span class="pill"><span class="pill-es">volver</span><span class="pill-pos">自動</span><span class="pill-ja">戻る・帰る</span></span>
+  <span class="pill"><span class="pill-es">pedir</span><span class="pill-pos">他動</span><span class="pill-ja">頼む・注文する</span></span>
+  <span class="pill"><span class="pill-es">llover</span><span class="pill-pos">自動</span><span class="pill-ja">雨が降る（3単のみ）</span></span>
+  <span class="pill"><span class="pill-es">nevar</span><span class="pill-pos">自動</span><span class="pill-ja">雪が降る（3単のみ）</span></span>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">conocer と saber の違い</span>
+  <span class="hi">conocer</span>は人・場所など「体験して知っている」対象に、<span class="hi">saber</span>は事実・情報や「〜できる」に使う。<br>
+  例）Conozco Madrid.（マドリードに行ったことがある）／ Sé nadar.（泳げる）。1単は conozco（-zco型）と sé（完全不規則）で形が大きく異なる点に注意。</span>
+</div>
+
+<div class="vocab-category">比較・無主語の重要語</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">mejor</span><span class="pill-pos">形</span><span class="pill-ja">より良い（bueno の比較級）</span></span>
+  <span class="pill"><span class="pill-es">peor</span><span class="pill-pos">形</span><span class="pill-ja">より悪い（malo の比較級）</span></span>
+  <span class="pill"><span class="pill-es">mayor</span><span class="pill-pos">形</span><span class="pill-ja">年上・より大きい</span></span>
+  <span class="pill"><span class="pill-es">menor</span><span class="pill-pos">形</span><span class="pill-ja">年下・より小さい</span></span>
+  <span class="pill"><span class="pill-es">cuarto</span><span class="pill-pos">m.</span><span class="pill-ja">15分・4分の1</span></span>
+  <span class="pill"><span class="pill-es">media</span><span class="pill-pos">f.</span><span class="pill-ja">30分・半分</span></span>
+  <span class="pill"><span class="pill-es">madrugada</span><span class="pill-pos">f.</span><span class="pill-ja">未明・夜明け前</span></span>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">mayor / menor は年齢にも</span>
+  <span class="hi">mayor</span>・<span class="hi">menor</span>は物理的な大小だけでなく「年上・年下」にも使う（mi hermano mayor＝私の兄）。これらは性変化せず、複数のみ mayores / menores。サイズの単純な大小なら más grande / más pequeño も使える。</span>
+</div>
+
+<div class="vocab-category">練習に登場する名詞</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">lago</span><span class="pill-pos">m.</span><span class="pill-ja">湖</span></span>
+  <span class="pill"><span class="pill-es">empresa</span><span class="pill-pos">f.</span><span class="pill-ja">会社・企業</span></span>
+  <span class="pill"><span class="pill-es">queso</span><span class="pill-pos">m.</span><span class="pill-ja">チーズ</span></span>
+  <span class="pill"><span class="pill-es">dulce</span><span class="pill-pos">m.</span><span class="pill-ja">甘いもの・お菓子</span></span>
+  <span class="pill"><span class="pill-es">curso</span><span class="pill-pos">m.</span><span class="pill-ja">課程・授業</span></span>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">dulce は形容詞でもある</span>
+  <span class="hi">dulce</span>は名詞で「お菓子・甘いもの」、形容詞では「甘い」（男女同形）。複数 dulces は「お菓子類」を指すことが多い。queso de La Mancha（ラ・マンチャ産チーズ）はスペインを代表する羊乳チーズで、『ドン・キホーテ』の舞台としても有名な地方の特産品。</span>
+</div>
+
 </div><!-- /tab-vocab -->
 
 <script>
-// ── タブ切り替え ──
-function switchTab(tabId, btnEl) {
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = 'none';
-    tabs[i].classList.remove('active');
-  }
-  var target = document.getElementById('tab-' + tabId);
-  if (target) { target.style.display = 'block'; target.classList.add('active'); }
-  var btns = document.getElementsByClassName('tab-btn');
-  for (var j = 0; j < btns.length; j++) {
-    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
-  }
-  if (btnEl) btnEl.classList.add('active-' + tabId);
-  window.scrollTo(0, 0);
-}
-
-// ── タブを跨いだセクションジャンプ ──
-function jumpToSection(sectionId) {
-  var el = document.getElementById(sectionId);
-  if (!el) return;
-  var node = el.parentElement;
-  while (node && node.className.indexOf('tab-content') < 0) { node = node.parentElement; }
-  if (node && node.className.indexOf('active') < 0) {
-    var tabId = node.id.replace('tab-', '');
-    var btns = document.getElementsByClassName('tab-btn');
-    var targetBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      var oc = btns[i].getAttribute('onclick') || '';
-      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
-    }
-    switchTab(tabId, targetBtn);
-  }
-  setTimeout(function() {
-    var el2 = document.getElementById(sectionId);
-    if (el2) el2.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 80);
-}
-
-// ── 目次トグル ──
-function toggleToc() {
-  var menu = document.getElementById('top-toc-menu');
-  var btn = document.getElementById('top-toc-toggle');
-  var isOpen = menu.classList.toggle('open');
-  btn.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
-}
-function closeToc() {
-  var menu = document.getElementById('top-toc-menu');
-  if (menu) menu.classList.remove('open');
-  var btn = document.getElementById('top-toc-toggle');
-  if (btn) btn.textContent = '☰ 目次';
-}
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('#top-nav')) closeToc();
-});
-
-// ── PDF保存 ──
-function savePdf() {
-  document.body.classList.add('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
-  setTimeout(function() { window.print(); }, 50);
-}
-window.addEventListener('afterprint', function() {
-  document.body.classList.remove('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
-  }
-});
-
 // ── 辞書モーダル（語彙タブ用） ──
 function _l4Esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -1026,9 +1365,6 @@ function closeDictModal() {
   document.getElementById('dict-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeDictModal();
-});
 // ── 語彙ピル タップで辞書カード表示 ──
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('#tab-vocab .pill').forEach(function(pill) {
@@ -1046,26 +1382,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-
-// ── 解答トグル ──
-function toggleAns(btn) {
-  var item = btn.closest('.q-content');
-  var ansRow = item.querySelector('.q-answer-row');
-  var expRow = item.querySelector('.q-exp');
-  var revealed = ansRow.classList.contains('visible');
-  if (revealed) {
-    ansRow.classList.remove('visible');
-    if (expRow) expRow.classList.remove('visible');
-    btn.classList.remove('revealed');
-    btn.textContent = '答えを見る ▾';
-  } else {
-    ansRow.classList.add('visible');
-    if (expRow) expRow.classList.add('visible');
-    btn.classList.add('revealed');
-    btn.textContent = '答えを隠す ▴';
-  }
-}
 </script>
 
+<script src="phrase-dict.js"></script>
+<script src="phrase-lookup.js"></script>
 </body>
 </html>

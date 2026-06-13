@@ -2,30 +2,18 @@
 <html lang="ja">
 <head>
 
-<!-- ============================================================
-  ★ ページ公開設定 ★（変更箇所はここだけ）
-  ============================================================
-  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
-
-    1 → 公開（通常通り表示）
-    0 → ロック（閲覧不可ページへリダイレクト）
-
-  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
-  ============================================================ -->
-<script>
-/* ★ ページ公開設定 ★ ここの数値を変更してください */
-var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
-</script>
 
 <script src="access-control.js"></script>
 <script src="ga.js"></script>
+<script src="common.js"></script>
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Lección 3 文法解説</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="spanish1-common.css">
 </head>
 <body>
@@ -833,78 +821,6 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 </div>
 
 <script>
-// =====================================================
-// タブ切り替え（グローバル関数）
-// =====================================================
-function switchTab(tabId, btnEl) {
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = 'none';
-    tabs[i].classList.remove('active');
-  }
-  var target = document.getElementById('tab-' + tabId);
-  if (target) {
-    target.style.display = 'block';
-    target.classList.add('active');
-  }
-  var btns = document.getElementsByClassName('tab-btn');
-  for (var j = 0; j < btns.length; j++) {
-    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
-  }
-  if (btnEl) btnEl.classList.add('active-' + tabId);
-  window.scrollTo(0, 0);
-}
-
-function jumpToSection(sectionId) {
-  var el = document.getElementById(sectionId);
-  if (!el) return;
-  var node = el.parentElement;
-  while (node && node.className.indexOf('tab-content') < 0) {
-    node = node.parentElement;
-  }
-  if (node && node.className.indexOf('active') < 0) {
-    var tabId = node.id.replace('tab-', '');
-    var btns = document.getElementsByClassName('tab-btn');
-    var targetBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      var oc = btns[i].getAttribute('onclick') || '';
-      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
-    }
-    switchTab(tabId, targetBtn);
-  }
-  setTimeout(function() {
-    var el2 = document.getElementById(sectionId);
-    if (el2) el2.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }, 80);
-}
-
-function toggleToc() {
-  var menu = document.getElementById('top-toc-menu');
-  var btn = document.getElementById('top-toc-toggle');
-  var isOpen = menu.classList.toggle('open');
-  btn.textContent = isOpen ? '\u2715 \u9589\u3058\u308b' : '\u2630 \u76ee\u6b21';
-}
-function closeToc() {
-  var menu = document.getElementById('top-toc-menu');
-  if (menu) menu.classList.remove('open');
-  var btn = document.getElementById('top-toc-toggle');
-  if (btn) btn.textContent = '\u2630 \u76ee\u6b21';
-}
-
-function savePdf() {
-  document.body.classList.add('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
-  setTimeout(function() { window.print(); }, 50);
-}
-window.addEventListener('afterprint', function() {
-  document.body.classList.remove('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
-  }
-});
-
 function openSearch() {
   var bar = document.getElementById('search-bar');
   if (bar) bar.classList.add('open');
@@ -924,30 +840,7 @@ function closeSearch() {
   if (cres) cres.classList.remove('has-results');
 }
 
-(function initAnswerToggles() {
-  var items = document.getElementsByClassName('q-item');
-  for (var k = 0; k < items.length; k++) {
-    (function(item) {
-      var answerRow = item.querySelector('.q-answer-row');
-      var exp = item.querySelector('.q-exp');
-      if (!answerRow) return;
-      var btn = document.createElement('button');
-      btn.className = 'ans-toggle-btn';
-      btn.textContent = '\u7b54\u3048\u3092\u78ba\u8a8d';
-      btn.onclick = function() {
-        var revealed = answerRow.classList.toggle('visible');
-        if (exp) exp.classList.toggle('visible', revealed);
-        btn.classList.toggle('revealed', revealed);
-        btn.textContent = revealed ? '\u7b54\u3048\u3092\u96a0\u3059' : '\u7b54\u3048\u3092\u78ba\u8a8d';
-      };
-      answerRow.parentNode.insertBefore(btn, answerRow);
-    })(items[k]);
-  }
-})();
-
 document.addEventListener('click', function(e) {
-  var nav = document.getElementById('top-nav');
-  if (nav && !nav.contains(e.target)) closeToc();
   var searchBar = document.getElementById('search-bar');
   var searchRes = document.getElementById('search-results');
   var searchBtn = document.getElementById('top-search-btn');
@@ -960,13 +853,6 @@ document.addEventListener('click', function(e) {
   if (coverRes && coverSearch && !coverSearch.contains(e.target) &&
       !coverRes.contains(e.target)) {
     coverRes.classList.remove('has-results');
-  }
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeSearch();
-    closeToc();
-    if (typeof closeDictModal === 'function') closeDictModal();
   }
 });
 
@@ -1701,5 +1587,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 })();
 </script>
+<script src="phrase-dict.js"></script>
+<script src="phrase-lookup.js"></script>
 </body>
 </html>

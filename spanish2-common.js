@@ -27,6 +27,8 @@ function initDialogueJump() {
       var num = i + 1;
       line.classList.add('has-jump');
       line.setAttribute('data-num', num);
+      var speaker = line.querySelector('.dl-speaker');
+      if (speaker) speaker.setAttribute('data-num', num);
       line.title = '発話' + num + ' の解説へジャンプ';
       line.addEventListener('click', function () {
         jumpToEl('utt-' + num, '#1b7a68');
@@ -43,9 +45,11 @@ function initLecturaJump() {
     if (!card.id) card.id = 'sent-card-' + (i + 1);
   });
 
-  // text-sentenceをクリック可能に
+  // text-sentence に番号付与＋クリックジャンプ
   var textBodies = document.querySelectorAll('#tab-dokkai .text-card-body');
-  textBodies.forEach(function (body) {
+  var transBoxes = document.querySelectorAll('#tab-dokkai .trans-box');
+
+  textBodies.forEach(function (body, bi) {
     var spans = body.querySelectorAll('.text-sentence');
     spans.forEach(function (span, i) {
       var num = i + 1;
@@ -56,6 +60,26 @@ function initLecturaJump() {
         jumpToEl('sent-card-' + num, '#6b4f9e');
       });
     });
+
+    // 対応する trans-box の行を span.trans-line に変換して番号付与
+    var transBox = transBoxes[bi];
+    if (!transBox) return;
+    var parts = transBox.innerHTML.split(/<br\s*\/?>/i);
+    var frags = [];
+    var lineNum = 0;
+    parts.forEach(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return;
+      lineNum++;
+      var span = document.createElement('span');
+      span.className = 'trans-line';
+      span.setAttribute('data-num', lineNum);
+      span.innerHTML = trimmed;
+      frags.push(span);
+    });
+    if (!frags.length) return;
+    while (transBox.firstChild) transBox.removeChild(transBox.firstChild);
+    frags.forEach(function (s) { transBox.appendChild(s); });
   });
 }
 

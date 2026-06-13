@@ -2,23 +2,12 @@
 <html lang="ja">
 <head>
 
-<!-- ============================================================
-  ★ ページ公開設定 ★（変更箇所はここだけ）
-  ============================================================
-  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
-
-    1 → 公開（通常通り表示）
-    0 → ロック（閲覧不可ページへリダイレクト）
-
-  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
-  ============================================================ -->
-<script>
-/* ★ ページ公開設定 ★ ここの数値を変更してください */
-var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
-</script>
 
 <script src="access-control.js"></script>
 <script src="ga.js"></script>
+<script src="common.js"></script>
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
@@ -800,83 +789,6 @@ window.LESSON_VOCAB = {
 };
 
 /* ══════════════════════════════════════════════
-   Spanish2 共通スクリプト
-   スペイン語二列 — 会話・読解解説シリーズ
-   ══════════════════════════════════════════════ */
-
-// タブ切り替え
-function switchTab(tabId, btn) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.getElementById('tab-' + tabId).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(el => {
-    el.classList.remove('active-kaiwa', 'active-dokkai', 'active-renshu');
-  });
-  btn.classList.add('active-' + tabId);
-}
-
-// 目次トグル
-document.getElementById('top-toc-toggle').addEventListener('click', function(e) {
-  e.preventDefault(); e.stopPropagation();
-  const menu = document.getElementById('top-toc-menu');
-  const isOpen = menu.classList.toggle('open');
-  this.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
-});
-
-// 目次リンクをクリックしたときタブを開く
-document.querySelectorAll('.fn-item').forEach(function(a) {
-  a.addEventListener('click', function() {
-    const targetTab = this.dataset.tab;
-    if (targetTab) {
-      const allTabs = document.querySelectorAll('.tab-btn');
-      allTabs.forEach(function(btn) {
-        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + targetTab + "'")) {
-          if (!document.getElementById('tab-' + targetTab).classList.contains('active')) {
-            btn.click();
-          }
-        }
-      });
-    }
-    document.getElementById('top-toc-menu').classList.remove('open');
-    document.getElementById('top-toc-toggle').textContent = '☰ 目次';
-  });
-});
-
-// 目次以外をクリックで閉じる
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('#top-nav'))
-    document.getElementById('top-toc-menu').classList.remove('open');
-});
-
-// 解答トグル
-document.querySelectorAll('.q-item').forEach(function(item) {
-  const answerRow = item.querySelector('.q-answer-row');
-  const exp = item.querySelector('.ans-exp');
-  const btn = item.querySelector('.ans-toggle-btn');
-  if (!answerRow || !btn) return;
-  btn.addEventListener('click', function() {
-    const revealed = answerRow.classList.toggle('visible');
-    if (exp) exp.classList.toggle('visible', revealed);
-    btn.classList.toggle('revealed', revealed);
-    btn.textContent = revealed ? '答えを隠す' : '答えを確認';
-  });
-});
-
-// 印刷ボタン
-document.getElementById('pdf-print-btn').addEventListener('click', function() {
-  document.body.classList.add('is-printing');
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      window.print();
-    });
-  });
-});
-
-// 印刷後に元に戻す
-window.addEventListener('afterprint', function() {
-  document.body.classList.remove('is-printing');
-});
-
-/* ══════════════════════════════════════════════
    検索機能
    ══════════════════════════════════════════════ */
 (function () {
@@ -1209,5 +1121,7 @@ window.addEventListener('afterprint', function() {
 </script>
 
 <script src="spanish2-common.js"></script>
+<script src="phrase-dict.js"></script>
+<script src="phrase-lookup.js"></script>
 </body>
 </html>

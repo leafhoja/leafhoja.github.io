@@ -2,30 +2,18 @@
 <html lang="ja">
 <head>
 
-<!-- ============================================================
-  ★ ページ公開設定 ★（変更箇所はここだけ）
-  ============================================================
-  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
-
-    1 → 公開（通常通り表示）
-    0 → ロック（閲覧不可ページへリダイレクト）
-
-  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
-  ============================================================ -->
-<script>
-/* ★ ページ公開設定 ★ ここの数値を変更してください */
-var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
-</script>
 
 <script src="access-control.js"></script>
 <script src="ga.js"></script>
+<script src="common.js"></script>
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Lección 5 文法解説</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="spanish1-common.css">
 </head>
 <body>
@@ -51,10 +39,10 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <div id="top-nav">
   <div id="top-toc-menu">
     <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;">📚 文法解説タブ</span>
-    <a class="fn-item" href="#sec1" data-tab="grammar" onclick="jumpToSection('sec1'); closeToc(); return false;">① 再帰動詞</a>
-    <a class="fn-item" href="#sec2" data-tab="grammar" onclick="jumpToSection('sec2'); closeToc(); return false;">② 点過去形（規則活用）</a>
-    <a class="fn-item" href="#sec3" data-tab="grammar" onclick="jumpToSection('sec3'); closeToc(); return false;">③ 時間の表現</a>
-    <a class="fn-item" href="#sec4" data-tab="grammar" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 点過去 vs 現在形</a>
+    <a class="fn-item" href="#sec1" data-tab="grammar" onclick="jumpToSection('sec1'); closeToc(); return false;">① 不定詞</a>
+    <a class="fn-item" href="#sec2" data-tab="grammar" onclick="jumpToSection('sec2'); closeToc(); return false;">② 現在分詞：形と用法</a>
+    <a class="fn-item" href="#sec3" data-tab="grammar" onclick="jumpToSection('sec3'); closeToc(); return false;">③ 現在分詞の不規則形</a>
+    <a class="fn-item" href="#sec4" data-tab="grammar" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 過去分詞：形と用法</a>
     <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">✏️ 練習問題タブ</span>
     <a class="fn-item" href="#sec5" data-tab="renshu" onclick="jumpToSection('sec5'); closeToc(); return false;">⑤ 練習問題</a>
     <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">📖 語彙・まとめタブ</span>
@@ -74,10 +62,10 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   </div>
   <div class="cover-sub">スペイン語一列　Gramática</div>
   <div class="toc">
-    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 再帰動詞</a>
-    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 点過去形（規則活用）</a>
-    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ 時間の表現</a>
-    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 点過去 vs 現在形</a>
+    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 不定詞</a>
+    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 現在分詞：形と用法</a>
+    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ 現在分詞の不規則形</a>
+    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 過去分詞：形と用法</a>
     <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 練習問題</a>
     <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 語彙リスト</a>
     <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ まとめ</a>
@@ -85,7 +73,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   <div class="cover-search">
     <div class="cover-search-label">単語・活用形・文法用語を検索</div>
     <input id="cover-search-input" type="text" class="cover-search-box"
-      placeholder="例：levanto　／　起きる　／　再帰動詞…"
+      placeholder="例：bailando　／　過去分詞　／　現在分詞…"
       autocomplete="off" autocorrect="off" spellcheck="false">
     <span class="cover-search-hint">スペイン語・日本語・文法用語で検索 → タッチで該当箇所へジャンプ</span>
   </div>
@@ -100,289 +88,372 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 
 <div id="tab-grammar" class="tab-content active">
 
-<!-- ① 再帰動詞 -->
+<!-- ① 不定詞 -->
 <div id="sec1" class="sec-heading">
   <span class="sec-num">①</span>
-  <span class="sec-title">再帰動詞</span>
-  <span class="sec-es">Verbos reflexivos</span>
+  <span class="sec-title">不定詞</span>
+  <span class="sec-es">Infinitivo</span>
 </div>
 
-<p>再帰動詞（verbos reflexivos）は「自分自身に〜する」という行為を表す動詞で、必ず<span class="hi">再帰代名詞</span>（me, te, se, nos, os, se）とともに使います。英語の "get up" や "wash oneself" に相当します。</p>
+<p>不定詞（Infinitivo）は<span class="hi">動詞の原形と同じ形</span>です。「〜する」という意味の動詞が<span class="hi">「〜すること」という名詞として</span>用いられるときの形で、不定形（forma no personal）の一つです。</p>
 
-<div class="sub">再帰代名詞の一覧表</div>
+<div class="sub">用法① そのまま名詞として用いる</div>
+<p>不定詞は文中で名詞と同じ働きをします。主語・目的語・前置詞の目的語になれます。</p>
+
 <div class="tbl-wrap">
 <table>
-  <thead>
-    <tr>
-      <th>人称</th>
-      <th>再帰代名詞</th>
-      <th>例（levantarse）</th>
-    </tr>
-  </thead>
+  <thead><tr><th style="width:42%">スペイン語</th><th>日本語訳</th><th>用法</th></tr></thead>
   <tbody>
-    <tr><td class="td-key td-c">yo</td><td class="mono td-c hi">me</td><td class="mono td-c">me levanto</td></tr>
-    <tr><td class="td-key td-c">tú</td><td class="mono td-c hi">te</td><td class="mono td-c">te levantas</td></tr>
-    <tr><td class="td-key td-c">él/ella/usted</td><td class="mono td-c hi">se</td><td class="mono td-c">se levanta</td></tr>
-    <tr><td class="td-key td-c">nosotros/as</td><td class="mono td-c hi">nos</td><td class="mono td-c">nos levantamos</td></tr>
-    <tr><td class="td-key td-c">vosotros/as</td><td class="mono td-c hi">os</td><td class="mono td-c">os levantáis</td></tr>
-    <tr><td class="td-key td-c">ellos/ustedes</td><td class="mono td-c hi">se</td><td class="mono td-c">se levantan</td></tr>
+    <tr><td class="mono"><b>Vivir</b> es <b>comer</b>.</td><td class="td-ja">生きることとは食べることである。</td><td>主語・述語</td></tr>
+    <tr><td class="mono">Mi abuelo siempre reza antes de <b>comer</b>.</td><td class="td-ja">私の祖父は食べる前にいつもお祈りをする。</td><td>前置詞 de の目的語</td></tr>
+    <tr><td class="mono">Hay que trabajar para <b>vivir</b>.</td><td class="td-ja">生きるためには働かなくてはならない。</td><td>前置詞 para の目的語</td></tr>
+    <tr><td class="mono">Nos gusta <b>escuchar</b> programas de música en la radio.</td><td class="td-ja">私たちはラジオで音楽番組を聴くのが好きだ。</td><td>gustar の主語</td></tr>
   </tbody>
 </table>
 </div>
 
-<div id="reiki-rules" class="sub">再帰代名詞の語順ルール</div>
+<div class="sub" style="margin-top:14px">用法② 疑問詞の後に置く（義務・可能性）</div>
+<p>疑問詞（cómo, qué, dónde など）の後ろに不定詞を置くと「〜すべきか」（義務）または「〜できるか」（可能性）の意味になります。</p>
 
-<div class="box box-rule">
-  <div class="box-title">ルール①　活用した動詞のすぐ前に置く</div>
-  <div class="ex"><span class="ex-sp"><span class="hi">Me</span> levanto a las siete.</span><span class="ex-ja">私は7時に起きます。</span></div>
-  <div class="ex"><span class="ex-sp">No <span class="hi">me</span> levanto tarde.</span><span class="ex-ja">私は遅くに起きません。</span></div>
-</div>
-
-<div class="box box-rule">
-  <div class="box-title">ルール②　不定詞（原形）の後ろにつけることもできる</div>
-  <div class="ex">
-    <span class="ex-sp">Quiero duchar<span class="hi">me</span>.</span>
-    <span class="ex-arrow">＝</span>
-    <span class="ex-sp"><span class="hi">Me</span> quiero duchar.</span>
-    <span class="ex-ja">シャワーを浴びたい。</span>
-  </div>
-</div>
-
-<div class="box box-rule">
-  <div class="box-title">ルール③　現在分詞（-ando/-iendo）の後ろにつけることもできる</div>
-  <div class="ex">
-    <span class="ex-sp">Estoy lavándo<span class="hi">me</span> las manos.</span>
-    <span class="ex-arrow">＝</span>
-    <span class="ex-sp"><span class="hi">Me</span> estoy lavando las manos.</span>
-    <span class="ex-ja">手を洗っています。</span>
-  </div>
-  <div class="caution">⚠ 現在分詞の後ろに代名詞をつけるとアクセント記号が必要になることがあります（lavándo<b>me</b>）。</div>
-</div>
-
-<div class="box box-rule">
-  <div class="box-title">ルール④　命令形の後ろにつける（肯定命令のみ）</div>
-  <div class="ex"><span class="ex-sp">¡Levánta<span class="hi">te</span>!</span><span class="ex-ja">起きなさい！（肯定命令：後置）</span></div>
-  <div class="ex"><span class="ex-sp">No <span class="hi">te</span> levantes.</span><span class="ex-ja">起きないで。（否定命令：前置）</span></div>
-</div>
-
-<div class="sub">主な再帰動詞一覧</div>
-<div class="verb-grid-wrap">
-  <div class="verb-col verb-col-ar">
-    <div class="verb-col-head badge-ar">身支度</div>
-    <div class="verb-card-list">
-      <div class="vcard"><span class="vc-es">despertarse</span><span class="vc-ja">目が覚める</span></div>
-      <div class="vcard"><span class="vc-es">levantarse</span><span class="vc-ja">起きる</span></div>
-      <div class="vcard"><span class="vc-es">ducharse</span><span class="vc-ja">シャワーを浴びる</span></div>
-      <div class="vcard"><span class="vc-es">lavarse</span><span class="vc-ja">洗う</span></div>
-      <div class="vcard"><span class="vc-es">cepillarse</span><span class="vc-ja">磨く</span></div>
-      <div class="vcard"><span class="vc-es">afeitarse</span><span class="vc-ja">ひげをそる</span></div>
-      <div class="vcard"><span class="vc-es">peinarse</span><span class="vc-ja">髪をとかす</span></div>
-      <div class="vcard"><span class="vc-es">vestirse</span><span class="vc-ja">着る</span></div>
-    </div>
-  </div>
-  <div class="verb-col verb-col-er">
-    <div class="verb-col-head badge-er">動作・状態変化</div>
-    <div class="verb-card-list">
-      <div class="vcard"><span class="vc-es">acostarse</span><span class="vc-ja">寝る・横になる</span></div>
-      <div class="vcard"><span class="vc-es">sentarse</span><span class="vc-ja">座る</span></div>
-      <div class="vcard"><span class="vc-es">ponerse</span><span class="vc-ja">〜になる</span></div>
-      <div class="vcard"><span class="vc-es">quedarse</span><span class="vc-ja">留まる</span></div>
-      <div class="vcard"><span class="vc-es">cansarse</span><span class="vc-ja">疲れる</span></div>
-      <div class="vcard"><span class="vc-es">aburrirse</span><span class="vc-ja">退屈する</span></div>
-      <div class="vcard"><span class="vc-es">alegrarse</span><span class="vc-ja">喜ぶ</span></div>
-      <div class="vcard"><span class="vc-es">enfermarse</span><span class="vc-ja">病気になる</span></div>
-    </div>
-  </div>
-  <div class="verb-col verb-col-ir">
-    <div class="verb-col-head badge-ir">相互・慣用</div>
-    <div class="verb-card-list">
-      <div class="vcard"><span class="vc-es">llamarse</span><span class="vc-ja">〜という名だ</span></div>
-      <div class="vcard"><span class="vc-es">encontrarse</span><span class="vc-ja">会う・見つかる</span></div>
-      <div class="vcard"><span class="vc-es">irse</span><span class="vc-ja">去る</span></div>
-      <div class="vcard"><span class="vc-es">casarse</span><span class="vc-ja">結婚する</span></div>
-      <div class="vcard"><span class="vc-es">divorciarse</span><span class="vc-ja">離婚する</span></div>
-      <div class="vcard"><span class="vc-es">olvidarse</span><span class="vc-ja">忘れる</span></div>
-      <div class="vcard"><span class="vc-es">preocuparse</span><span class="vc-ja">心配する</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="trivia">
-  <span class="trivia-icon">💡</span>
-  <span><span class="trivia-label">TRIVIA</span>　語幹変化を持つ再帰動詞も多くあります。levantarse（規則）、despertarse（ie変化: me <b>despiert</b>o）、vestirse（i変化: me <b>vist</b>o）、acostarse（ue変化: me <b>acuest</b>o）のように語幹母音変化を持つ再帰動詞があります。活用全体を通じて変化する点は非再帰形と同じです。</span>
-</div>
-
-<div class="box" style="border-left-color:var(--accent2); background:#edf6f4; margin-top:8px;">
-  <div class="box-title">再帰代名詞 se のその他の用法</div>
-  <p style="font-size:13px; margin-bottom:8px;">再帰代名詞 <span class="mono hi">se</span> には「自分に〜する」以外にも：</p>
-  <ol style="font-size:13px; padding-left:18px; margin:0;">
-    <li style="margin-bottom:6px;"><strong>相互用法</strong>：<span class="mono">Se abrazan.</span>　<span class="td-ja">彼らは抱き合う。</span></li>
-    <li style="margin-bottom:6px;"><strong>受動用法</strong>：<span class="mono">Aquí se habla español.</span>　<span class="td-ja">ここではスペイン語が話されています。</span></li>
-    <li style="margin-bottom:0;"><strong>非人称用法</strong>：<span class="mono">Se come bien en España.</span>　<span class="td-ja">スペインはよく食べられます（スペインの食事はおいしい）。</span></li>
-  </ol>
-</div>
-
-<!-- ② 点過去形の規則活用 -->
-<div id="sec2" class="sec-heading">
-  <span class="sec-num">②</span>
-  <span class="sec-title">点過去形の規則活用</span>
-  <span class="sec-es">Pretérito indefinido regular</span>
-</div>
-
-<p>点過去形（Pretérito indefinido）は<span class="hi">完了した過去の行為・出来事</span>を表します。英語の "Simple Past" に相当し、「昨日〜した」「先週〜した」など完結した動作に使います。</p>
-
-<div class="sub">-ar動詞の点過去活用（hablar）</div>
 <div class="tbl-wrap">
 <table>
-  <thead>
-    <tr>
-      <th colspan="2">人称</th>
-      <th style="background:#dde8f5;color:var(--accent)">-ar 動詞<br><small>hablar（話す）</small></th>
-      <th style="background:#dde8f5;color:var(--accent)">-ar 語尾</th>
-    </tr>
-  </thead>
+  <thead><tr><th style="width:48%">スペイン語</th><th>日本語訳</th></tr></thead>
   <tbody>
-    <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono">hablé</td><td class="td-c td-rule">-é</td></tr>
-    <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono">hablaste</td><td class="td-c td-rule">-aste</td></tr>
-    <tr><td class="td-key td-c">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono">habló</td><td class="td-c td-rule">-ó</td></tr>
-    <tr><td class="td-key td-c">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono">habl<b>amos</b></td><td class="td-c td-rule">-amos</td></tr>
-    <tr><td class="td-key td-c">vosotros/as</td><td class="td-ja">君たち（スペイン）</td><td class="td-c mono">habl<b>asteis</b></td><td class="td-c td-rule">-asteis</td></tr>
-    <tr><td class="td-key td-c">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono">hablaron</td><td class="td-c td-rule">-aron</td></tr>
+    <tr><td class="mono">No sabemos <b>cómo economizar</b> en los gastos.</td><td class="td-ja">私たちはコストをどのように節約すべきか分かりません。</td></tr>
+    <tr><td class="mono">No sé <b>qué regalarle</b> a ella para su cumpleaños.</td><td class="td-ja">彼女の誕生日に何を贈るべきか私には分からない。</td></tr>
   </tbody>
 </table>
 </div>
 
-<div class="sub" style="margin-top:10px">-er/-ir動詞の点過去活用（comer / vivir）</div>
+<div class="box" style="background:#edf6f4; border-left-color:var(--accent2); margin-top:6px;">
+  <div class="box-title">目的格代名詞と不定詞の結合</div>
+  <p style="font-size:13px; margin:0;">不定詞を用いた文では、不定詞と目的格代名詞をくっつけて1語にすることができます。<br>例：<span class="mono">No sé qué <b>regalarle</b> a ella.</span>（le = 間接目的格代名詞）</p>
+</div>
+
+<div class="sub" style="margin-top:14px">用法③ 知覚動詞 + 不定詞（目的格補語）</div>
+<p>知覚動詞（ver「見る」、oír「聞こえる」など）の後ろに不定詞を置くと、「A が B するのを見る/聞く」という意味になります（<span class="hi">不定詞は目的格補語</span>）。</p>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th style="width:48%">スペイン語</th><th>日本語訳</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">Veo a Francisco <b>bailar</b> con Ángela.</td><td class="td-ja">私はフランシスコがアンヘラと踊るのを見る。</td></tr>
+    <tr><td class="mono">Oigo a María <b>cantar</b> muy bien.</td><td class="td-ja">（私は）マリアがとても上手に歌うのが聞こえる。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">用法④ 使役文（hacer / dejar + 不定詞）</div>
+
 <div class="two-col">
   <div>
-    <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">人称</th>
-          <th style="background:#d8eeea;color:var(--accent2)">-er 動詞<br><small>comer（食べる）</small></th>
-          <th style="background:#d8eeea;color:var(--accent2)">語尾</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono">comí</td><td class="td-c td-rule">-í</td></tr>
-        <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono">comiste</td><td class="td-c td-rule">-iste</td></tr>
-        <tr><td class="td-key td-c">él/ella</td><td class="td-ja">彼/彼女</td><td class="td-c mono">comió</td><td class="td-c td-rule">-ió</td></tr>
-        <tr><td class="td-key td-c">nosotros</td><td class="td-ja">私たち</td><td class="td-c mono">com<b>imos</b></td><td class="td-c td-rule">-imos</td></tr>
-        <tr><td class="td-key td-c">vosotros</td><td class="td-ja">君たち</td><td class="td-c mono">com<b>isteis</b></td><td class="td-c td-rule">-isteis</td></tr>
-        <tr><td class="td-key td-c">ellos/ellas</td><td class="td-ja">彼ら</td><td class="td-c mono">comieron</td><td class="td-c td-rule">-ieron</td></tr>
-      </tbody>
-    </table>
+    <div class="box box-rule">
+      <div class="box-title">強制使役：hacer + 不定詞</div>
+      <div class="ex"><span class="ex-sp">Mis padres siempre me <b>hacen limpiar</b> el baño.</span></div>
+      <div class="ex"><span class="ex-ja">私の両親はいつも私に浴室を掃除させる。</span></div>
     </div>
   </div>
   <div>
-    <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">人称</th>
-          <th style="background:#f0e8dd;color:#8b5020">-ir 動詞<br><small>vivir（住む）</small></th>
-          <th style="background:#f0e8dd;color:#8b5020">語尾</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono">viví</td><td class="td-c td-rule">-í</td></tr>
-        <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono">viviste</td><td class="td-c td-rule">-iste</td></tr>
-        <tr><td class="td-key td-c">él/ella</td><td class="td-ja">彼/彼女</td><td class="td-c mono">vivió</td><td class="td-c td-rule">-ió</td></tr>
-        <tr><td class="td-key td-c">nosotros</td><td class="td-ja">私たち</td><td class="td-c mono">viv<b>imos</b></td><td class="td-c td-rule">-imos</td></tr>
-        <tr><td class="td-key td-c">vosotros</td><td class="td-ja">君たち</td><td class="td-c mono">viv<b>isteis</b></td><td class="td-c td-rule">-isteis</td></tr>
-        <tr><td class="td-key td-c">ellos/ellas</td><td class="td-ja">彼ら</td><td class="td-c mono">vivieron</td><td class="td-c td-rule">-ieron</td></tr>
-      </tbody>
-    </table>
+    <div class="box box-rule" style="border-left-color:var(--accent2)">
+      <div class="box-title">放任使役：dejar + 不定詞</div>
+      <div class="ex"><span class="ex-sp">Mis padres no me <b>dejan salir</b> por la noche.</span></div>
+      <div class="ex"><span class="ex-ja">私の両親は夜間私を外出させてくれない。</span></div>
     </div>
   </div>
 </div>
 
-<div id="preterito-points" class="box">
-  <div class="box-title">重要ポイント</div>
-  <ul style="font-size:13px; padding-left:18px; margin:0;">
-    <li style="margin-bottom:5px;"><strong>-ar と -er/-ir の点過去語尾は異なります</strong>（-é/-aste/-ó vs -í/-iste/-ió）</li>
-    <li style="margin-bottom:5px;"><strong>nosotros 形は -ar動詞の場合、現在形と点過去形が同形</strong>（hablamos）→ 文脈で判断</li>
-    <li style="margin-bottom:0;"><strong>yo 形と él/ella 形にはアクセント記号が必要</strong>（hablé, habló / comí, comió）</li>
-  </ul>
+<div class="box" style="background:#f5f0ff; border-left-color:#7c5cbf; margin-top:6px;">
+  <div class="box-title">目的格代名詞（me）の格について</div>
+  <p style="font-size:13px; margin:0;">強制使役文と放任使役文の両方で「A に B させる」という場合、B させる動詞が<b>自動詞</b>なら A は<b>直接目的語</b>、<b>他動詞</b>なら A は<b>間接目的語</b>です。<br>→ 上の2文の me：<b>hacen limpiar</b>（他動詞）→ me は間接目的格代名詞 / <b>dejan salir</b>（自動詞）→ me は直接目的格代名詞</p>
 </div>
 
-<div id="preterito-spell" class="sub">-ar語幹変化の注意（スペル変化）</div>
-<p>以下の場合、<span class="hi-r">yo形のスペル</span>が変わります（発音を保つため）：</p>
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　<span class="mono hi">hay que + 不定詞</span> は「〜しなければならない」という義務を表す非人称表現です。主語なしで使い、会話でよく使われます。例：<span class="mono">Hay que estudiar mucho.</span>（たくさん勉強しなければならない）</span>
+</div>
+
+<!-- ② 現在分詞：形と用法 -->
+<div id="sec2" class="sec-heading">
+  <span class="sec-num">②</span>
+  <span class="sec-title">現在分詞：形と用法</span>
+  <span class="sec-es">Gerundio</span>
+</div>
+
+<p>現在分詞（Gerundio）は<span class="hi">動詞が副詞として扱われるときの形</span>です。不定形（forma no personal）の一つで、動作の様態・理由・手段などを表します。</p>
+
+<div class="sub">規則形の作り方</div>
 <div class="tbl-wrap">
 <table>
-  <thead><tr><th>語尾</th><th>変化ルール</th><th>例</th><th>yo形</th></tr></thead>
+  <thead><tr><th>動詞の種類</th><th>語尾の変化</th><th>例</th></tr></thead>
   <tbody>
-    <tr><td class="td-rule">-car 動詞</td><td class="td-c">c → qu</td><td class="mono td-c">buscar</td><td class="mono td-c hi-r">busqué</td></tr>
-    <tr><td class="td-rule">-gar 動詞</td><td class="td-c">g → gu</td><td class="mono td-c">llegar</td><td class="mono td-c hi-r">llegué</td></tr>
-    <tr><td class="td-rule">-zar 動詞</td><td class="td-c">z → c</td><td class="mono td-c">empezar</td><td class="mono td-c hi-r">empecé</td></tr>
+    <tr><td class="td-rule">-ar 動詞</td><td class="td-c hi"><b>-ando</b></td><td class="mono td-c">hablar → habl<b>ando</b>　　bailar → bail<b>ando</b></td></tr>
+    <tr><td class="td-rule">-er / -ir 動詞</td><td class="td-c hi"><b>-iendo</b></td><td class="mono td-c">comer → com<b>iendo</b>　　vivir → viv<b>iendo</b></td></tr>
   </tbody>
 </table>
 </div>
 
-<!-- ③ 時間の表現 -->
-<div id="sec3" class="sec-heading">
-  <span class="sec-num">③</span>
-  <span class="sec-title">時間の表現</span>
-  <span class="sec-es">Expresiones de tiempo</span>
-</div>
-
-<p>点過去形とよく使う時間表現の一覧です。これらの表現が文中にあれば、点過去形を使うサインになります。</p>
+<div class="sub" style="margin-top:14px">用法① 主動詞を修飾する副詞的用法</div>
+<p>現在分詞は主動詞を修飾し、<span class="hi">同時並行的行為（〜しながら）・タイミング・条件・理由・譲歩</span>などを示します。多くの場合、現在分詞の主語は主動詞の主語と一致します。</p>
 
 <div class="tbl-wrap">
 <table>
-  <thead><tr><th>時間表現</th><th>意味</th><th>例文</th></tr></thead>
+  <thead><tr><th style="width:48%">スペイン語</th><th>日本語訳</th><th>用法</th></tr></thead>
   <tbody>
-    <tr><td class="td-rule mono">ayer</td><td class="td-ja">昨日</td><td><span class="mono">Ayer estudié mucho.</span>　<span class="td-ja">昨日たくさん勉強した。</span></td></tr>
-    <tr><td class="td-rule mono">anoche</td><td class="td-ja">昨夜</td><td><span class="mono">Anoche comí pizza.</span>　<span class="td-ja">昨夜ピザを食べた。</span></td></tr>
-    <tr><td class="td-rule mono">esta mañana</td><td class="td-ja">今朝</td><td><span class="mono">Esta mañana me levanté tarde.</span>　<span class="td-ja">今朝遅く起きた。</span></td></tr>
-    <tr><td class="td-rule mono">la semana pasada</td><td class="td-ja">先週</td><td><span class="mono">La semana pasada viajé a Tokio.</span>　<span class="td-ja">先週東京へ旅行した。</span></td></tr>
-    <tr><td class="td-rule mono">el mes pasado</td><td class="td-ja">先月</td><td><span class="mono">El mes pasado aprendí a bailar.</span>　<span class="td-ja">先月踊り方を学んだ。</span></td></tr>
-    <tr><td class="td-rule mono">el año pasado</td><td class="td-ja">去年</td><td><span class="mono">El año pasado viví en España.</span>　<span class="td-ja">去年スペインに住んでいた。</span></td></tr>
-    <tr><td class="td-rule mono">hace X días</td><td class="td-ja">X日前</td><td><span class="mono">Hace tres días llegué a Madrid.</span>　<span class="td-ja">3日前にマドリードに着いた。</span></td></tr>
-    <tr><td class="td-rule mono">hace X años</td><td class="td-ja">X年前</td><td><span class="mono">Hace dos años empecé a estudiar español.</span>　<span class="td-ja">2年前にスペイン語を勉強し始めた。</span></td></tr>
-    <tr><td class="td-rule mono">en + 年号</td><td class="td-ja">〜年に</td><td><span class="mono">En 2020 nació mi sobrino.</span>　<span class="td-ja">2020年に甥が生まれた。</span></td></tr>
+    <tr><td class="mono">Mi padre siempre desayuna <b>leyendo</b> el periódico.</td><td class="td-ja">私の父はいつも新聞を読みながら朝食をとる。</td><td>同時並行（〜しながら）</td></tr>
+    <tr><td class="mono">Siempre desayuno <b>leyéndola</b>.</td><td class="td-ja">いつもそれを読みながら朝食をとる。</td><td>代名詞との結合形</td></tr>
+    <tr><td class="mono">Nosotros aprendemos otras culturas <b>viajando</b> por los países extranjeros.</td><td class="td-ja">私たちは外国を旅することで異文化を学ぶ。</td><td>手段・理由</td></tr>
+    <tr><td class="mono">Mi novio me maltrata <b>sabiendo</b> mi amor.</td><td class="td-ja">私の彼氏は私の愛を知っているにもかかわらずひどい仕打ちをする。</td><td>譲歩（〜にもかかわらず）</td></tr>
+    <tr><td class="mono"><b>Siendo</b> difícil, quiero resolver este problema.</td><td class="td-ja">難しいけれど、この問題を解決したい。</td><td>譲歩（〜けれど）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box" style="background:#edf6f4; border-left-color:var(--accent2); margin-top:6px;">
+  <div class="box-title">現在分詞と目的格代名詞の結合</div>
+  <p style="font-size:13px; margin:0;">不定詞と同様に、現在分詞と目的格代名詞もくっつけて1語にできます。その際アクセント記号が必要になることがあります（leyéndo<b>la</b>）。</p>
+</div>
+
+<div class="sub" style="margin-top:14px">用法② 知覚動詞 + 現在分詞（目的格補語）</div>
+<p>用法③（不定詞）との違い：不定詞は「一回限りの動作」、現在分詞は「進行中・継続中の動作」を強調します。</p>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th style="width:48%">スペイン語</th><th>日本語訳</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">Veo a Francisco <b>bailando</b> con Ángela.</td><td class="td-ja">私はフランシスコがアンヘラと踊っているところを見る。</td></tr>
+    <tr><td class="mono">Oigo a María <b>cantando</b> muy bien.</td><td class="td-ja">（私は）マリアがとても上手に歌っているところが聞こえる。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">用法③ 動詞 + 現在分詞（特殊な意味）</div>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>組み合わせ</th><th>意味</th><th>例文</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="td-rule mono">seguir / continuar<br>+ 現在分詞</td>
+      <td class="td-ja">〜し続ける</td>
+      <td><span class="mono">¿Sigues <b>trabajando</b> en la misma empresa?</span><br><span class="td-ja">君は同じ企業で働き続けているの？</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule mono">llevar + 時間<br>+ 現在分詞</td>
+      <td class="td-ja">〜し続けてOOの期間になる</td>
+      <td><span class="mono">Llevamos tres años <b>viviendo</b> en esta ciudad.</span><br><span class="td-ja">私たちはこの街に住み続けて3年になる。</span></td>
+    </tr>
+    <tr>
+      <td class="td-rule mono">ir + 現在分詞</td>
+      <td class="td-ja">（だんだん）〜していく</td>
+      <td><span class="mono">El precio <b>va subiendo</b> poco a poco.</span><br><span class="td-ja">価格が少しずつ上がっていく。</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">用法④ estar + 現在分詞（進行時制）</div>
+<p><span class="hi">estar の活用形 + 現在分詞</span> で進行時制を作ります。目的格代名詞は estar の前にも、現在分詞の後にくっつけても、どちらでも可能です。</p>
+
+<div class="box box-rule">
+  <div class="box-title">現在進行形（estar の現在形 + 現在分詞）</div>
+  <div class="ex">
+    <span class="ex-sp">Lo <b>estoy leyendo</b>.</span>
+    <span class="ex-arrow">＝</span>
+    <span class="ex-sp">Estoy <b>leyéndolo</b>.</span>
+    <span class="ex-ja">私がそれを読んでいるところだよ。</span>
+  </div>
+</div>
+
+<!-- ③ 現在分詞の不規則形 -->
+<div id="sec3" class="sec-heading">
+  <span class="sec-num">③</span>
+  <span class="sec-title">現在分詞の不規則形</span>
+  <span class="sec-es">Gerundio irregular</span>
+</div>
+
+<p>現在分詞の不規則形には2タイプあります。</p>
+
+<div class="sub">不規則形①　語尾が -yendo になるもの</div>
+<p>語根が母音で終わる、または語根を持たない -er / -ir 動詞は、語尾が <span class="hi">-iendo</span> ではなく <span class="hi">-yendo</span> になります（ただし -guir, -quir で終わる動詞は例外）。</p>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>不定詞</th><th>意味</th><th>現在分詞</th></tr></thead>
+  <tbody>
+    <tr><td class="mono td-c">leer</td><td class="td-ja">読む</td><td class="mono td-c hi"><b>leyendo</b></td></tr>
+    <tr><td class="mono td-c">caer</td><td class="td-ja">落ちる</td><td class="mono td-c hi"><b>cayendo</b></td></tr>
+    <tr><td class="mono td-c">huir</td><td class="td-ja">逃げる</td><td class="mono td-c hi"><b>huyendo</b></td></tr>
+    <tr><td class="mono td-c">oír</td><td class="td-ja">聞く</td><td class="mono td-c hi"><b>oyendo</b></td></tr>
+    <tr><td class="mono td-c">construir</td><td class="td-ja">建設する</td><td class="mono td-c hi"><b>construyendo</b></td></tr>
+    <tr><td class="mono td-c">ir</td><td class="td-ja">行く</td><td class="mono td-c hi"><b>yendo</b></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">不規則形②　語根の母音変化が起きるもの</div>
+<p>現在形で語根母音変化する -ir 動詞、および poder・decir・venir は、語根の開母音が<span class="hi">閉母音化（e→i または o→u）</span>します。</p>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>不定詞</th><th>意味</th><th>現在分詞</th><th>変化</th></tr></thead>
+  <tbody>
+    <tr><td class="mono td-c">pedir</td><td class="td-ja">頼む</td><td class="mono td-c hi"><b>pidiendo</b></td><td class="td-c td-rule">e → i</td></tr>
+    <tr><td class="mono td-c">sentir</td><td class="td-ja">感じる</td><td class="mono td-c hi"><b>sintiendo</b></td><td class="td-c td-rule">e → i</td></tr>
+    <tr><td class="mono td-c">dormir</td><td class="td-ja">眠る</td><td class="mono td-c hi"><b>durmiendo</b></td><td class="td-c td-rule">o → u</td></tr>
+    <tr><td class="mono td-c">poder</td><td class="td-ja">〜できる</td><td class="mono td-c hi"><b>pudiendo</b></td><td class="td-c td-rule">o → u</td></tr>
+    <tr><td class="mono td-c">decir</td><td class="td-ja">言う</td><td class="mono td-c hi"><b>diciendo</b></td><td class="td-c td-rule">e → i</td></tr>
+    <tr><td class="mono td-c">venir</td><td class="td-ja">来る</td><td class="mono td-c hi"><b>viniendo</b></td><td class="td-c td-rule">e → i</td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="trivia">
   <span class="trivia-icon">💡</span>
-  <span><span class="trivia-label">TRIVIA</span>　<span class="mono hi">hace + 時間 + que + 点過去形</span> で「〜前に〜した」。<span class="mono hi2">hace + 時間 + que + 現在形</span> で「〜前から〜している（今も）」という継続を表します。例：<span class="mono">Hace dos años que estudio español.</span>（2年前からスペイン語を勉強している）</span>
+  <span><span class="trivia-label">TRIVIA</span>　poder・decir・venir は語根母音変化動詞ではありませんが、現在分詞では同様の変化をします。decir → <span class="mono hi">diciendo</span>、venir → <span class="mono hi">viniendo</span> は特に入試でも頻出です。</span>
 </div>
 
-<!-- ④ 点過去 vs 現在形 -->
+<!-- ④ 過去分詞：形と用法 -->
 <div id="sec4" class="sec-heading">
   <span class="sec-num">④</span>
-  <span class="sec-title">点過去 vs 現在形</span>
-  <span class="sec-es">Pretérito indefinido vs Presente</span>
+  <span class="sec-title">過去分詞：形と用法</span>
+  <span class="sec-es">Participio pasado</span>
 </div>
 
-<div class="box">
-  <div class="box-title">現在形と点過去形の使い分け</div>
-  <ul style="font-size:13px; padding-left:18px; margin:0 0 10px 0;">
-    <li style="margin-bottom:5px;"><strong>現在形</strong>は「今している・いつもしている」習慣・状態・近未来を表す</li>
-    <li style="margin-bottom:5px;"><strong>点過去形</strong>は「過去に完結した」行為を表す</li>
-    <li style="margin-bottom:0;">「今朝〜した」「昨日〜した」のように完了した出来事 → <span class="hi-r">点過去</span></li>
-  </ul>
-</div>
+<p>過去分詞（Participio pasado）は<span class="hi">動詞が形容詞として扱われるときの形</span>です。「〜する」という動詞が「〜された（〇〇）」という意味で使われます。形容詞と同様に<span class="hi">修飾対象の性・数に合わせて形が変わります</span>。</p>
 
-<div class="tbl-wrap" style="margin-top:10px">
+<div class="sub">規則形の作り方</div>
+<div class="tbl-wrap">
 <table>
-  <thead><tr><th>状況</th><th style="background:#d8eeea;color:var(--accent2)">現在形（習慣・今）</th><th style="background:#dde8f5;color:var(--accent)">点過去形（完了した過去）</th></tr></thead>
+  <thead><tr><th>動詞の種類</th><th>語尾の変化</th><th>例</th></tr></thead>
+  <tbody>
+    <tr><td class="td-rule">-ar 動詞</td><td class="td-c hi"><b>-ado</b></td><td class="mono td-c">hablar → habl<b>ado</b>　　amar → am<b>ado</b></td></tr>
+    <tr><td class="td-rule">-er / -ir 動詞</td><td class="td-c hi"><b>-ido</b></td><td class="mono td-c">comer → com<b>ido</b>　　vivir → viv<b>ido</b></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">不規則形</div>
+
+<div class="two-col">
+<div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th colspan="2" style="background:#dde8f5;color:var(--accent)">-to 型（最も多い）</th></tr>
+    <tr><th>不定詞</th><th>過去分詞</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">abrir（開ける）</td><td class="mono hi">abierto</td></tr>
+      <tr><td class="mono">cubrir（覆う）</td><td class="mono hi">cubierto</td></tr>
+      <tr><td class="mono">descubrir（発見する）</td><td class="mono hi">descubierto</td></tr>
+      <tr><td class="mono">escribir（書く）</td><td class="mono hi">escrito</td></tr>
+      <tr><td class="mono">describir（描写する）</td><td class="mono hi">descrito</td></tr>
+      <tr><td class="mono">morir（死ぬ）</td><td class="mono hi">muerto</td></tr>
+      <tr><td class="mono">poner（置く）</td><td class="mono hi">puesto</td></tr>
+      <tr><td class="mono">componer（構成する）</td><td class="mono hi">compuesto</td></tr>
+      <tr><td class="mono">suponer（想定する）</td><td class="mono hi">supuesto</td></tr>
+      <tr><td class="mono">resolver（解決する）</td><td class="mono hi">resuelto</td></tr>
+      <tr><td class="mono">disolver（溶解する）</td><td class="mono hi">disuelto</td></tr>
+      <tr><td class="mono">romper（壊す）</td><td class="mono hi">roto</td></tr>
+      <tr><td class="mono">ver（見る）</td><td class="mono hi">visto</td></tr>
+      <tr><td class="mono">volver（戻る）</td><td class="mono hi">vuelto</td></tr>
+      <tr><td class="mono">devolver（返却する）</td><td class="mono hi">devuelto</td></tr>
+      <tr><td class="mono">freír（揚げる）</td><td class="mono hi">frito</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th colspan="2" style="background:#d8eeea;color:var(--accent2)">-cho 型</th></tr>
+    <tr><th>不定詞</th><th>過去分詞</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">decir（言う）</td><td class="mono hi">dicho</td></tr>
+      <tr><td class="mono">hacer（する）</td><td class="mono hi">hecho</td></tr>
+      <tr><td class="mono">satisfacer（満足させる）</td><td class="mono hi">satisfecho</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="tbl-wrap" style="margin-top:10px">
+  <table>
+    <thead><tr><th colspan="2" style="background:#f0e8dd;color:#8b5020">-so 型</th></tr>
+    <tr><th>不定詞</th><th>過去分詞</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">imprimir（印刷する）</td><td class="mono hi">impreso</td></tr>
+      <tr><td class="mono">prender（つかむ）</td><td class="mono hi">preso</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box" style="background:#fff8f0; border-left-color:#c97c00; margin-top:10px;">
+    <div class="box-title">アクセント記号が必要なもの</div>
+    <p style="font-size:13px; margin:0;">語根が開母音（a, e, o）で終わる -er / -ir 動詞は、-ido の「i」にアクセント記号が必要です。</p>
+    <div style="margin-top:6px; font-size:13px;">
+      <span class="mono">leer → le<b>í</b>do</span>　<span class="mono">caer → ca<b>í</b>do</span>　<span class="mono">traer → tra<b>í</b>do</span>　<span class="mono">oír → o<b>í</b>do</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sub" style="margin-top:14px">用法① 名詞を修飾する</div>
+<p>形容詞と同じく名詞に性数一致させます。</p>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>スペイン語</th><th>日本語訳</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">un profesor <b>admirado</b></td><td class="td-ja">ある尊敬された（男性の）先生（admirar 尊敬する → admirado）</td></tr>
+    <tr><td class="mono">una profesora <b>admirada</b></td><td class="td-ja">ある尊敬された（女性の）先生</td></tr>
+    <tr><td class="mono">unas profesoras <b>admiradas</b></td><td class="td-ja">何人かの尊敬された（女性の）先生たち</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">用法② 主格補語として用いる</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>スペイン語</th><th>日本語訳</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">Ellos comen el arroz al curry <b>sudados</b> los sábados.</td><td class="td-ja">彼らは毎週土曜日に汗をかいてカレーライスを食べる。（sudar → sudado 汗で濡らされた）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">用法③ 知覚動詞 + 過去分詞（目的格補語）</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>スペイン語</th><th>日本語訳</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">Veo a Teresa muy <b>cansada</b>.</td><td class="td-ja">私はテレサがとても疲れているように見える。（cansar → cansado 疲れさせられた）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub" style="margin-top:14px">用法④ 受身文（ser / estar + 過去分詞）</div>
+
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th style="width:20%">構造</th><th style="width:40%">スペイン語</th><th>日本語訳</th></tr></thead>
   <tbody>
     <tr>
-      <td class="td-rule">今日 vs 昨日</td>
-      <td><span class="mono">Hoy estudio.</span>　<span class="td-ja">今日勉強する。</span></td>
-      <td><span class="mono">Ayer estudié.</span>　<span class="td-ja">昨日勉強した。</span></td>
+      <td class="td-rule"><b>ser</b> + 過去分詞<br>（+ por + 行為主体）</td>
+      <td class="mono">Ese profesor <b>es admirado</b> por sus alumnos.</td>
+      <td class="td-ja">その先生は教え子たちに尊敬される。</td>
     </tr>
     <tr>
-      <td class="td-rule">習慣 vs 過去の出来事</td>
-      <td><span class="mono">Todos los días como arroz.</span>　<span class="td-ja">毎日ご飯を食べる。</span></td>
-      <td><span class="mono">El lunes comí sushi.</span>　<span class="td-ja">月曜日に寿司を食べた。</span></td>
+      <td class="td-rule"><b>estar</b> + 過去分詞<br>（結果としての現状）</td>
+      <td class="mono">Esas ruinas <b>están destruidas</b> por los terroristas.</td>
+      <td class="td-ja">その遺跡はテロリストたちによって破壊されてしまっている。（destruir → destruido）</td>
     </tr>
   </tbody>
 </table>
+</div>
+
+<div class="box" style="background:#f5f0ff; border-left-color:#7c5cbf; margin-top:6px;">
+  <div class="box-title">ser と estar の使い分け</div>
+  <p style="font-size:13px; margin:0;"><b>ser + 過去分詞</b>：ある行為が行われる（受身の出来事）<br><b>estar + 過去分詞</b>：ある行為が行われた結果として現状〜された状態にある（結果の状態）</p>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　接頭辞が付いて派生した動詞は基本的に同じ不規則形になります。例：poner（puesto）→ componer（compuesto）・suponer（supuesto）/ volver（vuelto）→ devolver（devuelto）。不規則形を一つ覚えれば派生動詞にも応用できます。</span>
 </div>
 
 </div><!-- /tab-grammar -->
@@ -398,7 +469,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 
 <div class="daimon">
   <span class="daimon-num">1.</span>
-  <span class="daimon-title">再帰動詞を正しく活用させなさい。</span>
+  <span class="daimon-title">下線部の動詞を不定詞・現在分詞・過去分詞のいずれかに活用させなさい。</span>
 </div>
 
 <div class="ex-block">
@@ -407,59 +478,59 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   <div class="q-item">
     <span class="q-badge blue">1</span>
     <div class="q-content">
-      <div class="q-sentence">Me <span class="blank">______</span> (llamarse) Ana. Soy española.</div>
-      <div class="q-ja">私はアナという名前です。スペイン人です。</div>
+      <div class="q-sentence"><span class="blank">______</span> (vivir) es <span class="blank">______</span> (comer).</div>
+      <div class="q-ja">生きることとは食べることである。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Me <span class="ans-fill">llamo</span> Ana. Soy española.</span>
+        <span class="ans-text"><span class="ans-fill">Vivir</span> es <span class="ans-fill">comer</span>.</span>
       </div>
-      <div class="q-exp">llamarse の1人称単数。再帰代名詞 me + <b>llamo</b>（llamar の活用形）。</div>
+      <div class="q-exp">両方とも不定詞（不定詞①用法）。動詞が名詞（主語・述語補語）として使われている。不定詞の形は動詞の原形と同じ。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge blue">2</span>
     <div class="q-content">
-      <div class="q-sentence">¿A qué hora te <span class="blank">______</span> (despertarse) normalmente?</div>
-      <div class="q-ja">ふだん何時に目が覚めますか？</div>
+      <div class="q-sentence">Mi padre desayuna <span class="blank">______</span> (leer) el periódico.</div>
+      <div class="q-ja">私の父は新聞を読みながら朝食をとる。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">¿A qué hora te <span class="ans-fill">despiertas</span> normalmente?</span>
+        <span class="ans-text">Mi padre desayuna <span class="ans-fill">leyendo</span> el periódico.</span>
       </div>
-      <div class="q-exp">despertarse の2人称単数。ie語幹母音変化：despertar → <b>despiert</b>a。再帰代名詞 te + <b>despiertas</b>。</div>
+      <div class="q-exp">現在分詞（gerundio）の不規則形。leer は語根が母音で終わる -er 動詞なので -iendo ではなく -yendo → <b>leyendo</b>。「〜しながら」（同時並行）の用法。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge blue">3</span>
     <div class="q-content">
-      <div class="q-sentence">Mi padre <span class="blank">______</span> (afeitarse) cada mañana.</div>
-      <div class="q-ja">私の父は毎朝ひげをそります。</div>
+      <div class="q-sentence">No sé cómo <span class="blank">______</span> (resolver) este problema.</div>
+      <div class="q-ja">この問題をどのように解決すべきか分からない。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Mi padre <span class="ans-fill">se afeita</span> cada mañana.</span>
+        <span class="ans-text">No sé cómo <span class="ans-fill">resolver</span> este problema.</span>
       </div>
-      <div class="q-exp">afeitarse の3人称単数。afeitarse は規則活用。再帰代名詞 se + <b>afeita</b>。</div>
+      <div class="q-exp">不定詞②用法（疑問詞 cómo の後に不定詞）。「〜すべきか・〜できるか」の意味になる。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge blue">4</span>
     <div class="q-content">
-      <div class="q-sentence">Nosotros <span class="blank">______</span> (acostarse) tarde los fines de semana.</div>
-      <div class="q-ja">私たちは週末に遅く寝ます。</div>
+      <div class="q-sentence">Mis padres me hacen <span class="blank">______</span> (limpiar) el baño.</div>
+      <div class="q-ja">私の両親は私に浴室を掃除させる。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Nosotros <span class="ans-fill">nos acostamos</span> tarde los fines de semana.</span>
+        <span class="ans-text">Mis padres me hacen <span class="ans-fill">limpiar</span> el baño.</span>
       </div>
-      <div class="q-exp">acostarse の1人称複数。ue語幹変化は1・2人称複数には起きない（nos <b>acostamos</b> ← acostar の規則形）。</div>
+      <div class="q-exp">不定詞④用法（強制使役：hacer + 不定詞）。hacer の後には不定詞（原形）を置く。</div>
     </div>
   </div>
 </div>
 
 <div class="daimon">
   <span class="daimon-num">2.</span>
-  <span class="daimon-title">点過去形で答えなさい。</span>
+  <span class="daimon-title">次の動詞の現在分詞（gerundio）の形を書きなさい。</span>
 </div>
 
 <div class="ex-block">
@@ -468,52 +539,106 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   <div class="q-item">
     <span class="q-badge teal">1</span>
     <div class="q-content">
-      <div class="q-sentence">¿Qué <span class="blank">______</span> (comer) ayer?</div>
-      <div class="q-ja">昨日何を食べましたか？</div>
+      <div class="q-sentence">pedir（頼む）→ <span class="blank">______</span></div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">¿Qué <span class="ans-fill">comiste</span> ayer?　→　<span class="ans-fill">Comí</span> una pizza. （例）</span>
+        <span class="ans-text"><span class="ans-fill">pidiendo</span></span>
       </div>
-      <div class="q-exp">comer の点過去2人称単数は <b>comiste</b>。答えは1人称単数 <b>comí</b>（-er動詞語尾 -í、アクセント記号付き）。</div>
+      <div class="q-exp">語根母音変化型（不規則形②）。-ir 動詞の語根母音変化動詞：e → i の変化。pedir → <b>pid-</b> + iendo = <b>pidiendo</b>。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge teal">2</span>
     <div class="q-content">
-      <div class="q-sentence">María <span class="blank">______</span> (llegar) a Madrid hace dos días.</div>
-      <div class="q-ja">マリアは2日前にマドリードに到着した。</div>
+      <div class="q-sentence">dormir（眠る）→ <span class="blank">______</span></div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">María <span class="ans-fill">llegó</span> a Madrid hace dos días.</span>
+        <span class="ans-text"><span class="ans-fill">durmiendo</span></span>
       </div>
-      <div class="q-exp">llegar の3人称単数点過去。-ar動詞語尾 <b>-ó</b>（アクセント記号付き）。※llegar の yo形は llegué（g→gu）だが、3人称は通常の llegó。</div>
+      <div class="q-exp">語根母音変化型（不規則形②）。o → u の変化。dormir → <b>durm-</b> + iendo = <b>durmiendo</b>。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge teal">3</span>
     <div class="q-content">
-      <div class="q-sentence">Nosotros <span class="blank">______</span> (hablar) con el profesor ayer.</div>
-      <div class="q-ja">私たちは昨日先生と話した。</div>
+      <div class="q-sentence">decir（言う）→ <span class="blank">______</span></div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Nosotros <span class="ans-fill">hablamos</span> con el profesor ayer.</span>
+        <span class="ans-text"><span class="ans-fill">diciendo</span></span>
       </div>
-      <div class="q-exp">hablar の1人称複数点過去。<b>hablamos</b> は現在形と同形のため文脈（ayer）で点過去と判断する。</div>
+      <div class="q-exp">語根母音変化型（不規則形②）。decir は語根母音変化動詞ではないが同様の変化：e → i。decir → <b>dic-</b> + iendo = <b>diciendo</b>。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge teal">4</span>
     <div class="q-content">
-      <div class="q-sentence">Yo <span class="blank">______</span> (empezar) a estudiar español el año pasado.</div>
-      <div class="q-ja">私は去年スペイン語を勉強し始めた。</div>
+      <div class="q-sentence">construir（建設する）→ <span class="blank">______</span></div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Yo <span class="ans-fill">empecé</span> a estudiar español el año pasado.</span>
+        <span class="ans-text"><span class="ans-fill">construyendo</span></span>
       </div>
-      <div class="q-exp">empezar の1人称単数点過去。-zar動詞の yo形は z→c に変化（empezar → <b>empecé</b>）。</div>
+      <div class="q-exp">-yendo 型（不規則形①）。construir は語根が母音で終わる -ir 動詞 → -iendo ではなく -yendo = <b>construyendo</b>。</div>
+    </div>
+  </div>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">3.</span>
+  <span class="daimon-title">次の動詞の過去分詞（participio pasado）の形を書きなさい。</span>
+</div>
+
+<div class="ex-block">
+  <div class="ex-block-title">問題と解答</div>
+
+  <div class="q-item">
+    <span class="q-badge blue">1</span>
+    <div class="q-content">
+      <div class="q-sentence">abrir（開ける）→ <span class="blank">______</span></div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">abierto</span></span>
+      </div>
+      <div class="q-exp">-to 型不規則形。abrir → <b>abierto</b>。派生動詞 cubrir → cubierto, descubrir → descubierto も同様の変化。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">2</span>
+    <div class="q-content">
+      <div class="q-sentence">hacer（する）→ <span class="blank">______</span></div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">hecho</span></span>
+      </div>
+      <div class="q-exp">-cho 型不規則形。hacer → <b>hecho</b>。同じく -cho 型：decir → dicho, satisfacer → satisfecho。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">3</span>
+    <div class="q-content">
+      <div class="q-sentence">volver（戻る）→ <span class="blank">______</span></div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text"><span class="ans-fill">vuelto</span></span>
+      </div>
+      <div class="q-exp">-to 型不規則形。volver → <b>vuelto</b>。派生動詞 devolver → devuelto も同様の変化。</div>
+    </div>
+  </div>
+
+  <div class="q-item">
+    <span class="q-badge blue">4</span>
+    <div class="q-content">
+      <div class="q-sentence">Ese edificio <span class="blank">______</span> (ser) construido hace cien años.</div>
+      <div class="q-ja">その建物は百年前に建設された。（受身文）</div>
+      <div class="q-answer-row">
+        <span class="ans-label">答え</span>
+        <span class="ans-text">Ese edificio <span class="ans-fill">fue</span> construido hace cien años.</span>
+      </div>
+      <div class="q-exp">過去分詞④用法（受身文）。ser + 過去分詞。ser の点過去3人称単数は fue。construir の過去分詞は規則形 -ido だが、-uir 動詞なので <b>construido</b>（アクセント記号不要）。</div>
     </div>
   </div>
 </div>
@@ -529,34 +654,63 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   <span class="sec-es">Vocabulario</span>
 </div>
 
-<div class="vocab-category">日課・身支度</div>
+<div class="vocab-category">不定詞・現在分詞・過去分詞の形成に関わる動詞（-ar）</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">despertarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">目が覚める</span></span>
-  <span class="pill"><span class="pill-es">levantarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">起きる</span></span>
-  <span class="pill"><span class="pill-es">ducharse</span><span class="pill-pos">再帰動</span><span class="pill-ja">シャワーを浴びる</span></span>
-  <span class="pill"><span class="pill-es">bañarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">入浴する</span></span>
-  <span class="pill"><span class="pill-es">lavarse la cara</span><span class="pill-pos">再帰動</span><span class="pill-ja">顔を洗う</span></span>
-  <span class="pill"><span class="pill-es">cepillarse los dientes</span><span class="pill-pos">再帰動</span><span class="pill-ja">歯を磨く</span></span>
-  <span class="pill"><span class="pill-es">afeitarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">ひげをそる</span></span>
-  <span class="pill"><span class="pill-es">maquillarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">化粧する</span></span>
-  <span class="pill"><span class="pill-es">vestirse</span><span class="pill-pos">再帰動</span><span class="pill-ja">着替える</span></span>
-  <span class="pill"><span class="pill-es">peinarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">髪をとかす</span></span>
-  <span class="pill"><span class="pill-es">desayunar</span><span class="pill-pos">動</span><span class="pill-ja">朝食をとる</span></span>
-  <span class="pill"><span class="pill-es">acostarse</span><span class="pill-pos">再帰動</span><span class="pill-ja">寝る</span></span>
+  <span class="pill"><span class="pill-es">bailar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">踊る → bailando / bailado</span></span>
+  <span class="pill"><span class="pill-es">cantar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">歌う → cantando / cantado</span></span>
+  <span class="pill"><span class="pill-es">trabajar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">働く → trabajando / trabajado</span></span>
+  <span class="pill"><span class="pill-es">limpiar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">掃除する → limpiando / limpiado</span></span>
+  <span class="pill"><span class="pill-es">desayunar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">朝食をとる → desayunando / desayunado</span></span>
+  <span class="pill"><span class="pill-es">regalar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">贈る → regalando / regalado</span></span>
+  <span class="pill"><span class="pill-es">admirar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">尊敬する → admirando / admirado</span></span>
+  <span class="pill"><span class="pill-es">sudar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">汗をかく → sudando / sudado</span></span>
+  <span class="pill"><span class="pill-es">subir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">上がる → subiendo / subido</span></span>
+  <span class="pill"><span class="pill-es">vivir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">住む → viviendo / vivido</span></span>
 </div>
 
-<div class="vocab-category">時間の表現（点過去で使うもの）</div>
+<div class="vocab-category">不規則過去分詞（最重要）</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">ayer</span><span class="pill-pos">副</span><span class="pill-ja">昨日</span></span>
-  <span class="pill"><span class="pill-es">anoche</span><span class="pill-pos">副</span><span class="pill-ja">昨夜</span></span>
-  <span class="pill"><span class="pill-es">esta mañana</span><span class="pill-pos">副</span><span class="pill-ja">今朝</span></span>
-  <span class="pill"><span class="pill-es">ayer por la tarde</span><span class="pill-pos">副</span><span class="pill-ja">昨日の午後</span></span>
-  <span class="pill"><span class="pill-es">la semana pasada</span><span class="pill-pos">副</span><span class="pill-ja">先週</span></span>
-  <span class="pill"><span class="pill-es">el mes pasado</span><span class="pill-pos">副</span><span class="pill-ja">先月</span></span>
-  <span class="pill"><span class="pill-es">el año pasado</span><span class="pill-pos">副</span><span class="pill-ja">去年</span></span>
-  <span class="pill"><span class="pill-es">hace X días</span><span class="pill-pos">副</span><span class="pill-ja">X日前</span></span>
-  <span class="pill"><span class="pill-es">hace X años</span><span class="pill-pos">副</span><span class="pill-ja">X年前</span></span>
-  <span class="pill"><span class="pill-es">en + 年号</span><span class="pill-pos">副</span><span class="pill-ja">〜年に</span></span>
+  <span class="pill"><span class="pill-es">abrir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">開ける → <b>abierto</b></span></span>
+  <span class="pill"><span class="pill-es">escribir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">書く → <b>escrito</b></span></span>
+  <span class="pill"><span class="pill-es">morir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">死ぬ → <b>muerto</b></span></span>
+  <span class="pill"><span class="pill-es">poner</span><span class="pill-pos">動 -er</span><span class="pill-ja">置く → <b>puesto</b></span></span>
+  <span class="pill"><span class="pill-es">resolver</span><span class="pill-pos">動 -er</span><span class="pill-ja">解決する → <b>resuelto</b></span></span>
+  <span class="pill"><span class="pill-es">romper</span><span class="pill-pos">動 -er</span><span class="pill-ja">壊す → <b>roto</b></span></span>
+  <span class="pill"><span class="pill-es">ver</span><span class="pill-pos">動 -er</span><span class="pill-ja">見る → <b>visto</b></span></span>
+  <span class="pill"><span class="pill-es">volver</span><span class="pill-pos">動 -er</span><span class="pill-ja">戻る → <b>vuelto</b></span></span>
+  <span class="pill"><span class="pill-es">decir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">言う → <b>dicho</b></span></span>
+  <span class="pill"><span class="pill-es">hacer</span><span class="pill-pos">動 -er</span><span class="pill-ja">する → <b>hecho</b></span></span>
+</div>
+
+<div class="vocab-category">不規則現在分詞（最重要）</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">leer</span><span class="pill-pos">動 -er</span><span class="pill-ja">読む → <b>leyendo</b></span></span>
+  <span class="pill"><span class="pill-es">oír</span><span class="pill-pos">動 -ir</span><span class="pill-ja">聞く → <b>oyendo</b></span></span>
+  <span class="pill"><span class="pill-es">ir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">行く → <b>yendo</b></span></span>
+  <span class="pill"><span class="pill-es">pedir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">頼む → <b>pidiendo</b></span></span>
+  <span class="pill"><span class="pill-es">sentir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">感じる → <b>sintiendo</b></span></span>
+  <span class="pill"><span class="pill-es">dormir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">眠る → <b>durmiendo</b></span></span>
+  <span class="pill"><span class="pill-es">poder</span><span class="pill-pos">動 -er</span><span class="pill-ja">〜できる → <b>pudiendo</b></span></span>
+  <span class="pill"><span class="pill-es">decir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">言う → <b>diciendo</b></span></span>
+  <span class="pill"><span class="pill-es">venir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">来る → <b>viniendo</b></span></span>
+</div>
+
+<div class="vocab-category">例文に登場する語</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">el periódico</span><span class="pill-pos">名 m.</span><span class="pill-ja">新聞</span></span>
+  <span class="pill"><span class="pill-es">el abuelo</span><span class="pill-pos">名 m.</span><span class="pill-ja">祖父</span></span>
+  <span class="pill"><span class="pill-es">rezar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">祈る</span></span>
+  <span class="pill"><span class="pill-es">los gastos</span><span class="pill-pos">名 m.pl.</span><span class="pill-ja">費用・出費</span></span>
+  <span class="pill"><span class="pill-es">economizar</span><span class="pill-pos">動 -ar</span><span class="pill-ja">節約する</span></span>
+  <span class="pill"><span class="pill-es">el cumpleaños</span><span class="pill-pos">名 m.</span><span class="pill-ja">誕生日</span></span>
+  <span class="pill"><span class="pill-es">el baño</span><span class="pill-pos">名 m.</span><span class="pill-ja">浴室・バス</span></span>
+  <span class="pill"><span class="pill-es">la empresa</span><span class="pill-pos">名 f.</span><span class="pill-ja">会社・企業</span></span>
+  <span class="pill"><span class="pill-es">el precio</span><span class="pill-pos">名 m.</span><span class="pill-ja">価格</span></span>
+  <span class="pill"><span class="pill-es">la verdura</span><span class="pill-pos">名 f.</span><span class="pill-ja">野菜</span></span>
+  <span class="pill"><span class="pill-es">las ruinas</span><span class="pill-pos">名 f.pl.</span><span class="pill-ja">遺跡</span></span>
+  <span class="pill"><span class="pill-es">destruir</span><span class="pill-pos">動 -ir</span><span class="pill-ja">破壊する → destruido</span></span>
+  <span class="pill"><span class="pill-es">el terrorista</span><span class="pill-pos">名 m./f.</span><span class="pill-ja">テロリスト</span></span>
+  <span class="pill"><span class="pill-es">cansado/a</span><span class="pill-pos">形</span><span class="pill-ja">疲れた（cansar の過去分詞）</span></span>
 </div>
 
 <!-- ⑦ まとめ -->
@@ -568,16 +722,19 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 
 <div class="tbl-wrap">
 <table class="summary">
-  <thead><tr><th style="width:28%">テーマ</th><th>重要ポイント</th></tr></thead>
+  <thead><tr><th style="width:30%">テーマ</th><th>重要ポイント</th></tr></thead>
   <tbody>
-    <tr><td class="td-rule">再帰代名詞</td><td>me / te / se / nos / os / se。活用形の前 or 原形・現在分詞の後</td></tr>
-    <tr><td class="td-rule">再帰動詞の語幹変化</td><td>despertarse（ie）、vestirse（i）、acostarse（ue）。1・2人称複数には変化なし</td></tr>
-    <tr><td class="td-rule">se の特殊用法</td><td>相互用法（Se abrazan.）、受動用法（Se habla español.）、非人称用法（Se come bien.）</td></tr>
-    <tr><td class="td-rule">点過去 -ar語尾</td><td class="mono">-é / -aste / -ó / -amos / -asteis / -aron</td></tr>
-    <tr><td class="td-rule">点過去 -er/-ir語尾</td><td class="mono">-í / -iste / -ió / -imos / -isteis / -ieron</td></tr>
-    <tr><td class="td-rule">スペル変化（yo形）</td><td>-car → -qué（busqué）、-gar → -gué（llegué）、-zar → -cé（empecé）</td></tr>
-    <tr><td class="td-rule">点過去の時間表現</td><td>ayer, anoche, hace X días, la semana pasada, el año pasado など</td></tr>
-    <tr><td class="td-rule">nosotros形の注意</td><td>-ar動詞：現在形 = 点過去形（hablamos）→ 文脈で判断</td></tr>
+    <tr><td class="td-rule">不定詞の形</td><td>動詞の原形そのまま。名詞として機能（主語・目的語・前置詞の目的語）</td></tr>
+    <tr><td class="td-rule">不定詞の用法</td><td>①名詞として / ②疑問詞の後（義務・可能性）/ ③知覚動詞の目的格補語 / ④使役（hacer, dejar）</td></tr>
+    <tr><td class="td-rule">現在分詞（規則形）</td><td class="mono">-ar → -ando　／　-er/-ir → -iendo</td></tr>
+    <tr><td class="td-rule">現在分詞（不規則①）</td><td>語根が母音で終わる -er/-ir 動詞 → -yendo（leer→leyendo, oír→oyendo, ir→yendo）</td></tr>
+    <tr><td class="td-rule">現在分詞（不規則②）</td><td>語根母音変化 -ir 動詞（e→i, o→u）＋ poder / decir / venir（pudiendo, diciendo, viniendo）</td></tr>
+    <tr><td class="td-rule">現在分詞の用法</td><td>①副詞的修飾 / ②知覚動詞の目的格補語 / ③seguir・llevar・ir との組み合わせ / ④estar + 進行形</td></tr>
+    <tr><td class="td-rule">過去分詞（規則形）</td><td class="mono">-ar → -ado　／　-er/-ir → -ido　（性数一致に注意）</td></tr>
+    <tr><td class="td-rule">過去分詞（不規則形）</td><td>-to 型（abierto, escrito, visto, vuelto...）/ -cho 型（dicho, hecho）/ -so 型（impreso）</td></tr>
+    <tr><td class="td-rule">過去分詞（アクセント）</td><td>語根が母音終わりの -er/-ir 動詞：leído, caído, traído, oído</td></tr>
+    <tr><td class="td-rule">過去分詞の用法</td><td>①名詞修飾（形容詞として性数一致）/ ②主格補語 / ③知覚動詞の目的格補語 / ④ser/estar + 受身</td></tr>
+    <tr><td class="td-rule">ser vs estar + 過去分詞</td><td>ser = 受身の動作（〜される）/ estar = 結果の状態（〜されてしまっている）</td></tr>
   </tbody>
 </table>
 </div>
@@ -589,10 +746,10 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <div id="float-nav">
   <div id="float-nav-menu">
     <button class="fn-search-btn" id="fn-search-btn">単語を検索</button>
-    <a class="fn-item" href="#sec1">① 再帰動詞</a>
-    <a class="fn-item" href="#sec2">② 点過去形（規則活用）</a>
-    <a class="fn-item" href="#sec3">③ 時間の表現</a>
-    <a class="fn-item" href="#sec4">④ 点過去 vs 現在形</a>
+    <a class="fn-item" href="#sec1">① 不定詞</a>
+    <a class="fn-item" href="#sec2">② 現在分詞：形と用法</a>
+    <a class="fn-item" href="#sec3">③ 現在分詞の不規則形</a>
+    <a class="fn-item" href="#sec4">④ 過去分詞：形と用法</a>
     <a class="fn-item" href="#sec5">⑤ 練習問題</a>
     <a class="fn-item" href="#sec6">⑥ 語彙リスト</a>
     <a class="fn-item" href="#sec7">⑦ まとめ</a>
@@ -601,78 +758,6 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 </div>
 
 <script>
-// =====================================================
-// タブ切り替え（グローバル関数）
-// =====================================================
-function switchTab(tabId, btnEl) {
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = 'none';
-    tabs[i].classList.remove('active');
-  }
-  var target = document.getElementById('tab-' + tabId);
-  if (target) {
-    target.style.display = 'block';
-    target.classList.add('active');
-  }
-  var btns = document.getElementsByClassName('tab-btn');
-  for (var j = 0; j < btns.length; j++) {
-    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
-  }
-  if (btnEl) btnEl.classList.add('active-' + tabId);
-  window.scrollTo(0, 0);
-}
-
-function jumpToSection(sectionId) {
-  var el = document.getElementById(sectionId);
-  if (!el) return;
-  var node = el.parentElement;
-  while (node && node.className.indexOf('tab-content') < 0) {
-    node = node.parentElement;
-  }
-  if (node && node.className.indexOf('active') < 0) {
-    var tabId = node.id.replace('tab-', '');
-    var btns = document.getElementsByClassName('tab-btn');
-    var targetBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      var oc = btns[i].getAttribute('onclick') || '';
-      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
-    }
-    switchTab(tabId, targetBtn);
-  }
-  setTimeout(function() {
-    var el2 = document.getElementById(sectionId);
-    if (el2) el2.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }, 80);
-}
-
-function toggleToc() {
-  var menu = document.getElementById('top-toc-menu');
-  var btn = document.getElementById('top-toc-toggle');
-  var isOpen = menu.classList.toggle('open');
-  btn.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
-}
-function closeToc() {
-  var menu = document.getElementById('top-toc-menu');
-  if (menu) menu.classList.remove('open');
-  var btn = document.getElementById('top-toc-toggle');
-  if (btn) btn.textContent = '☰ 目次';
-}
-
-function savePdf() {
-  document.body.classList.add('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
-  setTimeout(function() { window.print(); }, 50);
-}
-window.addEventListener('afterprint', function() {
-  document.body.classList.remove('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
-  }
-});
-
 function openSearch() {
   var bar = document.getElementById('search-bar');
   if (bar) bar.classList.add('open');
@@ -692,30 +777,7 @@ function closeSearch() {
   if (cres) cres.classList.remove('has-results');
 }
 
-(function initAnswerToggles() {
-  var items = document.getElementsByClassName('q-item');
-  for (var k = 0; k < items.length; k++) {
-    (function(item) {
-      var answerRow = item.querySelector('.q-answer-row');
-      var exp = item.querySelector('.q-exp');
-      if (!answerRow) return;
-      var btn = document.createElement('button');
-      btn.className = 'ans-toggle-btn';
-      btn.textContent = '答えを確認';
-      btn.onclick = function() {
-        var revealed = answerRow.classList.toggle('visible');
-        if (exp) exp.classList.toggle('visible', revealed);
-        btn.classList.toggle('revealed', revealed);
-        btn.textContent = revealed ? '答えを隠す' : '答えを確認';
-      };
-      answerRow.parentNode.insertBefore(btn, answerRow);
-    })(items[k]);
-  }
-})();
-
 document.addEventListener('click', function(e) {
-  var nav = document.getElementById('top-nav');
-  if (nav && !nav.contains(e.target)) closeToc();
   var searchBar = document.getElementById('search-bar');
   var searchRes = document.getElementById('search-results');
   var searchBtn = document.getElementById('top-search-btn');
@@ -728,13 +790,6 @@ document.addEventListener('click', function(e) {
   if (coverRes && coverSearch && !coverSearch.contains(e.target) &&
       !coverRes.contains(e.target)) {
     coverRes.classList.remove('has-results');
-  }
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeSearch();
-    closeToc();
-    if (typeof closeDictModal === 'function') closeDictModal();
   }
 });
 
@@ -757,12 +812,13 @@ document.getElementById('cover-search-input').addEventListener('input', function
 // 文法用語のジャンプ先マッピング
 // ════════════════════════════════════════════════════
 const GRAMMAR_TERMS = [
-  { terms: ['再帰動詞','再帰代名詞','reflexivo','reflexivos'], id: 'sec1', label: '再帰動詞（①節）' },
-  { terms: ['再帰代名詞語順','語順ルール','reiki-rules'], id: 'reiki-rules', label: '再帰代名詞の語順ルール（①節）' },
-  { terms: ['点過去','pretérito indefinido','preterito'], id: 'sec2', label: '点過去形の規則活用（②節）' },
-  { terms: ['スペル変化','スペル','yo形'], id: 'preterito-spell', label: '点過去スペル変化（②節）' },
-  { terms: ['時間の表現','tiempo','hace'], id: 'sec3', label: '時間の表現（③節）' },
-  { terms: ['点過去vs現在形','点過去 vs','現在形との違い'], id: 'sec4', label: '点過去 vs 現在形（④節）' },
+  { terms: ['不定詞','infinitivo','infinitiv'], id: 'sec1', label: '不定詞（①節）' },
+  { terms: ['使役文','hacer','dejar','hacen'], id: 'sec1', label: '不定詞：使役文（①節）' },
+  { terms: ['現在分詞','gerundio','gerund','ando','iendo'], id: 'sec2', label: '現在分詞：形と用法（②節）' },
+  { terms: ['進行形','estar+現在分詞','進行時制'], id: 'sec2', label: '現在分詞：進行形（②節）' },
+  { terms: ['現在分詞 不規則','gerundio irregular','yendo'], id: 'sec3', label: '現在分詞の不規則形（③節）' },
+  { terms: ['過去分詞','participio','participio pasado','ado','ido'], id: 'sec4', label: '過去分詞：形と用法（④節）' },
+  { terms: ['受身文','ser+過去分詞','estar+過去分詞','pasiva'], id: 'sec4', label: '過去分詞：受身文（④節）' },
   { terms: ['練習問題','練習'], id: 'sec5', label: '練習問題（⑤節）' },
   { terms: ['語彙','Vocabulario'], id: 'sec6', label: '語彙リスト（⑥節）' },
   { terms: ['まとめ','Resumen'], id: 'sec7', label: 'まとめ（⑦節）' },
@@ -784,86 +840,84 @@ function findGrammarMatch(q) {
 // 語彙データベース
 // ════════════════════════════════════════════════════
 const VOCAB_BASE = [
-  // 再帰動詞（身支度）
-  {es:"despertarse",  ja:"目が覚める",             pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1",
-    irreg:{yo:"me despierto", tu:"te despiertas", el:"se despierta", nos:"nos despertamos", vos:"os despertáis", ellos:"se despiertan"}},
-  {es:"levantarse",   ja:"起きる",                 pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
-  {es:"ducharse",     ja:"シャワーを浴びる",       pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
-  {es:"bañarse",      ja:"入浴する",               pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec6"},
-  {es:"lavarse",      ja:"洗う",                   pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
-  {es:"cepillarse",   ja:"磨く",                   pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
-  {es:"afeitarse",    ja:"ひげをそる",             pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
-  {es:"peinarse",     ja:"髪をとかす",             pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec1"},
-  {es:"maquillarse",  ja:"化粧する",               pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ar", anchor:"sec6"},
-  {es:"vestirse",     ja:"着替える",               pos:"再帰動詞", tag:"再帰動詞 身支度", type:"verb_ir", anchor:"sec1",
-    irreg:{yo:"me visto", tu:"te vistes", el:"se viste", nos:"nos vestimos", vos:"os vestís", ellos:"se visten"}},
-  // 再帰動詞（動作・状態変化）
-  {es:"acostarse",    ja:"寝る・横になる",         pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1",
-    irreg:{yo:"me acuesto", tu:"te acuestas", el:"se acuesta", nos:"nos acostamos", vos:"os acostáis", ellos:"se acuestan"}},
-  {es:"sentarse",     ja:"座る",                   pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1",
-    irreg:{yo:"me siento", tu:"te sientas", el:"se sienta", nos:"nos sentamos", vos:"os sentáis", ellos:"se sientan"}},
-  {es:"ponerse",      ja:"〜になる",               pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_er", anchor:"sec1"},
-  {es:"quedarse",     ja:"留まる",                 pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
-  {es:"cansarse",     ja:"疲れる",                 pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
-  {es:"aburrirse",    ja:"退屈する",               pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ir", anchor:"sec1"},
-  {es:"alegrarse",    ja:"喜ぶ",                   pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
-  {es:"enfermarse",   ja:"病気になる",             pos:"再帰動詞", tag:"再帰動詞 状態", type:"verb_ar", anchor:"sec1"},
-  // 再帰動詞（相互・慣用）
-  {es:"llamarse",     ja:"〜という名だ",           pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
-  {es:"encontrarse",  ja:"会う・見つかる",         pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1",
-    irreg:{yo:"me encuentro", tu:"te encuentras", el:"se encuentra", nos:"nos encontramos", vos:"os encontráis", ellos:"se encuentran"}},
-  {es:"irse",         ja:"去る",                   pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ir", anchor:"sec1"},
-  {es:"casarse",      ja:"結婚する",               pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
-  {es:"divorciarse",  ja:"離婚する",               pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
-  {es:"olvidarse",    ja:"忘れる",                 pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
-  {es:"preocuparse",  ja:"心配する",               pos:"再帰動詞", tag:"再帰動詞 慣用", type:"verb_ar", anchor:"sec1"},
-  // 点過去で使う動詞（規則 -ar）
-  {es:"hablar",       ja:"話す",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
-  {es:"estudiar",     ja:"勉強する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
-  {es:"llegar",       ja:"到着する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
+  // 不定詞の用法に登場する動詞
+  {es:"vivir",        ja:"住む・生きる",           pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec1"},
+  {es:"comer",        ja:"食べる",                 pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec1"},
+  {es:"trabajar",     ja:"働く",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"escuchar",     ja:"聴く・聞く",             pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"rezar",        ja:"祈る",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"economizar",   ja:"節約する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"regalar",      ja:"贈る",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"bailar",       ja:"踊る",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"cantar",       ja:"歌う",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"limpiar",      ja:"掃除する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"salir",        ja:"出かける・出る",         pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec1"},
+  {es:"resolver",     ja:"解決する",               pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec1"},
+  // 現在分詞の例文に登場する動詞
+  {es:"leer",         ja:"読む",                   pos:"動詞", tag:"動詞 -er 不規則現在分詞", type:"verb_er", anchor:"sec2"},
+  {es:"desayunar",    ja:"朝食をとる",             pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
   {es:"viajar",       ja:"旅行する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
-  {es:"aprender",     ja:"学ぶ",                   pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec2"},
-  {es:"nacer",        ja:"生まれる",               pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec3"},
-  {es:"buscar",       ja:"探す",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2"},
-  {es:"empezar",      ja:"始める・始まる",         pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec2",
-    irreg:{yo:"empiezo", tu:"empiezas", el:"empieza", nos:"empezamos", vos:"empezáis", ellos:"empiezan"}},
-  // 点過去で使う動詞（-er/-ir）
-  {es:"comer",        ja:"食べる",                 pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec2"},
-  {es:"vivir",        ja:"住む",                   pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec2"},
-  // 日課名詞
-  {es:"desayuno",     ja:"朝食",                   pos:"名詞m.", tag:"語彙 日課", anchor:"sec6"},
-  {es:"diente",       ja:"歯",                     pos:"名詞m.", tag:"語彙 身体", anchor:"sec6"},
-  {es:"cara",         ja:"顔",                     pos:"名詞f.", tag:"語彙 身体", anchor:"sec6"},
-  {es:"mano",         ja:"手",                     pos:"名詞f.", tag:"語彙 身体", anchor:"sec1"},
-  // 時間表現
-  {es:"ayer",         ja:"昨日",                   pos:"副詞",  tag:"時間表現", anchor:"sec3"},
-  {es:"anoche",       ja:"昨夜",                   pos:"副詞",  tag:"時間表現", anchor:"sec3"},
-  {es:"mañana",       ja:"朝・明日",               pos:"名詞f./副詞", tag:"時間表現", anchor:"sec3"},
-  {es:"tarde",        ja:"午後・遅い",             pos:"名詞f./副詞", tag:"時間表現", anchor:"sec3"},
-  {es:"semana",       ja:"週",                     pos:"名詞f.", tag:"時間表現", anchor:"sec3"},
-  {es:"mes",          ja:"月",                     pos:"名詞m.", tag:"時間表現", anchor:"sec3"},
-  {es:"año",          ja:"年",                     pos:"名詞m.", tag:"時間表現", anchor:"sec3"},
-  {es:"pasado",       ja:"過去・〜前の（形容詞）", pos:"形容詞", tag:"時間表現", anchor:"sec3"},
-  {es:"hace",         ja:"〜前（時間表現）",       pos:"動詞形", tag:"時間表現", anchor:"sec3"},
-  // 例文の語
-  {es:"español",      ja:"スペイン語・スペイン人", pos:"名詞m./形容詞", tag:"例文の語", anchor:"sec1"},
-  {es:"española",     ja:"スペイン人（女性）",     pos:"名詞f./形容詞", tag:"例文の語", anchor:"sec5"},
-  {es:"normalmente",  ja:"ふだん・普通",           pos:"副詞",  tag:"例文の語", anchor:"sec5"},
-  {es:"padre",        ja:"父・親",                 pos:"名詞m.", tag:"例文の語", anchor:"sec5"},
-  {es:"pizza",        ja:"ピザ",                   pos:"名詞f.", tag:"例文の語", anchor:"sec3"},
-  {es:"Madrid",       ja:"マドリード",             pos:"固有名詞", tag:"例文の語", anchor:"sec3"},
-  {es:"profesor",     ja:"先生・教授",             pos:"名詞m.", tag:"例文の語", anchor:"sec5"},
-  {es:"sobrino",      ja:"甥",                     pos:"名詞m.", tag:"例文の語", anchor:"sec3"},
-  {es:"sushi",        ja:"寿司",                   pos:"名詞m.", tag:"例文の語", anchor:"sec4"},
-  {es:"arroz",        ja:"米・ごはん",             pos:"名詞m.", tag:"例文の語", anchor:"sec4"},
-  // 曜日
-  {es:"lunes",        ja:"月曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
-  {es:"martes",       ja:"火曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
-  {es:"miércoles",    ja:"水曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
-  {es:"jueves",       ja:"木曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
-  {es:"viernes",      ja:"金曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
-  {es:"sábado",       ja:"土曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
-  {es:"domingo",      ja:"日曜日", pos:"名詞m.", tag:"曜日", anchor:"sec4"},
+  {es:"seguir",       ja:"続ける",                 pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec2"},
+  {es:"subir",        ja:"上がる",                 pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec2"},
+  // 現在分詞の不規則形
+  {es:"caer",         ja:"落ちる",                 pos:"動詞", tag:"動詞 -er 不規則現在分詞", type:"verb_er", anchor:"sec3"},
+  {es:"huir",         ja:"逃げる",                 pos:"動詞", tag:"動詞 -ir 不規則現在分詞", type:"verb_ir", anchor:"sec3"},
+  {es:"oír",          ja:"聞く",                   pos:"動詞", tag:"動詞 -ir 不規則現在分詞", type:"verb_ir", anchor:"sec3"},
+  {es:"construir",    ja:"建設する",               pos:"動詞", tag:"動詞 -ir 不規則現在分詞", type:"verb_ir", anchor:"sec3"},
+  {es:"ir",           ja:"行く",                   pos:"動詞", tag:"動詞 不規則", anchor:"sec3"},
+  {es:"pedir",        ja:"頼む・注文する",         pos:"動詞", tag:"動詞 -ir 語根母音変化", type:"verb_ir", anchor:"sec3"},
+  {es:"sentir",       ja:"感じる",                 pos:"動詞", tag:"動詞 -ir 語根母音変化", type:"verb_ir", anchor:"sec3"},
+  {es:"dormir",       ja:"眠る",                   pos:"動詞", tag:"動詞 -ir 語根母音変化", anchor:"sec3"},
+  {es:"poder",        ja:"〜できる",               pos:"動詞", tag:"動詞 不規則", anchor:"sec3"},
+  {es:"decir",        ja:"言う",                   pos:"動詞", tag:"動詞 不規則 不規則現在分詞 不規則過去分詞", anchor:"sec3"},
+  {es:"venir",        ja:"来る",                   pos:"動詞", tag:"動詞 不規則 不規則現在分詞", anchor:"sec3"},
+  // 過去分詞（-to型）
+  {es:"abrir",        ja:"開ける",                 pos:"動詞", tag:"動詞 -ir 不規則過去分詞 abierto", anchor:"sec4"},
+  {es:"cubrir",       ja:"覆う",                   pos:"動詞", tag:"動詞 -ir 不規則過去分詞 cubierto", anchor:"sec4"},
+  {es:"descubrir",    ja:"発見する",               pos:"動詞", tag:"動詞 -ir 不規則過去分詞 descubierto", anchor:"sec4"},
+  {es:"escribir",     ja:"書く",                   pos:"動詞", tag:"動詞 -ir 不規則過去分詞 escrito", anchor:"sec4"},
+  {es:"morir",        ja:"死ぬ",                   pos:"動詞", tag:"動詞 -ir 不規則過去分詞 muerto", anchor:"sec4"},
+  {es:"poner",        ja:"置く",                   pos:"動詞", tag:"動詞 -er 不規則過去分詞 puesto", anchor:"sec4"},
+  {es:"componer",     ja:"構成する",               pos:"動詞", tag:"動詞 不規則過去分詞 compuesto", anchor:"sec4"},
+  {es:"suponer",      ja:"想定する",               pos:"動詞", tag:"動詞 不規則過去分詞 supuesto", anchor:"sec4"},
+  {es:"romper",       ja:"壊す",                   pos:"動詞", tag:"動詞 -er 不規則過去分詞 roto", anchor:"sec4"},
+  {es:"ver",          ja:"見る",                   pos:"動詞", tag:"動詞 不規則過去分詞 visto", anchor:"sec4"},
+  {es:"volver",       ja:"戻る",                   pos:"動詞", tag:"動詞 -er 不規則過去分詞 vuelto", anchor:"sec4"},
+  {es:"devolver",     ja:"返却する",               pos:"動詞", tag:"動詞 不規則過去分詞 devuelto", anchor:"sec4"},
+  {es:"freír",        ja:"揚げる",                 pos:"動詞", tag:"動詞 -ir 不規則過去分詞 frito", anchor:"sec4"},
+  // 過去分詞（-cho型・-so型）
+  {es:"hacer",        ja:"する・作る",             pos:"動詞", tag:"動詞 不規則過去分詞 hecho", anchor:"sec4"},
+  {es:"satisfacer",   ja:"満足させる",             pos:"動詞", tag:"動詞 不規則過去分詞 satisfecho", anchor:"sec4"},
+  {es:"imprimir",     ja:"印刷する",               pos:"動詞", tag:"動詞 -ir 不規則過去分詞 impreso", anchor:"sec4"},
+  {es:"destruir",     ja:"破壊する",               pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec4"},
+  {es:"admirar",      ja:"尊敬する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec4"},
+  {es:"cansar",       ja:"疲れさせる",             pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec4"},
+  {es:"sudar",        ja:"汗をかく",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec4"},
+  // 名詞
+  {es:"periódico",    ja:"新聞",                   pos:"名詞m.", tag:"語彙 名詞", anchor:"sec2"},
+  {es:"abuelo",       ja:"祖父・祖父母",           pos:"名詞m.", tag:"語彙 名詞", anchor:"sec1"},
+  {es:"cumpleaños",   ja:"誕生日",                 pos:"名詞m.", tag:"語彙 名詞", anchor:"sec1"},
+  {es:"baño",         ja:"浴室・バス",             pos:"名詞m.", tag:"語彙 名詞", anchor:"sec1"},
+  {es:"empresa",      ja:"会社・企業",             pos:"名詞f.", tag:"語彙 名詞", anchor:"sec2"},
+  {es:"precio",       ja:"価格",                   pos:"名詞m.", tag:"語彙 名詞", anchor:"sec2"},
+  {es:"verdura",      ja:"野菜",                   pos:"名詞f.", tag:"語彙 名詞", anchor:"sec2"},
+  {es:"ruinas",       ja:"遺跡",                   pos:"名詞f.pl.", tag:"語彙 名詞", anchor:"sec4"},
+  {es:"terrorista",   ja:"テロリスト",             pos:"名詞m./f.", tag:"語彙 名詞", anchor:"sec4"},
+  {es:"ciudad",       ja:"都市・街",               pos:"名詞f.", tag:"語彙 名詞", anchor:"sec2"},
+  {es:"gastos",       ja:"費用・出費",             pos:"名詞m.pl.", tag:"語彙 名詞", anchor:"sec1"},
+  // 形容詞（過去分詞由来）
+  {es:"abierto",      ja:"開いている（abrirの過去分詞）",    pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"escrito",      ja:"書かれた（escribirの過去分詞）",   pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"muerto",       ja:"死んだ（morirの過去分詞）",        pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"puesto",       ja:"置かれた（ponerの過去分詞）",      pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"roto",         ja:"壊れた（romperの過去分詞）",       pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"visto",        ja:"見られた（verの過去分詞）",        pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"vuelto",       ja:"戻った（volverの過去分詞）",       pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"dicho",        ja:"言われた（decirの過去分詞）",      pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"hecho",        ja:"された（hacerの過去分詞）",        pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"cansado",      ja:"疲れた（cansarの過去分詞）",       pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"admirado",     ja:"尊敬された（admirarの過去分詞）",  pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
+  {es:"destruido",    ja:"破壊された（destruirの過去分詞）", pos:"形容詞", tag:"過去分詞形", anchor:"sec4"},
 ];
 
 // 活用形を自動生成（不定詞のみVOCABに収録＝動詞は不定詞1件だけ検索表示）
@@ -1026,32 +1080,6 @@ function highlight(text, query) {
   return text.slice(0,i) + '<mark>' + text.slice(i, i+n.length) + '</mark>' + text.slice(i+n.length);
 }
 
-function scrollToAnchor(anchor) {
-  activateTabContaining(anchor);
-  setTimeout(function() {
-    var el = document.getElementById(anchor);
-    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  }, 60);
-}
-
-function activateTabContaining(anchorId) {
-  var el = document.getElementById(anchorId);
-  if (!el) return;
-  var node = el.parentElement;
-  while (node && node.className.indexOf('tab-content') < 0) {
-    node = node.parentElement;
-  }
-  if (node && node.className.indexOf('active') < 0) {
-    var tabId = node.id.replace('tab-', '');
-    var btns = document.getElementsByClassName('tab-btn');
-    var targetBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      var oc = btns[i].getAttribute('onclick') || '';
-      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
-    }
-    switchTab(tabId, targetBtn);
-  }
-}
 
 // ═══ 辞書モーダル ═══
 let _srItems = [];
@@ -1395,5 +1423,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 })();
 </script>
+<script src="phrase-dict.js"></script>
+<script src="phrase-lookup.js"></script>
 </body>
 </html>

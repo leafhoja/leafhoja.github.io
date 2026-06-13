@@ -1,38 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
-<!-- ============================================================
-  ★ ページ公開設定 ★（変更箇所はここだけ）
-  ============================================================
-  PAGE_OPEN の値でこのページの公開・ロックを切り替えます。
-
-    1 → 公開（通常通り表示）
-    0 → ロック（閲覧不可ページへリダイレクト）
-
-  【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
-  ============================================================ -->
-<script>
-/* ★ ページ公開設定 ★ ここの数値を変更してください */
-var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
-</script>
-
+<meta charset="UTF-8">
 <script src="access-control.js"></script>
 <script src="ga.js"></script>
-<meta charset="UTF-8">
+<script src="common.js"></script>
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lección 2 文法解説</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="spanish1-common.css">
 </head>
 <body>
 
 <!-- dict modal -->
 <div id="dict-overlay" onclick="if(event.target===this)closeDictModal()">
-  <div id="dict-modal">
+  <div id="dict-modal" role="dialog" aria-modal="true" aria-labelledby="dict-modal-word">
     <div id="dict-modal-head">
       <span id="dict-modal-word"></span>
       <span id="dict-modal-pos"></span>
@@ -43,7 +29,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 </div>
 
 <div id="search-bar">
-  <label>検索</label>
+  <label for="search-input">検索</label>
   <input id="search-input" type="text" placeholder="単語・文法用語…" autocomplete="off" autocorrect="off" spellcheck="false">
   <button id="search-close" onclick="closeSearch()" title="閉じる">✕</button>
 </div>
@@ -76,16 +62,17 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 <div class="cover">
   <div class="cover-title">Lección 2　文法解説</div>
   <div class="cover-sub">スペイン語一列　Gramática</div>
+  <div class="cover-goal"><b>このレッスンを終えると…</b><br>「私はスペイン語を勉強しています」「先生は日本人ですか？」のような文が作れるようになります。<br><small>まずは『文法解説』タブの①②から読み始め、練習問題→語彙・まとめの順に進みましょう。一度に全部読む必要はありません。</small></div>
   <div class="toc">
-    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 名詞の性と数・冠詞</a>
-    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 主語人称代名詞・ser と estar</a>
-    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ さまざまな前置詞</a>
-    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 形容詞と性数変化</a>
-    <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 所有形容詞・haber（hay）</a>
-    <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 文の構造・否定文・疑問詞</a>
-    <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ 練習問題</a>
-    <a class="toc-item" href="#sec8" onclick="jumpToSection('sec8'); return false;">⑧ 語彙リスト</a>
-    <a class="toc-item" href="#sec9" onclick="jumpToSection('sec9'); return false;">⑨ まとめ</a>
+    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 名詞の性と数・冠詞 <small>（文法解説）</small></a>
+    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 主語人称代名詞・ser と estar <small>（文法解説）</small></a>
+    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ さまざまな前置詞 <small>（文法解説）</small></a>
+    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 形容詞と性数変化 <small>（文法解説）</small></a>
+    <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 所有形容詞・haber（hay） <small>（文法解説）</small></a>
+    <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 文の構造・否定文・疑問詞 <small>（文法解説）</small></a>
+    <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ 練習問題 <small>（練習問題）</small></a>
+    <a class="toc-item" href="#sec8" onclick="jumpToSection('sec8'); return false;">⑧ 語彙リスト <small>（語彙・まとめ）</small></a>
+    <a class="toc-item" href="#sec9" onclick="jumpToSection('sec9'); return false;">⑨ まとめ <small>（語彙・まとめ）</small></a>
   </div>
   <div class="cover-search">
     <div class="cover-search-label">単語・活用形・文法用語を検索</div>
@@ -266,6 +253,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
     <tr><td class="td-rule">固有の性質・特徴</td><td><span class="mono">El español es interesante.</span>　<span class="td-ja">スペイン語はおもしろい。</span></td></tr>
     <tr><td class="td-rule">時刻・日付・曜日</td><td><span class="mono">Son las tres de la tarde.</span>　<span class="td-ja">午後3時です。</span></td></tr>
     <tr><td class="td-rule">素材・内容</td><td><span class="mono">La mesa es de madera.</span>　<span class="td-ja">その机は木でできている。</span></td></tr>
+    <tr><td class="td-rule">イベントの場所・日時</td><td><span class="mono">La reunión es en la sala.</span>　<span class="td-ja">会議は会議室で行われる。</span><br><small class="td-note">※人・ものの「所在」はestar（Mi padre está en casa.）</small></td></tr>
   </tbody>
 </table>
 </div>
@@ -296,7 +284,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
   <tbody>
     <tr><td class="td-rule">場所・所在</td><td><span class="mono">Madrid está en España.</span>　<span class="td-ja">マドリードはスペインにある。</span></td></tr>
     <tr><td class="td-rule">一時的な状態（体調・感情）</td><td><span class="mono">Estoy cansado.</span>　<span class="td-ja">私は疲れている。</span></td></tr>
-    <tr><td class="td-rule">変化した状態（見た目）</td><td><span class="mono">¡Estás muy guapo hoy!</span>　<span class="td-ja">今日はとても素敵だね！</span></td></tr>
+    <tr><td class="td-rule">一時的・変化として評価（今日に限り）</td><td><span class="mono">¡Estás muy guapo hoy!</span>　<span class="td-ja">今日はとても素敵だね！</span><br><small class="td-note">cf. <span class="mono">Ana es guapa.</span>（性質・ser）との使い分けに注意</small></td></tr>
   </tbody>
 </table>
 </div>
@@ -859,9 +847,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
       <div class="q-ja">会議は会議室で行われます。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">La reunión <span class="ans-fill">está</span> en la sala de conferencias.</span>
+        <span class="ans-text">La reunión <span class="ans-fill">es</span> en la sala de conferencias.</span>
       </div>
-      <div class="q-exp">場所・所在 → <b>estar</b>。女性単数3人称は <b>está</b>。</div>
+      <div class="q-exp">イベント・行事の開催場所・日時は <b>ser</b> を使う → <b>es</b>。（人・ものの所在を表す estar との区別に注意）</div>
     </div>
   </div>
 </div>
@@ -954,78 +942,78 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 
 <div class="vocab-category">形容詞（性質・状態）</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">alto/a</span><span class="pill-pos">形</span><span class="pill-ja">高い・背が高い</span></span>
-  <span class="pill"><span class="pill-es">bajo/a</span><span class="pill-pos">形</span><span class="pill-ja">低い・背が低い</span></span>
-  <span class="pill"><span class="pill-es">grande</span><span class="pill-pos">形</span><span class="pill-ja">大きい</span></span>
-  <span class="pill"><span class="pill-es">pequeño/a</span><span class="pill-pos">形</span><span class="pill-ja">小さい</span></span>
-  <span class="pill"><span class="pill-es">bueno/a</span><span class="pill-pos">形</span><span class="pill-ja">良い・善い</span></span>
-  <span class="pill"><span class="pill-es">malo/a</span><span class="pill-pos">形</span><span class="pill-ja">悪い</span></span>
-  <span class="pill"><span class="pill-es">nuevo/a</span><span class="pill-pos">形</span><span class="pill-ja">新しい</span></span>
-  <span class="pill"><span class="pill-es">viejo/a</span><span class="pill-pos">形</span><span class="pill-ja">古い・年老いた</span></span>
-  <span class="pill"><span class="pill-es">joven</span><span class="pill-pos">形</span><span class="pill-ja">若い</span></span>
-  <span class="pill"><span class="pill-es">guapo/a</span><span class="pill-pos">形</span><span class="pill-ja">ハンサムな・きれいな</span></span>
-  <span class="pill"><span class="pill-es">bonito/a</span><span class="pill-pos">形</span><span class="pill-ja">きれいな・かわいい</span></span>
-  <span class="pill"><span class="pill-es">feo/a</span><span class="pill-pos">形</span><span class="pill-ja">醜い</span></span>
-  <span class="pill"><span class="pill-es">inteligente</span><span class="pill-pos">形</span><span class="pill-ja">頭のいい・知的な</span></span>
-  <span class="pill"><span class="pill-es">simpático/a</span><span class="pill-pos">形</span><span class="pill-ja">感じのいい・親しみやすい</span></span>
-  <span class="pill"><span class="pill-es">interesante</span><span class="pill-pos">形</span><span class="pill-ja">面白い・興味深い</span></span>
-  <span class="pill"><span class="pill-es">aburrido/a</span><span class="pill-pos">形</span><span class="pill-ja">退屈な</span></span>
-  <span class="pill"><span class="pill-es">difícil</span><span class="pill-pos">形</span><span class="pill-ja">難しい</span></span>
-  <span class="pill"><span class="pill-es">fácil</span><span class="pill-pos">形</span><span class="pill-ja">簡単な</span></span>
-  <span class="pill"><span class="pill-es">rico/a</span><span class="pill-pos">形</span><span class="pill-ja">おいしい・裕福な</span></span>
-  <span class="pill"><span class="pill-es">caro/a</span><span class="pill-pos">形</span><span class="pill-ja">高価な</span></span>
-  <span class="pill"><span class="pill-es">barato/a</span><span class="pill-pos">形</span><span class="pill-ja">安価な</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">alto/a</span><span class="pill-pos">形</span><span class="pill-ja">高い・背が高い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">bajo/a</span><span class="pill-pos">形</span><span class="pill-ja">低い・背が低い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">grande</span><span class="pill-pos">形</span><span class="pill-ja">大きい</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">pequeño/a</span><span class="pill-pos">形</span><span class="pill-ja">小さい</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">bueno/a</span><span class="pill-pos">形</span><span class="pill-ja">良い・善い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">malo/a</span><span class="pill-pos">形</span><span class="pill-ja">悪い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">nuevo/a</span><span class="pill-pos">形</span><span class="pill-ja">新しい</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">viejo/a</span><span class="pill-pos">形</span><span class="pill-ja">古い・年老いた</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">joven</span><span class="pill-pos">形</span><span class="pill-ja">若い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">guapo/a</span><span class="pill-pos">形</span><span class="pill-ja">ハンサムな・きれいな</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">bonito/a</span><span class="pill-pos">形</span><span class="pill-ja">きれいな・かわいい</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">feo/a</span><span class="pill-pos">形</span><span class="pill-ja">醜い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">inteligente</span><span class="pill-pos">形</span><span class="pill-ja">頭のいい・知的な</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">simpático/a</span><span class="pill-pos">形</span><span class="pill-ja">感じのいい・親しみやすい</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">interesante</span><span class="pill-pos">形</span><span class="pill-ja">面白い・興味深い</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">aburrido/a</span><span class="pill-pos">形</span><span class="pill-ja">退屈な</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">difícil</span><span class="pill-pos">形</span><span class="pill-ja">難しい</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">fácil</span><span class="pill-pos">形</span><span class="pill-ja">簡単な</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">rico/a</span><span class="pill-pos">形</span><span class="pill-ja">おいしい・裕福な</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">caro/a</span><span class="pill-pos">形</span><span class="pill-ja">高価な</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">barato/a</span><span class="pill-pos">形</span><span class="pill-ja">安価な</span></span>
 </div>
 
 <div class="vocab-category">国籍形容詞（男性形／女性形）</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">español/a</span><span class="pill-pos">形</span><span class="pill-ja">スペインの</span></span>
-  <span class="pill"><span class="pill-es">japonés/a</span><span class="pill-pos">形</span><span class="pill-ja">日本の</span></span>
-  <span class="pill"><span class="pill-es">francés/a</span><span class="pill-pos">形</span><span class="pill-ja">フランスの</span></span>
-  <span class="pill"><span class="pill-es">alemán/a</span><span class="pill-pos">形</span><span class="pill-ja">ドイツの</span></span>
-  <span class="pill"><span class="pill-es">chino/a</span><span class="pill-pos">形</span><span class="pill-ja">中国の</span></span>
-  <span class="pill"><span class="pill-es">americano/a</span><span class="pill-pos">形</span><span class="pill-ja">アメリカの</span></span>
-  <span class="pill"><span class="pill-es">mexicano/a</span><span class="pill-pos">形</span><span class="pill-ja">メキシコの</span></span>
-  <span class="pill"><span class="pill-es">argentino/a</span><span class="pill-pos">形</span><span class="pill-ja">アルゼンチンの</span></span>
-  <span class="pill"><span class="pill-es">inglés/a</span><span class="pill-pos">形</span><span class="pill-ja">イギリスの</span></span>
-  <span class="pill"><span class="pill-es">italiano/a</span><span class="pill-pos">形</span><span class="pill-ja">イタリアの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">español/a</span><span class="pill-pos">形</span><span class="pill-ja">スペインの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">japonés/a</span><span class="pill-pos">形</span><span class="pill-ja">日本の</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">francés/a</span><span class="pill-pos">形</span><span class="pill-ja">フランスの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">alemán/a</span><span class="pill-pos">形</span><span class="pill-ja">ドイツの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">chino/a</span><span class="pill-pos">形</span><span class="pill-ja">中国の</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">americano/a</span><span class="pill-pos">形</span><span class="pill-ja">アメリカの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">mexicano/a</span><span class="pill-pos">形</span><span class="pill-ja">メキシコの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">argentino/a</span><span class="pill-pos">形</span><span class="pill-ja">アルゼンチンの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">inglés/a</span><span class="pill-pos">形</span><span class="pill-ja">イギリスの</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">italiano/a</span><span class="pill-pos">形</span><span class="pill-ja">イタリアの</span></span>
 </div>
 
 <div class="vocab-category">人を表す名詞</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">amigo</span><span class="pill-pos">m.</span><span class="pill-ja">友人（男）</span></span>
-  <span class="pill"><span class="pill-es">amiga</span><span class="pill-pos">f.</span><span class="pill-ja">友人（女）</span></span>
-  <span class="pill"><span class="pill-es">chico</span><span class="pill-pos">m.</span><span class="pill-ja">男の子・男性</span></span>
-  <span class="pill"><span class="pill-es">chica</span><span class="pill-pos">f.</span><span class="pill-ja">女の子・女性</span></span>
-  <span class="pill"><span class="pill-es">hombre</span><span class="pill-pos">m.</span><span class="pill-ja">男性・人間</span></span>
-  <span class="pill"><span class="pill-es">mujer</span><span class="pill-pos">f.</span><span class="pill-ja">女性・妻</span></span>
-  <span class="pill"><span class="pill-es">estudiante</span><span class="pill-pos">m./f.</span><span class="pill-ja">学生</span></span>
-  <span class="pill"><span class="pill-es">profesor</span><span class="pill-pos">m.</span><span class="pill-ja">先生（男）</span></span>
-  <span class="pill"><span class="pill-es">profesora</span><span class="pill-pos">f.</span><span class="pill-ja">先生（女）</span></span>
-  <span class="pill"><span class="pill-es">señor</span><span class="pill-pos">m.</span><span class="pill-ja">〜さん（男性）</span></span>
-  <span class="pill"><span class="pill-es">señora</span><span class="pill-pos">f.</span><span class="pill-ja">〜さん（女性）</span></span>
-  <span class="pill"><span class="pill-es">hermano</span><span class="pill-pos">m.</span><span class="pill-ja">兄弟</span></span>
-  <span class="pill"><span class="pill-es">hermana</span><span class="pill-pos">f.</span><span class="pill-ja">姉妹</span></span>
-  <span class="pill"><span class="pill-es">padre</span><span class="pill-pos">m.</span><span class="pill-ja">父・父親</span></span>
-  <span class="pill"><span class="pill-es">madre</span><span class="pill-pos">f.</span><span class="pill-ja">母・母親</span></span>
-  <span class="pill"><span class="pill-es">hijo</span><span class="pill-pos">m.</span><span class="pill-ja">息子</span></span>
-  <span class="pill"><span class="pill-es">hija</span><span class="pill-pos">f.</span><span class="pill-ja">娘</span></span>
-  <span class="pill"><span class="pill-es">familia</span><span class="pill-pos">f.</span><span class="pill-ja">家族</span></span>
-  <span class="pill"><span class="pill-es">persona</span><span class="pill-pos">f.</span><span class="pill-ja">人・人物</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">amigo</span><span class="pill-pos">m.</span><span class="pill-ja">友人（男）</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">amiga</span><span class="pill-pos">f.</span><span class="pill-ja">友人（女）</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">chico</span><span class="pill-pos">m.</span><span class="pill-ja">男の子・男性</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">chica</span><span class="pill-pos">f.</span><span class="pill-ja">女の子・女性</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">hombre</span><span class="pill-pos">m.</span><span class="pill-ja">男性・人間</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">mujer</span><span class="pill-pos">f.</span><span class="pill-ja">女性・妻</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">estudiante</span><span class="pill-pos">m./f.</span><span class="pill-ja">学生</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">profesor</span><span class="pill-pos">m.</span><span class="pill-ja">先生（男）</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">profesora</span><span class="pill-pos">f.</span><span class="pill-ja">先生（女）</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">señor</span><span class="pill-pos">m.</span><span class="pill-ja">〜さん（男性）</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">señora</span><span class="pill-pos">f.</span><span class="pill-ja">〜さん（女性）</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">hermano</span><span class="pill-pos">m.</span><span class="pill-ja">兄弟</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">hermana</span><span class="pill-pos">f.</span><span class="pill-ja">姉妹</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">padre</span><span class="pill-pos">m.</span><span class="pill-ja">父・父親</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">madre</span><span class="pill-pos">f.</span><span class="pill-ja">母・母親</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">hijo</span><span class="pill-pos">m.</span><span class="pill-ja">息子</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">hija</span><span class="pill-pos">f.</span><span class="pill-ja">娘</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">familia</span><span class="pill-pos">f.</span><span class="pill-ja">家族</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">persona</span><span class="pill-pos">f.</span><span class="pill-ja">人・人物</span></span>
 </div>
 
 <div class="vocab-category">場所・建物・もの</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">ciudad</span><span class="pill-pos">f.</span><span class="pill-ja">都市</span></span>
-  <span class="pill"><span class="pill-es">país</span><span class="pill-pos">m.</span><span class="pill-ja">国</span></span>
-  <span class="pill"><span class="pill-es">universidad</span><span class="pill-pos">f.</span><span class="pill-ja">大学</span></span>
-  <span class="pill"><span class="pill-es">escuela</span><span class="pill-pos">f.</span><span class="pill-ja">学校</span></span>
-  <span class="pill"><span class="pill-es">casa</span><span class="pill-pos">f.</span><span class="pill-ja">家・住宅</span></span>
-  <span class="pill"><span class="pill-es">calle</span><span class="pill-pos">f.</span><span class="pill-ja">通り・道</span></span>
-  <span class="pill"><span class="pill-es">clase</span><span class="pill-pos">f.</span><span class="pill-ja">授業・クラス</span></span>
-  <span class="pill"><span class="pill-es">libro</span><span class="pill-pos">m.</span><span class="pill-ja">本</span></span>
-  <span class="pill"><span class="pill-es">mesa</span><span class="pill-pos">f.</span><span class="pill-ja">テーブル・机</span></span>
-  <span class="pill"><span class="pill-es">silla</span><span class="pill-pos">f.</span><span class="pill-ja">椅子</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">ciudad</span><span class="pill-pos">f.</span><span class="pill-ja">都市</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">país</span><span class="pill-pos">m.</span><span class="pill-ja">国</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">universidad</span><span class="pill-pos">f.</span><span class="pill-ja">大学</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">escuela</span><span class="pill-pos">f.</span><span class="pill-ja">学校</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">casa</span><span class="pill-pos">f.</span><span class="pill-ja">家・住宅</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">calle</span><span class="pill-pos">f.</span><span class="pill-ja">通り・道</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">clase</span><span class="pill-pos">f.</span><span class="pill-ja">授業・クラス</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">libro</span><span class="pill-pos">m.</span><span class="pill-ja">本</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">mesa</span><span class="pill-pos">f.</span><span class="pill-ja">テーブル・机</span></span>
+  <span class="pill" tabindex="0" role="button"><span class="pill-es">silla</span><span class="pill-pos">f.</span><span class="pill-ja">椅子</span></span>
 </div>
 
 <!-- ⑨ まとめ -->
@@ -1082,90 +1070,6 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = ロック
 </div>
 
 <script>
-// =====================================================
-// タブ切り替え
-// =====================================================
-function switchTab(tabId, btnEl) {
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = 'none';
-    tabs[i].classList.remove('active');
-  }
-  var target = document.getElementById('tab-' + tabId);
-  if (target) { target.style.display = 'block'; target.classList.add('active'); }
-  var btns = document.getElementsByClassName('tab-btn');
-  for (var j = 0; j < btns.length; j++) {
-    btns[j].classList.remove('active-grammar', 'active-renshu', 'active-vocab');
-  }
-  if (btnEl) btnEl.classList.add('active-' + tabId);
-  window.scrollTo(0, 0);
-}
-
-function activateTabContaining(anchor) {
-  var el = document.getElementById(anchor);
-  if (!el) return;
-  var node = el.parentElement;
-  while (node && node.className.indexOf('tab-content') < 0) { node = node.parentElement; }
-  if (node && node.className.indexOf('active') < 0) {
-    var tabId = node.id.replace('tab-', '');
-    var btns = document.getElementsByClassName('tab-btn');
-    var targetBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      var oc = btns[i].getAttribute('onclick') || '';
-      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
-    }
-    switchTab(tabId, targetBtn);
-  }
-}
-
-function jumpToSection(sectionId) {
-  var el = document.getElementById(sectionId);
-  if (!el) return;
-  var node = el.parentElement;
-  while (node && node.className.indexOf('tab-content') < 0) { node = node.parentElement; }
-  if (node && node.className.indexOf('active') < 0) {
-    var tabId = node.id.replace('tab-', '');
-    var btns = document.getElementsByClassName('tab-btn');
-    var targetBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      var oc = btns[i].getAttribute('onclick') || '';
-      if (oc.indexOf("'" + tabId + "'") >= 0) { targetBtn = btns[i]; break; }
-    }
-    switchTab(tabId, targetBtn);
-  }
-  setTimeout(function() {
-    var el2 = document.getElementById(sectionId);
-    if (el2) el2.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }, 80);
-}
-
-function toggleToc() {
-  var menu = document.getElementById('top-toc-menu');
-  var btn  = document.getElementById('top-toc-toggle');
-  var isOpen = menu.classList.toggle('open');
-  btn.textContent = isOpen ? '✕ 閉じる' : '☰ 目次';
-}
-function closeToc() {
-  var menu = document.getElementById('top-toc-menu');
-  if (menu) menu.classList.remove('open');
-  var btn = document.getElementById('top-toc-toggle');
-  if (btn) btn.textContent = '☰ 目次';
-}
-
-function savePdf() {
-  document.body.classList.add('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'block'; }
-  setTimeout(function() { window.print(); }, 50);
-}
-window.addEventListener('afterprint', function() {
-  document.body.classList.remove('is-printing');
-  var tabs = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabs.length; i++) {
-    if (tabs[i].className.indexOf('active') < 0) tabs[i].style.display = 'none';
-  }
-});
-
 function openSearch() {
   var bar = document.getElementById('search-bar');
   if (bar) bar.classList.add('open');
@@ -1185,44 +1089,10 @@ function closeSearch() {
   if (cres) cres.classList.remove('has-results');
 }
 
-function scrollToAnchor(anchor) {
-  activateTabContaining(anchor);
-  setTimeout(function() {
-    var el = document.getElementById(anchor);
-    if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }, 60);
-}
-
-// 解答トグル
-(function initAnswerToggles() {
-  var items = document.getElementsByClassName('q-item');
-  for (var k = 0; k < items.length; k++) {
-    (function(item) {
-      var answerRow = item.querySelector('.q-answer-row');
-      var exp = item.querySelector('.q-exp');
-      if (!answerRow) return;
-      var btn = document.createElement('button');
-      btn.className = 'ans-toggle-btn';
-      btn.textContent = '答えを確認';
-      btn.onclick = function() {
-        var revealed = answerRow.classList.toggle('visible');
-        if (exp) exp.classList.toggle('visible', revealed);
-        btn.classList.toggle('revealed', revealed);
-        btn.textContent = revealed ? '答えを隠す' : '答えを確認';
-      };
-      answerRow.parentNode.insertBefore(btn, answerRow);
-    })(items[k]);
-  }
-})();
-
-// フローティングナビ 検索ボタン
 var fnBtn = document.getElementById('fn-search-btn');
 if (fnBtn) fnBtn.addEventListener('click', function() { openSearch(); });
 
-// イベントリスナー
 document.addEventListener('click', function(e) {
-  var nav = document.getElementById('top-nav');
-  if (nav && !nav.contains(e.target)) closeToc();
   var searchBar = document.getElementById('search-bar');
   var searchRes = document.getElementById('search-results');
   var searchBtn = document.getElementById('top-search-btn');
@@ -1235,13 +1105,6 @@ document.addEventListener('click', function(e) {
   if (coverRes && coverSearch && !coverSearch.contains(e.target) &&
       !coverRes.contains(e.target)) {
     coverRes.classList.remove('has-results');
-  }
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeSearch();
-    closeToc();
-    if (typeof closeDictModal === 'function') closeDictModal();
   }
 });
 
@@ -1502,7 +1365,10 @@ function esc(s) {
 
 let _srItems = [];
 
+var _dictReturnFocus = null;
+
 function openDictModal(item, conjInfo) {
+  _dictReturnFocus = document.activeElement;
   const overlay = document.getElementById('dict-overlay');
   const wordEl  = document.getElementById('dict-modal-word');
   const posEl   = document.getElementById('dict-modal-pos');
@@ -1561,18 +1427,26 @@ function openDictModal(item, conjInfo) {
   bodyEl.innerHTML = body;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  setTimeout(function() {
+    var closeBtn = document.getElementById('dict-modal-close');
+    if (closeBtn) closeBtn.focus();
+  }, 50);
 }
 
 function closeDictModal() {
   document.getElementById('dict-overlay').classList.remove('open');
   document.body.style.overflow = '';
+  if (_dictReturnFocus && typeof _dictReturnFocus.focus === 'function') {
+    _dictReturnFocus.focus();
+  }
+  _dictReturnFocus = null;
 }
 
 function buildResultsHTML(results, grammar, q, conjMatch) {
   _srItems = results;
   let html = '';
   if (grammar) {
-    html += '<div class="sr-item" onclick="scrollToAnchor(\'' + grammar.id + '\'); closeSearch();" style="border-left:3px solid var(--accent2);">'
+    html += '<div class="sr-item" tabindex="0" role="button" onclick="scrollToAnchor(\'' + grammar.id + '\'); closeSearch();" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();scrollToAnchor(\'' + grammar.id + '\');closeSearch();}" style="border-left:3px solid var(--accent2);">'
       + '<span class="sr-es" style="color:var(--accent2)">文法</span>'
       + '<span class="sr-ja">' + grammar.label + '</span>'
       + '<span class="sr-jump">→ ジャンプ</span>'
@@ -1588,7 +1462,7 @@ function buildResultsHTML(results, grammar, q, conjMatch) {
     for (let i = 0; i < results.length; i++) {
       const r = results[i];
       if (r.form === '活用形' && r.conjForm) {
-        html += '<div class="sr-item" style="cursor:pointer" data-idx="' + i + '" data-mode="conj" onclick="handleSrItemClick(this)">'
+        html += '<div class="sr-item" style="cursor:pointer" tabindex="0" role="button" data-idx="' + i + '" data-mode="conj" onclick="handleSrItemClick(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();handleSrItemClick(this);}">'
           + '<span class="sr-es"><mark>' + esc(r.conjForm) + '</mark><span class="sr-form">活用形</span></span>'
           + '<span class="sr-ja">' + esc(r.ja) + '</span>'
           + '<span class="sr-jump" style="font-size:13px">📖</span>'
@@ -1596,7 +1470,7 @@ function buildResultsHTML(results, grammar, q, conjMatch) {
       } else {
         const esHl = highlight(r.es, q);
         const badge = r.pos ? '<span class="sr-pos">' + esc(r.pos) + '</span>' : '';
-        html += '<div class="sr-item" style="cursor:pointer" data-idx="' + i + '" data-mode="word" onclick="handleSrItemClick(this)">'
+        html += '<div class="sr-item" style="cursor:pointer" tabindex="0" role="button" data-idx="' + i + '" data-mode="word" onclick="handleSrItemClick(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();handleSrItemClick(this);}">'
           + '<span class="sr-es">' + esHl + badge + '</span>'
           + '<span class="sr-ja">' + esc(r.ja) + '</span>'
           + '<span class="sr-jump" style="font-size:13px">📖</span>'
@@ -1652,9 +1526,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (found) openDictModal(found, null);
     });
+    pill.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pill.click(); }
+    });
   });
 });
 </script>
 
+<script src="phrase-dict.js"></script>
+<script src="phrase-lookup.js"></script>
 </body>
 </html>

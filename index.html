@@ -3,23 +3,74 @@
 <head>
 
 <!-- ============================================================
-  ★ サイト全体の公開設定 ★（変更箇所はここだけ）
+  ★ 公開設定 ★（変更箇所はここだけ）
   ============================================================
-  PAGE_OPEN の値でサイト全体の公開・ロックを切り替えます。
-
-    1 → 公開（通常通り表示）
-    0 → ロック（このページを含む全学習ページが閲覧不可になります）
+  PAGE_OPEN  : 1 = サイト全体を公開, 0 = サイト全体をロック
+  LOCK_S1G11 : 1 = 個別設定に従う, 0 = 11組の全ページを一括ロック
+  LOCK_OTHER : 1 = 個別設定に従う, 0 = それ以外の全ページを一括ロック
+  CARD_ACCESS: ページごとの個別アクセス設定（s1g11/other = 1 or 0）
 
   【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
   ============================================================ -->
 <script>
-/* ★ サイト公開設定 ★ ここの数値を変更してください */
-var PAGE_OPEN = 1; // 1 = 公開, 0 = サイト全体をロック
+/* ★ サイト公開設定 ★ */
+var PAGE_OPEN  = 1; // 1 = 公開, 0 = サイト全体をロック
+
+/* ★ グループ別一括ロック ★  0 = そのグループの全ページをロック */
+var LOCK_S1G11 = 1; // 理科一類11組
+var LOCK_OTHER = 1; // それ以外
+
+/* ★ ページ別アクセス設定 ★  s1g11/other: 1=公開, 0=ロック */
+var CARD_ACCESS = {
+  'Spanish1_lesson2.html':  { s1g11: 1, other: 1 },
+  'Spanish1_lesson3.html':  { s1g11: 1, other: 1 },
+  'Spanish1_lesson4.html':  { s1g11: 1, other: 1 },
+  'Spanish1_lesson5.html':  { s1g11: 1, other: 1 },
+  'Spanish1_lesson6.html':  { s1g11: 1, other: 1 },
+  'Spanish1_lesson7.html':  { s1g11: 1, other: 1 },
+  'Spanish2_lesson1.html':  { s1g11: 0, other: 1 },
+  'Spanish2_lesson2.html':  { s1g11: 0, other: 1 },
+  'Spanish2_lesson3.html':  { s1g11: 0, other: 1 },
+  'Spanish2_lesson4.html':  { s1g11: 0, other: 1 },
+  'Spanish2_lesson5.html':  { s1g11: 0, other: 1 },
+  'Spanish2_lesson6.html':  { s1g11: 0, other: 1 },
+  'spanish_dictionary.html':{ s1g11: 1, other: 1 },
+};
+
+/* ★ 小テスト一括設定 ★（全ページの小テストをまとめて切り替え／所属グループ別）
+   値の意味：
+     2 = そのグループ全員に「一括表示」（個別設定 QUIZ_ACCESS を無視して全ページ表示）
+     1 = 「個別設定に従う」（下の QUIZ_ACCESS の各ページ設定を参照）
+     0 = そのグループ全員に「一括非表示」（個別設定 QUIZ_ACCESS を無視して全ページ非表示）
+   ※ いずれの値でも、小テストのデータが無いページにはタブは出ません。
+   ※「すべてのページの閲覧を許可された人（管理者モード）」はこの設定に関わらず常に表示されます。
+   ※ 予想問題（adminOnly）は、この設定に関わらず管理者にだけ表示されます。 */
+var QUIZ_BULK_S1G11 = 1; // 理科一類11組
+var QUIZ_BULK_OTHER = 1; // それ以外の所属
+
+/* ★ 小テストタブのアクセス設定（個別）★  s1g11/other: 1=表示, 0=非表示（タブ自体を出さない）
+   ・初期値はすべて 0（全員非表示）。QUIZ_BULK_S1G11 / QUIZ_BULK_OTHER が 1（個別設定に従う）のときに参照されます。
+   ・コンテンツを公開する準備ができたページだけ 1 にする。
+   ・小テストのデータが quiz-data.js に登録されていないページは、ここを 1 にしてもタブは出ません。 */
+var QUIZ_ACCESS = {
+  'Spanish1_lesson2.html':  { s1g11: 0, other: 0 },
+  'Spanish1_lesson3.html':  { s1g11: 0, other: 0 },
+  'Spanish1_lesson4.html':  { s1g11: 0, other: 0 },
+  'Spanish1_lesson5.html':  { s1g11: 0, other: 0 },
+  'Spanish1_lesson6.html':  { s1g11: 0, other: 0 },
+  'Spanish1_lesson7.html':  { s1g11: 0, other: 0 },
+  'Spanish2_lesson1.html':  { s1g11: 0, other: 0 },
+  'Spanish2_lesson2.html':  { s1g11: 0, other: 0 },
+  'Spanish2_lesson3.html':  { s1g11: 0, other: 0 },
+  'Spanish2_lesson4.html':  { s1g11: 0, other: 0 },
+  'Spanish2_lesson5.html':  { s1g11: 0, other: 0 },
+  'Spanish2_lesson6.html':  { s1g11: 0, other: 0 },
+};
 </script>
 
 <script src="ga.js"></script>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://partner.googleadservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://partner.googleadservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com https://docs.google.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>スペイン語学習ポータル</title>
@@ -81,6 +132,9 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = サイト全体をロック
   .lesson-card.ni:hover   { border-color: var(--rd); }
   .lesson-card.tango:hover { border-color: var(--accent2); }
   .lesson-card.disabled {
+    opacity: .45; pointer-events: none; background: var(--alt-bg);
+  }
+  .tango-card.disabled {
     opacity: .45; pointer-events: none; background: var(--alt-bg);
   }
   .card-badge {
@@ -198,6 +252,34 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = サイト全体をロック
   }
   .policy-decline-btn:hover { border-color: var(--muted); color: var(--mid); }
 
+  /* ── 所属アンケートオーバーレイ ── */
+  #survey-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99998;
+    background: #ffffff;
+    align-items: center; justify-content: center;
+  }
+  .survey-inner {
+    background: var(--surface); border-radius: 10px;
+    padding: 30px 28px 26px; width: min(400px, 92vw);
+    box-shadow: 0 12px 48px rgba(0,0,0,.28);
+  }
+  .survey-q {
+    font-family: var(--serif); font-size: 17px; font-weight: 700;
+    color: var(--ink); margin-bottom: 18px;
+  }
+  .survey-option {
+    display: block; width: 100%; text-align: left;
+    background: var(--bg); border: 1.5px solid var(--rule);
+    border-radius: 6px; padding: 11px 16px; margin-bottom: 8px;
+    font-family: var(--sans); font-size: 14px; color: var(--ink);
+    cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .survey-option:hover { border-color: var(--accent); background: var(--head-bg); }
+  .survey-confirm-text {
+    font-size: 15px; color: var(--ink); text-align: center;
+    margin: 20px 0 24px; line-height: 1.8;
+  }
+
   /* ── 広告オーバーレイ ── */
   #ad-overlay {
     display: none; position: fixed; inset: 0; z-index: 100000;
@@ -234,6 +316,12 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = サイト全体をロック
     <div style="font-size:52px; margin-bottom:20px;">🔒</div>
     <h2 style="font-family:var(--serif); font-size:20px; color:var(--accent); margin-bottom:12px;" id="blocked-msg">現在閲覧できません</h2>
     <p style="font-size:13px; color:var(--muted); line-height:1.8;">このページは現在ご利用いただけません。<br>ご不明な点はサイト管理者にお問い合わせください。</p>
+    <div style="margin-top:22px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <a href="#" onclick="adminLogin(); return false;"
+         style="font-size:12px; color:#8e8e93; text-decoration:none; border:1px solid #d6d6ce; border-radius:4px; padding:7px 18px;">管理者ログイン</a>
+      <a href="https://forms.gle/SG7Gsc9PVzzZ5LLW6" target="_blank"
+         style="font-size:12px; color:#8e8e93; text-decoration:none; border:1px solid #d6d6ce; border-radius:4px; padding:7px 18px;">お問い合わせ</a>
+    </div>
   </div>
 </div>
 
@@ -260,6 +348,34 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = サイト全体をロック
     <div class="policy-btn-row">
       <button class="policy-agree-btn" onclick="agreePolicy()">同意する</button>
       <button class="policy-decline-btn" onclick="declinePolicy()">同意しない</button>
+    </div>
+  </div>
+</div>
+
+<!-- 所属アンケートオーバーレイ -->
+<div id="survey-overlay">
+  <!-- 選択画面 -->
+  <div id="survey-select" class="survey-inner">
+    <div class="policy-logo">所属アンケート</div>
+    <div class="policy-lead">サイトを利用する前にお答えください（初回のみ）</div>
+    <div class="survey-q">あなたの所属はなんですか？</div>
+    <button class="survey-option" onclick="selectAffiliation('理科一類11組')">理科一類11組</button>
+    <button class="survey-option" onclick="selectAffiliation('文科一類')">文科一類</button>
+    <button class="survey-option" onclick="selectAffiliation('文科二類')">文科二類</button>
+    <button class="survey-option" onclick="selectAffiliation('文科三類')">文科三類</button>
+    <button class="survey-option" onclick="selectAffiliation('理科一類（11組以外）')">理科一類（11組以外）</button>
+    <button class="survey-option" onclick="selectAffiliation('理科二類')">理科二類</button>
+    <button class="survey-option" onclick="selectAffiliation('理科三類')">理科三類</button>
+  </div>
+  <!-- 確認画面 -->
+  <div id="survey-confirm" class="survey-inner" style="display:none;">
+    <div class="policy-logo">確認</div>
+    <div class="survey-confirm-text">
+      所属は<strong id="survey-selected-text"></strong>であっていますか？
+    </div>
+    <div class="policy-btn-row">
+      <button class="policy-agree-btn" onclick="confirmAffiliation()">はい</button>
+      <button class="policy-decline-btn" onclick="backToSelect()">戻る</button>
     </div>
   </div>
 </div>
@@ -472,7 +588,7 @@ var PAGE_OPEN = 1; // 1 = 公開, 0 = サイト全体をロック
 </div>
 
 <script>
-var ADMIN_HASH = '0c877d3c605d890781da58d6892bc153342a7a2783432dc2b2b604336e7b914f';
+var ADMIN_HASH = localStorage.getItem('adminHashOverride') || '0c877d3c605d890781da58d6892bc153342a7a2783432dc2b2b604336e7b914f';
 var ADMIN_SALT = 'sp_portal_salt_2026';
 var ADMIN_ITER = 200000;
 var ADMIN_MAX_ATTEMPTS = 5;
@@ -537,26 +653,95 @@ document.getElementById('admin-overlay').addEventListener('click', function(e) {
   if (e.target === this) adminClose();
 });
 
+// ── Google Forms 送信設定（実際の値に書き換えてください）──────────────
+var GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdkm0LvyrB6qNEq6NkgfLdeq0Ut_9mQOUlYSkbcgPNyzU3dcA/formResponse';
+var GOOGLE_FORMS_ENTRY_ID = 'entry.1542429076';
+
 // アクセスコントロール（ホームページ）
 function checkAndShowOverlay() {
-  // サイト全体ロック状態を localStorage に記録（学習ページの access-control.js が参照）
-  localStorage.setItem('siteOpen', PAGE_OPEN === 1 ? '1' : '0');
+  // サイト全体ロック状態・グループ別ロック・ページ別設定を localStorage に記録
+  localStorage.setItem('siteOpen',   PAGE_OPEN  === 1 ? '1' : '0');
+  localStorage.setItem('lockS1G11',  String(LOCK_S1G11));
+  localStorage.setItem('lockOther',  String(LOCK_OTHER));
+  localStorage.setItem('cardAccess', JSON.stringify(CARD_ACCESS));
+  localStorage.setItem('quizAccess', JSON.stringify(QUIZ_ACCESS));
+  localStorage.setItem('quizBulkS1G11', QUIZ_BULK_S1G11);
+  localStorage.setItem('quizBulkOther', QUIZ_BULK_OTHER);
 
   if (PAGE_OPEN !== 1) {
     document.getElementById('blocked-msg').textContent = 'このサイトは現在閲覧できません';
     document.getElementById('site-blocked-overlay').style.display = 'flex';
     return;
   }
+  // 管理者・全ページ確認モード：オーバーレイをすべてスキップ
+  if (localStorage.getItem('adminViewAll') === 'true') {
+    return;
+  }
   if (!localStorage.getItem('agreedPolicy')) {
     document.getElementById('policy-overlay').style.display = 'flex';
     return;
   }
+  if (!localStorage.getItem('affiliationType')) {
+    document.getElementById('survey-overlay').style.display = 'flex';
+    return;
+  }
+  applyCardAccess();
 }
 checkAndShowOverlay();
+
+// 所属に基づいてカードをグレーアウト（LOCK_S1G11/LOCK_OTHER/CARD_ACCESS 設定を参照）
+function applyCardAccess() {
+  if (localStorage.getItem('adminViewAll') === 'true') return;
+  var affType = localStorage.getItem('affiliationType');
+  if (!affType) return;
+  var isS1G11 = (affType === 's1g11');
+  var globalLocked = isS1G11 ? LOCK_S1G11 !== 1 : LOCK_OTHER !== 1;
+  document.querySelectorAll('a.lesson-card[href], a.tango-card[href]').forEach(function(card) {
+    var href = card.getAttribute('href');
+    var cfg = CARD_ACCESS[href];
+    if (!cfg) return;
+    var hasAccess = globalLocked ? 0 : (isS1G11 ? cfg.s1g11 : cfg.other);
+    if (hasAccess !== 1) {
+      card.classList.add('disabled');
+    }
+  });
+}
 
 function agreePolicy() {
   localStorage.setItem('agreedPolicy', '1');
   document.getElementById('policy-overlay').style.display = 'none';
+  if (!localStorage.getItem('affiliationType')) {
+    document.getElementById('survey-overlay').style.display = 'flex';
+  }
+}
+
+// ── 所属アンケート ────────────────────────────────────────────────────────
+var _selectedAffiliation = '';
+
+function selectAffiliation(option) {
+  _selectedAffiliation = option;
+  document.getElementById('survey-selected-text').textContent = option;
+  document.getElementById('survey-select').style.display = 'none';
+  document.getElementById('survey-confirm').style.display = 'block';
+}
+
+function backToSelect() {
+  document.getElementById('survey-confirm').style.display = 'none';
+  document.getElementById('survey-select').style.display = 'block';
+}
+
+function confirmAffiliation() {
+  var affType = (_selectedAffiliation === '理科一類11組') ? 's1g11' : 'other';
+  localStorage.setItem('affiliationType', affType);
+  submitToGoogleForms(_selectedAffiliation);
+  document.getElementById('survey-overlay').style.display = 'none';
+  applyCardAccess();
+}
+
+function submitToGoogleForms(affiliation) {
+  var formData = new FormData();
+  formData.append(GOOGLE_FORMS_ENTRY_ID, affiliation);
+  fetch(GOOGLE_FORMS_URL, { method: 'POST', mode: 'no-cors', body: formData }).catch(function () {});
 }
 var AD_SECONDS = 7;
 function declinePolicy() {
@@ -580,6 +765,11 @@ function declinePolicy() {
 function skipAd() {
   document.getElementById('ad-overlay').style.display = 'none';
   document.getElementById('policy-overlay').style.display = 'flex';
+}
+
+// blocked.html などからの管理者ログイン誘導（?adminlogin=1 が付いている場合）
+if (new URLSearchParams(location.search).get('adminlogin') === '1') {
+  adminLogin();
 }
 </script>
 
