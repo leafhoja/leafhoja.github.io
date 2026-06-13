@@ -25,192 +25,192 @@
           {
             t: 'Nosotros (<span class="qz-b" data-a="queremos"></span>) descansar, pero los niños (<span class="qz-b" data-a="quieren"></span>) jugar. <span class="qz-hint">(querer)</span>',
             ja: '私たちは休みたいが、子供たちは遊びたがる。',
-            exp: 'querer は <b>e→ie</b> 型（語根母音変化）。変化するのは1単・2単・3単・3複の「ブーツ型」。<br>1複 nosotros はアクセントが語根に当たらず<b>変化しない</b> → <b>queremos</b>（×quieremos）。3複は <b>quieren</b>。<br>⚠️ 1複・2複を変化させないことが最大のポイント。<br>🔤 <b>querer</b>：quiero / quieres / quiere / queremos / queréis / quieren'
+            exp: 'querer は <b>e→ie</b> 型（語根母音変化）。変化するのは1単・2単・3単・3複の「ブーツ型」。<br>1複 nosotros はアクセントが語根に当たらず<b>変化しない</b> → <b>queremos</b>（×quieremos）。3複は <b>quieren</b>。<br>⚠️ 1複・2複を変化させないことが最大のポイント。<br>💡 querer＋不定詞「〜したい」、querer a＋人「〜を愛している」。<br>🔤 <b>querer</b>（望む、愛する）：quiero / quieres / quiere / queremos / queréis / quieren'
           },
           {
             t: 'Tú (<span class="qz-b" data-a="puedes"></span>) hacerlo, pero nosotros no (<span class="qz-b" data-a="podemos"></span>). <span class="qz-hint">(poder)</span>',
             ja: '君はそれができるが、私たちにはできない。',
-            exp: 'poder は <b>o→ue</b> 型。2単 <b>puedes</b> は変化、1複 <b>podemos</b> は<b>変化しない</b>（×puedemos）。<br>⚠️ ブーツ型：1複・2複だけ規則どおりの活用。<br>🔤 <b>poder</b>：puedo / puedes / puede / podemos / podéis / pueden'
+            exp: 'poder は <b>o→ue</b> 型。2単 <b>puedes</b> は変化、1複 <b>podemos</b> は<b>変化しない</b>（×puedemos）。<br>⚠️ ブーツ型：1複・2複だけ規則どおりの活用。<br>💡 poder＋不定詞「〜できる」。No puedo ir.「行けない」のように否定でも頻出。<br>🔤 <b>poder</b>（できる、〜し得る）：puedo / puedes / puede / podemos / podéis / pueden'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="tengo"></span>) dos hermanos y mi prima (<span class="qz-b" data-a="tiene"></span>) tres. <span class="qz-hint">(tener)</span>',
             ja: '私には兄弟が2人、いとこには3人いる。',
-            exp: 'tener は <b>-go ＋ 語根母音変化</b>型。1単は <b>tengo</b>（-go のみで e→ie 変化は<b>起きない</b>）。3単は e→ie 変化で <b>tiene</b>（-go はつかない）。<br>⚠️ 1単で「tiengo」のように -go と語根変化を混ぜない。<br>🔤 <b>tener</b>：tengo / tienes / tiene / tenemos / tenéis / tienen'
+            exp: 'tener は <b>-go ＋ 語根母音変化</b>型。1単は <b>tengo</b>（-go のみで e→ie 変化は<b>起きない</b>）。3単は e→ie 変化で <b>tiene</b>（-go はつかない）。<br>⚠️ 1単で「tiengo」のように -go と語根変化を混ぜない。<br>💡 tener que＋不定詞「〜しなければならない」。Tengo que estudiar.（勉強しなければ）。<br>🔤 <b>tener</b>（持つ、ある、いる）：tengo / tienes / tiene / tenemos / tenéis / tienen'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="conozco"></span>) a María, pero no (<span class="qz-b" data-a="sé"></span>) dónde vive. <span class="qz-hint">(conocer / saber)</span>',
             ja: '私はマリアを知っているが、彼女がどこに住んでいるかは知らない。',
-            exp: '母音+cer の <b>conocer</b> は1単で c→zc となり <b>conozco</b>。<b>saber</b> は完全不規則で1単 <b>sé</b>（アクセント記号必須）。<br>⚠️ 意味の使い分けも：人・場所を体験的に「知っている」は conocer、事実・情報を「知っている」は saber。<br>🔤 <b>conocer</b>：conozco / conoces / conoce / conocemos / conocéis / conocen<br>🔤 <b>saber</b>：sé / sabes / sabe / sabemos / sabéis / saben'
+            exp: '母音+cer の <b>conocer</b> は1単で c→zc となり <b>conozco</b>。<b>saber</b> は完全不規則で1単 <b>sé</b>（アクセント記号必須）。<br>⚠️ 意味の使い分けも：人・場所を体験的に「知っている」は conocer、事実・情報を「知っている」は saber。<br>💡 例：Conozco a María.「マリアと面識がある」/ Sé que María vive aquí.「マリアがここに住んでいると知っている」。<br>🔤 <b>conocer</b>（知っている＝体験・面識）：conozco / conoces / conoce / conocemos / conocéis / conocen<br>🔤 <b>saber</b>（知っている＝知識・技能）：sé / sabes / sabe / sabemos / sabéis / saben'
           },
           {
             t: 'En el restaurante yo (<span class="qz-b" data-a="pido"></span>) paella y mis amigos (<span class="qz-b" data-a="piden"></span>) tapas. <span class="qz-hint">(pedir)</span>',
             ja: 'レストランで私はパエリアを、友人たちはタパスを注文する。',
-            exp: 'pedir は <b>e→i</b> 型（このタイプは ir 動詞のみ）。1単 <b>pido</b>・3複 <b>piden</b> と変化する。<br>⚠️ e→<u>ie</u> ではなく e→<u>i</u>（×piedo）。<br>🔤 <b>pedir</b>：pido / pides / pide / pedimos / pedís / piden'
+            exp: 'pedir は <b>e→i</b> 型（このタイプは ir 動詞のみ）。1単 <b>pido</b>・3複 <b>piden</b> と変化する。<br>⚠️ e→<u>ie</u> ではなく e→<u>i</u>（×piedo）。<br>💡 同じ e→i 型の仲間：servir（提供する）、repetir（繰り返す）、seguir（続ける）、vestir（着る）など、すべて -ir 動詞。<br>🔤 <b>pedir</b>（頼む、注文する）：pido / pides / pide / pedimos / pedís / piden'
           },
           {
             t: 'Yo siempre (<span class="qz-b" data-a="digo"></span>) la verdad, pero tú no (<span class="qz-b" data-a="dices"></span>) nada. <span class="qz-hint">(decir)</span>',
             ja: '私はいつも本当のことを言うが、君は何も言わない。',
-            exp: 'decir は <b>-go ＋ e→i</b> 型。<b>例外的に1単でも e→i 変化</b>が起こり <b>digo</b>。2単は <b>dices</b>。<br>⚠️ tener / venir（1単 tengo / vengo は語根変化<b>なし</b>）とは対照的なので要注意。<br>🔤 <b>decir</b>：digo / dices / dice / decimos / decís / dicen'
+            exp: 'decir は <b>-go ＋ e→i</b> 型。<b>例外的に1単でも e→i 変化</b>が起こり <b>digo</b>（×deco・×digo は誤り）。2単は <b>dices</b>。<br>⚠️ tener / venir（1単 tengo / vengo は語根変化<b>なし</b>）とは対照的なので要注意。<br>💡 decir que＋直説法「〜と言う」。Se dice que…「〜と言われている」もよく使う。<br>🔤 <b>decir</b>（言う、話す）：digo / dices / dice / decimos / decís / dicen'
           },
           {
             t: 'Mi hijo (<span class="qz-b" data-a="juega"></span>) al fútbol y nosotros (<span class="qz-b" data-a="jugamos"></span>) al tenis. <span class="qz-hint">(jugar)</span>',
             ja: '息子はサッカーを、私たちはテニスをする。',
-            exp: 'jugar は <b>u→ue</b> 型（この型をとるのは jugar だけ）。3単 <b>juega</b> は変化、1複 <b>jugamos</b> は<b>変化しない</b>（×juegamos）。<br>🔤 <b>jugar</b>：juego / juegas / juega / jugamos / jugáis / juegan'
+            exp: 'jugar は <b>u→ue</b> 型（この型をとるのは jugar だけ）。3単 <b>juega</b> は変化、1複 <b>jugamos</b> は<b>変化しない</b>（×juegamos）。<br>💡 jugar a＋スポーツ名「〜をする」。jugar al fútbol / al tenis / al ajedrez（チェス）。<br>🔤 <b>jugar</b>（遊ぶ、スポーツをする）：juego / juegas / juega / jugamos / jugáis / juegan'
           },
           {
             t: 'Los domingos yo (<span class="qz-b" data-a="voy"></span>) al parque y mis padres (<span class="qz-b" data-a="van"></span>) a la iglesia. <span class="qz-hint">(ir)</span>',
             ja: '日曜日、私は公園へ、両親は教会へ行く。',
-            exp: 'ir は<b>完全不規則</b>。1単 <b>voy</b>、3複 <b>van</b>。語幹が v- になり、不定詞 ir からは形を推測できない。<br>⚠️ パターンに頼らずそのまま暗記する動詞。<br>🔤 <b>ir</b>：voy / vas / va / vamos / vais / van'
+            exp: 'ir は<b>完全不規則</b>。1単 <b>voy</b>、3複 <b>van</b>。語幹が v- になり、不定詞 ir からは形を推測できない。<br>⚠️ パターンに頼らずそのまま暗記する動詞。<br>💡 ir a＋不定詞で「〜するつもり・〜しようとしている」（近接未来）。Voy a comer.「食べるつもりだ」。<br>🔤 <b>ir</b>（行く）：voy / vas / va / vamos / vais / van'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="entiendo"></span>) español, pero mis amigos no (<span class="qz-b" data-a="entienden"></span>) nada. <span class="qz-hint">(entender)</span>',
             ja: '私はスペイン語が分かるが、友人たちは全く分からない。',
-            exp: 'entender は <b>e→ie</b> 型（語根母音変化）。1単 <b>entiendo</b>、3複 <b>entienden</b> と変化。<br>⚠️ ブーツ型：1複・2複はアクセントが語根に当たらないので<b>変化しない</b>（nosotros entendemos）。<br>🔤 <b>entender</b>：entiendo / entiendes / entiende / entendemos / entendéis / entienden'
+            exp: 'entender は <b>e→ie</b> 型（語根母音変化）。1単 <b>entiendo</b>、3複 <b>entienden</b> と変化。<br>⚠️ ブーツ型：1複・2複はアクセントが語根に当たらないので<b>変化しない</b>（nosotros entendemos）。<br>💡 entender de「〜に詳しい」。Ella entiende de música.「彼女は音楽に詳しい」。<br>🔤 <b>entender</b>（理解する、わかる）：entiendo / entiendes / entiende / entendemos / entendéis / entienden'
           },
           {
             t: 'Vosotros (<span class="qz-b" data-a="entendéis"></span>) el problema, pero yo no (<span class="qz-b" data-a="entiendo"></span>) nada. <span class="qz-hint">(entender)</span>',
             ja: '君たちは問題が分かっているが、私には全く分からない。',
-            exp: 'entender（e→ie型）の2複は <b>entendéis</b>（アクセントが語根に当たらず<b>変化しない</b>）。1単は <b>entiendo</b>（e→ie 変化）。<br>⚠️ 「entendéis」のアクセント記号（é）を忘れない。<br>🔤 <b>entender</b>：entiendo / entiendes / entiende / entendemos / entendéis / entienden'
+            exp: 'entender（e→ie型）の2複は <b>entendéis</b>（アクセントが語根に当たらず<b>変化しない</b>）。1単は <b>entiendo</b>（e→ie 変化）。<br>⚠️ 「entendéis」のアクセント記号（é）を忘れない。<br>💡 同じ e→ie 型の仲間：querer / pensar / volver（o→ue）/ poder（o→ue）。「ブーツ型」は1・2複だけが規則のまま、という共通ルール。<br>🔤 <b>entender</b>（理解する、わかる）：entiendo / entiendes / entiende / entendemos / entendéis / entienden'
           },
           {
             t: '¿Cuándo (<span class="qz-b" data-a="vuelves"></span>) a casa? — Nosotros (<span class="qz-b" data-a="volvemos"></span>) a las seis. <span class="qz-hint">(volver)</span>',
             ja: 'いつ家に帰るの？ — 私たちは6時に戻ります。',
-            exp: 'volver は <b>o→ue</b> 型。2単 tú <b>vuelves</b>（変化）、1複 nosotros <b>volvemos</b>（<b>変化しない</b>、×vuelve mos）。<br>⚠️ 1複・2複はブーツ型の外なので語根変化なし。<br>🔤 <b>volver</b>：vuelvo / vuelves / vuelve / volvemos / volvéis / vuelven'
+            exp: 'volver は <b>o→ue</b> 型。2単 tú <b>vuelves</b>（変化）、1複 nosotros <b>volvemos</b>（<b>変化しない</b>、×vuelvemos）。<br>⚠️ 1複・2複はブーツ型の外なので語根変化なし。<br>💡 volver a＋不定詞「再び〜する」。Vuelvo a intentarlo.「もう一度やってみる」。<br>🔤 <b>volver</b>（戻る、帰る）：vuelvo / vuelves / vuelve / volvemos / volvéis / vuelven'
           },
           {
             t: 'Hoy ella (<span class="qz-b" data-a="vuelve"></span>) tarde del trabajo y sus hijos (<span class="qz-b" data-a="vuelven"></span>) del colegio. <span class="qz-hint">(volver)</span>',
             ja: '今日、彼女は仕事から遅く帰り、子供たちは学校から帰ってくる。',
-            exp: 'volver（o→ue型）の3単 <b>vuelve</b>、3複 <b>vuelven</b>（ともにブーツ型内で変化）。<br>📖 語句：trabajo「仕事」／colegio「学校・小中学校」<br>🔤 <b>volver</b>：vuelvo / vuelves / vuelve / volvemos / volvéis / vuelven'
+            exp: 'volver（o→ue型）の3単 <b>vuelve</b>、3複 <b>vuelven</b>（ともにブーツ型内で変化）。<br>💡 3単・3複はブーツ型の内側なので語根変化あり。同じ o→ue 型：poder / recordar / dormir（-ir動詞）など。<br>📖 語句：trabajo「仕事」／colegio「学校・小中学校」<br>🔤 <b>volver</b>（戻る、帰る）：vuelvo / vuelves / vuelve / volvemos / volvéis / vuelven'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="pienso"></span>) que tienes razón, pero ellos (<span class="qz-b" data-a="piensan"></span>) lo contrario. <span class="qz-hint">(pensar)</span>',
             ja: '私は君が正しいと思うが、彼らは逆のことを思っている。',
-            exp: 'pensar は <b>e→ie</b> 型。1単 <b>pienso</b>（×penseo）、3複 <b>piensan</b>。<br>⚠️ e→ie であって e→ie「o」ではない。<br>📖 語句：tener razón「正しい・道理をわきまえている」／lo contrario「正反対のこと」<br>🔤 <b>pensar</b>：pienso / piensas / piensa / pensamos / pensáis / piensan'
+            exp: 'pensar は <b>e→ie</b> 型。1単 <b>pienso</b>（×penseo）、3複 <b>piensan</b>。<br>⚠️ e→ie であって e→eo ではない（×penseo）。<br>💡 pensar＋不定詞「〜するつもり」、pensar en「〜について考える」、pensar que「〜と思う」。<br>📖 語句：tener razón「正しい・道理をわきまえている」／lo contrario「正反対のこと」<br>🔤 <b>pensar</b>（思う、考える）：pienso / piensas / piensa / pensamos / pensáis / piensan'
           },
           {
             t: 'Nosotros (<span class="qz-b" data-a="pensamos"></span>) ir a la playa este fin de semana. <span class="qz-hint">(pensar)</span>',
             ja: '私たちは今週末ビーチに行くつもりだ。',
-            exp: 'pensar（e→ie型）の1複は <b>pensamos</b>（語根変化<b>なし</b>）。pensar＋不定詞で「〜するつもり」。<br>⚠️ 「×piensamos」は誤り。ブーツ型の外は規則どおり。<br>📖 語句：playa「ビーチ」／fin de semana「週末」<br>🔤 <b>pensar</b>：pienso / piensas / piensa / pensamos / pensáis / piensan'
+            exp: 'pensar（e→ie型）の1複は <b>pensamos</b>（語根変化<b>なし</b>）。pensar＋不定詞で「〜するつもり」。<br>⚠️ 「×piensamos」は誤り。ブーツ型の外は規則どおり。<br>💡 pensar＋不定詞は「意図・計画」を示す。Pensamos ir a la playa.「ビーチに行くつもりだ」のように1複が主語になる場面が多い。<br>📖 語句：playa「ビーチ」／fin de semana「週末」<br>🔤 <b>pensar</b>（思う、考える）：pienso / piensas / piensa / pensamos / pensáis / piensan'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="repito"></span>) la pregunta porque ellos no (<span class="qz-b" data-a="entienden"></span>). <span class="qz-hint">(repetir / entender)</span>',
             ja: '彼らが分からないので、私は質問を繰り返す。',
-            exp: 'repetir は <b>e→i</b> 型（ir動詞のみ）。1単 <b>repito</b>（×repeto は誤り）。entender は e→ie型 → 3複 <b>entienden</b>。<br>⚠️ e→i（repetir）と e→ie（entender）を混同しない。<br>📖 語句：pregunta「質問」／porque「なぜなら」<br>🔤 <b>repetir</b>：repito / repites / repite / repetimos / repetís / repiten<br>🔤 <b>entender</b>：entiendo / entiendes / entiende / entendemos / entendéis / entienden'
+            exp: 'repetir は <b>e→i</b> 型（ir動詞のみ）。1単 <b>repito</b>（×repeto は誤り）。entender は e→ie型 → 3複 <b>entienden</b>。<br>⚠️ e→i（repetir）と e→ie（entender）を混同しない。<br>💡 見分け方：e→i は -ir 動詞のみ。entender は -er 動詞なので e→ie。動詞の語尾で区別できる。<br>📖 語句：pregunta「質問」／porque「なぜなら」<br>🔤 <b>repetir</b>（繰り返す、復唱する）：repito / repites / repite / repetimos / repetís / repiten<br>🔤 <b>entender</b>（理解する、わかる）：entiendo / entiendes / entiende / entendemos / entendéis / entienden'
           },
           {
             t: 'El camarero nos (<span class="qz-b" data-a="sirve"></span>) el café y nosotros (<span class="qz-b" data-a="pedimos"></span>) la cuenta. <span class="qz-hint">(servir / pedir)</span>',
             ja: 'ウェイターがコーヒーを持ってきて、私たちは会計を頼む。',
-            exp: 'servir（e→i型、ir動詞）の3単 <b>sirve</b>。pedir（e→i型）の1複 <b>pedimos</b>（変化<b>なし</b>）。<br>⚠️ 1複はブーツ型の外なので pedimos（×pideimos は誤り）。<br>📖 語句：camarero「ウェイター」／café「コーヒー」／cuenta「勘定・会計」<br>🔤 <b>servir</b>：sirvo / sirves / sirve / servimos / servís / sirven<br>🔤 <b>pedir</b>：pido / pides / pide / pedimos / pedís / piden'
+            exp: 'servir（e→i型、ir動詞）の3単 <b>sirve</b>。pedir（e→i型）の1複 <b>pedimos</b>（変化<b>なし</b>）。<br>⚠️ 1複はブーツ型の外なので pedimos（×pideimos は誤り）。<br>💡 servir de「〜として役立つ」、servir para「〜の目的に使える」。¿En qué le sirvo?「何かお役に立てますか？」は接客表現。<br>📖 語句：camarero「ウェイター」／café「コーヒー」／cuenta「勘定・会計」<br>🔤 <b>servir</b>（提供する、役立つ）：sirvo / sirves / sirve / servimos / servís / sirven<br>🔤 <b>pedir</b>（頼む、注文する）：pido / pides / pide / pedimos / pedís / piden'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="juego"></span>) al baloncesto y tú (<span class="qz-b" data-a="juegas"></span>) al béisbol. <span class="qz-hint">(jugar)</span>',
             ja: '私はバスケットボールをして、君は野球をする。',
-            exp: 'jugar は <b>u→ue</b> 型（この型をとるのはjugarだけ）。1単 <b>juego</b>、2単 <b>juegas</b>（ともに変化）。<br>⚠️ u→ue 型は jugar のみ。他の動詞にこの変化はない。<br>📖 語句：baloncesto「バスケットボール」／béisbol「野球」<br>🔤 <b>jugar</b>：juego / juegas / juega / jugamos / jugáis / juegan'
+            exp: 'jugar は <b>u→ue</b> 型（この型をとるのはjugarだけ）。1単 <b>juego</b>、2単 <b>juegas</b>（ともに変化）。<br>⚠️ u→ue 型は jugar のみ。他の動詞にこの変化はない。<br>💡 jugar a＋スポーツ名「〜をする」。juego al baloncesto / juegas al béisbol のように a＋定冠詞が必要。<br>📖 語句：baloncesto「バスケットボール」／béisbol「野球」<br>🔤 <b>jugar</b>（遊ぶ、スポーツをする）：juego / juegas / juega / jugamos / jugáis / juegan'
           },
           {
             t: 'Vosotros (<span class="qz-b" data-a="jugáis"></span>) al tenis todos los días, ¿verdad? <span class="qz-hint">(jugar)</span>',
             ja: '君たちは毎日テニスをするよね？',
-            exp: 'jugar（u→ue型）の2複は <b>jugáis</b>（語根変化<b>なし</b>。×juegáis は誤り）。アクセント記号（á）に注意。<br>⚠️ 2複はブーツ型の外。jugáis が正解。<br>🔤 <b>jugar</b>：juego / juegas / juega / jugamos / jugáis / juegan'
+            exp: 'jugar（u→ue型）の2複は <b>jugáis</b>（語根変化<b>なし</b>。×juegáis は誤り）。アクセント記号（á）に注意。<br>⚠️ 2複はブーツ型の外。jugáis が正解。<br>💡 -áis / -éis / -ís のアクセント記号は、アクセント規則上必要な場合がある。jugáis は規則上アクセント記号が必要（×jugais は誤り）。<br>🔤 <b>jugar</b>（遊ぶ、スポーツをする）：juego / juegas / juega / jugamos / jugáis / juegan'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="vengo"></span>) de la biblioteca y mi hermana (<span class="qz-b" data-a="viene"></span>) del supermercado. <span class="qz-hint">(venir)</span>',
             ja: '私は図書館から来て、姉はスーパーから来る。',
-            exp: 'venir は <b>-go ＋ e→ie</b> 型。1単は -go のみで語根変化は起きず <b>vengo</b>（×viengo）。3単は e→ie 変化で <b>viene</b>（-go なし）。<br>⚠️ 1単で tener と同様「-go だけ」。語根変化との混合はしない。<br>📖 語句：biblioteca「図書館」／supermercado「スーパーマーケット」<br>🔤 <b>venir</b>：vengo / vienes / viene / venimos / venís / vienen'
+            exp: 'venir は <b>-go ＋ e→ie</b> 型。1単は -go のみで語根変化は起きず <b>vengo</b>（×viengo）。3単は e→ie 変化で <b>viene</b>（-go なし）。<br>⚠️ 1単で tener と同様「-go だけ」。語根変化との混合はしない。<br>💡 venir de「〜から来る・〜出身」。Vengo de Japón.「日本から来ました」。<br>📖 語句：biblioteca「図書館」／supermercado「スーパーマーケット」<br>🔤 <b>venir</b>（来る）：vengo / vienes / viene / venimos / venís / vienen'
           },
           {
             t: '¿De dónde (<span class="qz-b" data-a="vienen"></span>) ustedes? — (<span class="qz-b" data-a="Venimos"></span>) de Osaka. <span class="qz-hint">(venir)</span>',
             ja: 'あなた方はどちらから来たのですか？ — 大阪から来ました。',
-            exp: 'venir の3複 <b>vienen</b>（e→ie変化）、1複 <b>venimos</b>（変化<b>なし</b>）。<br>⚠️ 1複 venimos は「×venimos」で正しい（ブーツ型外）。<br>🔤 <b>venir</b>：vengo / vienes / viene / venimos / venís / vienen'
+            exp: 'venir の3複 <b>vienen</b>（e→ie 変化）、1複 <b>venimos</b>（変化<b>なし</b>）。<br>⚠️ ×vienimos は誤り。1複はブーツ型の外なので語根変化しない。<br>💡 ¿De dónde vienen ustedes?「どちらのご出身ですか？」は会話の定番。3複 vienen でポイントを押さえよう。<br>🔤 <b>venir</b>（来る）：vengo / vienes / viene / venimos / venís / vienen'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="pongo"></span>) los libros en la mesa y tú (<span class="qz-b" data-a="pones"></span>) las sillas en orden. <span class="qz-hint">(poner)</span>',
             ja: '私は本を机に置き、君は椅子を整頓する。',
-            exp: 'poner は純粋 <b>-go</b> 型（語根変化なし）。1単 <b>pongo</b>、2単 <b>pones</b>（2単以降は規則活用）。<br>📖 語句：mesa「机・テーブル」／silla「椅子」／en orden「整頓された・順に」<br>🔤 <b>poner</b>：pongo / pones / pone / ponemos / ponéis / ponen'
+            exp: 'poner は純粋 <b>-go</b> 型（語根変化なし）。1単 <b>pongo</b>、2単 <b>pones</b>（2単以降は規則活用）。<br>💡 poner＋形容詞「（人を）〜な状態にする」。ponerse（再帰）「〜になる」。Esto me pone nervioso.「これで緊張する」。<br>📖 語句：mesa「机・テーブル」／silla「椅子」／en orden「整頓された・順に」<br>🔤 <b>poner</b>（置く、つける）：pongo / pones / pone / ponemos / ponéis / ponen'
           },
           {
             t: 'Ella (<span class="qz-b" data-a="sale"></span>) de casa a las ocho y nosotros (<span class="qz-b" data-a="salimos"></span>) a las nueve. <span class="qz-hint">(salir)</span>',
             ja: '彼女は8時に家を出て、私たちは9時に出る。',
-            exp: 'salir は純粋 <b>-go</b> 型。1単は salgo、3単は <b>sale</b>（規則）、1複 <b>salimos</b>（規則）。<br>⚠️ -go 型は1単のみ不規則。salgo 以外は通常の活用。<br>📖 語句：casa「家」<br>🔤 <b>salir</b>：salgo / sales / sale / salimos / salís / salen'
+            exp: 'salir は純粋 <b>-go</b> 型。1単は salgo、3単は <b>sale</b>（規則）、1複 <b>salimos</b>（規則）。<br>⚠️ -go 型は1単のみ不規則。salgo 以外は通常の活用。<br>💡 salir de「〜を出る」、salir con「〜と出かける・付き合う」。<br>📖 語句：casa「家」<br>🔤 <b>salir</b>（出る、出発する）：salgo / sales / sale / salimos / salís / salen'
           },
           {
             t: 'Yo siempre (<span class="qz-b" data-a="hago"></span>) la cama por la mañana. ¿Y tú, qué (<span class="qz-b" data-a="haces"></span>)? <span class="qz-hint">(hacer)</span>',
             ja: '私はいつも朝ベッドメイキングをする。君は何をする？',
-            exp: 'hacer は純粋 <b>-go</b> 型。1単 <b>hago</b>、2単 <b>haces</b>（規則）。<br>⚠️ hacer の2単は haces（×hages は誤り）。<br>📖 語句：hacer la cama「ベッドメイキングをする」／por la mañana「朝に」<br>🔤 <b>hacer</b>：hago / haces / hace / hacemos / hacéis / hacen'
+            exp: 'hacer は純粋 <b>-go</b> 型。1単 <b>hago</b>、2単 <b>haces</b>（規則）。<br>⚠️ hacer の2単は haces（×hages は誤り）。<br>💡 天気表現にも頻出：Hace frío/calor/sol/viento.「寒い／暑い／晴れ／風が強い」。hacer daño「傷つける」も重要。<br>📖 語句：hacer la cama「ベッドメイキングをする」／por la mañana「朝に」<br>🔤 <b>hacer</b>（する、作る）：hago / haces / hace / hacemos / hacéis / hacen'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="traigo"></span>) el vino y Ana (<span class="qz-b" data-a="trae"></span>) el postre. <span class="qz-hint">(traer)</span>',
             ja: '私がワインを持ってきて、アナがデザートを持ってくる。',
-            exp: 'traer は <b>-igo</b> 型。1単 <b>traigo</b>（caer → caigo と同じパターン）。3単 <b>trae</b>（規則）。<br>⚠️ traer の1単は traigo（-igo）。trago とは別語なので混同しない。<br>📖 語句：vino「ワイン」／postre「デザート」<br>🔤 <b>traer</b>：traigo / traes / trae / traemos / traéis / traen'
+            exp: 'traer は <b>-igo</b> 型。1単 <b>traigo</b>（caer → caigo と同じパターン）。3単 <b>trae</b>（規則）。<br>⚠️ traer の1単は traigo（-igo）。trago とは別語なので混同しない。<br>💡 traer（持ってくる＝話者のいる場所へ）⇔ llevar（持っていく＝話者のいない場所へ）。方向の対比に注意。<br>📖 語句：vino「ワイン」／postre「デザート」<br>🔤 <b>traer</b>（持ってくる、連れてくる）：traigo / traes / trae / traemos / traéis / traen'
           },
           {
             t: '¿(<span class="qz-b" data-a="Oyes"></span>) la música? — Sí, yo (<span class="qz-b" data-a="oigo"></span>) perfectamente. <span class="qz-hint">(oír)</span>',
             ja: '音楽が聴こえる？ — うん、完璧に聞こえるよ。',
-            exp: 'oír は特殊な -go 型。2単 <b>oyes</b>（e の前に y が入る）、1単 <b>oigo</b>（-go 型）。<br>⚠️ oír の2単・3単・3複は e の前に y が挿入（oyes / oye / oyen）。<br>📖 語句：música「音楽」／perfectamente「完璧に」<br>🔤 <b>oír</b>：oigo / oyes / oye / oímos / oís / oyen'
+            exp: 'oír は特殊な -go 型。2単 <b>oyes</b>（e の前に y が入る）、1単 <b>oigo</b>（-go 型）。<br>⚠️ oír の2単・3単・3複は e の前に y が挿入（oyes / oye / oyen）。<br>💡 oír（聞こえる＝自然に耳に入る）⇔ escuchar（聴く＝意識的に注意を向ける）。¿Oyes eso?「あれ聞こえる？」/ Escucha bien.「よく聴いて」。<br>📖 語句：música「音楽」／perfectamente「完璧に」<br>🔤 <b>oír</b>（聞こえる、聴く）：oigo / oyes / oye / oímos / oís / oyen'
           },
           {
             t: 'Todos (<span class="qz-b" data-a="oyen"></span>) la conferencia con atención. <span class="qz-hint">(oír)</span>',
             ja: 'みんなが講義を注意深く聴いている。',
-            exp: 'oír の3複 <b>oyen</b>（o→y 挿入パターン。ブーツ型内で変化）。<br>⚠️ oyen のスペルに注意（×oíen は誤り）。<br>📖 語句：conferencia「講演・講義」／con atención「注意深く」<br>🔤 <b>oír</b>：oigo / oyes / oye / oímos / oís / oyen'
+            exp: 'oír の3複 <b>oyen</b>（o→y 挿入パターン。ブーツ型内で変化）。<br>⚠️ oyen のスペルに注意（×oíen は誤り）。<br>💡 oír の変化まとめ：語幹の oi- の後に e/a が続くとき y が挿入される（oyes / oye / oyen）。1複・2複は oi＋mos/s で y 不要（oímos / oís）。<br>📖 語句：conferencia「講演・講義」／con atención「注意深く」<br>🔤 <b>oír</b>（聞こえる、聴く）：oigo / oyes / oye / oímos / oís / oyen'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="conozco"></span>) la ciudad de Sevilla, pero no (<span class="qz-b" data-a="sé"></span>) hablar andaluz. <span class="qz-hint">(conocer / saber)</span>',
             ja: '私はセビリアという町を知っているが、アンダルシア方言は話せない。',
-            exp: '<b>conocer</b>（母音+cer型）の1単 <b>conozco</b>（c→zc）。<b>saber</b>（完全不規則）の1単 <b>sé</b>。saber＋不定詞で「〜できる」。<br>⚠️ sé のアクセント記号は必須（se「〜自身」との区別）。<br>📖 語句：andaluz「アンダルシア（方言）の」<br>🔤 <b>conocer</b>：conozco / conoces / conoce / conocemos / conocéis / conocen<br>🔤 <b>saber</b>：sé / sabes / sabe / sabemos / sabéis / saben'
+            exp: '<b>conocer</b>（母音+cer型）の1単 <b>conozco</b>（c→zc）。<b>saber</b>（完全不規則）の1単 <b>sé</b>。saber＋不定詞で「〜できる」。<br>⚠️ sé のアクセント記号は必須（se「〜自身」との区別）。<br>💡 「スペイン語を知っている」の言い分け：Conozco España.「スペインに行ったことがある（体験）」/ Sé español.「スペイン語ができる（習得）」。<br>📖 語句：andaluz「アンダルシア（方言）の」<br>🔤 <b>conocer</b>（知っている＝体験・面識）：conozco / conoces / conoce / conocemos / conocéis / conocen<br>🔤 <b>saber</b>（知っている＝知識・技能）：sé / sabes / sabe / sabemos / sabéis / saben'
           },
           {
             t: 'Ella (<span class="qz-b" data-a="parece"></span>) simpática, pero yo no la (<span class="qz-b" data-a="conozco"></span>) bien. <span class="qz-hint">(parecer / conocer)</span>',
             ja: '彼女は感じがよさそうだが、私は彼女をよく知らない。',
-            exp: 'parecer（母音+cer型）の3単 <b>parece</b>（1単のみ parezco、他は規則活用）。conocer の1単 <b>conozco</b>（ここは否定なので no … conozco）。<br>⚠️ -zco 型は1単のみ不規則。3単は規則活用の parece。<br>📖 語句：simpático「感じのいい・好感のもてる」<br>🔤 <b>parecer</b>：parezco / pareces / parece / parecemos / parecéis / parecen<br>🔤 <b>conocer</b>：conozco / conoces / conoce / conocemos / conocéis / conocen'
+            exp: 'parecer（母音+cer型）の3単 <b>parece</b>（1単のみ parezco、他は規則活用）。conocer の1単 <b>conozco</b>（ここは否定なので no … conozco）。<br>⚠️ -zco 型は1単のみ不規則。3単は規則活用の parece。<br>💡 parecer＋形容詞「〜のようだ」。parecerse a「〜に似ている」。Me parece bien.「いいと思います」も頻出。<br>📖 語句：simpático「感じのいい・好感のもてる」<br>🔤 <b>parecer</b>（〜に見える、思われる）：parezco / pareces / parece / parecemos / parecéis / parecen<br>🔤 <b>conocer</b>（知っている＝体験・面識）：conozco / conoces / conoce / conocemos / conocéis / conocen'
           },
           {
             t: 'Mi empresa (<span class="qz-b" data-a="produce"></span>) coches eléctricos. <span class="qz-hint">(producir)</span>',
             ja: '私の会社は電気自動車を生産している。',
-            exp: 'producir（母音+cir型）も -zco 型。1単は produzco だが、3単は <b>produce</b>（規則活用）。<br>⚠️ -zco 型の変化は1単のみ。他の人称は規則活用。<br>📖 語句：empresa「会社・企業」／eléctrico「電気の・電動の」<br>🔤 <b>producir</b>：produzco / produces / produce / producimos / producís / producen'
+            exp: 'producir（母音+cir型）も -zco 型。1単は produzco だが、3単は <b>produce</b>（規則活用）。<br>⚠️ -zco 型の変化は1単のみ。他の人称は規則活用。<br>💡 同じ -ducir 型の仲間：conducir（運転する→conduzco）、traducir（翻訳する→traduzco）、reducir（減らす→reduzco）。すべて1単 -zco。<br>📖 語句：empresa「会社・企業」／eléctrico「電気の・電動の」<br>🔤 <b>producir</b>（生産する、製造する）：produzco / produces / produce / producimos / producís / producen'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="doy"></span>) las gracias a mis profesores y les (<span class="qz-b" data-a="doy"></span>) un regalo. <span class="qz-hint">(dar)</span>',
             ja: '私は先生方にお礼を言い、プレゼントを渡す。',
-            exp: 'dar は完全不規則。1単 <b>doy</b>（-oy で終わる）。2単以降は das / da / damos / dais / dan（アクセント記号なし）。<br>⚠️ dar の1単は doy（×dao・×do は誤り）。<br>📖 語句：dar las gracias「お礼を言う」／regalo「プレゼント・贈り物」<br>🔤 <b>dar</b>：doy / das / da / damos / dais / dan'
+            exp: 'dar は完全不規則。1単 <b>doy</b>（-oy で終わる）。2単以降は das / da / damos / dais / dan（アクセント記号なし）。<br>⚠️ dar の1単は doy（×dao・×do は誤り）。<br>💡 dar＋名詞の重要熟語：dar las gracias「礼を言う」、dar un paseo「散歩する」、dar miedo「怖がらせる」、darse cuenta「気づく」。<br>📖 語句：dar las gracias「お礼を言う」／regalo「プレゼント・贈り物」<br>🔤 <b>dar</b>（与える、あげる）：doy / das / da / damos / dais / dan'
           },
           {
             t: '¿(<span class="qz-b" data-a="Ves"></span>) aquel edificio? Yo (<span class="qz-b" data-a="veo"></span>) la montaña detrás de él. <span class="qz-hint">(ver)</span>',
             ja: 'あの建物が見えますか？私はその後ろに山が見えます。',
-            exp: 'ver は完全不規則。2単 <b>ves</b>（アクセント記号なし）、1単 <b>veo</b>。<br>⚠️ ver の活用は veo / ves / ve / vemos / veis / ven（アクセント記号不要）。<br>📖 語句：edificio「建物」／montaña「山」／detrás de「〜の後ろに」<br>🔤 <b>ver</b>：veo / ves / ve / vemos / veis / ven'
+            exp: 'ver は完全不規則。2単 <b>ves</b>（アクセント記号なし）、1単 <b>veo</b>。<br>⚠️ ver の活用は veo / ves / ve / vemos / veis / ven（アクセント記号不要）。<br>💡 ver（見える＝自然に目に入る）⇔ mirar（見る＝意識的に目を向ける）。¿Ves eso?「あれ見える？」/ Mira esto.「これを見て」。<br>📖 語句：edificio「建物」／montaña「山」／detrás de「〜の後ろに」<br>🔤 <b>ver</b>（見る、見える）：veo / ves / ve / vemos / veis / ven'
           },
           {
             t: 'Los estudiantes (<span class="qz-b" data-a="construyen"></span>) maquetas en clase y yo (<span class="qz-b" data-a="construyo"></span>) la mía en casa. <span class="qz-hint">(construir)</span>',
             ja: '学生たちは授業で模型を作り、私は家で自分のものを作る。',
-            exp: 'construir は <b>-uir</b> 型（y 挿入）。3複 <b>construyen</b>、1単 <b>construyo</b>（ともに y 挿入）。1複・2複は y 挿入なし（construimos / construís）。<br>⚠️ 1複・2複に y は入らない。<br>📖 語句：maqueta「模型・マケット」<br>🔤 <b>construir</b>：construyo / construyes / construye / construimos / construís / construyen'
+            exp: 'construir は <b>-uir</b> 型（y 挿入）。3複 <b>construyen</b>、1単 <b>construyo</b>（ともに y 挿入）。1複・2複は y 挿入なし（construimos / construís）。<br>⚠️ 1複・2複に y は入らない。<br>💡 同じ -uir 型の仲間：incluir（含む→incluyo）、distribuir（配布する→distribuyo）、destruir（破壊する→destruyo）、huir（逃げる→huyo）。<br>📖 語句：maqueta「模型・マケット」<br>🔤 <b>construir</b>（建てる、建設する）：construyo / construyes / construye / construimos / construís / construyen'
           },
           {
             t: 'El río (<span class="qz-b" data-a="huye"></span>) hacia el mar y el tiempo (<span class="qz-b" data-a="huye"></span>) sin parar. <span class="qz-hint">(huir)</span>',
             ja: '川は海へと流れ、時間は止まらずに過ぎていく。',
-            exp: 'huir は -uir 型（construir と同様）。3単 <b>huye</b>（y 挿入）。<br>📖 語句：río「川」／hacia「〜に向かって」／sin parar「止まらずに」<br>🔤 <b>huir</b>：huyo / huyes / huye / huimos / huís / huyen'
+            exp: 'huir は -uir 型（construir と同様）。3単 <b>huye</b>（y 挿入）。<br>💡 huir de「〜から逃げる」。El ladrón huye de la policía.「泥棒が警察から逃げる」のように前置詞 de と共に使うことが多い。<br>📖 語句：río「川」／hacia「〜に向かって」／sin parar「止まらずに」<br>🔤 <b>huir</b>（逃げる、逃亡する）：huyo / huyes / huye / huimos / huís / huyen'
           },
           {
             t: 'Yo (<span class="qz-b" data-a="sé"></span>) nadar, pero no (<span class="qz-b" data-a="sé"></span>) esquiar. <span class="qz-hint">(saber)</span>',
             ja: '私は泳げるが、スキーはできない。',
-            exp: 'saber（完全不規則）の1単 <b>sé</b>（アクセント記号必須）。saber＋不定詞で「〜できる」（学習によって得た技能）。<br>⚠️ sé のアクセントを忘れずに。se（再帰代名詞）との区別のためにも必要。<br>📖 語句：nadar「泳ぐ」／esquiar「スキーをする」<br>🔤 <b>saber</b>：sé / sabes / sabe / sabemos / sabéis / saben'
+            exp: 'saber（完全不規則）の1単 <b>sé</b>（アクセント記号必須）。saber＋不定詞で「〜できる」（学習によって得た技能）。<br>⚠️ sé のアクセントを忘れずに。se（再帰代名詞）との区別のためにも必要。<br>💡 saber（学習・習得した能力）⇔ poder（身体的・状況的に可能）。Sé nadar.「泳げる（習得済み）」/ No puedo nadar hoy porque estoy cansado.「今日は疲れていて泳げない（状況）」。<br>📖 語句：nadar「泳ぐ」／esquiar「スキーをする」<br>🔤 <b>saber</b>（知っている＝知識・技能）：sé / sabes / sabe / sabemos / sabéis / saben'
           },
           {
             t: '¿Cuánto (<span class="qz-b" data-a="valen"></span>) estas entradas? — No (<span class="qz-b" data-a="sé"></span>). <span class="qz-hint">(valer / saber)</span>',
             ja: 'これらのチケットはいくらしますか？ — 知りません。',
-            exp: 'valer（純粋-go型）の3複 <b>valen</b>（1単は valgo のみ不規則）。saber の1単 <b>sé</b>。<br>⚠️ valer の3複は規則活用 valen（-go は1単のみ）。<br>📖 語句：entrada「チケット・入場券」／cuánto「いくら・どのくらい」<br>🔤 <b>valer</b>：valgo / vales / vale / valemos / valéis / valen<br>🔤 <b>saber</b>：sé / sabes / sabe / sabemos / sabéis / saben'
+            exp: 'valer（純粋-go型）の3複 <b>valen</b>（1単は valgo のみ不規則）。saber の1単 <b>sé</b>。<br>⚠️ valer の3複は規則活用 valen（-go は1単のみ）。<br>💡 ¿Cuánto vale(n)?「いくらですか？」は値段を聞く定番表現。Vale.（スペインのくだけた口語）「OK・了解」の意味でも使う。<br>📖 語句：entrada「チケット・入場券」／cuánto「いくら・どのくらい」<br>🔤 <b>valer</b>（〜の価値がある、値する）：valgo / vales / vale / valemos / valéis / valen<br>🔤 <b>saber</b>（知っている＝知識・技能）：sé / sabes / sabe / sabemos / sabéis / saben'
           },
           {
             t: 'Nosotros (<span class="qz-b" data-a="hacemos"></span>) la tarea juntos y luego (<span class="qz-b" data-a="salimos"></span>) a cenar. <span class="qz-hint">(hacer / salir)</span>',
             ja: '私たちは一緒に宿題をして、それから夕食に出かける。',
-            exp: 'hacer（-go型）の1複 <b>hacemos</b>（規則）、salir（-go型）の1複 <b>salimos</b>（規則）。<br>⚠️ -go 型は1単のみ不規則。1複は通常の活用（hacemos / salimos）。<br>📖 語句：tarea「宿題・課題」／juntos「一緒に」／luego「それから・後で」／cenar「夕食を食べる」<br>🔤 <b>hacer</b>：hago / haces / hace / hacemos / hacéis / hacen<br>🔤 <b>salir</b>：salgo / sales / sale / salimos / salís / salen'
+            exp: 'hacer（-go型）の1複 <b>hacemos</b>（規則）、salir（-go型）の1複 <b>salimos</b>（規則）。<br>⚠️ -go 型は1単のみ不規則。1複は通常の活用（hacemos / salimos）。<br>💡 -go 型の共通ルール：1単だけ -go（hago / salgo / pongo / tengo / vengo / traigo）、それ以外は規則活用。まず1単の形を覚えてしまえば他の人称は迷わない。<br>📖 語句：tarea「宿題・課題」／juntos「一緒に」／luego「それから・後で」／cenar「夕食を食べる」<br>🔤 <b>hacer</b>（する、作る）：hago / haces / hace / hacemos / hacéis / hacen<br>🔤 <b>salir</b>（出る、出発する）：salgo / sales / sale / salimos / salís / salen'
           },
           {
             t: '¿A qué hora (<span class="qz-b" data-a="vais"></span>) vosotros al gimnasio? — (<span class="qz-b" data-a="Vamos"></span>) a las cinco de la tarde. <span class="qz-hint">(ir)</span>',
             ja: '君たちは何時にジムに行くの？ — 午後5時に行くよ。',
-            exp: 'ir（完全不規則）の2複 <b>vais</b>、1複 <b>vamos</b>。<br>⚠️ vamos は「行こう（勧誘）」にも使われる。<br>📖 語句：gimnasio「ジム・体育館」／tarde「午後」<br>🔤 <b>ir</b>：voy / vas / va / vamos / vais / van'
+            exp: 'ir（完全不規則）の2複 <b>vais</b>、1複 <b>vamos</b>。<br>⚠️ vamos は「行こう（勧誘）」にも使われる。<br>💡 ir の全活用（voy/vas/va/vamos/vais/van）は暗記必須。ir a＋不定詞（近接未来）でも毎回使うので最優先で定着させたい動詞。<br>📖 語句：gimnasio「ジム・体育館」／tarde「午後」<br>🔤 <b>ir</b>（行く）：voy / vas / va / vamos / vais / van'
           },
           {
             t: 'Mi abuela (<span class="qz-b" data-a="recuerda"></span>) todo y nunca (<span class="qz-b" data-a="olvida"></span>) nada. <span class="qz-hint">(recordar / olvidar)</span>',
             ja: '祖母は何でも覚えていて、何も忘れない。',
-            exp: 'recordar は <b>o→ue</b> 型（volver と同類）。3単 <b>recuerda</b>（変化）。olvidar は規則動詞 → <b>olvida</b>（規則）。<br>⚠️ recordar を記憶して。語根母音変化（o→ue）。<br>📖 語句：abuela「祖母」／nunca「決して〜ない」／olvidar「忘れる」<br>🔤 <b>recordar</b>：recuerdo / recuerdas / recuerda / recordamos / recordáis / recuerdan<br>🔤 <b>olvidar</b>（規則）：olvido / olvidas / olvida / olvidamos / olvidáis / olvidan'
+            exp: 'recordar は <b>o→ue</b> 型（volver と同類）。3単 <b>recuerda</b>（変化）。olvidar は規則動詞 → <b>olvida</b>（規則）。<br>⚠️ recordar を記憶して。語根母音変化（o→ue）。<br>💡 recordar＋不定詞「〜することを覚えている」、recordar que「〜ということを覚えている」。olvidar は規則活用なので語根変化なし。<br>📖 語句：abuela「祖母」／nunca「決して〜ない」／olvidar「忘れる」<br>🔤 <b>recordar</b>（覚えている、思い出す）：recuerdo / recuerdas / recuerda / recordamos / recordáis / recuerdan<br>🔤 <b>olvidar</b>（忘れる・規則活用）：olvido / olvidas / olvida / olvidamos / olvidáis / olvidan'
           }
         ]
       },
