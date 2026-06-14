@@ -577,6 +577,7 @@ var QUIZ_ACCESS = {
      background:rgba(0,0,0,.45); align-items:center; justify-content:center;">
   <div style="background:#fff; border-radius:8px; padding:36px 44px; text-align:center;
               box-shadow:0 8px 40px rgba(0,0,0,.25); width:min(320px,90vw);">
+
     <div style="font-family:'Noto Serif JP',serif; font-size:18px; font-weight:700;
                 color:#2a5298; margin-bottom:8px;">🔒 管理者ページ</div>
     <div style="font-size:12px; color:#8e8e93; margin-bottom:20px;">パスワードを入力してください</div>
@@ -618,6 +619,7 @@ function adminLogin() {
   errEl.textContent = '';
   setTimeout(function(){ document.getElementById('admin-pw').focus(); }, 50);
 }
+
 function adminClose() {
   document.getElementById('admin-overlay').style.display = 'none';
   document.getElementById('admin-pw').value = '';
@@ -643,6 +645,7 @@ async function adminCheck() {
   if (hashHex === ADMIN_HASH) {
     sessionStorage.removeItem('adminAttempts');
     sessionStorage.removeItem('adminLockUntil');
+    localStorage.setItem('adminAuthExpiry', String(Date.now() + 30 * 24 * 60 * 60 * 1000));
     sessionStorage.setItem('adminAuth', '1');
     adminClose();
     window.location.href = 'admin.html';

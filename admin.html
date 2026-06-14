@@ -2,7 +2,14 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<script>if (!sessionStorage.getItem('adminAuth')) { location.replace('index.html'); }</script>
+<script>
+(function(){
+  if (sessionStorage.getItem('adminAuth')) return;
+  var exp = parseInt(localStorage.getItem('adminAuthExpiry') || '0');
+  if (Date.now() < exp) { sessionStorage.setItem('adminAuth', '1'); return; }
+  location.replace('index.html');
+})();
+</script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
@@ -187,6 +194,7 @@ function getAdminHash() {
 
 function adminLogout() {
   sessionStorage.removeItem('adminAuth');
+  localStorage.removeItem('adminAuthExpiry');
   window.location.replace('index.html');
 }
 
@@ -201,6 +209,7 @@ function previewAs(type) {
   sessionStorage.setItem('adminPreviewMode', type);
   window.location.href = 'index.html';
 }
+
 </script>
 </body>
 </html>
