@@ -79,7 +79,30 @@
       '#tab-quiz.shuffled .qz-item.show .qz-theme{display:block;}' +
       // 不定詞ヒント（デフォルト非表示、.hint-show クラスで表示）
       '#tab-quiz .qz-hint{display:none;font-size:.88em;color:#999;margin-left:.25em;}' +
-      '#tab-quiz.hint-show .qz-hint{display:inline;}';
+      '#tab-quiz.hint-show .qz-hint{display:inline;}' +
+      // 一問一答モード
+      '#tab-quiz .qz-seqbtn{font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--accent,#2a5298);color:var(--accent,#2a5298);background:#fff;border-radius:999px;padding:7px 16px;transition:.15s;}' +
+      '#tab-quiz .qz-seqbtn:hover,#tab-quiz .qz-seqbtn.active{background:var(--accent,#2a5298);color:#fff;}' +
+      '#tab-quiz .qz-seq-panel{margin:0 0 4px;}' +
+      '#tab-quiz .qz-seq-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}' +
+      '#tab-quiz .qz-seq-progress{font-size:14px;font-weight:700;color:var(--mid,#48484a);}' +
+      '#tab-quiz .qz-seq-exit-btn{font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--rule,#d6d6ce);background:#f5f5f0;color:var(--mid,#48484a);border-radius:6px;padding:4px 10px;}' +
+      '#tab-quiz .qz-seq-exit-btn:hover{background:#ebe5d8;}' +
+      '#tab-quiz .qz-seq-card{padding:20px 18px;border:1.5px solid var(--rule,#d6d6ce);border-radius:12px;background:var(--surface,#fff);min-height:100px;margin-bottom:14px;}' +
+      '#tab-quiz .qz-seq-card .qz-item{margin:0;padding:0;border:none;border-radius:0;background:transparent;}' +
+      '#tab-quiz .qz-seq-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}' +
+      '#tab-quiz .qz-seq-reveal{font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--accent,#2a5298);color:var(--accent,#2a5298);background:#fff;border-radius:999px;padding:7px 18px;transition:.15s;}' +
+      '#tab-quiz .qz-seq-reveal:hover{background:var(--accent,#2a5298);color:#fff;}' +
+      '#tab-quiz .qz-seq-judge{display:flex;gap:10px;}' +
+      '#tab-quiz .qz-seq-o{font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid #2a7a3a;color:#2a7a3a;background:#fff;border-radius:999px;padding:7px 20px;transition:.15s;}' +
+      '#tab-quiz .qz-seq-o:hover{background:#2a7a3a;color:#fff;}' +
+      '#tab-quiz .qz-seq-x{font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid #a8281a;color:#a8281a;background:#fff;border-radius:999px;padding:7px 20px;transition:.15s;}' +
+      '#tab-quiz .qz-seq-x:hover{background:#a8281a;color:#fff;}' +
+      '#tab-quiz .qz-seq-result{text-align:center;padding:32px 16px;}' +
+      '#tab-quiz .qz-seq-score{font-size:52px;font-weight:700;color:var(--accent,#2a5298);line-height:1.2;}' +
+      '#tab-quiz .qz-seq-score-label{font-size:14px;color:var(--mid,#48484a);margin:4px 0 24px;}' +
+      '#tab-quiz .qz-seq-retry,#tab-quiz .qz-seq-back{display:inline-block;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--accent,#2a5298);color:var(--accent,#2a5298);background:#fff;border-radius:999px;padding:7px 18px;margin:4px;transition:.15s;}' +
+      '#tab-quiz .qz-seq-retry:hover,#tab-quiz .qz-seq-back:hover{background:var(--accent,#2a5298);color:#fff;}';
     var style = document.createElement('style');
     style.id = 'quiz-style';
     style.textContent = css;
@@ -138,6 +161,7 @@
     else document.body.appendChild(div);
 
     wireToggles(div);
+    initSeqMode(div);
   }
 
   function renderItem(item, num, globalIdx, secIdx, theme) {
@@ -241,6 +265,158 @@
         shufBtn.classList.toggle('active', shuffled);
       });
     }
+  }
+
+  function initSeqMode(root) {
+    var controls = root.querySelector('.qz-controls');
+    if (!controls) return;
+
+    // ボタンを追加
+    var seqBtn = document.createElement('button');
+    seqBtn.type = 'button';
+    seqBtn.className = 'qz-seqbtn';
+    seqBtn.textContent = '🎯 一問一答';
+    controls.appendChild(seqBtn);
+
+    // パネルを構築
+    var panel = document.createElement('div');
+    panel.className = 'qz-seq-panel';
+    panel.style.display = 'none';
+    panel.innerHTML =
+      '<div class="qz-seq-header">' +
+        '<span class="qz-seq-progress"></span>' +
+        '<button type="button" class="qz-seq-exit-btn">✕ 終了</button>' +
+      '</div>' +
+      '<div class="qz-seq-card"></div>' +
+      '<div class="qz-seq-foot">' +
+        '<button type="button" class="qz-seq-reveal">答えを確認 ▾</button>' +
+        '<div class="qz-seq-judge" style="display:none">' +
+          '<button type="button" class="qz-seq-o">○ 正解</button>' +
+          '<button type="button" class="qz-seq-x">✗ 不正解</button>' +
+        '</div>' +
+      '</div>';
+
+    var firstSec = root.querySelector('.qz-sec-items');
+    if (firstSec) root.insertBefore(panel, firstSec);
+    else root.appendChild(panel);
+
+    var items = [];
+    var current = 0;
+    var results = [];
+
+    function enterSeqMode() {
+      items = Array.prototype.slice.call(root.querySelectorAll('.qz-item'));
+      current = 0;
+      results = [];
+
+      root.querySelectorAll('.qz-sec-head, .qz-sec-inst, .qz-sec-items').forEach(function(el) {
+        el.dataset.seqHidden = '1';
+        el.style.display = 'none';
+      });
+      // コントロールエリアは残すが、他ボタンを無効化
+      root.querySelectorAll('.qz-allbtn, .qz-shufbtn, .qz-hintbtn').forEach(function(b) {
+        b.disabled = true;
+        b.style.opacity = '0.4';
+      });
+
+      var foot = panel.querySelector('.qz-seq-foot');
+      foot.style.display = '';
+      panel.style.display = 'block';
+      seqBtn.textContent = '✕ 終了';
+      seqBtn.classList.add('active');
+
+      showCard(current);
+    }
+
+    function exitSeqMode() {
+      panel.style.display = 'none';
+      var foot = panel.querySelector('.qz-seq-foot');
+      foot.style.display = '';
+      root.querySelectorAll('[data-seq-hidden]').forEach(function(el) {
+        el.style.display = '';
+        delete el.dataset.seqHidden;
+      });
+      root.querySelectorAll('.qz-allbtn, .qz-shufbtn, .qz-hintbtn').forEach(function(b) {
+        b.disabled = false;
+        b.style.opacity = '';
+      });
+      seqBtn.textContent = '🎯 一問一答';
+      seqBtn.classList.remove('active');
+    }
+
+    function showCard(idx) {
+      var item = items[idx];
+      var progress = panel.querySelector('.qz-seq-progress');
+      var card = panel.querySelector('.qz-seq-card');
+      var revealBtn = panel.querySelector('.qz-seq-reveal');
+      var judgeDiv = panel.querySelector('.qz-seq-judge');
+
+      progress.textContent = (idx + 1) + ' / ' + items.length;
+
+      // 答えを隠した状態でクローン（.show なし、toggleボタン除去）
+      var clone = item.cloneNode(true);
+      clone.classList.remove('show');
+      clone.querySelectorAll('.qz-toggle').forEach(function(b) { b.parentNode.removeChild(b); });
+
+      card.innerHTML = '';
+      card.appendChild(clone);
+
+      revealBtn.style.display = 'block';
+      revealBtn.textContent = '答えを確認 ▾';
+      judgeDiv.style.display = 'none';
+
+      revealBtn.onclick = function() {
+        clone.classList.add('show');
+        revealBtn.style.display = 'none';
+        judgeDiv.style.display = 'flex';
+      };
+    }
+
+    function nextCard() {
+      current++;
+      if (current >= items.length) {
+        showResult();
+      } else {
+        showCard(current);
+      }
+    }
+
+    function showResult() {
+      var card = panel.querySelector('.qz-seq-card');
+      var foot = panel.querySelector('.qz-seq-foot');
+      var progress = panel.querySelector('.qz-seq-progress');
+
+      var correctCount = results.filter(function(r) { return r; }).length;
+      var total = results.length;
+      var pct = total ? Math.round(correctCount / total * 100) : 0;
+
+      progress.textContent = '完了！';
+      foot.style.display = 'none';
+
+      card.innerHTML =
+        '<div class="qz-seq-result">' +
+          '<div class="qz-seq-score">' + correctCount + ' / ' + total + '</div>' +
+          '<div class="qz-seq-score-label">正解 (' + pct + '%)</div>' +
+          '<button type="button" class="qz-seq-retry">🔄 もう一度</button>' +
+          '<button type="button" class="qz-seq-back">一覧に戻る</button>' +
+        '</div>';
+
+      card.querySelector('.qz-seq-retry').addEventListener('click', function() {
+        foot.style.display = '';
+        enterSeqMode();
+      });
+      card.querySelector('.qz-seq-back').addEventListener('click', function() {
+        foot.style.display = '';
+        exitSeqMode();
+      });
+    }
+
+    seqBtn.addEventListener('click', function() {
+      if (panel.style.display === 'none') { enterSeqMode(); } else { exitSeqMode(); }
+    });
+    panel.querySelector('.qz-seq-exit-btn').addEventListener('click', exitSeqMode);
+    panel.querySelector('.qz-seq-o').addEventListener('click', function() { results.push(true);  nextCard(); });
+    panel.querySelector('.qz-seq-x').addEventListener('click', function() { results.push(false); nextCard(); });
   }
 
   function esc(s) {
