@@ -550,6 +550,17 @@ var QUIZ_ACCESS = {
   スペイン語 一列・二列 解説 — 2026年度
 </footer>
 
+<!-- プレビューモードバナー -->
+<div id="preview-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:100002;
+     background:#1b7a68; color:#fff; padding:11px 20px; text-align:center;
+     font-size:13px; font-family:'Noto Sans JP',sans-serif; box-shadow:0 -2px 12px rgba(0,0,0,.15);">
+  👁 プレビューモード：<strong id="preview-label"></strong> の表示中
+  <a href="admin.html" id="preview-back-link"
+     style="margin-left:16px; color:#fff; text-decoration:underline; font-size:12px;">
+    管理者ページに戻る
+  </a>
+</div>
+
 <div style="text-align:center; margin-top:32px; padding-bottom:24px; display:flex; justify-content:center; gap:20px;">
   <a href="#" onclick="adminLogin(); return false;"
      style="font-size:11px; color:#aaa; text-decoration:none;">管理者ページ</a>
@@ -677,6 +688,18 @@ function checkAndShowOverlay() {
   if (localStorage.getItem('adminViewAll') === 'true') {
     return;
   }
+  // 管理者によるユーザー視点プレビューモード
+  var previewMode = sessionStorage.getItem('adminPreviewMode');
+  if (previewMode) {
+    var label = previewMode === 's1g11' ? '理科一類11組' : 'そのほか';
+    document.getElementById('preview-label').textContent = label;
+    document.getElementById('preview-banner').style.display = 'block';
+    document.getElementById('preview-back-link').addEventListener('click', function() {
+      sessionStorage.removeItem('adminPreviewMode');
+    });
+    applyCardAccess();
+    return;
+  }
   if (!localStorage.getItem('agreedPolicy')) {
     document.getElementById('policy-overlay').style.display = 'flex';
     return;
@@ -692,7 +715,7 @@ checkAndShowOverlay();
 // 所属に基づいてカードをグレーアウト（LOCK_S1G11/LOCK_OTHER/CARD_ACCESS 設定を参照）
 function applyCardAccess() {
   if (localStorage.getItem('adminViewAll') === 'true') return;
-  var affType = localStorage.getItem('affiliationType');
+  var affType = sessionStorage.getItem('adminPreviewMode') || localStorage.getItem('affiliationType');
   if (!affType) return;
   var isS1G11 = (affType === 's1g11');
   var globalLocked = isS1G11 ? LOCK_S1G11 !== 1 : LOCK_OTHER !== 1;

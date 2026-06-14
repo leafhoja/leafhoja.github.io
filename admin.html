@@ -89,6 +89,22 @@
   </div>
 </header>
 
+<!-- ユーザー視点でプレビュー -->
+<div class="section">
+  <div class="section-header">
+    <h2>ユーザー視点でプレビュー</h2>
+  </div>
+  <div style="padding: 14px 20px 16px;">
+    <p style="font-size: 13px; color: var(--mid); margin-bottom: 14px; line-height: 1.7;">
+      各グループのユーザーに見えているページを確認します。プレビュー中はページ下部にバナーが表示されます。
+    </p>
+    <div style="display:flex; gap:10px;">
+      <button class="action-btn primary" style="flex:1;" onclick="previewAs('s1g11')">理科一類11組として見る</button>
+      <button class="action-btn secondary" style="flex:1;" onclick="previewAs('other')">そのほかとして見る</button>
+    </div>
+  </div>
+</div>
+
 <!-- アクセス制御 -->
 <div class="section">
   <div class="section-header">
@@ -143,6 +159,23 @@
   </div>
 </div>
 
+<!-- 練習問題 -->
+<div class="section">
+  <div class="section-header">
+    <h2>練習問題</h2>
+  </div>
+  <div style="padding: 8px 0;">
+    <a href="https://leafhoja.github.io/exercises_spanish/" target="_blank" rel="noopener noreferrer" class="ext-link-row">
+      <div class="ext-link-icon">📝</div>
+      <div class="ext-link-text">
+        <div class="ext-link-label">exercises_spanish</div>
+        <div class="ext-link-sub">leafhoja.github.io/exercises_spanish</div>
+      </div>
+      <div class="ext-link-arrow">↗</div>
+    </a>
+  </div>
+</div>
+
 <script>
 var ADMIN_SALT = 'sp_portal_salt_2026';
 var ADMIN_ITER = 200000;
@@ -159,10 +192,15 @@ function adminLogout() {
 
 function enableViewAll() {
   localStorage.setItem('adminViewAll', 'true');
+  sessionStorage.removeItem('adminPreviewMode');
   window.location.href = 'index.html';
 }
 
-
+function previewAs(type) {
+  localStorage.removeItem('adminViewAll');
+  sessionStorage.setItem('adminPreviewMode', type);
+  window.location.href = 'index.html';
+}
 </script>
 </body>
 </html>
