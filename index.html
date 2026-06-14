@@ -600,13 +600,23 @@ var QUIZ_ACCESS = {
 </div>
 
 <script>
-var ADMIN_HASH = localStorage.getItem('adminHashOverride') || '0c877d3c605d890781da58d6892bc153342a7a2783432dc2b2b604336e7b914f';
+var ADMIN_HASH = localStorage.getItem('adminHashOverride') || '25067f7c6ac8daf14900c8bb662f94aa9852ddeab0f481f79bf9e3aa5a5fbd5e';
 var ADMIN_SALT = 'sp_portal_salt_2026';
 var ADMIN_ITER = 200000;
 var ADMIN_MAX_ATTEMPTS = 5;
 var ADMIN_LOCKOUT_MS = 5 * 60 * 1000;
 
 function adminLogin() {
+  if (sessionStorage.getItem('adminAuth') === '1') {
+    window.location.href = 'admin.html';
+    return;
+  }
+  var exp = parseInt(localStorage.getItem('adminAuthExpiry') || '0');
+  if (Date.now() < exp && localStorage.getItem('adminAuthHash') === ADMIN_HASH) {
+    sessionStorage.setItem('adminAuth', '1');
+    window.location.href = 'admin.html';
+    return;
+  }
   var lockUntil = parseInt(sessionStorage.getItem('adminLockUntil') || '0');
   var ov = document.getElementById('admin-overlay');
   var errEl = document.getElementById('admin-err');
@@ -645,6 +655,7 @@ async function adminCheck() {
   if (hashHex === ADMIN_HASH) {
     sessionStorage.removeItem('adminAttempts');
     sessionStorage.removeItem('adminLockUntil');
+    localStorage.setItem('adminAuthHash', ADMIN_HASH);
     localStorage.setItem('adminAuthExpiry', String(Date.now() + 30 * 24 * 60 * 60 * 1000));
     sessionStorage.setItem('adminAuth', '1');
     adminClose();

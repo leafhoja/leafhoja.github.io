@@ -4,9 +4,13 @@
 <meta charset="UTF-8">
 <script>
 (function(){
-  if (sessionStorage.getItem('adminAuth')) return;
+  if (sessionStorage.getItem('adminAuth') === '1') return;
+  var HASH = '25067f7c6ac8daf14900c8bb662f94aa9852ddeab0f481f79bf9e3aa5a5fbd5e';
+  var currentHash = localStorage.getItem('adminHashOverride') || HASH;
   var exp = parseInt(localStorage.getItem('adminAuthExpiry') || '0');
-  if (Date.now() < exp) { sessionStorage.setItem('adminAuth', '1'); return; }
+  if (Date.now() < exp && localStorage.getItem('adminAuthHash') === currentHash) {
+    sessionStorage.setItem('adminAuth', '1'); return;
+  }
   location.replace('index.html');
 })();
 </script>
@@ -186,7 +190,7 @@
 <script>
 var ADMIN_SALT = 'sp_portal_salt_2026';
 var ADMIN_ITER = 200000;
-var ADMIN_DEFAULT_HASH = '0c877d3c605d890781da58d6892bc153342a7a2783432dc2b2b604336e7b914f';
+var ADMIN_DEFAULT_HASH = '25067f7c6ac8daf14900c8bb662f94aa9852ddeab0f481f79bf9e3aa5a5fbd5e';
 
 function getAdminHash() {
   return localStorage.getItem('adminHashOverride') || ADMIN_DEFAULT_HASH;
@@ -194,6 +198,7 @@ function getAdminHash() {
 
 function adminLogout() {
   sessionStorage.removeItem('adminAuth');
+  localStorage.removeItem('adminAuthHash');
   localStorage.removeItem('adminAuthExpiry');
   window.location.replace('index.html');
 }
