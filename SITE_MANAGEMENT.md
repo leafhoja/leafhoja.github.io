@@ -14,7 +14,8 @@
 ├── common.js                  # タブ切替・目次・解答トグル等（共通）
 ├── quiz.js                    # 小テストタブの生成・アクセス判定・シャッフル（共通）
 ├── quiz-data.js               # 小テストの問題データ（実施済み小テスト）
-├── quiz-predicted.js          # 小テストの予想問題（管理者のみ・未作成なら無し）
+├── quiz-predicted-s1.js       # 一列（Spanish1）予想問題（管理者のみ）
+├── quiz-predicted-s2.js       # 二列（Spanish2）予想問題（管理者のみ）
 │
 ├── Spanish1_lesson2〜7.html   # 一列（文法）解説
 ├── Spanish2_lesson1〜6.html   # 二列（会話・読解）解説
@@ -156,7 +157,7 @@ URL: `https://leafhoja.github.io/admin.html`
 ## ⑦-2 小テストタブ
 
 各レッスンページに「📝 小テスト」タブを表示できます。仕組みはデータ駆動で、
-**`quiz-data.js`（または `quiz-predicted.js`）にそのページのデータがある場合だけタブが出ます**。
+**`quiz-data.js`（または `quiz-predicted-s1.js` / `quiz-predicted-s2.js`）にそのページのデータがある場合だけタブが出ます**。
 
 ### 問題データ（`quiz-data.js`）
 ページ名をキーに登録します。形式は2種類：
@@ -171,8 +172,9 @@ URL: `https://leafhoja.github.io/admin.html`
 - `exp` には `⚠️`（間違いやすい点）や `📖 語句`（語句注）を入れられます。
 - **実施済みの小テストは、解説の充実は可だが問題文・解答の内容は変更しないこと。**
 
-### 予想問題（`quiz-predicted.js`）
+### 予想問題（`quiz-predicted-s1.js` / `quiz-predicted-s2.js`）
 - ページのデータに `adminOnly: true` を付けると、**管理者（全ページ閲覧許可）にだけ**タブが出ます。
+- 一列（Spanish1）の予想問題は `quiz-predicted-s1.js`、二列（Spanish2）は `quiz-predicted-s2.js` に追記する。
 - 予想問題は内容の刷新・改善OK。作問・点検は `.claude/agents/quiz-quality-reviewer.md` のエージェントが担当
   （**必ず該当レッスンの解説ページを読み、そこで扱う文法・例文・語彙に接地して**作る）。
 - 一列＝その課の文法範囲・穴埋め形式。二列＝和文西訳・出題範囲は累積（それまでに習った全部）。
@@ -198,7 +200,7 @@ var QUIZ_ACCESS = { 'Spanish1_lesson2.html': { s1g11: 0, other: 0 }, ... };
 
 初期値はすべて非表示（`QUIZ_ACCESS` が全 0）。公開準備ができたページの値を 1 にして push します。
 
-> 注意：`quiz-data.js` / `quiz-predicted.js` は公開JSのため、内容は閲覧者がソースから読めます。
+> 注意：`quiz-data.js` / `quiz-predicted-s1.js` / `quiz-predicted-s2.js` は公開JSのため、内容は閲覧者がソースから読めます。
 > `adminOnly` は「タブを出すか」の制御であり、機密保持ではありません（既存のアクセス制御と同じ前提）。
 
 ---
