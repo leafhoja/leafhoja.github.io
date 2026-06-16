@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スペイン語不規則活用動詞</title>
+<style>
+  body { font-family: -apple-system, sans-serif; padding: 20px; background: #f9f9f9; }
+  h1 { font-size: 18px; margin-bottom: 16px; color: #333; }
+  .legend { display: flex; gap: 20px; margin-bottom: 14px; font-size: 13px; align-items: center; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .swatch { width: 18px; height: 18px; border: 1px solid #ccc; border-radius: 3px; }
+  .controls { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+  button {
+    padding: 8px 20px; font-size: 14px; cursor: pointer;
+    background: #4a7fdc; color: #fff; border: none; border-radius: 6px;
+    transition: background 0.15s;
+  }
+  button:hover { background: #2f5dbf; }
+  button:active { transform: scale(0.97); }
+  #sortBtn, #filterBtn, #resetBtn { background: #888; }
+  #sortBtn.on  { background: #e07b00; } #sortBtn.on:hover  { background: #bf6500; }
+  #filterBtn.on{ background: #b8960a; } #filterBtn.on:hover{ background: #9a7d08; }
+  #resetBtn:hover { background: #555; }
+  table { border-collapse: collapse; font-size: 13px; }
+  th { background: #3a3a5c; color: #fff; padding: 7px 12px; text-align: left; white-space: nowrap; }
+  td { padding: 6px 12px; border-bottom: 1px solid #e0e0e0; white-space: nowrap; }
+  tr:hover td { filter: brightness(0.95); }
+  .bg-gray   { background: #d9d9d9; }
+  .bg-yellow { background: #ffff99; }
+  .bg-white  { background: #ffffff; }
+  td.imp { background: #ebebf5 !important; text-align: center; min-width: 82px; }
+  .stars span { font-size: 17px; cursor: pointer; color: #ccc; display: inline-block; }
+  .stars span.on { color: #f5a623; }
+  .stars span:hover { color: #f5a623; opacity: 0.75; }
+  td.verb-cell { cursor: pointer; color: #2a5abf; text-decoration: underline dotted; font-weight: 600; }
+  td.verb-cell:hover { color: #1a3d99; background: #e8eeff !important; }
+
+  /* モーダル */
+  #overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 200;
+    justify-content: center; align-items: center;
+  }
+  #overlay.show { display: flex; }
+  #modal {
+    background: #fff; border-radius: 14px;
+    padding: 28px 32px 24px; max-width: 520px; width: 93%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    position: relative; max-height: 90vh; overflow-y: auto;
+  }
+  #modal h2 { margin: 0 0 16px; font-size: 24px; color: #3a3a5c; }
+  .msec { margin-bottom: 13px; }
+  .mlabel {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em;
+    color: #999; text-transform: uppercase; margin-bottom: 5px;
+  }
+  .mbox-blue {
+    font-size: 16px; font-style: italic; color: #111;
+    background: #f0f4ff; border-left: 4px solid #4a7fdc;
+    padding: 9px 13px; border-radius: 4px;
+  }
+  .mbox-green {
+    font-size: 13px; color: #2d4d20; background: #f2faf0;
+    border-left: 4px solid #6db85c; padding: 9px 13px; border-radius: 4px;
+    line-height: 1.65;
+  }
+  .mbox-orange {
+    font-size: 13px; color: #4d2d00; background: #fff8f0;
+    border-left: 4px solid #e08c30; padding: 9px 13px; border-radius: 4px;
+    line-height: 1.65;
+  }
+  .mja  { font-size: 14px; color: #333; padding: 2px 0; }
+  .mnote{ font-size: 13px; color: #555; line-height: 1.6; }
+  .idiom-row { margin-bottom: 6px; }
+  .idiom-es { font-style: italic; color: #1a1a1a; }
+  .idiom-ja { color: #555; font-size: 12px; }
+  #modal-close {
+    position: absolute; top: 12px; right: 16px;
+    font-size: 22px; cursor: pointer; color: #aaa;
+    background: none; border: none; line-height: 1;
+  }
+  #modal-close:hover { color: #333; }
+</style>
+</head>
+<body>
+<h1>スペイン語不規則活用動詞 — 現在形</h1>
+<div class="legend">
+  <div class="legend-item"><div class="swatch bg-gray"></div>規則活用と異なる活用形</div>
+  <div class="legend-item"><div class="swatch bg-yellow"></div>新規追加（規則活用部分）</div>
+  <div class="legend-item" style="color:#2a5abf; font-weight:600; font-size:13px;">原形をクリック → 例文・解説</div>
+</div>
+<div class="controls">
+  <button id="shuffleBtn">🔀 ランダム</button>
+  <button id="resetBtn">↩ 元の順序</button>
+  <button id="sortBtn">⭐ 重要度順（OFF</button>
+  <button id="filterBtn">💡 追加語彙のみ（OFF</button>
+</div>
+
+<div id="overlay">
+  <div id="modal">
+    <button id="modal-close">✕</button>
+    <h2 id="m-verb"></h2>
+    <div class="msec">
+      <div class="mlabel">例文（現在形）</div>
+      <div class="mbox-blue" id="m-sent"></div>
+    </div>
+    <div class="msec">
+      <div class="mlabel">日本語訳</div>
+      <div class="mja" id="m-ja"></div>
+    </div>
+    <div class="msec">
+      <div class="mlabel">解説</div>
+      <div class="mnote" id="m-note"></div>
+    </div>
+    <div class="msec" id="m-idiom-sec" style="display:none">
+      <div class="mlabel">📌 熟語・重要表現</div>
+      <div class="mbox-orange" id="m-idiom"></div>
+    </div>
+    <div class="msec">
+      <div class="mlabel">🌍 英語・語源トリビア</div>
+      <div class="mbox-green" id="m-trivia"></div>
+    </div>
+  </div>
+</div>
+
+<table>
+  <thead><tr>
+    <th>重要度</th>
+    <th>日本語</th><th>原形</th><th>活用の種類</th>
+    <th>yo</th><th>tú</th><th>él/ella</th>
+    <th>nosotros</th><th>vosotros</th><th>ellos/ellas</th>
+  </tr></thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<script>
+var ROWS = [
+  {v:"cerrar",   s:3, d:[["閉める・閉まる",null],["cerrar",null],["e→ie",null],["cierro","g"],["cierras","g"],["cierra","g"],["cerramos",null],["cerráis",null],["cierran","g"]]},
+  {v:"entender", s:3, d:[["理解する",null],["entender",null],["e→ie",null],["entiendo","g"],["entiendes","g"],["entiende","g"],["entendemos",null],["entendéis",null],["entienden","g"]]},
+  {v:"volver",   s:3, d:[["帰る・戻る",null],["volver",null],["o→ue",null],["vuelvo","g"],["vuelves","g"],["vuelve","g"],["volvemos",null],["volvéis",null],["vuelven","g"]]},
+  {v:"poder",    s:5, d:[["できる",null],["poder",null],["o→ue",null],["puedo","g"],["puedes","g"],["puede","g"],["podemos",null],["podéis",null],["pueden","g"]]},
+  {v:"repetir",  s:3, d:[["繰り返す",null],["repetir",null],["e→i",null],["repito","g"],["repites","g"],["repite","g"],["repetimos",null],["repetís",null],["repiten","g"]]},
+  {v:"pedir",    s:4, d:[["頼む・注文する",null],["pedir",null],["e→i",null],["pido","g"],["pides","g"],["pide","g"],["pedimos",null],["pedís",null],["piden","g"]]},
+  {v:"jugar",    s:3, d:[["遊ぶ・プレイする",null],["jugar",null],["u→ue",null],["juego","g"],["juegas","g"],["juega","g"],["jugamos",null],["jugáis",null],["juegan","g"]]},
+  {v:"conocer",  s:4, d:[["知る（直接経験）",null],["conocer",null],["c→zc",null],["conozco","g"],["conoces",null],["conoce",null],["conocemos",null],["conocéis",null],["conocen",null]]},
+  {v:"nacer",    s:2, d:[["生まれる",null],["nacer",null],["c→zc",null],["nazco","g"],["naces",null],["nace",null],["nacemos",null],["nacéis",null],["nacen",null]]},
+  {v:"parecer",  s:3, d:[["のように見える",null],["parecer",null],["c→zc",null],["parezco","g"],["pareces",null],["parece",null],["parecemos",null],["parecéis",null],["parecen",null]]},
+  {v:"conducir", s:2, d:[["運転する・導く",null],["conducir",null],["c→zc",null],["conduzco","g"],["conduces",null],["conduce",null],["conducimos",null],["conducís",null],["conducen",null]]},
+  {v:"hacer",    s:5, d:[["する・作る",null],["hacer",null],["go動詞",null],["hago","g"],["haces",null],["hace",null],["hacemos",null],["hacéis",null],["hacen",null]]},
+  {v:"poner",    s:4, d:[["置く",null],["poner",null],["go動詞",null],["pongo","g"],["pones",null],["pone",null],["ponemos",null],["ponéis",null],["ponen",null]]},
+  {v:"salir",    s:4, d:[["出る・出発する",null],["salir",null],["go動詞",null],["salgo","g"],["sales",null],["sale",null],["salimos",null],["salís",null],["salen",null]]},
+  {v:"valer",    s:2, d:[["価値がある・値する",null],["valer",null],["go動詞",null],["valgo","g"],["vales",null],["vale",null],["valemos",null],["valéis",null],["valen",null]]},
+  {v:"caer",     s:3, d:[["落ちる",null],["caer",null],["go動詞",null],["caigo","g"],["caes",null],["cae",null],["caemos",null],["caéis",null],["caen",null]]},
+  {v:"traer",    s:3, d:[["持って来る",null],["traer",null],["go動詞",null],["traigo","g"],["traes",null],["trae",null],["traemos",null],["traéis",null],["traen",null]]},
+  {v:"oír",      s:3, d:[["聴く",null],["oír",null],["go動詞+y挿入",null],["oigo","g"],["oyes","g"],["oye","g"],["oímos",null],["oís",null],["oyen","g"]]},
+  {v:"tener",    s:5, d:[["持っている",null],["tener",null],["go動詞+e→ie",null],["tengo","g"],["tienes","g"],["tiene","g"],["tenemos",null],["tenéis",null],["tienen","g"]]},
+  {v:"venir",    s:4, d:[["来る",null],["venir",null],["go動詞+e→ie",null],["vengo","g"],["vienes","g"],["viene","g"],["venimos",null],["venís",null],["vienen","g"]]},
+  {v:"decir",    s:5, d:[["言う",null],["decir",null],["go動詞+e→i",null],["digo","g"],["dices","g"],["dice","g"],["decimos",null],["decís",null],["dicen","g"]]},
+  {v:"ir",       s:5, d:[["行く",null],["ir",null],["完全不規則",null],["voy","g"],["vas","g"],["va","g"],["vamos","g"],["vais","g"],["van","g"]]},
+  {v:"dar",      s:5, d:[["与える",null],["dar",null],["完全不規則",null],["doy","g"],["das",null],["da",null],["damos",null],["dais",null],["dan",null]]},
+  {v:"saber",    s:4, d:[["知る（知識）",null],["saber",null],["完全不規則",null],["sé","g"],["sabes",null],["sabe",null],["sabemos",null],["sabéis",null],["saben",null]]},
+  {v:"ver",      s:4, d:[["見る",null],["ver",null],["完全不規則",null],["veo","g"],["ves",null],["ve",null],["vemos",null],["veis","g"],["ven",null]]},
+  {v:"huir",     s:2, d:[["逃げる",null],["huir",null],["y挿入",null],["huyo","g"],["huyes","g"],["huye","g"],["huimos",null],["huís",null],["huyen","g"]]},
+  {v:"caber",    s:2, d:[["収まる・入り得る",null],["caber",null],["完全不規則",null],["quepo","g"],["cabes",null],["cabe",null],["cabemos",null],["cabéis",null],["caben",null]]},
+  {v:"pensar",   s:3, d:[["考える","y"],["pensar","y"],["e→ie","y"],["pienso","g"],["piensas","g"],["piensa","g"],["pensamos","y"],["pensáis","y"],["piensan","g"]]},
+  {v:"querer",   s:4, d:[["望む・愛する","y"],["querer","y"],["e→ie","y"],["quiero","g"],["quieres","g"],["quiere","g"],["queremos","y"],["queréis","y"],["quieren","g"]]},
+  {v:"preferir", s:3, d:[["の方が好きだ ","y"],["preferir","y"],["e→ie","y"],["prefiero","g"],["prefieres","g"],["prefiere","g"],["preferimos","y"],["preferís","y"],["prefieren","g"]]},
+  {v:"empezar",  s:3, d:[["始める","y"],["empezar","y"],["e→ie","y"],["empiezo","g"],["empiezas","g"],["empieza","g"],["empezamos","y"],["empezáis","y"],["empiezan","g"]]},
+  {v:"sentir",   s:3, d:[["感じる","y"],["sentir","y"],["e→ie","y"],["siento","g"],["sientes","g"],["siente","g"],["sentimos","y"],["sentís","y"],["sienten","g"]]},
+  {v:"mentir",   s:2, d:[["嘘をつく","y"],["mentir","y"],["e→ie","y"],["miento","g"],["mientes","g"],["miente","g"],["mentimos","y"],["mentís","y"],["mienten","g"]]},
+  {v:"herir",    s:2, d:[["傷つける","y"],["herir","y"],["e→ie","y"],["hiero","g"],["hieres","g"],["hiere","g"],["herimos","y"],["herís","y"],["hieren","g"]]},
+  {v:"contar",   s:3, d:[["数える・話す","y"],["contar","y"],["o→ue","y"],["cuento","g"],["cuentas","g"],["cuenta","g"],["contamos","y"],["contáis","y"],["cuentan","g"]]},
+  {v:"recordar", s:3, d:[["思い出す","y"],["recordar","y"],["o→ue","y"],["recuerdo","g"],["recuerdas","g"],["recuerda","g"],["recordamos","y"],["recordáis","y"],["recuerdan","g"]]},
+  {v:"dormir",   s:3, d:[["寝る","y"],["dormir","y"],["o→ue","y"],["duermo","g"],["duermes","g"],["duerme","g"],["dormimos","y"],["dormís","y"],["duermen","g"]]},
+  {v:"encontrar",s:3, d:[["見つける・会う","y"],["encontrar","y"],["o→ue","y"],["encuentro","g"],["encuentras","g"],["encuentra","g"],["encontramos","y"],["encontráis","y"],["encuentran","g"]]},
+  {v:"costar",   s:3, d:[["（費用が）かかる","y"],["costar","y"],["o→ue","y"],["cuesto","g"],["cuestas","g"],["cuesta","g"],["costamos","y"],["costáis","y"],["cuestan","g"]]},
+  {v:"morir",    s:3, d:[["死ぬ","y"],["morir","y"],["o→ue","y"],["muero","g"],["mueres","g"],["muere","g"],["morimos","y"],["morís","y"],["mueren","g"]]},
+  {v:"contribuir",s:2,d:[["貢献する","y"],["contribuir","y"],["y挿入","y"],["contribuyo","g"],["contribuyes","g"],["contribuye","g"],["contribuimos","y"],["contribuís","y"],["contribuyen","g"]]},
+  {v:"distribuir",s:2,d:[["配布する","y"],["distribuir","y"],["y挿入","y"],["distribuyo","g"],["distribuyes","g"],["distribuye","g"],["distribuimos","y"],["distribuís","y"],["distribuyen","g"]]},
+  {v:"incluir",  s:3, d:[["含む","y"],["incluir","y"],["y挿入","y"],["incluyo","g"],["incluyes","g"],["incluye","g"],["incluimos","y"],["incluís","y"],["incluyen","g"]]},
+  {v:"concluir", s:2, d:[["結論づける・終わる","y"],["concluir","y"],["y挿入","y"],["concluyo","g"],["concluyes","g"],["concluye","g"],["concluimos","y"],["incluís","y"],["concluyen","g"]]}
+];
+
+var EX = {
+  cerrar:{
+    s:"La tienda cierra a las nueve.",
+    j:"このお店は9時に閉まります。",
+    n:"él/ella形のcierra（e→ie）を使った例。tiendaは「店」。",
+    i:[
+      {e:"cerrar el pico", j:"黙る（口を閉める）"},
+      {e:"cerrar los ojos ante algo", j:"それに目をつぶる・見て見ぬふりをする"}
+    ],
+    t:"ラテン語serare（閉める）が起源。英語のserratedと（鋸歯状の）は別語源だが、小さいイメージは共通。"
+  },
+  entender:{
+    s:"No entiendo esta palabra.",
+    j:"この単語が分かりません。",
+    n:"yo形entiendo（e→ie）が「分からない」の定番フレーズ。",
+    i:[
+      {e:"no entender ni jota", j:"全く分からない（jota=J字、最小単位のもの）"},
+      {e:"dar a entender", j:"それとなく示す・暗に示す"}
+    ],
+    t:"ラテン語intendere（心を向ける）より。英語のintend・intentionと同根。「理解」とは「心を向ける」から転じた意味。"
+  },
+  volver:{
+    s:"¿A qué hora vuelves a casa?",
+    j:"何時に家に帰りますか？",
+    n:"tú形vuelves（o→ue）。volver a casaで「帰宅」。",
+    i:[
+      {e:"volver a + 不定詞", j:"再び〜する（例：vuelvo a intentarlo＝もう一度やってみる）"},
+      {e:"volver en sí", j:"意識を取り戻す"}
+    ],
+    t:"ラテン語volvere（回転する）より。英語のresolve・revolution・involveと同根。「回って戻る」イメージ。"
+  },
+  poder:{
+    s:"¿Puedo abrir la ventana?",
+    j:"窓を開けてもいいですか？",
+    n:"yo形puedo（o→ue）。poder+不定詞で「できる・してもいい」、許可を求める最頻出形。",
+    i:[
+      {e:"no poder más", j:"もう限界・これ以上無理"},
+      {e:"¿Se puede?", j:"入ってもいいですか？（ドアをノックする時）"},
+      {e:"puede que + 接続法", j:"もしかしたら〜かもしれない"}
+    ],
+    t:"ラテン語potere（力がある）より。英語のpotent・possible・powerと同根。「力がある＝できる」。"
+  },
+  repetir:{
+    s:"El profesor repite la explicación.",
+    j:"先生が説明を繰り返しています。",
+    n:"él形repite（e→i）。repetimos等の1・2人称複数は語幹変化しない。",
+    i:[
+      {e:"¿Puede repetir, por favor?", j:"もう一度言っていただけますか？（聞き返しの定番）"}
+    ],
+    t:"英語のrepeatとほぼ同じ（ラテン語repetere〔re-再び＋petere求める〕）。スペルと発音が非常に近い。"
+  },
+  pedir:{
+    s:"Pido un café con leche.",
+    j:"カフェオレを注文します。",
+    n:"yo形pido（e→i）。レストランやカフェで必須の動詞。",
+    i:[
+      {e:"pedir perdón", j:"謝る・許しを乞う"},
+      {e:"pedir prestado", j:"借りる（prestado＝貸された）"},
+      {e:"pedir la vez", j:"順番待ちの列に並ぶ"}
+    ],
+    t:"ラテン語petere（求める・願う）より。英語のpetition・compete・appetiteと同根。「力って求める」が原義。"
+  },
+  jugar:{
+    s:"¿Juegas al tenis los fines de semana?",
+    j:"週末にテニスをしますか？",
+    n:"tú形juegas（u→ue）。jugar a+スポーツ名が定番の形。",
+    i:[
+      {e:"jugar limpio / sucio", j:"フェアプレーする／汚い手を使う"},
+      {e:"jugar con fuego", j:"火遊びをする・危険を犯す"},
+      {e:"jugar a la lotería", j:"宝くじを買う"}
+    ],
+    t:"ラテン語jocare（冗談を言う・遊ぶ）より。英語のjuggle・jokeと同根。元は「冗談を言う」から「遊ぶ」に広がった。"
+  },
+  conocer:{
+    s:"¿Conoces a ese chico?",
+    j:"その男の子を知っていますか？",
+    n:"tú形conoces（yo形のみconozco）。人を紹介するときにaを忘れずに。",
+    i:[
+      {e:"conocer de vista", j:"顔だけ知っている（まだ話したことはない）"},
+      {e:"darse a conocer", j:"自分を売り込む・名前を知らせる"}
+    ],
+    t:"ラテン語cognoscere（con-共に＋gnoscere知る）より。英語のcognition・recognize・knowledgeと同根。"
+  },
+  nacer:{
+    s:"Cada año nacen muchos niños en este hospital.",
+    j:"毎年このの病院では多くの子どもたちが生まれています。",
+    n:"ellos形nacen（yo形のみnazco）。現在形で習慣・事実の表現。",
+    i:[
+      {e:"nacer con estrella", j:"幸運を持って生まれる（星の下に生まれる）"},
+      {e:"volver a nacer", j:"生まれ変わる・九死に一生を得る"}
+    ],
+    t:"ラテン語nasci（生まれる）より。英語のnatal（出生の）・innate（生まれつきの）・renaissance（再生）と同根。"
+  },
+  parecer:{
+    s:"Parece que va a llover.",
+    j:"雨が降りそうです。",
+    n:"él形parece（yo形のみparezco）。parece que+文で「〜のようだ」、天気予測の頻出表現。",
+    i:[
+      {e:"al parecer", j:"見たところ、どうやら・らしい"},
+      {e:"parece mentira", j:"信じられない！（嘘のようだ）"},
+      {e:"¿Qué te parece?", j:"どう思う？・どう感じる？"}
+    ],
+    t:"ラテン語parere（現れる）より。英語のappear・apparentと同根。「見えている＝そのように見える」。"
+  },
+  conducir:{
+    s:"Mi padre conduce al trabajo cada día.",
+    j:"父は毎日車で仕事に行きます。",
+    n:"él形conduce（yo形のみconduzco）。conducir a+場所・結果で「〜に使える」。",
+    i:[
+      {e:"conducir a", j:"〜につながる・〜を招く（この道は川に通じる）"},
+      {e:"¿Sabes conducir?", j:"運転できますか？（saber+不定詞で「〜の仕方を知っている」）"}
+    ],
+    t:"英語のconduct（導く）とほぼ同じ。ラテン語conducere（con-共に＋ducere導く）より。conductorが派生。"
+  },
+  hacer:{
+    s:"Hago ejercicio todos los días.",
+    j:"毎日運動しています。",
+    n:"yo形hago（go動詞）。hacer+名詞で多彩な表現を作る最頻出動詞。",
+    i:[
+      {e:"hacer falta", j:"必要だ（me hace falta＝私には必要だ）"},
+      {e:"hacer caso", j:"言うことを聞く・注意を払う"},
+      {e:"hacer cola", j:"列に並ぶ"},
+      {e:"hace calor / frío", j:"暑い・寒い（天気の表現）"},
+      {e:"hacerse + 名詞", j:"〜になる（職業・状態の変化）"}
+    ],
+    t:"ラテン語facere（作る・する）より。英語のfact・factory・manufacture・satisfyと同根。英語の「-fy」動詞（satisfy, magnify）も同語根。"
+  },
+  poner:{
+    s:"Siempre pongo azúcar en el café.",
+    j:"いつもコーヒーに砂糖を入れます。",
+    n:"yo形pongo（go動詞）。「置く・入れる・設置する」など幅広く使われる。",
+    i:[
+      {e:"ponerse + 形容詞", j:"〜になる（気分・状態の変化、例：se pone rojo＝赤くなる）"},
+      {e:"poner en marcha", j:"始動させる・スタートさせる"},
+      {e:"poner a prueba", j:"試す・テストする"},
+      {e:"¡Ponte las pilas!", j:"しっかりしろ！（電池を入れろ！）"}
+    ],
+    t:"ラテン語ponere（置く）より。英語のposition・compose・opponent・depositと同根。「置く」から多くの英単語が派生。"
+  },
+  salir:{
+    s:"Salgo de casa a las ocho.",
+    j:"8時に家を出ます。",
+    n:"yo形salgo（go動詞）。salir de+場所で「〜から出る」。",
+    i:[
+      {e:"salir bien / mal", j:"うまくいく／失敗する"},
+      {e:"salir adelante", j:"困難を乗り越える・やっていく"},
+      {e:"salir con alguien", j:"誰かと付き合う（交際する）"}
+    ],
+    t:"ラテン語salire（跳ぶ・出る）より。英語のsalient（顕著な）・assault・sallyと同根。「飛び出す」が原義。"
+  },
+  valer:{
+    s:"¿Cuánto vale esta camiseta?",
+    j:"このTシャツはいくらですか？",
+    n:"él形vale（yo形のみvalgo）。costarとほぼ同義だが、valは価値全般に「使われる。",
+    i:[
+      {e:"¡Vale!", j:"OK！了解！（スペインで超頻出の返事）"},
+      {e:"valer la pena", j:"やる価値がある（la pena＝苦労）"},
+      {e:"más vale tarde que nunca", j:"遅くてもないよりはまし（遅くても来た方がまだまし）"}
+    ],
+    t:"英語のvalue・valid・valorとほぼ同じ語源（ラテン語valere〔強い・価値がある〕より）。"
+  },
+  caer:{
+    s:"Se me cae el móvil con frecuencia.",
+    j:"よくスマホを落としてしまいます。",
+    n:"se me caeは「うっかり落とす」。間接目的格のmeが主語の「不注意」を示す構文。",
+    i:[
+      {e:"caer bien / mal", j:"好感が持てる／持てない（人の印象を言うとき）"},
+      {e:"caer en la cuenta", j:"気づく・はっと思い当たる"},
+      {e:"caer enfermo", j:"病気になる"}
+    ],
+    t:"ラテン語cadere（落ちる）より。英語のcadence・cascade・occasion（「落ちてくる場面」）と同根。"
+  },
+  traer:{
+    s:"¿Traes tu paraguas hoy?",
+    j:"今日は傘を持ってきていますか？",
+    n:"tú形traes（yo形のみtraigo）。traer（持って来る＝こちらへ）、llevar（持って行く＝あちらへ）。",
+    i:[
+      {e:"traer de cabeza", j:"頭を悩ませる・頭が痛い（頭を引っ張られる）"},
+      {e:"traer sin cuidado", j:"どうでもいい（me trae sin cuidado＝どうでもいい）"}
+    ],
+    t:"ラテン語trahere（引っ張る）より。英語のtractor・extract・attract・contractと同根。"
+  },
+  "oír":{
+    s:"Oigo música mientras desayuno.",
+    j:"朝食を食べながら音楽を聴いています（聴こえています）。",
+    n:"yo形oigo（go動詞+y挿入）。oírは「自然に耳に入る」、意識して聴くのはescuchar。",
+    i:[
+      {e:"¡Oye! / ¡Oiga!", j:"ねえ！・すみません！（呼びかけ、tuteoはoye、丁寧形はoiga）"},
+      {e:"oír hablar de", j:"〜について聞いたことがある"}
+    ],
+    t:"ラテン語audire（聴く）より。英語のaudio・audience・auditory・auditoriumと同根。スペイン語ではaudire→oirと変化。"
+  },
+  tener:{
+    s:"Tengo veinte años.",
+    j:"私は20歳です。",
+    n:"yo形tengo（go動詞）。年齢・所有・状態など広く使う最重要動詞。",
+    i:[
+      {e:"tener razón", j:"正しい（「理由を持っている」）"},
+      {e:"tener ganas de + 不定詞", j:"〜したい気分だ"},
+      {e:"tener en cuenta", j:"考慮する・念頭に置く"},
+      {e:"tener que + 不定詞", j:"〜しなければならない（義務）"},
+      {e:"tener sueño / hambre / sed", j:"眠い・お腹が空いた・乾きが渇いた"}
+    ],
+    t:"ラテン語tenere（保持する）より。英語のcontain・maintain・obtain・tenant（土地を保持する人）と同根。「持ち続ける」が原義。"
+  },
+  venir:{
+    s:"¿De dónde vienes?",
+    j:"どこから来ましたか？（出身はどちらですか？）",
+    n:"tú形vienes（go動詞+e→ie）。venir de+場所で「〜から来る」。",
+    i:[
+      {e:"venir bien / mal", j:"都合がよい／悪い（¿Te viene bien el martes?＝火曜日は都合がいい？）"},
+      {e:"¡Venga!", j:"さあ行こう・よし・うん！（スペインで多用）"},
+      {e:"venir a cuento", j:"文脈に合う・関係がある（no viene a cuento＝見当違い）"}
+    ],
+    t:"ラテン語venire（来る）より。英語のadvent・convention・event・prevent（前に来て止める）と同根。"
+  },
+  decir:{
+    s:"¿Cómo se dice esto en español?",
+    j:"これはスペイン語で何と言いますか？",
+    n:"se dice（〜と言われる）が反語的表現。yo形はdigo（go動詞+e→i）。",
+    i:[
+      {e:"es decir", j:"つまり・すなわち（言い換えるとき）"},
+      {e:"¿Qué quieres decir?", j:"どういう意味ですか？"},
+      {e:"dicho y hecho", j:"言ったが早いか・言行実行（「言ったらやった」）"},
+      {e:"que digamos", j:"そうでもない（No es guapo que digamos＝そんなにイケメンでない）"}
+    ],
+    t:"ラテン語dicere（言う）より。英語のdiction・dictionary・dictate・predict・verdict（「真実を言う」）と同根。"
+  },
+  ir:{
+    s:"Voy al supermercado ahora.",
+    j:"今スーパーに行きます。",
+    n:"yo形voy（完全不規則）。ir a+場所で「〜に行く」、ir a+不定詞で近接未来を表す。",
+    i:[
+      {e:"ir a + 不定詞", j:"〜するつもり・〜するところ（近接未来、例：voy a comer＝食べるつもり）"},
+      {e:"¡Vamos!", j:"さあ行こう・頑張れ！"},
+      {e:"¿Cómo te va?", j:"調子はどう？"},
+      {e:"ir de compras", j:"買い物に行く"}
+    ],
+    t:"ラテン語ire（行く）より。英語のexit（「外に行く」）・transit・ambitionと同根。活用形voy/vasはラテン語vadereからの補充形。"
+  },
+  dar:{
+    s:"Te doy mi número de teléfono.",
+    j:"電話番号を教えますね（あなたに渡しますね）。",
+    n:"yo形doy（完全不規則）。間接目的格のteが「あなたに」と組み合わさる。",
+    i:[
+      {e:"dar igual", j:"どうでもいい・構わない（Me da igual＝どちらでも構いません）"},
+      {e:"dar un paseo", j:"散歩する"},
+      {e:"dar las gracias", j:"礼を言う・感謝する"},
+      {e:"dar ganas de", j:"〜したくなる（Me da ganas de reír＝笑いたくなる）"},
+      {e:"dar a luz", j:"出産する（「光に向かって出す」）"}
+    ],
+    t:"ラテン語dare（与える）より。英語のdonate・data（「与えられた情報」）・editionと同根。"
+  },
+  saber:{
+    s:"No sé dónde está la estación.",
+    j:"駅がどこにあるか分かりません。",
+    n:"yo形sé（アクセント符号あり）。情報・知識として「知っている」。人・場所を知っているにはconocer。",
+    i:[
+      {e:"saber a", j:"〜の味がする（Sabe a fresa＝いちごの味がする）"},
+      {e:"que yo sepa", j:"私の知る限りでは"},
+      {e:"¡Quién sabe!", j:"誰にも分からない・さあね！"},
+      {e:"saber de memoria", j:"暗記している"}
+    ],
+    t:"ラテン語sapere（知る・味わう）より。英語のsavvy（知識がある）・sage（賢者）・sapientと同根。「味わって知る」が原義。"
+  },
+  ver:{
+    s:"¿Ves esa montaña al fondo?",
+    j:"奥にあるあの山が見えますか？",
+    n:"tú形ves（yo形veoのみ不規則）。verは「自然に見える」、意識して見るのはmirar。",
+    i:[
+      {e:"a ver", j:"さあ見てみよう・ちょっと（考えるときの口語）"},
+      {e:"ya veremos", j:"まあ見てみましょう・様子を見る"},
+      {e:"¡No veas!", j:"すごい！信じられない！（スペイン語スラング）"},
+      {e:"ver venir", j:"（問題などを）予測する"}
+    ],
+    t:"ラテン語videre（見る）より。英語のvideo・vision・visual・evidence（「見られたもの」）・superviseと同根。"
+  },
+  huir:{
+    s:"El gato huye del perro.",
+    j:"猫が犬から逃げています。",
+    n:"él形huye（y挿入形）。huimos等の1・2人称複数は変化しない。",
+    i:[
+      {e:"huir de", j:"〜から逃げる・〜を避ける"},
+      {e:"salir huyendo", j:"逃げ去る・一目散に逃げる"}
+    ],
+    t:"ラテン語fugere（逃げる）より。英語のfugitive（逃亡者）・refuge（避難所）・centrifugalと同根。fがhに変わるのはスペイン語の音変化の特徴。"
+  },
+  caber:{
+    s:"No cabe más gente en el ascensor.",
+    j:"エレベーターにこれ以上人が入りません。",
+    n:"él形cabe（yo形quepoのみ完全不規則）。「空間的に収まる・入る余地がある」。",
+    i:[
+      {e:"no cabe duda", j:"疑いの余地がない（No cabe duda de que...＝〜は疑いない）"},
+      {e:"no caber en sí de alegría", j:"喜びで胸が弾む・有頂天になる"}
+    ],
+    t:"ラテン語capere（つかむ・収める）より。英語のcapable・capacity・capture・acceptと同根。「収容できる」が展開イメージ。"
+  },
+  pensar:{
+    s:"Pienso que tienes razón.",
+    j:"あなたは正しいと思います。",
+    n:"yo形pienso（e→ie）。pienso que+文で意見を表明。",
+    i:[
+      {e:"pensar en", j:"〜について考える（pensar en alguien＝誰かのことを想う）"},
+      {e:"pensar + 不定詞", j:"〜するつもりだ（Pienso estudiar mañana＝明日勉強するつもり）"},
+      {e:"pensándolo bien", j:"よく考えてみると"}
+    ],
+    t:"ラテン語pensare（重みを測る・熟考する）より。英語のpensive（物思いに沈んだ）・ponder・compensateと同根。"
+  },
+  querer:{
+    s:"Quiero aprender a tocar la guitarra.",
+    j:"ギターを弾けるようになりたいです。",
+    n:"yo形quiero（e→ie）。querer+不定詞で「〜したい」。aprender aは「〜を習う」。",
+    i:[
+      {e:"querer decir", j:"〜を意味する（¿Qué quiere decir esto?＝これはどういう意味？）"},
+      {e:"sin querer", j:"わざとではなく・うっかり"},
+      {e:"como quieras", j:"お好きなように・任せるよ"}
+    ],
+    t:"ラテン語quaerere（求める・探す）より。英語のquery・quest・inquestと同根。「求める」が原義。"
+  },
+  preferir:{
+    s:"Prefiero el café solo al café con leche.",
+    j:"カフェオレよりブラックコーヒーの方が好きです。",
+    n:"yo形prefiero（e→ie）。preferir A a Bで「BよりAが好き」。",
+    i:[
+      {e:"preferir que + 接続法", j:"〜してほしい（Prefiero que vengas＝来てほしい）"}
+    ],
+    t:"英語のpreferとほぼ同じ。ラテン語praeferre（prae-前に＋ferre運ぶ）より。「前に持ってくる＝好む」。"
+  },
+  empezar:{
+    s:"La clase empieza a las nueve en punto.",
+    j:"授業はちょうど9時に始まります。",
+    n:"él形empieza（e→ie）。en puntoは「ちょうど」。",
+    i:[
+      {e:"empezar a + 不定詞", j:"〜し始める（Empieza a llover＝雨が降り始める）"},
+      {e:"empezar por", j:"〜から始める（Empieza por el principio＝最初から始める）"}
+    ],
+    t:"ラテン語impetiare（始める）が起源。英語に直接対応する語はないが、現代スペイン語で最もよく使われる「始める」動詞。comenzarとほぼ同義。"
+  },
+  sentir:{
+    s:"Siento mucho frío hoy.",
+    j:"今日はとても寒く感じます。",
+    n:"yo形siento（e→ie）。sentir+名詞で「〜を感じる」。",
+    i:[
+      {e:"lo siento", j:"ごめんなさい・申し訳ない（最重要謝罪表現）"},
+      {e:"sentirse + 形容詞", j:"〜と感じる（体調・気分）（Me siento bien＝気分がいい）"},
+      {e:"sentir en el alma", j:"心からお詫び申し上げる（強い謝罪）"}
+    ],
+    t:"ラテン語sentire（感じる）より。英語のsense・sentiment・sensation・consent・resentと同根。まさにsense系の語。"
+  },
+  mentir:{
+    s:"¿Por qué mientes siempre?",
+    j:"なんでいつも嘘をつくの？",
+    n:"tú形mientes（e→ie）。現在形で習慣的な行動を表している。",
+    i:[
+      {e:"mentira piadosa", j:"白い嘘・方便（pia＝敬虔な）"},
+      {e:"pillar mintiendo", j:"嘘をついているところを見つける"}
+    ],
+    t:"ラテン語mentiri（嘘をつく）より。英語のmendacious（嘘つきの）と同根。mentalとは無関係なので注意。"
+  },
+  herir:{
+    s:"Sus palabras me hieren.",
+    j:"彼/彼女の言葉に傷つきます。",
+    n:"ellos形hieren（e→ie）。間接目的格のmeで「私が（傷つく）」を示す。",
+    i:[
+      {e:"herir los sentimientos", j:"感情を傷つける"},
+      {e:"herir en lo vivo", j:"急所をつく・急所を傷つける"}
+    ],
+    t:"ラテン語ferire（打つ・傷つける）より。英語に直接対応する語は少ないが、woundの概念は共有。"
+  },
+  contar:{
+    s:"Te cuento algo interesante.",
+    j:"面白いことを話すね。",
+    n:"yo形cuento（o→ue）。contar「数えること」と「話す・伝える」の2つの意味がある。",
+    i:[
+      {e:"contar con", j:"〜を頼りにする・〜を見込む（Cuento contigo＝あなたを頼りにしているよ）"},
+      {e:"a fin de cuentas", j:"結局のところ・詰まるところ"},
+      {e:"contar los días", j:"日を数えて待つ"}
+    ],
+    t:"ラテン語computare（計算する）より。英語のcount・account・discountとほぼ同じ。「数える＝話して報告する」と意味が広がった。"
+  },
+  recordar:{
+    s:"No recuerdo su nombre.",
+    j:"彼/彼女の名前が思い出せません。",
+    n:"yo形recuerdo（o→ue）。記憶を引き起こす動詞。",
+    i:[
+      {e:"recordar a alguien", j:"誰かに似ている（Me recuerdas a mi madre＝あなたは私の母に似ている）"},
+      {e:"que yo recuerde", j:"私の記憶では（不確かなとき）"},
+      {e:"recordar algo a alguien", j:"〜に〜を思い出させる・念を押す"}
+    ],
+    t:"ラテン語recordari（re-再び＋cor心）より。英語のrecordとほぼ同じ語源。「心に再び立ち戻る」が原義。"
+  },
+  dormir:{
+    s:"Duermo ocho horas cada noche.",
+    j:"毎晩8時間寝ています。",
+    n:"yo形duermo（o→ue）。dormimos等の1・2人称複数は変化しない。",
+    i:[
+      {e:"dormir a pierna suelta", j:"ぐっすり寝る（両足を伸ばして寝る）"},
+      {e:"dormirse en los laureles", j:"油断する・過去の栄光にあぐらをかく"},
+      {e:"quedarse dormido", j:"寝落ちする・ぐっすり寝てしまう"}
+    ],
+    t:"ラテン語dormire（寝る）より。英語のdormitory（「寝る場所」）・dormant（休眠中の）と同根。"
+  },
+  encontrar:{
+    s:"¿Dónde encuentro el baño?",
+    j:"トイレはどこにありますか？",
+    n:"yo形encuentro（o→ue）。「見つける」と「会う」の2つの意味がある。",
+    i:[
+      {e:"encontrarse bien / mal", j:"体調がいい／悪い（¿Cómo te encuentras?＝体調はどう？）"},
+      {e:"encontrar a faltar", j:"〜が恋しい・いないのが惜しい（中南米で多用）"}
+    ],
+    t:"ラテン語incontrare（en-中で＋contra反対に）より。英語のencounterと同根（「向かい合って出る」が原義）。"
+  },
+  costar:{
+    s:"¿Cuánto cuesta esta camisa?",
+    j:"このシャツはいくらですか？",
+    n:"él形cuesta（o→ue）。値段を尋ねる最頻出表現。",
+    i:[
+      {e:"costar trabajo", j:"〜するのが大変だ（Me cuesta levantarme＝朝起きるのが辛い）"},
+      {e:"cueste lo que cueste", j:"何があっても・どんな犠牲を払っても"},
+      {e:"costar un ojo de la cara", j:"目が飛び出るほど高い"}
+    ],
+    t:"英語のcostとほぼ同じ。ラテン語constare（con-共に＋stare立つ）より。「価格として成立する」が原義。"
+  },
+  morir:{
+    s:"Las plantas mueren sin agua.",
+    j:"植物は水がないと枯れます。",
+    n:"ellos形mueren（o→ue）。一般的事実の現在形。",
+    i:[
+      {e:"morirse de risa", j:"笑い死にしそう（とても笑う）"},
+      {e:"morirse de hambre / sed", j:"お腹ペコペコ／喉がカラカラ"},
+      {e:"morirse de vergüenza", j:"恥ずかしくて穴があったら入りたい"},
+      {e:"¡Me muero!", j:"最高！・たまらない！（感情表現）"}
+    ],
+    t:"ラテン語mori（死ぬ）より。英語のmortal・mortality・immortal（不死の）と同根。"
+  },
+  contribuir:{
+    s:"Todos contribuimos al éxito del proyecto.",
+    j:"私たちは皆そのプロジェクトの成功に貢献しています。",
+    n:"nosotros形contribuimos（y挿入なし）。単数・3人称複数はy挿入（contribuyo/contribuyen）。",
+    i:[
+      {e:"contribuir a", j:"〜に貢献する・〜に寄与する"},
+      {e:"contribuir con", j:"〜を提供する（Contribuye con 100 euros＝100ユーロを出す）"}
+    ],
+    t:"英語のcontributeとほぼ同じ。ラテン語contribuere（con-共に＋tribuere割り与える）より。tributeもattributeも同根。"
+  },
+  distribuir:{
+    s:"La empresa distribuye productos en todo el país.",
+    j:"この会社は全国に製品を配布しています。",
+    n:"él形distribuye（y挿入）。ビジネス・フォーマルな文脈で多用。",
+    i:[
+      {e:"distribución de tareas", j:"仕事の分配・役割分担"}
+    ],
+    t:"英語のdistributeとほぼ同じ。ラテン語distribuere（dis-分散＋tribuere割り与える）より。district（分けられた地域）も同根。"
+  },
+  incluir:{
+    s:"El precio incluye el desayuno.",
+    j:"料金には朝食が含まれています。",
+    n:"él形incluye（y挿入）。「〜コミコミ」のホテルの説明で頻出。",
+    i:[
+      {e:"todo incluido", j:"全込み・オールインクルーシブ（旅行パックでよく見る語）"},
+      {e:"incluyendo a", j:"〜を含めて"}
+    ],
+    t:"英語のincludeとほぼ同じ。ラテン語includere（in-中に＋claudere閉じる）より。exclude・conclude・precludeも同根。「中に閉じ込める＝含める」。"
+  },
+  concluir:{
+    s:"Concluyo que necesitamos más tiempo.",
+    j:"もっと時間が必要という結論に至りました。",
+    n:"yo形concluyo（y挿入）。concluir que+文で結論を述べる。",
+    i:[
+      {e:"en conclusión", j:"結論として・まとめると"},
+      {e:"llegar a una conclusión", j:"結論に達する（concluirの名詞形conclusiónを使った表現）"}
+    ],
+    t:"英語のconcludeとほぼ同じ。ラテン語concludere（con-共に＋claudere閉じる）より。include・exclude・precludeも同根。"
+  }
+};
+
+var imp = {};
+ROWS.forEach(function(r){ imp[r.v] = r.s; });
+
+var order = ROWS.slice();
+var sortOn = false;
+var filterOn = false;
+
+function bgClass(t) {
+  if (t === "g") return "bg-gray";
+  if (t === "y") return "bg-yellow";
+  return "bg-white";
+}
+
+function starsHTML(verb) {
+  var val = imp[verb] || 0;
+  var s = '<div class="stars">';
+  for (var i = 1; i <= 5; i++) {
+    s += '<span class="' + (i <= val ? 'on' : '') + '" data-verb="' + verb + '" data-val="' + i + '">★</span>';
+  }
+  return s + '</div>';
+}
+
+function render(arr) {
+  document.getElementById('tbody').innerHTML = arr.map(function(row) {
+    return '<tr><td class="imp">' + starsHTML(row.v) + '</td>' +
+      row.d.map(function(cell, i) {
+        var cls = bgClass(cell[1]) + (i === 1 ? ' verb-cell' : '');
+        var attr = i === 1 ? ' data-verb="' + row.v + '"' : '';
+        return '<td class="' + cls + '"' + attr + '>' + cell[0] + '</td>';
+      }).join('') + '</tr>';
+  }).join('');
+}
+
+function display() {
+  var arr = filterOn ? order.filter(function(r){ return r.d[0][1] === "y"; }) : order.slice();
+  if (sortOn) arr.sort(function(a,b){ return (imp[b.v]||0) - (imp[a.v]||0); });
+  render(arr);
+}
+
+document.getElementById('tbody').addEventListener('click', function(e) {
+  var span = e.target.closest('span[data-verb]');
+  if (span) {
+    var verb = span.dataset.verb;
+    var val = parseInt(span.dataset.val);
+    imp[verb] = (imp[verb] === val) ? 0 : val;
+    display();
+    return;
+  }
+  var cell = e.target.closest('td.verb-cell');
+  if (!cell) return;
+  var verb = cell.dataset.verb;
+  var ex = EX[verb];
+  if (!ex) return;
+  document.getElementById('m-verb').textContent = verb;
+  document.getElementById('m-sent').textContent = ex.s;
+  document.getElementById('m-ja').textContent = ex.j;
+  document.getElementById('m-note').textContent = ex.n;
+  document.getElementById('m-trivia').textContent = ex.t;
+  var idiomSec = document.getElementById('m-idiom-sec');
+  var idiomDiv = document.getElementById('m-idiom');
+  if (ex.i && ex.i.length > 0) {
+    idiomDiv.innerHTML = ex.i.map(function(item) {
+      return '<div class="idiom-row"><span class="idiom-es">' + item.e + '</span> <span class="idiom-ja">→ ' + item.j + '</span></div>';
+    }).join('');
+    idiomSec.style.display = '';
+  } else {
+    idiomSec.style.display = 'none';
+  }
+  document.getElementById('overlay').classList.add('show');
+});
+
+function closeModal() { document.getElementById('overlay').classList.remove('show'); }
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('overlay').addEventListener('click', function(e) { if (e.target===this) closeModal(); });
+document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeModal(); });
+
+document.getElementById('shuffleBtn').addEventListener('click', function() {
+  var a = ROWS.slice();
+  for (var i = a.length-1; i > 0; i--) { var j = Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  order = a; display();
+});
+document.getElementById('resetBtn').addEventListener('click', function() { order = ROWS.slice(); display(); });
+document.getElementById('sortBtn').addEventListener('click', function() {
+  sortOn = !sortOn;
+  this.classList.toggle('on', sortOn);
+  this.textContent = '⭐ 重要度順（' + (sortOn ? 'ON' : 'OFF');
+  display();
+});
+document.getElementById('filterBtn').addEventListener('click', function() {
+  filterOn = !filterOn;
+  this.classList.toggle('on', filterOn);
+  this.textContent = '💡 追加語彙のみ（' + (filterOn ? 'ON' : 'OFF');
+  display();
+});
+
+display();
+</script>
+</body>
+</html>
