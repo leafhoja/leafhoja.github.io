@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>スペイン語不規則活用動詞</title>
 <style>
   body { font-family: -apple-system, sans-serif; padding: 20px; background: #f9f9f9; }
@@ -17,21 +18,36 @@
   }
   button:hover { background: #2f5dbf; }
   button:active { transform: scale(0.97); }
-  #sortBtn, #filterBtn, #resetBtn { background: #888; }
+  #sortBtn, #filterBtn, #filterLearnedBtn, #resetBtn { background: #888; }
   #sortBtn.on  { background: #e07b00; } #sortBtn.on:hover  { background: #bf6500; }
   #filterBtn.on{ background: #b8960a; } #filterBtn.on:hover{ background: #9a7d08; }
+  #filterLearnedBtn.on { background: #1b7a68; } #filterLearnedBtn.on:hover { background: #145c4e; }
   #resetBtn:hover { background: #555; }
+  #progress { font-size: 13px; color: #555; align-self: center; }
   table { border-collapse: collapse; font-size: 13px; }
   th { background: #3a3a5c; color: #fff; padding: 7px 12px; text-align: left; white-space: nowrap; }
   td { padding: 6px 12px; border-bottom: 1px solid #e0e0e0; white-space: nowrap; }
   tr:hover td { filter: brightness(0.95); }
+  tr.row-learned td { opacity: 0.35; }
+  tr.row-learned td.learn-cell { opacity: 1; }
   .bg-gray   { background: #d9d9d9; }
   .bg-yellow { background: #ffff99; }
   .bg-white  { background: #ffffff; }
   td.imp { background: #ebebf5 !important; text-align: center; min-width: 82px; }
+  td.learn-cell { background: #f0faf6 !important; text-align: center; width: 52px; }
   .stars span { font-size: 17px; cursor: pointer; color: #ccc; display: inline-block; }
   .stars span.on { color: #f5a623; }
   .stars span:hover { color: #f5a623; opacity: 0.75; }
+  .learn-btn {
+    padding: 3px 8px; font-size: 15px; cursor: pointer; border-radius: 4px;
+    background: #e8e8e8; color: #bbb; border: 1.5px solid #ccc;
+    transition: all 0.12s; line-height: 1;
+  }
+  .learn-btn:hover { background: #d4f5e8; border-color: #6db85c; color: #4a9a3d; }
+  .learn-btn.on {
+    background: #d4f5e8; border-color: #6db85c; color: #2a7a1e; font-weight: 700;
+  }
+  .learn-btn:active { transform: scale(0.93); }
   td.verb-cell { cursor: pointer; color: #2a5abf; text-decoration: underline dotted; font-weight: 600; }
   td.verb-cell:hover { color: #1a3d99; background: #e8eeff !important; }
 
@@ -80,6 +96,28 @@
     background: none; border: none; line-height: 1;
   }
   #modal-close:hover { color: #333; }
+
+  /* ── スマホ対応 ── */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  @media (max-width: 640px) {
+    body { padding: 12px 10px; }
+    h1 { font-size: 15px; margin-bottom: 12px; }
+    .legend { gap: 10px; font-size: 12px; margin-bottom: 10px; }
+    .swatch { width: 14px; height: 14px; }
+    .controls { gap: 6px; margin-bottom: 12px; }
+    button { padding: 6px 10px; font-size: 12px; }
+    #progress { font-size: 12px; }
+    th { padding: 6px 8px; font-size: 11px; }
+    td { padding: 5px 7px; font-size: 12px; }
+    td.imp { min-width: 66px; }
+    td.learn-cell { width: 42px; }
+    .stars span { font-size: 14px; }
+    .learn-btn { padding: 2px 6px; font-size: 13px; }
+    #modal { padding: 20px 14px 16px; border-radius: 10px; }
+    #modal h2 { font-size: 20px; margin-bottom: 12px; }
+    .mbox-blue, .mbox-green, .mbox-orange { font-size: 13px; padding: 8px 10px; }
+    .mja { font-size: 13px; }
+  }
 </style>
 </head>
 <body>
@@ -94,6 +132,8 @@
   <button id="resetBtn">↩ 元の順序</button>
   <button id="sortBtn">⭐ 重要度順（OFF</button>
   <button id="filterBtn">💡 追加語彙のみ（OFF</button>
+  <button id="filterLearnedBtn">✓ 未習得のみ（OFF</button>
+  <span id="progress"></span>
 </div>
 
 <div id="overlay">
@@ -123,8 +163,10 @@
   </div>
 </div>
 
+<div class="table-wrap">
 <table>
   <thead><tr>
+    <th>覚えた</th>
     <th>重要度</th>
     <th>日本語</th><th>原形</th><th>活用の種類</th>
     <th>yo</th><th>tú</th><th>él/ella</th>
@@ -132,6 +174,7 @@
   </tr></thead>
   <tbody id="tbody"></tbody>
 </table>
+</div>
 
 <script>
 var ROWS = [
@@ -657,12 +700,37 @@ var EX = {
   }
 };
 
+// 重要度★：ページ初期値として各動詞の s 値を使い、localStorage で上書き
 var imp = {};
 ROWS.forEach(function(r){ imp[r.v] = r.s; });
+try {
+  var savedImp = JSON.parse(localStorage.getItem('spVerbs_imp') || '{}');
+  Object.keys(savedImp).forEach(function(k){ imp[k] = savedImp[k]; });
+} catch(e){}
+
+// 覚えたフラグ
+var learned = {};
+try {
+  learned = JSON.parse(localStorage.getItem('spVerbs_learned') || '{}');
+} catch(e){}
 
 var order = ROWS.slice();
 var sortOn = false;
 var filterOn = false;
+var filterLearned = false;
+
+function saveImp() {
+  try { localStorage.setItem('spVerbs_imp', JSON.stringify(imp)); } catch(e){}
+}
+function saveLearned() {
+  try { localStorage.setItem('spVerbs_learned', JSON.stringify(learned)); } catch(e){}
+}
+
+function updateProgress() {
+  var total = ROWS.length;
+  var done = ROWS.filter(function(r){ return learned[r.v]; }).length;
+  document.getElementById('progress').textContent = '覚えた：' + done + ' / ' + total;
+}
 
 function bgClass(t) {
   if (t === "g") return "bg-gray";
@@ -679,9 +747,15 @@ function starsHTML(verb) {
   return s + '</div>';
 }
 
+function learnedCell(verb) {
+  var on = learned[verb] ? ' on' : '';
+  return '<td class="learn-cell"><button class="learn-btn' + on + '" data-learn="' + verb + '">✓</button></td>';
+}
+
 function render(arr) {
   document.getElementById('tbody').innerHTML = arr.map(function(row) {
-    return '<tr><td class="imp">' + starsHTML(row.v) + '</td>' +
+    var rowCls = learned[row.v] ? ' class="row-learned"' : '';
+    return '<tr' + rowCls + '>' + learnedCell(row.v) + '<td class="imp">' + starsHTML(row.v) + '</td>' +
       row.d.map(function(cell, i) {
         var cls = bgClass(cell[1]) + (i === 1 ? ' verb-cell' : '');
         var attr = i === 1 ? ' data-verb="' + row.v + '"' : '';
@@ -691,20 +765,35 @@ function render(arr) {
 }
 
 function display() {
-  var arr = filterOn ? order.filter(function(r){ return r.d[0][1] === "y"; }) : order.slice();
+  var arr = order.slice();
+  if (filterOn) arr = arr.filter(function(r){ return r.d[0][1] === "y"; });
+  if (filterLearned) arr = arr.filter(function(r){ return !learned[r.v]; });
   if (sortOn) arr.sort(function(a,b){ return (imp[b.v]||0) - (imp[a.v]||0); });
   render(arr);
+  updateProgress();
 }
 
 document.getElementById('tbody').addEventListener('click', function(e) {
+  // 覚えたボタン
+  var btn = e.target.closest('button[data-learn]');
+  if (btn) {
+    var verb = btn.dataset.learn;
+    learned[verb] = !learned[verb];
+    saveLearned();
+    display();
+    return;
+  }
+  // 重要度★
   var span = e.target.closest('span[data-verb]');
   if (span) {
     var verb = span.dataset.verb;
     var val = parseInt(span.dataset.val);
     imp[verb] = (imp[verb] === val) ? 0 : val;
+    saveImp();
     display();
     return;
   }
+  // モーダル
   var cell = e.target.closest('td.verb-cell');
   if (!cell) return;
   var verb = cell.dataset.verb;
@@ -749,6 +838,12 @@ document.getElementById('filterBtn').addEventListener('click', function() {
   filterOn = !filterOn;
   this.classList.toggle('on', filterOn);
   this.textContent = '💡 追加語彙のみ（' + (filterOn ? 'ON' : 'OFF');
+  display();
+});
+document.getElementById('filterLearnedBtn').addEventListener('click', function() {
+  filterLearned = !filterLearned;
+  this.classList.toggle('on', filterLearned);
+  this.textContent = '✓ 未習得のみ（' + (filterLearned ? 'ON' : 'OFF');
   display();
 });
 

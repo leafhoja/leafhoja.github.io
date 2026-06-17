@@ -5,10 +5,12 @@
 
 <script src="access-control.js"></script>
 <script src="common.js" defer></script>
+<script src="ga.js" defer></script>
 <script src="quiz-data.js" defer></script>
 <script src="quiz-predicted-s1.js" defer></script>
 <script src="quiz-predicted-s2.js" defer></script>
 <script src="quiz.js" defer></script>
+<script src="spanish1-search.js" defer></script>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
@@ -1353,43 +1355,6 @@
 </div>
 
 </div><!-- /tab-vocab -->
-
-<script>
-// ── 辞書モーダル（語彙タブ用） ──
-function _l4Esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function openDictModal(es, pos, ja) {
-  document.getElementById('dict-modal-word').textContent = es;
-  document.getElementById('dict-modal-pos').textContent = pos || '';
-  var body = '<div class="dict-ja-big">' + _l4Esc(ja) + '</div>';
-  if (pos) body += '<div class="dict-row"><span class="dict-label">品詞</span><span class="dict-val"><span class="dict-tag">' + _l4Esc(pos) + '</span></span></div>';
-  document.getElementById('dict-modal-body').innerHTML = body;
-  document.getElementById('dict-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeDictModal() {
-  document.getElementById('dict-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-// ── 語彙ピル タップで辞書カード表示 ──
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('#tab-vocab .pill').forEach(function(pill) {
-    pill.title = 'タップして詳細を確認';
-    pill.addEventListener('click', function() {
-      var esEl = pill.querySelector('.pill-es');
-      var posEl = pill.querySelector('.pill-pos');
-      var jaEl  = pill.querySelector('.pill-ja');
-      if (!esEl || !jaEl) return;
-      openDictModal(
-        esEl.textContent.trim(),
-        posEl ? posEl.textContent.trim() : '',
-        jaEl.textContent.trim()
-      );
-    });
-  });
-});
-</script>
 
 <script src="phrase-lookup.js"></script>
 </body>

@@ -278,6 +278,172 @@ body.is-printing #top-nav      { display: none  !important; }
   tr:nth-child(even) td { background: none !important; }
 }
 
+/* ── 検索ボタン（ナビバー内） ── */
+#top-search-btn {
+  background: var(--accent2); color: #fff; border: none;
+  border-radius: 3px; padding: 5px 12px;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  font-family: var(--sans); white-space: nowrap;
+  transition: background .12s;
+}
+#top-search-btn:hover { background: #155f50; }
+
+/* ── 検索バー（固定） ── */
+#search-bar {
+  position: fixed; top: 46px; left: 0; right: 0; z-index: 2000;
+  background: var(--surface); border-bottom: 2px solid var(--accent);
+  padding: 7px 14px; display: flex; align-items: center; gap: 9px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.12);
+  transform: translateY(-200%); transition: transform .18s ease;
+}
+#search-bar.open { transform: translateY(0); }
+#search-bar label { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+#search-input {
+  flex: 1; border: 1px solid var(--rule); padding: 5px 9px;
+  font-size: 16px; font-family: var(--sans); color: var(--ink);
+  outline: none; max-width: 340px;
+}
+#search-input:focus { border-color: var(--accent); }
+#search-close {
+  background: none; border: none; cursor: pointer;
+  font-size: 15px; color: var(--muted); padding: 2px 5px;
+}
+#search-close:hover { color: var(--ink); }
+
+/* ── 検索結果パネル ── */
+#search-results {
+  position: fixed; top: 92px; left: 50%; transform: translateX(-50%);
+  z-index: 2001; background: var(--surface); border: 1px solid var(--rule);
+  box-shadow: 0 6px 20px rgba(0,0,0,.13);
+  width: min(480px, calc(100vw - 20px));
+  max-height: 55vh; overflow-y: auto; display: none;
+}
+#search-results.has-results { display: block; }
+.sr-header { font-size: 11px; color: var(--muted); font-weight: 700; padding: 7px 12px 4px; border-bottom: 1px solid var(--rule); }
+.sr-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-bottom: 1px solid var(--rule);
+  cursor: pointer; transition: background .1s; text-decoration: none; color: inherit;
+}
+.sr-item:last-child { border-bottom: none; }
+.sr-item:hover { background: var(--head-bg); }
+.sr-es { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); min-width: 90px; flex-shrink: 0; }
+.sr-es mark { background: #fff3a0; color: var(--ink); padding: 0 1px; }
+.sr-ja { font-size: 12px; color: var(--mid); flex: 1; }
+.sr-tag { font-size: 10px; color: var(--muted); background: var(--alt-bg); padding: 2px 5px; white-space: nowrap; flex-shrink: 0; }
+.sr-jump { font-size: 10px; color: var(--accent2); white-space: nowrap; flex-shrink: 0; }
+.sr-none { padding: 14px; text-align: center; font-size: 12.5px; color: var(--muted); }
+.sr-form { font-size: 10px; background: var(--accent); color: #fff; padding: 1px 4px; margin-left: 3px; vertical-align: middle; }
+.sr-pos  { font-size: 10px; background: var(--alt-bg); color: var(--mid); padding: 1px 4px; margin-left: 3px; vertical-align: middle; }
+
+/* ── 表紙内検索ボックス ── */
+.cover-search { margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 12px; }
+.cover-search-label { font-size: 11.5px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.cover-search-box {
+  width: 100%; max-width: 380px; border: 1px solid var(--rule); padding: 6px 10px;
+  font-size: 16px; font-family: var(--mono); color: var(--ink);
+  background: var(--surface); outline: none; transition: border-color .12s;
+}
+.cover-search-box:focus { border-color: var(--accent); }
+.cover-search-hint { font-size: 11px; color: var(--muted); margin-top: 4px; display: block; }
+#cover-search-results {
+  margin-top: 7px; border: 1px solid var(--rule);
+  background: var(--surface); box-shadow: 0 3px 10px rgba(0,0,0,.09);
+  max-width: 560px; display: none; overflow: hidden;
+}
+#cover-search-results.has-results { display: block; }
+
+/* ── 辞書モーダル ── */
+#dict-overlay {
+  display: none; position: fixed; inset: 0; z-index: 3000;
+  background: rgba(0,0,0,.38); align-items: center; justify-content: center;
+}
+#dict-overlay.open { display: flex; }
+#dict-modal {
+  background: var(--surface); border-top: 4px solid var(--accent);
+  box-shadow: 0 8px 32px rgba(0,0,0,.22);
+  width: min(480px, calc(100vw - 28px)); max-height: 80vh;
+  overflow-y: auto; position: relative;
+  animation: dictSlideIn .15s ease;
+}
+@keyframes dictSlideIn {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+#dict-modal-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px 10px; border-bottom: 1px solid var(--rule);
+  position: sticky; top: 0; background: var(--surface); z-index: 1;
+}
+#dict-modal-word {
+  font-family: var(--mono); font-size: 20px; font-weight: 700;
+  color: var(--accent); flex: 1;
+}
+#dict-modal-pos {
+  font-size: 11px; color: var(--muted);
+  background: var(--alt-bg); padding: 2px 7px; border-radius: 2px; white-space: nowrap;
+}
+#dict-modal-close {
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; color: var(--muted); padding: 2px 6px; line-height: 1; transition: color .1s;
+}
+#dict-modal-close:hover { color: var(--ink); }
+#dict-modal-body { padding: 14px 16px 20px; }
+.dict-ja-big {
+  font-size: 20px; font-weight: 700; color: var(--ink);
+  margin-bottom: 14px; line-height: 1.4; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+}
+.dict-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 10px; font-size: 13px; }
+.dict-label {
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  background: var(--alt-bg); padding: 2px 6px; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+}
+.dict-val { color: var(--ink); line-height: 1.75; }
+.dict-tag {
+  display: inline-block; font-size: 10.5px; background: var(--head-bg);
+  color: var(--accent); padding: 2px 7px; margin-right: 4px; margin-bottom: 4px;
+}
+.dict-conj-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; min-width: 0; }
+.dict-conj-table th {
+  background: var(--head-bg); color: var(--accent);
+  padding: 4px 8px; border: 1px solid var(--rule); font-size: 11px; text-align: center;
+}
+.dict-conj-table td {
+  padding: 4px 8px; border: 1px solid var(--rule);
+  text-align: center; font-family: var(--mono); font-size: 12.5px;
+}
+.dict-conj-table tr:nth-child(even) td { background: var(--alt-bg); }
+.dict-conj-row-hi td { background: #fff3a0 !important; font-weight: 700; color: var(--warn); }
+.dict-jump-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 14px; background: var(--accent); color: #fff;
+  border: none; padding: 7px 16px; font-size: 12px; font-weight: 700;
+  font-family: var(--sans); cursor: pointer; transition: background .1s;
+}
+.dict-jump-btn:hover { background: #1d3e72; }
+.dict-conj-badge {
+  background: var(--warn); color: #fff; font-size: 11px;
+  font-weight: 700; padding: 3px 9px; display: inline-block; margin-bottom: 12px;
+}
+.dict-note {
+  font-size: 12px; color: var(--gold); background: var(--tip-bg);
+  border-left: 3px solid #6bab6b; padding: 7px 10px; margin-top: 8px; line-height: 1.65;
+}
+.dict-example {
+  margin-top: 10px; padding: 8px 12px; background: var(--ex-bg);
+  border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0;
+}
+.dict-example-label {
+  font-size: 10px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px;
+}
+.dict-example-es { font-family: var(--mono); font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.dict-example-ja { font-size: 12px; color: var(--muted); font-style: italic; }
+
+@media print {
+  #search-bar, #search-results, #dict-overlay, .cover-search { display: none !important; }
+}
+
 /* ── ページ先頭へ戻るボタン ── */
 #back-to-top {
   position: fixed;

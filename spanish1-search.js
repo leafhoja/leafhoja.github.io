@@ -1,7 +1,7 @@
 'use strict';
-// spanish1-search.js — Spanish1 共通の検索・辞書機能
-// 各レッスン HTML の inline <script> で GRAMMAR_TERMS, VOCAB_BASE を定義すること。
-// このファイルは defer で読み込まれるため、DOM 解析完了後（VOCAB_BASE 定義後）に実行される。
+// spanish1-search.js — Spanish1/2 共通の検索・辞書機能
+// VOCAB_BASE / GRAMMAR_TERMS が未定義の場合は DOM から自動抽出する。
+// UI 要素（検索バー・辞書モーダル等）が HTML に存在しない場合は自動注入する。
 
 /* ── 定数・状態 ── */
 var PERSONAS = [
@@ -16,6 +16,7 @@ var VOCAB_INF = [];
 var CONJ_MAP  = {};
 var _srItems  = [];
 var _dictReturnFocus = null;
+var _GRAMMAR_TERMS_LOCAL = null;
 
 /* ── ユーティリティ ── */
 function stripAccents(s) {
@@ -68,9 +69,11 @@ function getConjForms(item) {
 
 /* ── 検索 ── */
 function findGrammarMatch(q) {
+  var gt = (typeof GRAMMAR_TERMS !== 'undefined') ? GRAMMAR_TERMS : _GRAMMAR_TERMS_LOCAL;
+  if (!gt || !gt.length) return null;
   var norm = q.trim().toLowerCase();
-  for (var i = 0; i < GRAMMAR_TERMS.length; i++) {
-    var g = GRAMMAR_TERMS[i];
+  for (var i = 0; i < gt.length; i++) {
+    var g = gt[i];
     for (var j = 0; j < g.terms.length; j++) {
       var t = g.terms[j].toLowerCase();
       if (t.includes(norm) || norm.includes(t)) return g;
@@ -218,6 +221,7 @@ function openDictModal(item, conjInfo) {
   var wordEl  = document.getElementById('dict-modal-word');
   var posEl   = document.getElementById('dict-modal-pos');
   var bodyEl  = document.getElementById('dict-modal-body');
+  if (!overlay || !wordEl || !posEl || !bodyEl) return;
 
   wordEl.textContent = conjInfo ? conjInfo.conj : item.es;
   posEl.textContent  = item.pos || '';
@@ -275,6 +279,30 @@ function openDictModal(item, conjInfo) {
     body += '<button class="dict-jump-btn" onclick="scrollToAnchor(\'' + item.anchor + '\'); closeDictModal();">→ 解説ページへジャンプ</button>';
   }
 
+  // LESSON_VOCAB（Spanish2 本文語彙）の追加情報
+  if (item._lessonVocabData) {
+    var lv = item._lessonVocabData;
+    if (lv.conj) {
+      body += '<div class="dict-row"><span class="dict-label">活用形</span>'
+        + '<span class="dict-val" style="font-family:var(--mono);font-size:12px;color:var(--accent2)">'
+        + esc(lv.conj) + '</span></div>';
+    }
+    if (lv.vtype) {
+      body += '<div class="dict-row"><span class="dict-label">動詞型</span>'
+        + '<span class="dict-val">' + esc(lv.vtype) + '</span></div>';
+    }
+    if (lv.note) {
+      body += '<div class="dict-note">' + esc(lv.note) + '</div>';
+    }
+    if (lv.example) {
+      body += '<div class="dict-example">'
+        + '<div class="dict-example-label">例文</div>'
+        + '<div class="dict-example-es">' + esc(lv.example.es) + '</div>'
+        + '<div class="dict-example-ja">' + esc(lv.example.ja) + '</div>'
+        + '</div>';
+    }
+  }
+
   bodyEl.innerHTML = body;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -324,6 +352,105 @@ function closeSearch() {
   if (inp) inp.value = '';
   var cres = document.getElementById('cover-search-results');
   if (cres) cres.classList.remove('has-results');
+}
+
+/* ── UI 要素の自動注入 ── */
+function _ensureSearchUI() {
+  if (!document.getElementById('dict-overlay')) {
+    var ov = document.createElement('div');
+    ov.id = 'dict-overlay';
+    ov.innerHTML = '<div id="dict-modal"><div id="dict-modal-head">'
+      + '<span id="dict-modal-word"></span><span id="dict-modal-pos"></span>'
+      + '<button id="dict-modal-close" title="閉じる">✕</button>'
+      + '</div><div id="dict-modal-body"></div></div>';
+    ov.addEventListener('click', function(e) { if (e.target === ov) closeDictModal(); });
+    document.body.insertBefore(ov, document.body.firstChild);
+    document.getElementById('dict-modal-close').addEventListener('click', closeDictModal);
+  }
+  if (!document.getElementById('search-bar')) {
+    var bar = document.createElement('div');
+    bar.id = 'search-bar';
+    bar.innerHTML = '<label>検索</label>'
+      + '<input id="search-input" type="text" placeholder="単語・文法用語…" autocomplete="off" autocorrect="off" spellcheck="false">'
+      + '<button id="search-close" title="閉じる">✕</button>';
+    var ref = document.getElementById('dict-overlay') || document.body.firstChild;
+    ref.parentNode.insertBefore(bar, ref.nextSibling);
+  }
+  if (!document.getElementById('search-results')) {
+    var res = document.createElement('div');
+    res.id = 'search-results';
+    var bar2 = document.getElementById('search-bar');
+    bar2.parentNode.insertBefore(res, bar2.nextSibling);
+  }
+  if (!document.getElementById('top-search-btn')) {
+    var nav = document.getElementById('top-nav');
+    if (nav) {
+      var btn = document.createElement('button');
+      btn.id = 'top-search-btn';
+      btn.textContent = '🔍 検索';
+      btn.addEventListener('click', openSearch);
+      nav.appendChild(btn);
+    }
+  }
+}
+
+/* ── DOM から語彙を自動抽出 ── */
+function _autoExtractVocabFromDOM() {
+  var items = [], seen = {};
+  // .pill 要素（Spanish1 語彙タブ）
+  document.querySelectorAll('.pill').forEach(function(pill) {
+    var esEl = pill.querySelector('.pill-es');
+    var jaEl = pill.querySelector('.pill-ja');
+    if (!esEl || !jaEl) return;
+    var es = esEl.textContent.trim();
+    if (seen[es]) return;
+    seen[es] = 1;
+    var posEl = pill.querySelector('.pill-pos');
+    items.push({
+      es: es,
+      ja: jaEl.textContent.trim(),
+      pos: posEl ? posEl.textContent.trim() : '',
+      tag: '語彙'
+    });
+  });
+  // window.LESSON_VOCAB（Spanish2）
+  if (typeof window.LESSON_VOCAB !== 'undefined') {
+    Object.keys(window.LESSON_VOCAB).forEach(function(word) {
+      if (seen[word]) return;
+      seen[word] = 1;
+      var v = window.LESSON_VOCAB[word];
+      var ja = v.note || (v.example && v.example.ja) || v.pos || '';
+      items.push({
+        es: word,
+        ja: ja,
+        pos: v.pos || '',
+        tag: '本文の語彙',
+        _lessonVocabData: v
+      });
+    });
+  }
+  return items;
+}
+
+/* ── DOM から文法用語を自動抽出 ── */
+function _autoExtractGrammarTermsFromDOM() {
+  var terms = [];
+  var circledNums = /[①②③④⑤⑥⑦⑧⑨⑩⑪⑫]/g;
+  document.querySelectorAll('[id].sec-heading, [id].sec-heading-rd, [id].sec-heading-ex').forEach(function(el) {
+    if (!el.id) return;
+    var titleEl = el.querySelector('.sec-title, .rd-title, .ex-title');
+    var esEl    = el.querySelector('.sec-es, .rd-es');
+    var label   = titleEl ? titleEl.textContent.trim() : el.textContent.replace(circledNums, '').trim().slice(0, 40);
+    if (!label) return;
+    var words = label.replace(circledNums, '').split(/[・\s　\/（）()：:]+/).filter(function(t) { return t.length >= 2; });
+    if (esEl) {
+      esEl.textContent.trim().split(/[,\s\/・:：()\s]+/).forEach(function(t) {
+        if (t.length >= 2) words.push(t);
+      });
+    }
+    terms.push({ terms: words, id: el.id, label: label });
+  });
+  return terms;
 }
 
 /* ── RAW 辞書統合（dict-data.js がロード済みの場合のみ有効） ── */
@@ -446,88 +573,104 @@ function _initRawDictIntegration() {
 
 /* ── 初期化（defer により DOM 解析完了後・VOCAB_BASE 定義後に実行） ── */
 (function() {
-  if (typeof VOCAB_BASE === 'undefined') return;
+  document.addEventListener('DOMContentLoaded', function() {
+    // UI 要素を確保（なければ自動注入）
+    _ensureSearchUI();
 
-  // 派生データを構築
-  VOCAB_INF = VOCAB_BASE.map(function(item) { return Object.assign({}, item, {form: '不定詞'}); });
-  CONJ_MAP  = {};
-  VOCAB_BASE.forEach(function(item) {
-    getConjForms(item).forEach(function(f) {
-      var key = stripAccents(f.form);
-      if (!CONJ_MAP[key]) CONJ_MAP[key] = {item: item, persona: f.label, conj: f.form};
-    });
-  });
+    // 語彙ソースを決定
+    var vocabSource = (typeof VOCAB_BASE !== 'undefined' && VOCAB_BASE.length)
+      ? VOCAB_BASE
+      : _autoExtractVocabFromDOM();
 
-  // 検索バー
-  var sinput = document.getElementById('search-input');
-  if (sinput) sinput.addEventListener('input', function() {
-    var q = this.value.trim(), box = document.getElementById('search-results');
-    if (q.length < 1) { box.classList.remove('has-results'); return; }
-    var sr = searchVocab(q);
-    renderTo('search-results', sr.results, sr.grammar, q, sr.conjMatch);
-  });
+    // 文法用語ソースを決定
+    if (typeof GRAMMAR_TERMS === 'undefined' || !GRAMMAR_TERMS.length) {
+      _GRAMMAR_TERMS_LOCAL = _autoExtractGrammarTermsFromDOM();
+    }
 
-  var cinput = document.getElementById('cover-search-input');
-  if (cinput) cinput.addEventListener('input', function() {
-    var q = this.value.trim(), box = document.getElementById('cover-search-results');
-    if (q.length < 1) { box.classList.remove('has-results'); return; }
-    var sr = searchVocab(q);
-    renderTo('cover-search-results', sr.results, sr.grammar, q, sr.conjMatch);
-  });
+    // 語彙がなければ検索機能不要
+    if (!vocabSource.length) return;
 
-  var sclose = document.getElementById('search-close');
-  if (sclose) sclose.addEventListener('click', closeSearch);
-
-  var fnBtn = document.getElementById('fn-search-btn');
-  if (fnBtn) fnBtn.addEventListener('click', openSearch);
-
-  // 検索結果外クリックで閉じる
-  document.addEventListener('click', function(e) {
-    var bar = document.getElementById('search-bar');
-    var res = document.getElementById('search-results');
-    var btn = document.getElementById('top-search-btn');
-    if (bar && res && !bar.contains(e.target) && !res.contains(e.target) && e.target !== btn)
-      res.classList.remove('has-results');
-    var cs  = document.querySelector('.cover-search');
-    var cr  = document.getElementById('cover-search-results');
-    if (cr && cs && !cs.contains(e.target) && !cr.contains(e.target))
-      cr.classList.remove('has-results');
-  });
-
-  // フローティングナビ
-  var toggle = document.getElementById('float-nav-toggle');
-  var menu   = document.getElementById('float-nav-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', function(e) { e.stopPropagation(); menu.classList.toggle('open'); });
-    document.addEventListener('click', function(e) {
-      if (!menu.contains(e.target) && e.target !== toggle) menu.classList.remove('open');
-    });
-    menu.querySelectorAll('a.fn-item').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var sectionId = (link.getAttribute('href') || '').replace('#', '');
-        if (sectionId) jumpToSection(sectionId);
-        menu.classList.remove('open');
+    // 派生データを構築
+    VOCAB_INF = vocabSource.map(function(item) { return Object.assign({}, item, {form: '不定詞'}); });
+    CONJ_MAP  = {};
+    vocabSource.forEach(function(item) {
+      getConjForms(item).forEach(function(f) {
+        var key = stripAccents(f.form);
+        if (!CONJ_MAP[key]) CONJ_MAP[key] = {item: item, persona: f.label, conj: f.form};
       });
     });
-  }
 
-  // 語彙ピル
-  document.querySelectorAll('#tab-vocab .pill').forEach(function(pill) {
-    pill.title = 'タップして詳細を確認';
-    pill.addEventListener('click', function() {
-      var esEl = pill.querySelector('.pill-es');
-      if (!esEl) return;
-      var es = esEl.textContent.trim().toLowerCase();
-      for (var i = 0; i < VOCAB_BASE.length; i++) {
-        if (VOCAB_BASE[i].es.toLowerCase() === es) { openDictModal(VOCAB_BASE[i], null); return; }
-      }
+    // 検索バー
+    var sinput = document.getElementById('search-input');
+    if (sinput) sinput.addEventListener('input', function() {
+      var q = this.value.trim(), box = document.getElementById('search-results');
+      if (q.length < 1) { box.classList.remove('has-results'); return; }
+      var sr = searchVocab(q);
+      renderTo('search-results', sr.results, sr.grammar, q, sr.conjMatch);
     });
-    pill.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pill.click(); }
+
+    var cinput = document.getElementById('cover-search-input');
+    if (cinput) cinput.addEventListener('input', function() {
+      var q = this.value.trim(), box = document.getElementById('cover-search-results');
+      if (q.length < 1) { box.classList.remove('has-results'); return; }
+      var sr = searchVocab(q);
+      renderTo('cover-search-results', sr.results, sr.grammar, q, sr.conjMatch);
     });
+
+    var sclose = document.getElementById('search-close');
+    if (sclose) sclose.addEventListener('click', closeSearch);
+
+    var fnBtn = document.getElementById('fn-search-btn');
+    if (fnBtn) fnBtn.addEventListener('click', openSearch);
+
+    // 検索結果外クリックで閉じる
+    document.addEventListener('click', function(e) {
+      var bar = document.getElementById('search-bar');
+      var res = document.getElementById('search-results');
+      var btn = document.getElementById('top-search-btn');
+      if (bar && res && !bar.contains(e.target) && !res.contains(e.target) && e.target !== btn)
+        res.classList.remove('has-results');
+      var cs  = document.querySelector('.cover-search');
+      var cr  = document.getElementById('cover-search-results');
+      if (cr && cs && !cs.contains(e.target) && !cr.contains(e.target))
+        cr.classList.remove('has-results');
+    });
+
+    // フローティングナビ
+    var toggle = document.getElementById('float-nav-toggle');
+    var menu   = document.getElementById('float-nav-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function(e) { e.stopPropagation(); menu.classList.toggle('open'); });
+      document.addEventListener('click', function(e) {
+        if (!menu.contains(e.target) && e.target !== toggle) menu.classList.remove('open');
+      });
+      menu.querySelectorAll('a.fn-item').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var sectionId = (link.getAttribute('href') || '').replace('#', '');
+          if (sectionId) jumpToSection(sectionId);
+          menu.classList.remove('open');
+        });
+      });
+    }
+
+    // 語彙ピル（クリックで詳細表示）
+    document.querySelectorAll('#tab-vocab .pill').forEach(function(pill) {
+      pill.title = 'タップして詳細を確認';
+      pill.addEventListener('click', function() {
+        var esEl = pill.querySelector('.pill-es');
+        if (!esEl) return;
+        var es = esEl.textContent.trim().toLowerCase();
+        for (var i = 0; i < vocabSource.length; i++) {
+          if (vocabSource[i].es.toLowerCase() === es) { openDictModal(vocabSource[i], null); return; }
+        }
+      });
+      pill.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pill.click(); }
+      });
+    });
+
+    // RAW 辞書統合
+    _initRawDictIntegration();
   });
-
-  // RAW 辞書統合
-  _initRawDictIntegration();
 })();

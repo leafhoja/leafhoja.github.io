@@ -269,40 +269,40 @@ function openWordModal(esText, defText) {
   var vocab = window.LESSON_VOCAB || {};
   var entry = vocab[key] || {};
 
-  var wordEl   = document.getElementById('s2-dict-word');
-  var posEl    = document.getElementById('s2-dict-pos');
-  var bodyEl   = document.getElementById('s2-dict-body');
-  var overlayEl = document.getElementById('s2-dict-overlay');
+  var wordEl   = document.getElementById('dict-modal-word');
+  var posEl    = document.getElementById('dict-modal-pos');
+  var bodyEl   = document.getElementById('dict-modal-body');
+  var overlayEl = document.getElementById('dict-overlay');
   if (!wordEl || !bodyEl || !overlayEl) return;
 
   wordEl.textContent = esText;
   posEl.textContent  = entry.pos || '';
 
-  var body = '<div class="s2-dict-meaning">' + s2EscHtml(defText) + '</div>';
+  var body = '<div class="dict-ja-big">' + s2EscHtml(defText) + '</div>';
 
   if (entry.note) {
-    body += '<div class="s2-dict-note">📝 ' + s2EscHtml(entry.note) + '</div>';
+    body += '<div class="dict-note">📝 ' + s2EscHtml(entry.note) + '</div>';
   }
   if (entry.vtype) {
-    body += '<div class="s2-dict-row"><span class="s2-dict-label">動詞型</span><span class="s2-dict-val">' + s2EscHtml(entry.vtype) + '</span></div>';
+    body += '<div class="dict-row"><span class="dict-label">動詞型</span><span class="dict-val">' + s2EscHtml(entry.vtype) + '</span></div>';
   }
   if (entry.conj) {
     var cHtml = entry.conj.split(/,\s*/).map(function (f) {
-      return '<span class="s2-dict-conj">' + s2EscHtml(f.trim()) + '</span>';
+      return '<span class="dict-conj-badge">' + s2EscHtml(f.trim()) + '</span>';
     }).join('');
-    body += '<div class="s2-dict-row"><span class="s2-dict-label">現在活用</span><span class="s2-dict-val">' + cHtml + '</span></div>';
+    body += '<div class="dict-row"><span class="dict-label">現在活用</span><span class="dict-val">' + cHtml + '</span></div>';
   }
   if (entry.adj) {
     var aHtml = entry.adj.split(/,\s*/).map(function (f) {
-      return '<span class="s2-dict-adj">' + s2EscHtml(f.trim()) + '</span>';
+      return '<span class="dict-conj-badge">' + s2EscHtml(f.trim()) + '</span>';
     }).join('');
-    body += '<div class="s2-dict-row"><span class="s2-dict-label">形容詞変化</span><span class="s2-dict-val">' + aHtml + '</span></div>';
+    body += '<div class="dict-row"><span class="dict-label">形容詞変化</span><span class="dict-val">' + aHtml + '</span></div>';
   }
   if (entry.example) {
-    body += '<div class="s2-dict-example">' +
-      '<div class="s2-dict-ex-label">例文</div>' +
-      '<div class="s2-dict-ex-es">' + s2EscHtml(entry.example.es) + '</div>' +
-      '<div class="s2-dict-ex-ja">' + s2EscHtml(entry.example.ja) + '</div>' +
+    body += '<div class="dict-example">' +
+      '<div class="dict-example-label">例文</div>' +
+      '<div class="dict-example-es">' + s2EscHtml(entry.example.es) + '</div>' +
+      '<div class="dict-example-ja">' + s2EscHtml(entry.example.ja) + '</div>' +
       '</div>';
   }
 
@@ -332,30 +332,30 @@ function s2EscHtml(s) {
   // 🖨PDFで保存 → ☰目次 → 🔍検索 の順になるよう末尾に追加
   var tocToggle = document.getElementById('top-toc-toggle');
   var searchBtn = document.createElement('button');
-  searchBtn.id = 'search-btn';
+  searchBtn.id = 'top-search-btn';
   searchBtn.textContent = '🔍 検索';
   tocToggle.parentNode.insertBefore(searchBtn, tocToggle.nextSibling);
 
   // 検索バーをbodyに追加
   document.body.insertAdjacentHTML('beforeend',
-    '<div id="s2-search-bar">' +
+    '<div id="search-bar">' +
       '<label>検索</label>' +
-      '<input id="s2-search-input" type="text" placeholder="スペイン語・日本語で検索…" autocomplete="off" autocorrect="off" spellcheck="false">' +
-      '<button id="s2-search-close" title="閉じる">✕</button>' +
+      '<input id="search-input" type="text" placeholder="スペイン語・日本語で検索…" autocomplete="off" autocorrect="off" spellcheck="false">' +
+      '<button id="search-close" title="閉じる">✕</button>' +
     '</div>' +
-    '<div id="s2-search-results"></div>'
+    '<div id="search-results"></div>'
   );
 
   // 辞書モーダルをbodyに追加
   document.body.insertAdjacentHTML('beforeend',
-    '<div id="s2-dict-overlay">' +
-      '<div id="s2-dict-modal">' +
-        '<div id="s2-dict-head">' +
-          '<span id="s2-dict-word"></span>' +
-          '<span id="s2-dict-pos"></span>' +
-          '<button id="s2-dict-close" title="閉じる">✕</button>' +
+    '<div id="dict-overlay">' +
+      '<div id="dict-modal">' +
+        '<div id="dict-modal-head">' +
+          '<span id="dict-modal-word"></span>' +
+          '<span id="dict-modal-pos"></span>' +
+          '<button id="dict-modal-close" title="閉じる">✕</button>' +
         '</div>' +
-        '<div id="s2-dict-body"></div>' +
+        '<div id="dict-modal-body"></div>' +
       '</div>' +
     '</div>'
   );
@@ -449,63 +449,63 @@ function s2EscHtml(s) {
 
   /* ── 検索バーの開閉 ── */
   function openSearch() {
-    document.getElementById('s2-search-bar').classList.add('open');
-    document.getElementById('s2-search-input').focus();
+    document.getElementById('search-bar').classList.add('open');
+    document.getElementById('search-input').focus();
     document.getElementById('top-toc-menu').classList.remove('open');
     document.getElementById('top-toc-toggle').textContent = '☰ 目次';
   }
   function closeSearch() {
-    document.getElementById('s2-search-bar').classList.remove('open');
-    document.getElementById('s2-search-results').classList.remove('open');
-    document.getElementById('s2-search-results').innerHTML = '';
-    document.getElementById('s2-search-input').value = '';
+    document.getElementById('search-bar').classList.remove('open');
+    document.getElementById('search-results').classList.remove('has-results');
+    document.getElementById('search-results').innerHTML = '';
+    document.getElementById('search-input').value = '';
   }
 
   /* ── 結果レンダリング ── */
   var _lessonHits = [], _dictHits = [];
 
   function doSearch(q) {
-    var res = document.getElementById('s2-search-results');
-    if (!q) { res.classList.remove('open'); res.innerHTML = ''; return; }
+    var res = document.getElementById('search-results');
+    if (!q) { res.classList.remove('has-results'); res.innerHTML = ''; return; }
 
     _lessonHits = searchLesson(q);
     _dictHits   = searchDict(q);
 
     if (!_lessonHits.length && !_dictHits.length) {
-      res.innerHTML = '<div class="s2-sr-none">「' + esc(q) + '」は見つかりませんでした</div>';
-      res.classList.add('open');
+      res.innerHTML = '<div class="sr-none">「' + esc(q) + '」は見つかりませんでした</div>';
+      res.classList.add('has-results');
       return;
     }
 
     var html = '';
     if (_lessonHits.length) {
-      html += '<div class="s2-sr-header">このページの語彙</div>';
+      html += '<div class="sr-header">このページの語彙</div>';
       _lessonHits.forEach(function(h, i) {
         var e = h.entry;
         var hasTarget = !!(e.card || e.tabId);
         var tabLabel = e.tabId === 'tab-kaiwa' ? '会話' : e.tabId === 'tab-dokkai' ? '読解' : e.tabId === 'tab-renshu' ? '練習' : '';
-        html += '<div class="s2-sr-item" data-lesson="' + i + '" style="' + (hasTarget ? '' : 'opacity:.6;cursor:default') + '">' +
-          '<span class="s2-sr-es">' + hlEs(e.es, q) + '</span>' +
-          '<span class="s2-sr-ja">' + esc(e.def.slice(0,50)) + '</span>' +
-          (hasTarget && tabLabel ? '<span class="s2-sr-tag is-lesson">→ ' + tabLabel + '</span>' : '') +
+        html += '<div class="sr-item" data-lesson="' + i + '" style="' + (hasTarget ? '' : 'opacity:.6;cursor:default') + '">' +
+          '<span class="sr-es">' + hlEs(e.es, q) + '</span>' +
+          '<span class="sr-ja">' + esc(e.def.slice(0,50)) + '</span>' +
+          (hasTarget && tabLabel ? '<span class="sr-tag">→ ' + tabLabel + '</span>' : '') +
           '</div>';
       });
     }
     if (_dictHits.length) {
-      html += '<div class="s2-sr-header">辞書（クリックで詳細表示）</div>';
+      html += '<div class="sr-header">辞書（クリックで詳細表示）</div>';
       _dictHits.forEach(function(h, i) {
-        html += '<div class="s2-sr-item" data-dict="' + i + '">' +
-          '<span class="s2-sr-es is-dict">' + hlEs(h.word, q) + '</span>' +
-          '<span class="s2-sr-ja">' + esc(h.meaning.slice(0,50)) + '</span>' +
-          '<span class="s2-sr-tag is-dict">' + esc(h.pos) + '</span>' +
+        html += '<div class="sr-item" data-dict="' + i + '">' +
+          '<span class="sr-es">' + hlEs(h.word, q) + '</span>' +
+          '<span class="sr-ja">' + esc(h.meaning.slice(0,50)) + '</span>' +
+          '<span class="sr-tag">' + esc(h.pos) + '</span>' +
           '</div>';
       });
     }
 
     res.innerHTML = html;
-    res.classList.add('open');
+    res.classList.add('has-results');
 
-    res.querySelectorAll('.s2-sr-item[data-lesson]').forEach(function(el) {
+    res.querySelectorAll('.sr-item[data-lesson]').forEach(function(el) {
       var idx = parseInt(el.dataset.lesson);
       el.addEventListener('click', function() {
         var entry = _lessonHits[idx].entry;
@@ -514,7 +514,7 @@ function s2EscHtml(s) {
         else { jumpToEntry(entry); }
       });
     });
-    res.querySelectorAll('.s2-sr-item[data-dict]').forEach(function(el) {
+    res.querySelectorAll('.sr-item[data-dict]').forEach(function(el) {
       var idx = parseInt(el.dataset.dict);
       el.addEventListener('click', function() {
         closeSearch();
@@ -561,72 +561,72 @@ function s2EscHtml(s) {
     var adj     = e[F.adj]     || '';
     var note    = e[F.note]    || '';
 
-    document.getElementById('s2-dict-word').textContent = word;
-    document.getElementById('s2-dict-pos').textContent  = pos;
+    document.getElementById('dict-modal-word').textContent = word;
+    document.getElementById('dict-modal-pos').textContent  = pos;
 
-    var body = '<div class="s2-dict-meaning">' + esc(meaning) + '</div>';
+    var body = '<div class="dict-ja-big">' + esc(meaning) + '</div>';
 
-    if (gender === 'm') body += '<div class="s2-dict-row"><span class="s2-dict-label">性</span><span class="s2-dict-val"><span class="s2-dict-gender-m">男性 (m)</span></span></div>';
-    else if (gender === 'f') body += '<div class="s2-dict-row"><span class="s2-dict-label">性</span><span class="s2-dict-val"><span class="s2-dict-gender-f">女性 (f)</span></span></div>';
+    if (gender === 'm') body += '<div class="dict-row"><span class="dict-label">性</span><span class="dict-val"><span class="dict-tag" style="background:#dbeafe;color:#1e40af">男性 (m)</span></span></div>';
+    else if (gender === 'f') body += '<div class="dict-row"><span class="dict-label">性</span><span class="dict-val"><span class="dict-tag" style="background:#fce7f3;color:#9d174d">女性 (f)</span></span></div>';
 
-    if (plural) body += '<div class="s2-dict-row"><span class="s2-dict-label">複数形</span><span class="s2-dict-val" style="font-family:var(--mono);font-weight:600;color:var(--accent)">' + esc(plural) + '</span></div>';
+    if (plural) body += '<div class="dict-row"><span class="dict-label">複数形</span><span class="dict-val" style="font-family:var(--mono);font-weight:600;color:var(--accent)">' + esc(plural) + '</span></div>';
 
-    if (vtype) body += '<div class="s2-dict-row"><span class="s2-dict-label">動詞型</span><span class="s2-dict-val">' + esc(vtype) + '</span></div>';
+    if (vtype) body += '<div class="dict-row"><span class="dict-label">動詞型</span><span class="dict-val">' + esc(vtype) + '</span></div>';
 
     if (conj) {
       var cHtml = conj.split(/,\s*/).map(function(f) {
-        return '<span class="s2-dict-conj">' + esc(f.trim()) + '</span>';
+        return '<span class="dict-conj-badge">' + esc(f.trim()) + '</span>';
       }).join('');
-      body += '<div class="s2-dict-row"><span class="s2-dict-label">現在活用</span><span class="s2-dict-val">' + cHtml + '</span></div>';
+      body += '<div class="dict-row"><span class="dict-label">現在活用</span><span class="dict-val">' + cHtml + '</span></div>';
     }
 
     if (adj) {
       var aHtml = adj.split(/,\s*/).map(function(f) {
-        return '<span class="s2-dict-adj">' + esc(f.trim()) + '</span>';
+        return '<span class="dict-conj-badge">' + esc(f.trim()) + '</span>';
       }).join('');
-      body += '<div class="s2-dict-row"><span class="s2-dict-label">形容詞変化</span><span class="s2-dict-val">' + aHtml + '</span></div>';
+      body += '<div class="dict-row"><span class="dict-label">形容詞変化</span><span class="dict-val">' + aHtml + '</span></div>';
     }
 
-    if (note) body += '<div class="s2-dict-note">📝 ' + esc(note) + '</div>';
+    if (note) body += '<div class="dict-note">📝 ' + esc(note) + '</div>';
 
     // 例文表示
     if (typeof DICT_EXAMPLES !== 'undefined') {
       var ex = DICT_EXAMPLES[word];
       if (ex) {
-        body += '<div class="s2-dict-example">' +
-          '<div class="s2-dict-ex-label">例文</div>' +
-          '<div class="s2-dict-ex-es">' + esc(ex.es) + '</div>' +
-          '<div class="s2-dict-ex-ja">' + esc(ex.ja) + '</div>' +
+        body += '<div class="dict-example">' +
+          '<div class="dict-example-label">例文</div>' +
+          '<div class="dict-example-es">' + esc(ex.es) + '</div>' +
+          '<div class="dict-example-ja">' + esc(ex.ja) + '</div>' +
           '</div>';
       }
     }
 
-    body += '<a class="s2-dict-dict-link" href="spanish_dictionary.html" target="_blank">📖 単語帳で詳しく見る →</a>';
+    body += '<a class="dict-jump-btn" href="spanish_dictionary.html" target="_blank">📖 単語帳で詳しく見る →</a>';
 
-    document.getElementById('s2-dict-body').innerHTML = body;
-    document.getElementById('s2-dict-overlay').classList.add('open');
+    document.getElementById('dict-modal-body').innerHTML = body;
+    document.getElementById('dict-overlay').classList.add('open');
   }
 
   function closeDictModal() {
-    document.getElementById('s2-dict-overlay').classList.remove('open');
+    document.getElementById('dict-overlay').classList.remove('open');
   }
 
   /* ── イベントリスナー ── */
   searchBtn.addEventListener('click', openSearch);
-  document.getElementById('s2-search-close').addEventListener('click', closeSearch);
-  document.getElementById('s2-search-input').addEventListener('input', function() {
+  document.getElementById('search-close').addEventListener('click', closeSearch);
+  document.getElementById('search-input').addEventListener('input', function() {
     doSearch(this.value.trim());
   });
-  document.getElementById('s2-dict-overlay').addEventListener('click', function(e) {
+  document.getElementById('dict-overlay').addEventListener('click', function(e) {
     if (e.target === this) closeDictModal();
   });
-  document.getElementById('s2-dict-close').addEventListener('click', closeDictModal);
+  document.getElementById('dict-modal-close').addEventListener('click', closeDictModal);
 
   // 検索バー外クリックで閉じる
   document.addEventListener('click', function(e) {
-    var bar = document.getElementById('s2-search-bar');
-    var res = document.getElementById('s2-search-results');
-    if (!e.target.closest('#s2-search-bar') && !e.target.closest('#s2-search-results') && e.target !== searchBtn) {
+    var bar = document.getElementById('search-bar');
+    var res = document.getElementById('search-results');
+    if (!e.target.closest('#search-bar') && !e.target.closest('#search-results') && e.target !== searchBtn) {
       if (bar.classList.contains('open')) closeSearch();
     }
   });
