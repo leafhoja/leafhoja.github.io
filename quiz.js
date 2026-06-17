@@ -43,6 +43,19 @@
     }
   }
 
+  function hasPredictedAccess() {
+    if (isAdmin()) return true;
+    var isS1G11 = (localStorage.getItem('affiliationType') === 's1g11');
+    var raw = localStorage.getItem('predictedAccess');
+    if (!raw) return false;
+    try {
+      var cfg = JSON.parse(raw);
+      return (isS1G11 ? cfg.s1g11 : cfg.other) === 1;
+    } catch (e) {
+      return false;
+    }
+  }
+
   /* ── CSS を一度だけ注入 ── */
   function injectStyle() {
     if (document.getElementById('quiz-style')) return;
@@ -132,7 +145,7 @@
 
     var html = '';
     if (data.title) html += '<h2 class="qz-title">' + esc(data.title) + '</h2>';
-    if (data.adminOnly) html += '<div class="qz-admin-badge">🔒 予想問題（管理者のみ表示）</div>';
+    if (data.adminOnly && isAdmin()) html += '<div class="qz-admin-badge">🔒 予想問題（管理者のみ表示）</div>';
     if (data.intro) html += '<p class="qz-intro">' + data.intro + '</p>';
     html += '<div class="qz-controls">' +
             '<button type="button" class="qz-allbtn">すべての答えを表示</button>' +
@@ -429,9 +442,9 @@
   /* ── 初期化 ── */
   document.addEventListener('DOMContentLoaded', function () {
     var data = (typeof QUIZ_DATA !== 'undefined' ? QUIZ_DATA : {})[currentPage()];
-    if (!data) return;                          // データなし → タブを出さない
-    if (data.adminOnly && !isAdmin()) return;   // 予想問題など：管理者のみ表示
-    if (!hasQuizAccess()) return;               // アクセス権なし → タブを出さない
+    if (!data) return;                                                      // データなし → タブを出さない
+    if (data.adminOnly && !hasPredictedAccess()) return;                    // 予想問題：管理者 or PREDICTED_ACCESS 許可のみ
+    if (!data.adminOnly && !hasQuizAccess()) return;                        // 通常小テスト：アクセス権なし → タブを出さない
     // 他の動的タブ（二列の語彙タブ等）の生成後に末尾へ追加するため遅延
     setTimeout(function () { buildTab(data); }, 0);
   });

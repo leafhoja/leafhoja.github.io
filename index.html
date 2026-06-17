@@ -5,10 +5,13 @@
 <!-- ============================================================
   ★ 公開設定 ★（変更箇所はここだけ）
   ============================================================
-  PAGE_OPEN  : 1 = サイト全体を公開, 0 = サイト全体をロック
-  LOCK_S1G11 : 1 = 個別設定に従う, 0 = 11組の全ページを一括ロック
-  LOCK_OTHER : 1 = 個別設定に従う, 0 = それ以外の全ページを一括ロック
-  CARD_ACCESS: ページごとの個別アクセス設定（s1g11/other = 1 or 0）
+  PAGE_OPEN       : 1 = サイト全体を公開, 0 = サイト全体をロック
+  LOCK_S1G11      : 1 = 個別設定に従う, 0 = 11組の全ページを一括ロック
+  LOCK_OTHER      : 1 = 個別設定に従う, 0 = それ以外の全ページを一括ロック
+  CARD_ACCESS     : ページごとの個別アクセス設定（s1g11/other = 1 or 0）
+  KAKOMON_ACCESS  : 過去問タブの表示設定（s1g11/other = 1=表示, 0=非表示）
+  PREDICTED_ACCESS: 予想問題タブの表示設定（s1g11/other = 1=表示, 0=非表示）
+                    管理者は設定に関わらず常に表示されます。
 
   【変更方法】下の数値を 1 または 0 に書き換えて保存・デプロイしてください。
   ============================================================ -->
@@ -36,6 +39,18 @@ var CARD_ACCESS = {
   'Spanish2_lesson6.html':  { s1g11: 0, other: 1 },
   'spanish_dictionary.html':       { s1g11: 1, other: 1 },
   'スペ語不規則活用動詞.html':     { s1g11: 0, other: 1 },
+};
+
+/* ★ 過去問タブのアクセス設定 ★  s1g11/other: 1=表示, 0=非表示 */
+var KAKOMON_ACCESS = {
+  s1g11: 0,  // 理科一類11組
+  other: 0,  // それ以外
+};
+
+/* ★ 予想問題タブのアクセス設定 ★  s1g11/other: 1=表示, 0=非表示（管理者は常に表示）*/
+var PREDICTED_ACCESS = {
+  s1g11: 0,  // 理科一類11組
+  other: 0,  // それ以外
 };
 
 /* ★ 小テスト一括設定 ★（全ページの小テストをまとめて切り替え／所属グループ別）
@@ -697,13 +712,15 @@ var GOOGLE_FORMS_ENTRY_ID = 'entry.1542429076';
 // アクセスコントロール（ホームページ）
 function checkAndShowOverlay() {
   // サイト全体ロック状態・グループ別ロック・ページ別設定を localStorage に記録
-  localStorage.setItem('siteOpen',   PAGE_OPEN  === 1 ? '1' : '0');
-  localStorage.setItem('lockS1G11',  String(LOCK_S1G11));
-  localStorage.setItem('lockOther',  String(LOCK_OTHER));
-  localStorage.setItem('cardAccess', JSON.stringify(CARD_ACCESS));
-  localStorage.setItem('quizAccess', JSON.stringify(QUIZ_ACCESS));
-  localStorage.setItem('quizBulkS1G11', QUIZ_BULK_S1G11);
-  localStorage.setItem('quizBulkOther', QUIZ_BULK_OTHER);
+  localStorage.setItem('siteOpen',        PAGE_OPEN  === 1 ? '1' : '0');
+  localStorage.setItem('lockS1G11',       String(LOCK_S1G11));
+  localStorage.setItem('lockOther',       String(LOCK_OTHER));
+  localStorage.setItem('cardAccess',      JSON.stringify(CARD_ACCESS));
+  localStorage.setItem('quizAccess',      JSON.stringify(QUIZ_ACCESS));
+  localStorage.setItem('quizBulkS1G11',   QUIZ_BULK_S1G11);
+  localStorage.setItem('quizBulkOther',   QUIZ_BULK_OTHER);
+  localStorage.setItem('kakomonAccess',   JSON.stringify(KAKOMON_ACCESS));
+  localStorage.setItem('predictedAccess', JSON.stringify(PREDICTED_ACCESS));
 
   if (PAGE_OPEN !== 1) {
     document.getElementById('blocked-msg').textContent = 'このサイトは現在閲覧できません';

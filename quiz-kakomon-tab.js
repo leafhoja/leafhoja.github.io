@@ -134,11 +134,30 @@
     }
   }
 
+  function isAdmin() {
+    return localStorage.getItem('adminViewAll') === 'true';
+  }
+
+  function hasKakomonAccess() {
+    if (isAdmin()) return true;
+    var isS1G11 = (localStorage.getItem('affiliationType') === 's1g11');
+    var raw = localStorage.getItem('kakomonAccess');
+    if (!raw) return false;
+    try {
+      var cfg = JSON.parse(raw);
+      return (isS1G11 ? cfg.s1g11 : cfg.other) === 1;
+    } catch (e) {
+      return false;
+    }
+  }
+
   /* ── 初期化 ── */
   document.addEventListener('DOMContentLoaded', function () {
     var page = currentPage();
     var data = (typeof QUIZ_KAKOMON !== 'undefined' ? QUIZ_KAKOMON : {})[page];
-    if (data) buildTab(data);
+    if (!data) return;
+    if (!hasKakomonAccess()) return;
+    buildTab(data);
   });
 
 })();
