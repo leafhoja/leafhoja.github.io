@@ -357,6 +357,7 @@ body.is-printing #tab-renshu { break-before: always; page-break-before: always; 
   .sub::before, .sub-rd::before { color: #444 !important; }
   .dl-line[data-num] .dl-speaker::before { content: attr(data-num) ". "; font-weight: 700; color: #000; }
   .text-sentence[data-num]::before { content: "(" attr(data-num) ") "; font-weight: 700; color: #000; }
+  .trans-sent[data-num]::before { content: "(" attr(data-num) ") "; font-weight: 700; color: #000; }
 }
 
 @media (max-width: 620px) {
