@@ -3693,6 +3693,10 @@ var DICT_EXAMPLES = {
   'táctico / táctica': { es: 'El general tomó una decisión táctica para rodear al enemigo por el flanco derecho.', ja: '将軍は右翼から敵を包囲するために戦術的な決断を下した。' },
   'técnico / técnica': { es: 'El técnico reparó el ordenador en menos de una hora.', ja: '技術者は1時間足らずでコンピューターを修理した。' },
   'ganal': { es: 'Trabaja mucho para ganar dinero y mantener a su familia.', ja: '家族を養うためにお金を稼ごうと懸命に働いている。' },
+  'reina': { es: 'La reina saludó al pueblo desde el palacio.', ja: '女王は宮殿から民衆に挨拶した。' },
+  'repetida / repetido': { es: 'La misma escena repetida varias veces pierde su impacto.', ja: '同じ場面を何度も繰り返すとインパクトが薄れる。' },
+  'reservada / reservado': { es: 'Esta mesa está reservada para las ocho.', ja: 'このテーブルは8時に予約されています。' },
+  'retardada / retardado': { es: 'La llegada del vuelo fue retardada por el mal tiempo.', ja: '悪天候のため、フライトの到着が遅延した。' },
   'sangual / sanjual': { es: 'El sangual es un árbol frutal típico de algunas regiones de América del Sur.', ja: 'サンワルは南米の一部地域に固有の果樹だ。' },
   'sanies': { es: 'La sanies es una secreción serosa y purulenta que puede aparecer en heridas infectadas.', ja: 'サニーズ（膿血）は感染した傷口に現れることのある漿液性の化膿分泌物だ。' },
 };

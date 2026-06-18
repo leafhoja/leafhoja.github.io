@@ -222,10 +222,32 @@ function normalize(s) {
   return s.toLowerCase().replace(/[áéíóúüñÁÉÍÓÚÜÑ]/g, function(c) { return ACCENT_MAP[c] || c; });
 }
 
+// ====== 重複除去 ======
+var DEDUP_RAW = (function() {
+  var seen = {}, result = [];
+  for (var _di = 0; _di < RAW.length; _di++) {
+    var _de = RAW[_di], _dw = _de[F.word];
+    if (!_dw) continue;
+    if (seen[_dw] === undefined) {
+      seen[_dw] = result.length;
+      result.push(_de.slice());
+    } else {
+      var _ex = result[seen[_dw]];
+      // noteフィールドをマージ
+      var _en = (_ex[F.note] || '').trim(), _nn = (_de[F.note] || '').trim();
+      if (_nn && _en.indexOf(_nn) < 0) _ex[F.note] = _en ? _en + '　' + _nn : _nn;
+      // データが多い方のエントリを優先（noteは保持）
+      var _count = function(a) { var n=0; for(var j=0;j<a.length;j++) if(a[j]) n++; return n; };
+      if (_count(_de) > _count(_ex)) { var _saved = _ex[F.note]; result[seen[_dw]] = _de.slice(); result[seen[_dw]][F.note] = _saved; }
+    }
+  }
+  return result;
+})();
+
 // ====== 検索インデックス構築 ======
 var INDEX = [];
-for (var _i = 0; _i < RAW.length; _i++) {
-  var _e = RAW[_i];
+for (var _i = 0; _i < DEDUP_RAW.length; _i++) {
+  var _e = DEDUP_RAW[_i];
   var _word = _e[F.word] || '';
   var _normWord = normalize(_word);
   var _forms = [_normWord];
@@ -238,7 +260,34 @@ for (var _i = 0; _i < RAW.length; _i++) {
     for (var _af = 0; _af < _afs.length; _af++) { _forms.push(normalize(_afs[_af].trim())); }
   }
   if (_e[F.plural]) _forms.push(normalize(_e[F.plural]));
-  INDEX.push({ i: _i, normWord: _normWord, forms: _forms, meaning: _e[F.meaning] || '', pos: _e[F.pos] || '' });
+  if (typeof DICT_CONJ !== 'undefined' && DICT_CONJ[_word]) {
+    var _dc = DICT_CONJ[_word];
+    var _tenses = ['pres', 'pret', 'imp', 'fut', 'cond', 'subj'];
+    for (var _t = 0; _t < _tenses.length; _t++) {
+      var _ta = _dc[_tenses[_t]];
+      if (_ta) for (var _tf = 0; _tf < _ta.length; _tf++) { _forms.push(normalize(_ta[_tf])); }
+    }
+    if (_dc.ger)    _forms.push(normalize(_dc.ger));
+    if (_dc.pp)     _forms.push(normalize(_dc.pp));
+    if (_dc.plural) _forms.push(normalize(_dc.plural));
+    if (_dc.adj)    for (var _daf = 0; _daf < _dc.adj.length; _daf++) { _forms.push(normalize(_dc.adj[_daf])); }
+    // 規則動詞の分詞形を補完（DICT_CONJにger/ppがない場合）
+    if (!_dc.ger && !_dc.pp && _e[F.pos] && _e[F.pos].indexOf('動詞') >= 0 && _word.length > 2) {
+      var _end2i = _word.slice(-2).toLowerCase();
+      var _stemi = _word.slice(0, -2);
+      if (_end2i === 'ar') { _forms.push(_stemi + 'ando'); _forms.push(_stemi + 'ado'); }
+      else if (_end2i === 'er' || _end2i === 'ir') { _forms.push(_stemi + 'iendo'); _forms.push(_stemi + 'ido'); }
+    }
+  } else if (_e[F.pos] && _e[F.pos].indexOf('動詞') >= 0 && _word.length > 2) {
+    // DICT_CONJにない動詞の分詞形補完
+    var _end2j = _word.slice(-2).toLowerCase();
+    var _stemj = _word.slice(0, -2);
+    if (_end2j === 'ar') { _forms.push(_stemj + 'ando'); _forms.push(_stemj + 'ado'); }
+    else if (_end2j === 'er' || _end2j === 'ir') { _forms.push(_stemj + 'iendo'); _forms.push(_stemj + 'ido'); }
+  }
+  var _meaning = (typeof DICT_MEANINGS !== 'undefined' && DICT_MEANINGS[_word] && DICT_MEANINGS[_word].meaning)
+    ? DICT_MEANINGS[_word].meaning : (_e[F.meaning] || '');
+  INDEX.push({ i: _i, normWord: _normWord, forms: _forms, meaning: _meaning, pos: _e[F.pos] || '' });
 }
 
 // ====== ファジー距離 ======
@@ -342,11 +391,26 @@ function highlightEs(text, query) {
 }
 
 function renderEntry(idx, query) {
-  var e = RAW[idx];
-  var word = e[F.word] || '', pos = e[F.pos] || '', meaning = e[F.meaning] || '';
-  var gender = e[F.gender] || '', plural = e[F.plural] || '';
-  var conj = e[F.conj] || '', vtype = e[F.vtype] || '';
-  var adj = e[F.adj] || '', note = e[F.note] || '';
+  var e = DEDUP_RAW[idx];
+  var word = e[F.word] || '', pos = e[F.pos] || '';
+  var meaning = (typeof DICT_MEANINGS !== 'undefined' && DICT_MEANINGS[word] && DICT_MEANINGS[word].meaning)
+    ? DICT_MEANINGS[word].meaning : (e[F.meaning] || '');
+  var _dc = (typeof DICT_CONJ !== 'undefined') ? (DICT_CONJ[word] || null) : null;
+  var gender = (_dc && _dc.gender) || e[F.gender] || '';
+  var plural = (_dc && _dc.plural) || e[F.plural] || '';
+  var conj   = (_dc && _dc.pres)   ? _dc.pres.join(', ')
+    : (e[F.conj] ? e[F.conj].split(/,\s*/).slice(0, 6).join(', ') : '');
+  var vtype  = (_dc && _dc.vtype)  || e[F.vtype]  || '';
+  var adj    = (_dc && _dc.adj)    ? _dc.adj.join(', ')   : (e[F.adj]   || '');
+  // 分詞形：DICT_CONJのger/ppを優先、なければ語尾から導出
+  var ger = (_dc && _dc.ger) || null;
+  var pp  = (_dc && _dc.pp)  || null;
+  if (!ger && !pp && pos.indexOf('動詞') >= 0 && word.length > 2) {
+    var _end2 = word.slice(-2).toLowerCase(), _stem = word.slice(0, -2);
+    if (_end2 === 'ar') { ger = _stem + 'ando'; pp = _stem + 'ado'; }
+    else if (_end2 === 'er' || _end2 === 'ir') { ger = _stem + 'iendo'; pp = _stem + 'ido'; }
+  }
+  var note   = e[F.note] || '';
   var posClass = getPosClass(pos);
   var isJP = isJapanese(query || '');
   var highlightedWord = (!isJP && query) ? highlightEs(word, query) : escHtml(word);
@@ -359,6 +423,20 @@ function renderEntry(idx, query) {
   if (conj) {
     var cItems = conj.split(/,\s*/).map(function(f) { return '<span class="conj-item">' + escHtml(f.trim()) + '</span>'; }).join('');
     detailRows += '<div class="detail-label">現在活用</div><div class="detail-value"><div class="conj-list">' + cItems + '</div></div>';
+  }
+  if (_dc && _dc.pret) {
+    var pretItems = _dc.pret.map(function(f) { return '<span class="conj-item">' + escHtml(f) + '</span>'; }).join('');
+    detailRows += '<div class="detail-label">点過去</div><div class="detail-value"><div class="conj-list">' + pretItems + '</div></div>';
+  }
+  if (_dc && _dc.imp) {
+    var impItems = _dc.imp.map(function(f) { return '<span class="conj-item">' + escHtml(f) + '</span>'; }).join('');
+    detailRows += '<div class="detail-label">線過去</div><div class="detail-value"><div class="conj-list">' + impItems + '</div></div>';
+  }
+  if (ger || pp) {
+    var participles = '';
+    if (ger) participles += '<span class="conj-item">' + escHtml(ger) + '</span>';
+    if (pp)  participles += '<span class="conj-item">' + escHtml(pp)  + '</span>';
+    detailRows += '<div class="detail-label">分詞形</div><div class="detail-value"><div class="conj-list">' + participles + '</div></div>';
   }
   if (adj) {
     var aItems = adj.split(/,\s*/).map(function(f) { return '<span class="adj-item">' + escHtml(f.trim()) + '</span>'; }).join('');
@@ -455,10 +533,10 @@ document.getElementById('searchInput').addEventListener('input', function() {
   var self = this;
   debounceTimer = setTimeout(function() {
     var q = self.value.trim();
-    if (!q) { showWelcome(); updateStats(0, RAW.length, ''); return; }
+    if (!q) { showWelcome(); updateStats(0, DEDUP_RAW.length, ''); return; }
     currentResults = search(q);
     renderResults(currentResults, q);
-    updateStats(currentResults.length, RAW.length, q);
+    updateStats(currentResults.length, DEDUP_RAW.length, q);
     if (currentResults.length === 0) {
       document.getElementById('results').innerHTML =
         '<div class="no-results"><h3>見つかりませんでした</h3>' +
@@ -474,7 +552,7 @@ function setLang(mode) {
   var activeBtn = document.getElementById('btn' + mode.charAt(0).toUpperCase() + mode.slice(1));
   if (activeBtn) activeBtn.classList.add('active');
   var q = document.getElementById('searchInput').value.trim();
-  if (q) { currentResults = search(q); renderResults(currentResults, q); updateStats(currentResults.length, RAW.length, q); }
+  if (q) { currentResults = search(q); renderResults(currentResults, q); updateStats(currentResults.length, DEDUP_RAW.length, q); }
 }
 
 function toggleFilter(pos) {
@@ -488,12 +566,12 @@ function toggleFilter(pos) {
     for (var c2 = 0; c2 < chips.length; c2++) { if (chips[c2].textContent === pos) chips[c2].classList.add('active'); }
   }
   var q = document.getElementById('searchInput').value.trim();
-  if (q) { currentResults = search(q); renderResults(currentResults, q); updateStats(currentResults.length, RAW.length, q); }
+  if (q) { currentResults = search(q); renderResults(currentResults, q); updateStats(currentResults.length, DEDUP_RAW.length, q); }
 }
 
 // 初期化
 showWelcome();
-updateStats(0, RAW.length, '');
+updateStats(0, DEDUP_RAW.length, '');
 
 </script>
 </body>

@@ -3693,6 +3693,10 @@ var DICT_TRIVIA = {
   'táctico / táctica': 'táctica（名詞）の形容詞形で、ギリシャ語 taktikós（配置に関する）が語源。英語の tactical と完全に対応しており、軍事・スポーツ・ビジネスいずれの文脈でも同様の意味で使われる。',
   'técnico / técnica': 'ギリシャ語 technikos（技術・芸術に関する）に由来し、英語の technical / technician と完全に同語源。ギリシャ語 techne（技術・芸術）はさらに「木を大工する」を意味する語根まで遡れ、人間の「作る能力」を表す古い概念。',
   'ganal': '「ganar（勝つ・稼ぐ）」の別見出し語。ゲルマン語 waidanōn（牧草で食を得る）に由来し、英語の gain と同語根。',
+  'reina': '`reina`（女王）は動詞 `reinar`（君臨する）の3人称単数現在形でもある。`rey`（王）の女性形で、チェスでは最も強い駒の名前。',
+  'repetida / repetido': '`repetido`は `repetir`（繰り返す）の過去分詞。中南米ではコレクションのダブりカードを指す俗語としても広く使われる。',
+  'reservada / reservado': '`reservado`は動詞 `reservar`（予約する）の過去分詞。形容詞「控えめな」・名詞「個室・VIP席」とも使える多義語。',
+  'retardada / retardado': '`retardado`は `retardar`（遅らせる）の過去分詞で「遅延した」の意味が主。英語の `retarded` に由来する差別的用法は現代では避けるべき文脈が多い。',
   'sangual / sanjual': '南米の地域語・民俗名で、語源には諸説あり確定していない。英語の直接対応語はなく、地域固有の植物名として記録されている。',
   'sanies': 'ラテン語 sanies（薄い膿・血清）からそのまま受け継がれた医学専門語。英語でも sanies と言い、sanguine（楽観的、血の赤みの）と遠い語根を共有するとも言われる。',
 };
