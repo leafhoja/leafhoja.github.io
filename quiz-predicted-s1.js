@@ -435,4 +435,590 @@
     ]
   };
 
+
+  /* ── 一列 Lección 5 予想問題（不定詞・現在分詞・過去分詞・現在完了・再帰動詞）──
+     接地：Spanish1_lesson5.html の例文・活用表・語彙リスト
+     （不定詞の4用法・現在分詞の規則形/不規則形/4用法・過去分詞の規則形/不規則形/4用法・
+      現在完了（haber 活用・4用法）・再帰動詞（再帰代名詞・8用法）） */
+  QUIZ_DATA['Spanish1_lesson5.html'] = {
+    adminOnly: true,
+    title: 'Lección 5 小テスト（予想問題）',
+    intro: 'この課の文法事項（不定詞・現在分詞・過去分詞・現在完了・再帰動詞）からの予想問題です。空所をタップすると解答が、「答えを確認」で解説が表示されます。',
+    sections: [
+      {
+        heading: '1. 不定詞',
+        instruction: '（&nbsp;）内の動詞を不定詞のまま使うか、文脈に合う形に変えて空所を埋めなさい。',
+        items: [
+          {
+            t: '<b>Vivir</b> es (<span class="qz-b" data-a="comer"></span>). <span class="qz-hint">(comer)</span>',
+            ja: '生きることとは食べることである。',
+            exp: '解説ページの例文そのまま。不定詞は<b>名詞として主語・述語</b>になれる。<b>comer</b>（食べること）が述語名詞として機能している。<br>⚠️ 不定詞は活用させない。come / comemos などとしない。<br>📖 語句：vivir「生きる・住む」／comer「食べる」'
+          },
+          {
+            t: 'Mi abuelo siempre reza antes de (<span class="qz-b" data-a="comer"></span>). <span class="qz-hint">(comer)</span>',
+            ja: '私の祖父は食べる前にいつもお祈りをする。',
+            exp: '前置詞 <b>de</b> の後には<b>不定詞</b>が来る。antes de comer「食べる前に」。<br>⚠️ 前置詞の後には不定詞（原形）を置く。comiendo（現在分詞）とは違う。<br>📖 語句：abuelo「祖父」／siempre「いつも」／rezar「祈る」／antes de「〜の前に」'
+          },
+          {
+            t: 'Nos gusta (<span class="qz-b" data-a="escuchar"></span>) programas de música en la radio. <span class="qz-hint">(escuchar)</span>',
+            ja: '私たちはラジオで音楽番組を聴くのが好きだ。',
+            exp: 'gustar 型動詞の主語が不定詞の場合、動詞は<b>3人称単数形</b>になる。gusta の主語は escuchar（不定詞）。不定詞は活用しない。<br>⚠️ 「私たちが好きな行為（聴くこと）」が主語なので gustan ではなく <b>gusta</b>。<br>📖 語句：escuchar「聴く」／programa「番組」／radio「ラジオ」'
+          },
+          {
+            t: 'No sabemos (<span class="qz-b" data-a="cómo economizar"></span>) en los gastos. <span class="qz-hint">(cómo, economizar)</span>',
+            ja: '私たちはコストをどのように節約すべきか分かりません。',
+            exp: '解説ページの例文そのまま。<b>疑問詞 + 不定詞</b>で「〜すべきか・〜できるか」の意味になる（義務・可能性）。cómo economizar「どのように節約すべきか」。<br>⚠️ sabemos の後に疑問詞 cómo を入れてから不定詞。cómo は方法を問う疑問詞。<br>📖 語句：saber「知っている・〜できる」／economizar「節約する」／gastos「費用・出費」'
+          },
+          {
+            t: 'Veo a Francisco (<span class="qz-b" data-a="bailar"></span>) con Ángela. <span class="qz-hint">(bailar)</span>',
+            ja: '私はフランシスコがアンヘラと踊るのを見る。',
+            exp: '知覚動詞 <b>ver + 不定詞</b>で「A が B するのを見る」（目的格補語）。bailar は<b>一回限りの動作</b>（不定詞）として見る。<br>⚠️ bailando（現在分詞）なら「踊っているところを見る（進行中を強調）」。bailar なら動作そのものを見る。<br>📖 語句：ver「見る」／bailar「踊る」'
+          },
+          {
+            t: 'Mis padres siempre me (<span class="qz-b" data-a="hacen limpiar"></span>) el baño. <span class="qz-hint">(hacer, limpiar)</span>',
+            ja: '私の両親はいつも私に浴室を掃除させる。',
+            exp: '解説ページの例文そのまま。<b>hacer + 不定詞</b>で強制使役「（人に）〜させる」。me は間接目的格（limpiar が他動詞なので A は間接目的語）。<br>⚠️ dejar ではなく hacer（強制）。limpiar を活用させない。<br>📖 語句：padres「両親」／limpiar「掃除する」／baño「浴室」'
+          },
+          {
+            t: 'Mis padres no me (<span class="qz-b" data-a="dejan salir"></span>) por la noche. <span class="qz-hint">(dejar, salir)</span>',
+            ja: '私の両親は夜間私を外出させてくれない。',
+            exp: '解説ページの例文そのまま。<b>dejar + 不定詞</b>で放任使役「〜することを許す（許さない）」。me は直接目的格（salir が自動詞なので A は直接目的語）。<br>⚠️ hacer ではなく dejar（放任・許可）。hacer limpiar と dejar salir の使い分けに注意。<br>📖 語句：dejar「許す・放置する」／salir「出かける」／por la noche「夜間・夜に」'
+          },
+          {
+            t: '<b>Hay que</b> trabajar para (<span class="qz-b" data-a="vivir"></span>). <span class="qz-hint">(vivir)</span>',
+            ja: '生きるためには働かなくてはならない。',
+            exp: '解説ページの例文そのまま。<b>para + 不定詞</b>で「〜するために」（目的）。前置詞 para の後は不定詞。<br>⚠️ para は目的を表す前置詞。その後には必ず不定詞（原形）。vivimos などと活用しない。<br>📖 語句：trabajar「働く」／para「〜のために」／vivir「生きる」'
+          }
+        ]
+      },
+      {
+        heading: '2. 現在分詞：形と用法',
+        instruction: '（&nbsp;）内の動詞を現在分詞にして空所を埋めなさい。',
+        items: [
+          {
+            t: 'Mi padre siempre desayuna (<span class="qz-b" data-a="leyendo"></span>) el periódico. <span class="qz-hint">(leer)</span>',
+            ja: '私の父はいつも新聞を読みながら朝食をとる。',
+            exp: '解説ページの例文そのまま。<b>副詞的用法（同時並行：〜しながら）</b>。leer は語根が母音（e）で終わる -er 動詞なので <b>-yendo</b> → <b>leyendo</b>（不規則形）。<br>⚠️ leiendo とはならない（i → y に変化）。<br>📖 語句：desayunar「朝食をとる」／periódico「新聞」'
+          },
+          {
+            t: 'Nosotros aprendemos otras culturas (<span class="qz-b" data-a="viajando"></span>) por los países extranjeros. <span class="qz-hint">(viajar)</span>',
+            ja: '私たちは外国を旅することで異文化を学ぶ。',
+            exp: '解説ページの例文そのまま。<b>副詞的用法（手段・理由）</b>。viajar は規則 -ar 動詞 → -ando → <b>viajando</b>。<br>⚠️ viajando の スペルに注意（viajiendo などとしない）。<br>📖 語句：aprender「学ぶ」／cultura「文化」／viajar「旅行する」／extranjero「外国の」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Sigues"></span>) (<span class="qz-b" data-a="trabajando"></span>) en la misma empresa? <span class="qz-hint">(seguir / trabajar)</span>',
+            ja: '君は同じ企業で働き続けているの？',
+            exp: '解説ページの例文そのまま。<b>seguir + 現在分詞</b>で「〜し続ける」。seguir は e→i 型の活用（2単 <b>sigues</b>）。trabajar の現在分詞は規則形 <b>trabajando</b>。<br>⚠️ seguir は e→i 型（×siegues は誤り）。sigues が正解。<br>📖 語句：seguir「続ける」／trabajar「働く」／empresa「会社・企業」'
+          },
+          {
+            t: 'Llevamos tres años (<span class="qz-b" data-a="viviendo"></span>) en esta ciudad. <span class="qz-hint">(vivir)</span>',
+            ja: '私たちはこの街に住み続けて3年になる。',
+            exp: '解説ページの例文そのまま。<b>llevar + 時間 + 現在分詞</b>で「〜し続けて○○の期間になる」。vivir は規則 -ir 動詞 → -iendo → <b>viviendo</b>。<br>⚠️ 「tres años」が期間。現在分詞に性数変化はない。<br>📖 語句：llevar「かかる・経過する」／vivir「住む」／ciudad「街・都市」'
+          },
+          {
+            t: 'El precio (<span class="qz-b" data-a="va subiendo"></span>) poco a poco. <span class="qz-hint">(ir / subir)</span>',
+            ja: '価格が少しずつ上がっていく。',
+            exp: '解説ページの例文そのまま。<b>ir + 現在分詞</b>で「（だんだん）〜していく」。ir の3単 <b>va</b>、subir の現在分詞は規則形 <b>subiendo</b>。<br>⚠️ ir を活用すること（主語 el precio → 3単 va）。subiendo は形が変わらない。<br>📖 語句：precio「価格」／subir「上がる・登る」／poco a poco「少しずつ」'
+          },
+          {
+            t: 'Lo (<span class="qz-b" data-a="estoy leyendo"></span>). <span class="qz-hint">(estar / leer)</span>',
+            ja: '私がそれを読んでいるところだよ。',
+            exp: '解説ページの例文そのまま。<b>estar + 現在分詞</b>（現在進行形）。estar の1単 <b>estoy</b>、leer の現在分詞は不規則形 <b>leyendo</b>。直接目的格代名詞 lo は estar の前に置く（または leyéndolo と結合も可）。<br>⚠️ leer → leyendo（語根母音が母音で終わる -er 動詞は -yendo）。leiendo は誤り。<br>📖 語句：estar「〜している（進行）」／leer「読む」'
+          },
+          {
+            t: 'Veo a Francisco (<span class="qz-b" data-a="bailando"></span>) con Ángela. <span class="qz-hint">(bailar)</span>',
+            ja: '私はフランシスコがアンヘラと踊っているところを見る。',
+            exp: '<b>知覚動詞 ver + 現在分詞</b>で「踊っているところ（進行中）を見る」。bailar は規則 -ar 動詞 → <b>bailando</b>。<br>⚠️ 不定詞 bailar と現在分詞 bailando の意味の差：不定詞「踊る（動作）を見る」、現在分詞「踊っている（進行中）を見る」。<br>📖 語句：ver「見る」／bailar「踊る」'
+          }
+        ]
+      },
+      {
+        heading: '3. 現在分詞の不規則形',
+        instruction: '（&nbsp;）内の動詞を現在分詞にして空所を埋めなさい。',
+        items: [
+          {
+            t: 'El ladrón está (<span class="qz-b" data-a="huyendo"></span>) de la policía. <span class="qz-hint">(huir)</span>',
+            ja: '泥棒は警察から逃げているところだ。',
+            exp: 'huir は語根が母音（u）で終わる -ir 動詞 → <b>-yendo</b> → <b>huyendo</b>（不規則形①）。<br>⚠️ huiendo とはならない（-i が -y に変化）。<br>📖 語句：ladrón「泥棒」／huir「逃げる」／policía「警察」'
+          },
+          {
+            t: 'La niña está (<span class="qz-b" data-a="pidiendo"></span>) un helado. <span class="qz-hint">(pedir)</span>',
+            ja: '女の子はアイスクリームをねだっている。',
+            exp: 'pedir は語根母音変化 -ir 動詞（e→i）。現在分詞でも同様に e→i 変化 → <b>pidiendo</b>（不規則形②）。<br>⚠️ pediendo とはならない（e→i 変化が起きる）。<br>📖 語句：niña「女の子」／pedir「頼む・ねだる」／helado「アイスクリーム」'
+          },
+          {
+            t: 'El bebé lleva dos horas (<span class="qz-b" data-a="durmiendo"></span>). <span class="qz-hint">(dormir)</span>',
+            ja: '赤ちゃんはもう2時間眠り続けている。',
+            exp: 'dormir は o→u 型の -ir 動詞。現在分詞でも o→u 変化 → <b>durmiendo</b>（不規則形②）。<br>⚠️ dormiendo とはならない（o→u 変化が起きる）。<br>📖 語句：bebé「赤ちゃん」／dormir「眠る」'
+          },
+          {
+            t: 'María está (<span class="qz-b" data-a="diciendo"></span>) la verdad. <span class="qz-hint">(decir)</span>',
+            ja: 'マリアは本当のことを言っているところだ。',
+            exp: 'decir は現在分詞でも e→i 変化 → <b>diciendo</b>（不規則形②。decir は語根母音変化動詞ではないが同様の変化）。<br>⚠️ deciendo とはならない（e→i 変化が起きる）。<br>📖 語句：decir「言う」／verdad「真実・本当のこと」'
+          },
+          {
+            t: '¿Oyes a Juan (<span class="qz-b" data-a="cantando"></span>) en el baño? <span class="qz-hint">(cantar)</span>',
+            ja: 'フアンが浴室で歌っているのが聞こえる？',
+            exp: '<b>知覚動詞 oír + 現在分詞</b>（進行中を強調）。cantar は規則 -ar 動詞 → <b>cantando</b>。<br>⚠️ 規則 -ar 動詞の現在分詞は -ando。cantando は規則形なので変化はない。<br>📖 語句：oír「聞こえる」／cantar「歌う」／baño「浴室」'
+          },
+          {
+            t: 'Mi hermano sigue (<span class="qz-b" data-a="viniendo"></span>) a casa todos los fines de semana. <span class="qz-hint">(venir)</span>',
+            ja: '私の兄は毎週末ずっと家に来続けている。',
+            exp: 'venir は e→i 型の不規則現在分詞 → <b>viniendo</b>（不規則形②）。seguir + 現在分詞「〜し続ける」。<br>⚠️ veniendo とはならない（e→i 変化）。<br>📖 語句：hermano「兄弟」／venir「来る」／fin de semana「週末」'
+          },
+          {
+            t: 'Elena está (<span class="qz-b" data-a="oyendo"></span>) música clásica. <span class="qz-hint">(oír)</span>',
+            ja: 'エレナはクラシック音楽を聴いているところだ。',
+            exp: 'oír は語根が母音（o）で終わる -ir 動詞 → <b>-yendo</b> → <b>oyendo</b>（不規則形①）。<br>⚠️ oiendo とはならない（-i が -y に変化）。caer→cayendo と同じパターン。<br>📖 語句：oír「聞こえる・聴く」／música clásica「クラシック音楽」'
+          }
+        ]
+      },
+      {
+        heading: '4. 過去分詞：形と用法',
+        instruction: '（&nbsp;）内の動詞を過去分詞の適切な形にして空所を埋めなさい（形容詞として使う場合は修飾対象に性数一致させること）。',
+        items: [
+          {
+            t: 'Ese profesor (<span class="qz-b" data-a="es admirado"></span>) por sus alumnos. <span class="qz-hint">(ser / admirar)</span>',
+            ja: 'その先生は教え子たちに尊敬される。',
+            exp: '解説ページの例文そのまま。<b>ser + 過去分詞</b>（受身の動作）。admirar の規則過去分詞は <b>admirado</b>。主語 ese profesor（男性単数）に一致。<br>⚠️ estar + 過去分詞（結果の状態）との違いに注意。ser = 受身の出来事。<br>📖 語句：profesor「先生（男性）」／admirar「尊敬する」／alumno「生徒」'
+          },
+          {
+            t: 'Esas ruinas (<span class="qz-b" data-a="están destruidas"></span>) por los terroristas. <span class="qz-hint">(estar / destruir)</span>',
+            ja: 'その遺跡はテロリストたちによって破壊されてしまっている。',
+            exp: '解説ページの例文そのまま。<b>estar + 過去分詞</b>（結果の現状）。destruir の過去分詞は <b>destruido</b> → 主語 esas ruinas（女性複数）に一致して <b>destruidas</b>。<br>⚠️ ser + 過去分詞（受身の動作）との違い。estar = 破壊されてしまった状態が現在も続いている。<br>📖 語句：ruinas「遺跡」／destruir「破壊する」／terrorista「テロリスト」'
+          },
+          {
+            t: 'Veo a Teresa muy (<span class="qz-b" data-a="cansada"></span>). <span class="qz-hint">(cansar)</span>',
+            ja: '私はテレサがとても疲れているように見える。',
+            exp: '解説ページの例文そのまま。<b>知覚動詞 ver + 過去分詞</b>（目的格補語）。cansar の規則過去分詞 cansado → Teresa（女性単数）に一致して <b>cansada</b>。<br>⚠️ 知覚動詞 + 過去分詞では過去分詞が形容詞として目的語に一致する。<br>📖 語句：ver「見る」／cansar「疲れさせる」／cansado「疲れた」'
+          },
+          {
+            t: 'Es un profesor (<span class="qz-b" data-a="admirado"></span>). <span class="qz-hint">(admirar)</span>',
+            ja: 'ある尊敬された（男性の）先生だ。',
+            exp: '過去分詞が<b>名詞を修飾する形容詞</b>として使われている。admirar → <b>admirado</b>。主語 profesor（男性単数）に一致して -o のまま。<br>⚠️ 過去分詞を形容詞として使う場合は性数一致が必要（ここは男性単数 → -ado）。<br>📖 語句：admirar「尊敬する」'
+          },
+          {
+            t: 'La ventana (<span class="qz-b" data-a="está abierta"></span>). <span class="qz-hint">(estar / abrir)</span>',
+            ja: 'その窓は開いている（開いた状態だ）。',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。abrir の不規則過去分詞は <b>abierto</b>。主語 la ventana（女性単数）に一致して <b>abierta</b>。<br>⚠️ abrir の過去分詞は不規則形 abierto（×abrido は誤り）。estar を使うのは「開いている状態」（結果）だから。<br>📖 語句：ventana「窓」／abrir「開ける」'
+          },
+          {
+            t: 'Los libros de la biblioteca (<span class="qz-b" data-a="están escritos"></span>) en varios idiomas. <span class="qz-hint">(estar / escribir)</span>',
+            ja: '図書館の本たちは様々な言語で書かれている。',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。escribir の不規則過去分詞は <b>escrito</b>。主語 los libros（男性複数）に一致して <b>escritos</b>。<br>⚠️ escribir の過去分詞は不規則形 escrito（×escribido は誤り）。複数形 escritos を忘れずに。<br>📖 語句：biblioteca「図書館」／escribir「書く」／idioma「言語」／varios「様々な」'
+          },
+          {
+            t: 'El problema (<span class="qz-b" data-a="está resuelto"></span>). <span class="qz-hint">(estar / resolver)</span>',
+            ja: 'その問題は解決されている（解決済みだ）。',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。resolver の不規則過去分詞は <b>resuelto</b>。主語 el problema（男性単数）に一致して -o のまま。<br>⚠️ resolver → resuelto（不規則形。×resolvido・×resolvido は誤り）。<br>📖 語句：problema「問題」／resolver「解決する」'
+          },
+          {
+            t: 'Ellos comen el arroz al curry (<span class="qz-b" data-a="sudados"></span>) los sábados. <span class="qz-hint">(sudar)</span>',
+            ja: '彼らは毎週土曜日に汗をかいてカレーライスを食べる。',
+            exp: '解説ページの例文そのまま。過去分詞が<b>主格補語</b>として主語の状態を表す。sudar の規則過去分詞 sudado → 主語 ellos（男性複数）に一致して <b>sudados</b>。<br>⚠️ 主格補語として使う場合も性数一致が必要。<br>📖 語句：sudar「汗をかく」／arroz al curry「カレーライス」／los sábados「毎週土曜日」'
+          }
+        ]
+      },
+      {
+        heading: '5. 現在完了',
+        instruction: '（&nbsp;）内の動詞を現在完了形にして空所を埋めなさい。haber の活用形と過去分詞の両方が必要な場合は2語で答えること。',
+        items: [
+          {
+            t: '¿Dónde está mi flan? — Lo siento. Yo lo (<span class="qz-b" data-a="he comido"></span>). <span class="qz-hint">(comer)</span>',
+            ja: '私のプリンはどこ？ — ごめんね。僕がそれを食べちゃったんだ。',
+            exp: '解説ページの例文そのまま。<b>現在完了（完了）</b>。haber の1単 <b>he</b> + comer の過去分詞 <b>comido</b>。<br>⚠️ 現在完了の過去分詞は性数変化しない（常に -o 形）。<br>📖 語句：flan「プリン」／lo siento「ごめんなさい」／comer「食べる」'
+          },
+          {
+            t: '¿Ya (<span class="qz-b" data-a="habéis hecho"></span>) la tarea? <span class="qz-hint">(hacer)</span>',
+            ja: '君たちもう宿題はしたの？',
+            exp: '解説ページの例文そのまま。<b>現在完了（完了）</b>。haber の2複 <b>habéis</b> + hacer の不規則過去分詞 <b>hecho</b>。<br>⚠️ hacer の過去分詞は不規則形 hecho（×hacido は誤り）。habéis のアクセント記号も必須。<br>📖 語句：ya「もう・すでに」／hacer「する」／tarea「宿題・課題」'
+          },
+          {
+            t: 'David (<span class="qz-b" data-a="ha jugado"></span>) en un equipo profesional. <span class="qz-hint">(jugar)</span>',
+            ja: 'ダビドはプロチームでプレーしたことがある。',
+            exp: '解説ページの例文そのまま。<b>現在完了（経験）</b>。haber の3単 <b>ha</b> + jugar の規則過去分詞 <b>jugado</b>。<br>⚠️ jugar は -ar 動詞なので過去分詞は -ado（規則形）。ha jugado で「プレーしたことがある」。<br>📖 語句：jugar「プレーする」／equipo「チーム」／profesional「プロの」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Ha estado"></span>) usted en Perú alguna vez? <span class="qz-hint">(estar)</span>',
+            ja: 'あなたは今までにペルーに行ったことがありますか？',
+            exp: '解説ページの例文そのまま。<b>現在完了（経験）</b>。usted の haber は3単 <b>ha</b> + estar の規則過去分詞 <b>estado</b>。<br>⚠️ alguna vez「今までに・かつて」は経験用法の典型的な副詞。<br>📖 語句：estar「いる・〜の状態だ」／alguna vez「かつて・今までに」'
+          },
+          {
+            t: 'Ella no (<span class="qz-b" data-a="ha llegado"></span>) tarde a clase ninguna vez. <span class="qz-hint">(llegar)</span>',
+            ja: '彼女は一度も授業に遅刻したことがない。',
+            exp: '解説ページの例文そのまま。<b>現在完了（経験の否定）</b>。haber の3単 <b>ha</b> + llegar の規則過去分詞 <b>llegado</b>。ninguna vez「一度も〜ない」。<br>⚠️ no … ninguna vez は二重否定ではなく強調の否定。llegar は -ar 動詞 → -ado（規則形）。<br>📖 語句：llegar「到着する」／tarde「遅く」／ninguna vez「一度も〜ない」'
+          },
+          {
+            t: 'La robótica de este país (<span class="qz-b" data-a="ha avanzado"></span>) constantemente hasta ahora. <span class="qz-hint">(avanzar)</span>',
+            ja: 'この国のロボット工学は現在まで順調に発展してきた。',
+            exp: '解説ページの例文そのまま。<b>現在完了（継続）</b>。haber の3単 <b>ha</b> + avanzar の規則過去分詞 <b>avanzado</b>。hasta ahora「現在まで」が継続用法の指標。<br>⚠️ avanzar は -ar 動詞 → -ado（規則形）。<br>📖 語句：robótica「ロボット工学」／avanzar「発展する」／constantemente「順調に・継続的に」／hasta ahora「現在まで」'
+          },
+          {
+            t: 'Esta mañana no (<span class="qz-b" data-a="he desayunado"></span>). <span class="qz-hint">(desayunar)</span>',
+            ja: '今朝私は朝食を取らなかった。',
+            exp: '解説ページの例文そのまま。<b>現在完了（現在と関わりの深い時を表す語句との共起）</b>。esta mañana（今朝）があるので現在完了を使う。haber の1単 <b>he</b> + desayunar の規則過去分詞 <b>desayunado</b>。<br>⚠️ esta mañana / hoy / este año などがあるときはスペインのスペイン語では現在完了を使う。<br>📖 語句：esta mañana「今朝」／desayunar「朝食をとる」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Ha habido"></span>) muchas guerras en este siglo. <span class="qz-hint">(haber)</span>',
+            ja: '今世紀はたくさんの戦争があった。',
+            exp: '解説ページの例文そのまま。<b>hay の現在完了形は ha habido</b>（非人称用法）。este siglo（今世紀）が現在と関わりの深い時を表す語句。<br>⚠️ hay の現在完了は han habido ではなく <b>ha habido</b>（非人称は常に3人称単数）。<br>📖 語句：guerra「戦争」／este siglo「今世紀」'
+          },
+          {
+            t: 'No (<span class="qz-b" data-a="hemos hecho"></span>) la tarea todavía. <span class="qz-hint">(hacer)</span>',
+            ja: 'まだ宿題をやっていないよ。',
+            exp: '解説ページの例文そのまま。<b>現在完了（完了の否定）</b>。haber の1複 <b>hemos</b> + hacer の不規則過去分詞 <b>hecho</b>。todavía no「まだ〜ない」。<br>⚠️ haber の1複は hemos（habemos とは言わない）。<br>📖 語句：hacer「する」／tarea「宿題」／todavía「まだ（否定文で「まだ〜ない」）」'
+          }
+        ]
+      },
+      {
+        heading: '6. 再帰動詞',
+        instruction: '適切な再帰代名詞（me/te/se/nos/os）または再帰動詞の活用形を空所に入れなさい。',
+        items: [
+          {
+            t: '¿Cómo (<span class="qz-b" data-a="os llamáis"></span>)? — (<span class="qz-b" data-a="Me llamo"></span>) Roberto y ella (<span class="qz-b" data-a="se llama"></span>) Micaela. <span class="qz-hint">(llamarse)</span>',
+            ja: '君たちは何て名前？ — 僕はロベルト、彼女はミカエラだよ。',
+            exp: '解説ページの例文そのまま。<b>llamarse（直接再帰）</b>。2複 <b>os llamáis</b>、1単 <b>me llamo</b>、3単 <b>se llama</b>。<br>⚠️ 再帰代名詞は主語に応じて変える（me/te/se/nos/os/se）。<br>📖 語句：llamarse「〜という名前である」'
+          },
+          {
+            t: '¿Por qué no (<span class="qz-b" data-a="te quitas"></span>) la chaqueta? <span class="qz-hint">(quitarse)</span>',
+            ja: '君はなぜ上着を脱がないの？',
+            exp: '解説ページの例文そのまま。<b>quitarse（間接再帰）</b>で「〜を脱ぐ・外す」。主語 tú → 再帰代名詞 <b>te</b>、動詞 <b>quitas</b>。<br>⚠️ 再帰代名詞 te は動詞 quitas の前に置く。tú quitas を tú te quitas と再帰にする。<br>📖 語句：quitarse「脱ぐ・外す」／chaqueta「上着・ジャケット」'
+          },
+          {
+            t: 'Los domingos (<span class="qz-b" data-a="me despierto"></span>) a las siete pero no (<span class="qz-b" data-a="me levanto"></span>) hasta las ocho. <span class="qz-hint">(despertarse / levantarse)</span>',
+            ja: '毎週日曜は7時に目覚めるが、8時まで起床しない。',
+            exp: '解説ページの例文そのまま。<b>despertarse（自動詞化）</b>：目覚める（e→ie 型。1単 <b>me despierto</b>）。<b>levantarse（自動詞化）</b>：起床する（規則。1単 <b>me levanto</b>）。<br>⚠️ despertarse は e→ie 変化（despierto）。levantarse は規則動詞（levanto）。<br>📖 語句：despertarse「目覚める」／levantarse「起床する」'
+          },
+          {
+            t: 'Mi hija ya (<span class="qz-b" data-a="se ha acostado"></span>). <span class="qz-hint">(acostarse)</span>',
+            ja: '私の娘はもう就寝してしまった。',
+            exp: '解説ページの例文そのまま。<b>再帰動詞の現在完了</b>は「再帰代名詞 + haber の活用 + 過去分詞」の語順。se を haber の前に置く → <b>se ha acostado</b>。<br>⚠️ acostarse の過去分詞は規則形 acostado（acostarse なので -ar → -ado）。se は haber の前。<br>📖 語句：acostarse「就寝する」／ya「もう・すでに」'
+          },
+          {
+            t: 'Mi madre (<span class="qz-b" data-a="se pone"></span>) enfadada fácilmente. <span class="qz-hint">(ponerse)</span>',
+            ja: '私の母はすぐ腹を立てる。',
+            exp: '解説ページの例文そのまま。<b>ponerse + 形容詞（自動詞化用法）</b>で「〜という状態になる」。主語 mi madre（3単）→ 再帰代名詞 <b>se</b>、動詞 <b>pone</b>（poner の3単）。<br>⚠️ poner は -go 型（1単 pongo）。3単は規則活用で pone。se pone で「〜の状態になる」。<br>📖 語句：ponerse「〜の状態になる」／enfadado「怒った」／fácilmente「簡単に・すぐに」'
+          },
+          {
+            t: 'Mi hermano (<span class="qz-b" data-a="se come"></span>) una olla de estofado. <span class="qz-hint">(comerse)</span>',
+            ja: '私の兄はシチューをひと鍋全部食べてしまう。',
+            exp: '解説ページの例文そのまま。<b>comerse（強意・転意用法）</b>「食べてしまう」。主語 mi hermano（3単）→ 再帰代名詞 <b>se</b>、動詞 <b>come</b>。<br>⚠️ 強意用法の se は省略すると意味が変わる。comer（食べる）に se を付けて「食べてしまう（完食）」という強意になる。<br>📖 語句：comerse「食べてしまう」／olla「鍋」／estofado「シチュー・煮込み料理」'
+          },
+          {
+            t: 'Mi vecino siempre (<span class="qz-b" data-a="se queja"></span>) de la bulla de la calle. <span class="qz-hint">(quejarse)</span>',
+            ja: '私の隣人は、いつも通りの騒音について文句を言っている。',
+            exp: '解説ページの例文そのまま。<b>quejarse de（本来的再帰）</b>「〜のことで文句を言う」。主語 mi vecino（3単）→ 再帰代名詞 <b>se</b>、動詞 <b>queja</b>。<br>⚠️ quejarse は常に再帰代名詞を伴う（本来的再帰）。queja のみでは使えない。<br>📖 語句：quejarse de「〜のことで文句を言う」／vecino「隣人」／bulla「騒音・騒ぎ」'
+          },
+          {
+            t: 'En Canadá (<span class="qz-b" data-a="se hablan"></span>) inglés y francés. <span class="qz-hint">(hablar)</span>',
+            ja: 'カナダでは英語とフランス語が話される。',
+            exp: '解説ページの例文そのまま。<b>受身再帰用法</b>「〜される」。主語は inglés y francés（複数）→ 動詞は3複 <b>se hablan</b>。<br>⚠️ 受身再帰は「por 行為主体」を付けられない。主語（話される言語）は動詞の後に置くことが多い。inglés y francés が複数なので hablan（3複）。<br>📖 語句：hablarse「話される」／inglés「英語」／francés「フランス語」'
+          },
+          {
+            t: '¿Cómo (<span class="qz-b" data-a="se dice"></span>) 水 en español? — (<span class="qz-b" data-a="Se dice"></span>) "agua". <span class="qz-hint">(decirse)</span>',
+            ja: 'スペイン語で「水」は何と言いますか？ — agua と言います。',
+            exp: '解説ページの例文そのまま。<b>不定主語用法（無人称用法）</b>「（一般に）〜する・言う」。動詞は必ず3人称単数形 <b>se dice</b>（主語なし）。<br>⚠️ 不定主語用法は常に3単（se dicen などとしない）。「一般的に水と言う」という一般論。<br>📖 語句：decirse「（一般的に）言う」／español「スペイン語」／agua「水」'
+          },
+          {
+            t: 'Cuando trabajamos en equipo, (<span class="qz-b" data-a="se nos ocurren"></span>) buenas ideas. <span class="qz-hint">(ocurrirse)</span>',
+            ja: '私たちはチームで仕事をすると、良いアイディアが浮かんでくる。',
+            exp: '解説ページの例文そのまま。<b>ocurrirse（本来的再帰、gustar型）</b>「（考えが）浮かぶ」。主語は buenas ideas（複数）→ 動詞は3複 <b>ocurren</b>。「私たちに」= 間接目的格 nos。語順は se → nos → ocurren（再帰 → 間接 → 直接の優先順位）。<br>⚠️ ocurrirse は gustar型と同じ構造：「ものが主語、人は間接目的語」。se nos ocurren（主語 ideas が複数なので3複）。<br>📖 語句：ocurrirse「（考えが）浮かぶ」／equipo「チーム」／idea「アイディア」'
+          },
+          {
+            t: '¿Ya (<span class="qz-b" data-a="te vas"></span>) a Osaka? <span class="qz-hint">(irse)</span>',
+            ja: '君はもう大阪に行ってしまうの？',
+            exp: '解説ページの例文そのまま。<b>irse（強意・転意用法）</b>「立ち去る・行ってしまう」。主語 tú → 再帰代名詞 <b>te</b>、動詞 <b>vas</b>（ir の2単）。<br>⚠️ ir（行く）に te を付けると irse「その場から立ち去る・行ってしまう」という強意になる。te vas が正解（vas te とはならない）。<br>📖 語句：irse「立ち去る・行ってしまう」'
+          }
+        ]
+      }
+    ,
+      {
+        heading: '7. 不定詞（応用）',
+        instruction: '（&nbsp;）内の動詞を不定詞のまま使うか、文脈に合う形に変えて空所を埋めなさい。',
+        items: [
+          {
+            t: 'No sé (<span class="qz-b" data-a="qué regalarle"></span>) a ella para su cumpleaños. <span class="qz-hint">(qué, regalar)</span>',
+            ja: '彼女の誕生日に何を贈るべきか私には分からない。',
+            exp: '解説ページの例文そのまま。<b>疑問詞 + 不定詞</b>で「〜すべきか・〜できるか」の意味。qué regalarle「何を贈るべきか」。le は間接目的格代名詞（彼女に）が不定詞に結合した形。<br>⚠️ regalarle の le は前置きできない（不定詞にくっつける）。疑問詞のあとは不定詞そのまま。<br>📖 語句：saber「知っている・〜できる」／regalar「贈る」／cumpleaños「誕生日」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Oír"></span>) es (<span class="qz-b" data-a="creer"></span>). <span class="qz-hint">(oír, creer)</span>',
+            ja: '百聞は一見に如かず（聞くことは信じることだ）。',
+            exp: '<b>不定詞が名詞として主語・述語</b>になる用法。oír「聞くこと」が主語、creer「信じること」が述語名詞。どちらも不定詞のまま。<br>⚠️ 不定詞を活用させない（oyes / crees などとしない）。<br>📖 語句：oír「聞く」／creer「信じる」'
+          },
+          {
+            t: 'Oigo a María (<span class="qz-b" data-a="cantar"></span>) muy bien. <span class="qz-hint">(cantar)</span>',
+            ja: '（私は）マリアがとても上手に歌うのが聞こえる。',
+            exp: '解説ページの例文そのまま。<b>知覚動詞 oír + 不定詞</b>「マリアが歌うのが聞こえる」（一回限りの動作）。cantar は不定詞のまま。<br>⚠️ cantando（現在分詞）なら「歌っているところが聞こえる（進行中）」という違いがある。<br>📖 語句：oír「聞こえる」／cantar「歌う」'
+          },
+          {
+            t: 'Mi abuelo siempre reza antes de (<span class="qz-b" data-a="acostarse"></span>). <span class="qz-hint">(acostarse)</span>',
+            ja: '私の祖父は就寝前にいつもお祈りをする。',
+            exp: '前置詞 <b>de</b> の後には不定詞を置く。再帰動詞 acostarse を不定詞として使うとき、-se はそのまま（主語が定まっていないため se のまま）。antes de acostarse「就寝する前に」。<br>⚠️ 前置詞の後は不定詞（acuesta などと活用しない）。再帰代名詞 se は不定詞の末尾についたまま。<br>📖 語句：rezar「祈る」／antes de「〜の前に」／acostarse「就寝する」'
+          },
+          {
+            t: 'Mi madre me (<span class="qz-b" data-a="hace estudiar"></span>) tres horas al día. <span class="qz-hint">(hacer, estudiar)</span>',
+            ja: '私の母は私に1日3時間勉強させる。',
+            exp: '<b>hacer + 不定詞</b>（強制使役）「〜させる」。me は間接目的格（estudiar は他動詞なので A は間接目的語）。母（3単）→ hace。<br>⚠️ hacer limpiar と同じ使役パターン。dejar（許可）ではなく hacer（強制）。<br>📖 語句：madre「母」／hacer「させる」／estudiar「勉強する」／al día「1日あたり」'
+          },
+          {
+            t: 'Los niños no (<span class="qz-b" data-a="dejan dormir"></span>) a sus padres. <span class="qz-hint">(dejar, dormir)</span>',
+            ja: '子どもたちは親を眠らせてくれない。',
+            exp: '<b>dejar + 不定詞</b>（放任使役の否定）「〜させない・〜することを許さない」。主語 los niños（3複）→ dejan。dormir は不定詞のまま。<br>⚠️ dejar は「許可する（放任）」なので no dejan で「許さない」。hacer（強制）と区別すること。<br>📖 語句：niño「子ども」／dejar「〜させる・許す」／dormir「眠る」'
+          }
+        ]
+      },
+      {
+        heading: '8. 現在分詞（応用）',
+        instruction: '（&nbsp;）内の動詞を現在分詞にして空所を埋めなさい。',
+        items: [
+          {
+            t: 'Mi novio me maltrata (<span class="qz-b" data-a="sabiendo"></span>) mi amor. <span class="qz-hint">(saber)</span>',
+            ja: '私の彼氏は私の愛を知っているにもかかわらずひどい仕打ちをする。',
+            exp: '解説ページの例文そのまま。<b>現在分詞の副詞的用法（譲歩：〜にもかかわらず）</b>。saber は規則 -er 動詞 → <b>sabiendo</b>（sab + iendo）。<br>⚠️ -er 動詞の現在分詞語尾は -iendo（sabando などとしない）。<br>📖 語句：novio「彼氏」／maltratar「ひどい扱いをする」／saber「知っている」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Siendo"></span>) difícil, quiero resolver este problema. <span class="qz-hint">(ser)</span>',
+            ja: '難しいけれど、この問題を解決したい。',
+            exp: '解説ページの例文そのまま。<b>現在分詞の副詞的用法（譲歩：〜けれど）</b>。ser の現在分詞は <b>siendo</b>（規則 -er 動詞 → sie + ndo → siendo）。<br>⚠️ ser は -er 動詞なので -iendo 語尾 → siendo。esiendo などとしない。<br>📖 語句：ser「〜である」／difícil「難しい」／resolver「解決する」'
+          },
+          {
+            t: 'Siempre desayuno (<span class="qz-b" data-a="leyéndola"></span>). <span class="qz-hint">(leer + la)</span>',
+            ja: 'いつもそれを読みながら朝食をとる。',
+            exp: '解説ページの例文そのまま。<b>現在分詞に直接目的格代名詞 la を結合</b>。leer の現在分詞 leyendo に la をくっつけると <b>leyéndola</b>。アクセント記号が -e- に移動。<br>⚠️ 代名詞結合によりアクセント位置が変わるため leyéndola（3音節目にアクセント記号）。leiendo は誤り。<br>📖 語句：desayunar「朝食をとる」／leer「読む」／-la「それを（女性単数直接目的格）」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Continúa trabajando"></span>) en el banco desde hace diez años. <span class="qz-hint">(continuar / trabajar)</span>',
+            ja: '彼女は10年前からずっと銀行で働き続けている。',
+            exp: '<b>continuar + 現在分詞</b>で「〜し続ける」（seguir と同じ意味）。continuar の3単は <b>continúa</b>（アクセント記号に注意）。trabajar の現在分詞は規則形 <b>trabajando</b>。<br>⚠️ continúa のアクセント記号を忘れないこと（continuа ではない）。<br>📖 語句：continuar「続ける」／trabajar「働く」／banco「銀行」／desde hace「〜前から」'
+          },
+          {
+            t: 'Llevamos medio año (<span class="qz-b" data-a="aprendiendo"></span>) español. <span class="qz-hint">(aprender)</span>',
+            ja: '私たちはスペイン語を学び始めて半年になる。',
+            exp: '練習問題の例文に接地。<b>llevar + 時間 + 現在分詞</b>「〜し続けて○○になる」。aprender は規則 -er 動詞 → <b>aprendiendo</b>（aprend + iendo）。<br>⚠️ aprendando（-ar 動詞の語尾）とならないこと（aprender は -er 動詞 → -iendo）。<br>📖 語句：aprender「学ぶ」／medio año「半年」'
+          },
+          {
+            t: 'Cada día va (<span class="qz-b" data-a="haciendo"></span>) más calor. <span class="qz-hint">(hacer)</span>',
+            ja: '日を追うごとにどんどん暑くなっていく。',
+            exp: '練習問題の例文に接地。<b>ir + 現在分詞</b>「（だんだん）〜していく」。hacer の現在分詞は規則形 <b>haciendo</b>（hac + iendo）。ir の3単 va。<br>⚠️ hacer は -er 動詞なので -iendo。haciendo は規則形。<br>📖 語句：ir「〜していく」／hacer calor「暑い（天気）」／cada día「日を追って」'
+          }
+        ]
+      },
+      {
+        heading: '9. 現在分詞・不規則形（応用）',
+        instruction: '（&nbsp;）内の動詞を現在分詞にして空所を埋めなさい。',
+        items: [
+          {
+            t: 'Una hoja está (<span class="qz-b" data-a="cayendo"></span>) del árbol. <span class="qz-hint">(caer)</span>',
+            ja: '木から葉っぱが一枚落ちている。',
+            exp: 'caer は語根が母音（a）で終わる -er 動詞 → -yendo → <b>cayendo</b>（不規則形①）。estar + 現在分詞（現在進行形）。<br>⚠️ cayendo ← caiendo とはならない（語根末の a に続く -iendo の i → y）。<br>📖 語句：caer「落ちる」／hoja「葉」／árbol「木」'
+          },
+          {
+            t: 'Están (<span class="qz-b" data-a="construyendo"></span>) un nuevo estadio en las afueras de la ciudad. <span class="qz-hint">(construir)</span>',
+            ja: '市郊外に新しいスタジアムを建設しているところだ。',
+            exp: 'construir は語根が母音（u）で終わる -ir 動詞 → -yendo → <b>construyendo</b>（不規則形①）。<br>⚠️ construiendo とはならない（語根末の u に続く -iendo の i → y）。huir→huyendo と同じパターン。<br>📖 語句：construir「建設する」／estadio「スタジアム」／afueras「郊外」'
+          },
+          {
+            t: 'El soldado sigue (<span class="qz-b" data-a="sintiendo"></span>) dolor en la rodilla. <span class="qz-hint">(sentir)</span>',
+            ja: 'その兵士はひざに痛みを感じ続けている。',
+            exp: 'sentir は語根母音変化 -ir 動詞（e→i）。現在分詞でも e→i → <b>sintiendo</b>（不規則形②）。seguir + 現在分詞「〜し続ける」。<br>⚠️ sentiendo とはならない（e→i 変化）。pedir→pidiendo と同じパターン。<br>📖 語句：sentir「感じる」／soldado「兵士」／dolor「痛み」／rodilla「ひざ」'
+          },
+          {
+            t: 'El bebé está (<span class="qz-b" data-a="durmiendo"></span>) en su cuna. <span class="qz-hint">(dormir)</span>',
+            ja: '赤ちゃんはゆりかごで眠っているところだ。',
+            exp: 'dormir は語根母音変化 -ir 動詞（o→u）。現在分詞でも o→u → <b>durmiendo</span>（不規則形②）。<br>⚠️ dormiendo とはならない（o→u 変化）。<br>📖 語句：dormir「眠る」／cuna「ゆりかご」'
+          },
+          {
+            t: '¿No estás (<span class="qz-b" data-a="pudiendo"></span>) terminar el trabajo? <span class="qz-hint">(poder)</span>',
+            ja: '仕事を終わらせることができていないの？',
+            exp: 'poder は o→u 型の不規則現在分詞 → <b>pudiendo</b>（不規則形②。poder は語根母音変化動詞ではないが同様の変化）。<br>⚠️ podriendo（pudrir と混同しない）。poder は puedo 型（o→ue）だが現在分詞は o→u → pudiendo。<br>📖 語句：poder「〜できる」／terminar「終える」／trabajo「仕事」'
+          },
+          {
+            t: 'Lleva un mes (<span class="qz-b" data-a="pidiendo"></span>) trabajo a todas las empresas de la ciudad. <span class="qz-hint">(pedir)</span>',
+            ja: '彼は1か月間ずっと街の全企業に仕事を求め続けている。',
+            exp: '<b>llevar + 時間 + 現在分詞</b>「〜し続けて○○になる」。pedir は e→i 型の -ir 動詞 → <b>pidiendo</b>（不規則形②）。<br>⚠️ pediendo とはならない（e→i 変化）。<br>📖 語句：pedir「求める・頼む」／empresa「会社」'
+          },
+          {
+            t: 'Mi hermana va (<span class="qz-b" data-a="viniendo"></span>) a casa cada vez con más frecuencia. <span class="qz-hint">(venir)</span>',
+            ja: '私の姉はだんだん頻繁に家に来るようになっている。',
+            exp: '<b>ir + 現在分詞</b>「（だんだん）〜していく」。venir の不規則現在分詞は e→i → <b>viniendo</b>（不規則形②）。ir の3単は va。<br>⚠️ veniendo とはならない（e→i 変化）。<br>📖 語句：venir「来る」／cada vez con más frecuencia「だんだん頻繁に」'
+          }
+        ]
+      },
+      {
+        heading: '10. 過去分詞（応用）',
+        instruction: '（&nbsp;）内の動詞を過去分詞の適切な形にして空所を埋めなさい。',
+        items: [
+          {
+            t: 'La ventana (<span class="qz-b" data-a="está rota"></span>). <span class="qz-hint">(estar / romper)</span>',
+            ja: 'その窓は壊れている（壊れた状態だ）。',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。romper の不規則過去分詞は <b>roto</b>。主語 la ventana（女性単数）に一致して <b>rota</b>。<br>⚠️ romper の過去分詞は不規則形 roto（×rompido は誤り）。estar = 壊れてしまっている状態。<br>📖 語句：ventana「窓」／romper「壊す」'
+          },
+          {
+            t: '¿Ya (<span class="qz-b" data-a="está puesto"></span>) el abrigo? <span class="qz-hint">(estar / poner)</span>',
+            ja: 'コートはもう（テーブルに）準備されている？',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。poner の不規則過去分詞は <b>puesto</b>。主語 el abrigo（男性単数）に一致して -o のまま → <b>puesto</b>。<br>⚠️ poner → puesto（不規則形。×ponido は誤り）。estar = 置かれた状態。<br>📖 語句：abrigo「コート」／poner「置く・準備する」'
+          },
+          {
+            t: 'Un millón de personas (<span class="qz-b" data-a="han muerto"></span>) en esta guerra. <span class="qz-hint">(morir)</span>',
+            ja: 'この戦争で100万人が死んだ。',
+            exp: '<b>現在完了</b>。morir の不規則過去分詞は <b>muerto</b>。主語 un millón de personas（3複扱い）→ haber は <b>han</b>。現在完了の過去分詞は性数変化しない（常に -o 形）。<br>⚠️ 現在完了の過去分詞は形容詞用法と違って性数変化しない（muertas などとしない）。<br>📖 語句：morir「死ぬ」／millón「100万」／guerra「戦争」'
+          },
+          {
+            t: 'Las flores (<span class="qz-b" data-a="son admiradas"></span>) por todos los visitantes. <span class="qz-hint">(ser / admirar)</span>',
+            ja: 'その花たちは訪れる人すべてに賞賛される。',
+            exp: '<b>ser + 過去分詞</b>（受身の動作）。admirar の規則過去分詞 admirado → 主語 las flores（女性複数）に一致して <b>admiradas</b>。<br>⚠️ estar + 過去分詞（結果の状態）との違いに注意。ser = 受身の出来事。<br>📖 語句：admirar「賞賛する」／flor「花」／visitante「訪問者」'
+          },
+          {
+            t: 'El libro (<span class="qz-b" data-a="está escrito"></span>) en inglés. <span class="qz-hint">(estar / escribir)</span>',
+            ja: 'その本は英語で書かれている。',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。escribir の不規則過去分詞は <b>escrito</b>。主語 el libro（男性単数）に一致して -o のまま → <b>escrito</b>。<br>⚠️ escribir → escrito（不規則形。×escribido は誤り）。estar = 書かれた状態。<br>📖 語句：libro「本」／escribir「書く」／inglés「英語」'
+          },
+          {
+            t: 'El continente americano fue (<span class="qz-b" data-a="descubierto"></span>) por Colón. <span class="qz-hint">(descubrir)</span>',
+            ja: 'アメリカ大陸はコロンブスによって発見された。',
+            exp: '<b>ser（fue）+ 過去分詞</b>（受身の動作）。descubrir の不規則過去分詞は <b>descubierto</b>（cubrir→cubierto と同じ -to 型。接頭辞 des- がついても同じ変化）。主語 el continente americano（男性単数）に一致して -o のまま。<br>⚠️ descubrir → descubierto（×descubrido は誤り）。<br>📖 語句：continente americano「アメリカ大陸」／descubrir「発見する」／Colón「コロンブス」'
+          },
+          {
+            t: 'Veo a Teresa (<span class="qz-b" data-a="muy cansada"></span>). ¿Se ha (<span class="qz-b" data-a="puesto"></span>) enferma? <span class="qz-hint">(cansado / poner)</span>',
+            ja: 'テレサがとても疲れているように見える。体調を崩したのだろうか？',
+            exp: '前半：<b>知覚動詞 ver + 過去分詞</b>（目的格補語）。cansar の規則過去分詞 cansado → Teresa（女性単数）に一致して <b>cansada</b>。<br>後半：<b>現在完了</b>。poner の不規則過去分詞は <b>puesto</b>（性数変化なし）。se ha puesto enferma「体調を崩した（状態になった）」。<br>⚠️ 知覚動詞用法は形容詞的に性数一致。現在完了の過去分詞は性数変化なし（puesta などとしない）。<br>📖 語句：cansar「疲れさせる」／ponerse enferma「体調を崩す」'
+          },
+          {
+            t: 'Las patatas (<span class="qz-b" data-a="están fritas"></span>). <span class="qz-hint">(estar / freír)</span>',
+            ja: 'ポテトは揚がっている（揚がった状態だ）。',
+            exp: '<b>estar + 過去分詞</b>（結果の状態）。freír の不規則過去分詞は <b>frito</b>。主語 las patatas（女性複数）に一致して <b>fritas</b>。<br>⚠️ freír → frito（不規則形 -to 型。×freído は誤り）。女性複数 → fritas。<br>📖 語句：patata「ジャガイモ・ポテト」／freír「揚げる」'
+          }
+        ]
+      },
+      {
+        heading: '11. 現在完了（応用）',
+        instruction: '（&nbsp;）内の動詞を現在完了形にして空所を埋めなさい。',
+        items: [
+          {
+            t: 'Mi hija ya (<span class="qz-b" data-a="ha vuelto"></span>) a casa. <span class="qz-hint">(volver)</span>',
+            ja: '私の娘はもう家に帰ってきた。',
+            exp: '<b>現在完了（完了）</b>。haber の3単 <b>ha</b> + volver の不規則過去分詞 <b>vuelto</b>。ya「もう・すでに」は完了用法の指標。<br>⚠️ volver の過去分詞は不規則形 vuelto（×volvido は誤り）。<br>📖 語句：volver「戻る・帰る」／ya「もう・すでに」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Has visto"></span>) esta película alguna vez? <span class="qz-hint">(ver)</span>',
+            ja: '君はこの映画を今までに観たことがある？',
+            exp: '<b>現在完了（経験）</b>。haber の2単 <b>has</b> + ver の不規則過去分詞 <b>visto</b>。alguna vez「今までに」は経験用法の指標。<br>⚠️ ver の過去分詞は不規則形 visto（×vero・×veido は誤り）。<br>📖 語句：ver「見る・観る」／película「映画」／alguna vez「今までに・かつて」'
+          },
+          {
+            t: 'Este año (<span class="qz-b" data-a="hemos viajado"></span>) mucho. <span class="qz-hint">(viajar)</span>',
+            ja: '今年私たちはたくさん旅行した。',
+            exp: '<b>現在完了（現在と関わりの深い時を表す語句との共起）</b>。este año「今年」があるのでスペインのスペイン語では現在完了を使う。haber の1複 <b>hemos</b> + viajar の規則過去分詞 <b>viajado</b>。<br>⚠️ este año は「現在と関わりの深い時を表す語句」→ 現在完了を使う。<br>📖 語句：viajar「旅行する」／este año「今年」'
+          },
+          {
+            t: 'Nunca (<span class="qz-b" data-a="he dicho"></span>) una mentira en mi vida. <span class="qz-hint">(decir)</span>',
+            ja: '私は生まれてこのかた一度も嘘をついたことがない。',
+            exp: '<b>現在完了（経験の否定）</b>。haber の1単 <b>he</b> + decir の不規則過去分詞 <b>dicho</b>。nunca は「一度も〜ない」（否定表現）。<br>⚠️ decir の過去分詞は不規則形 dicho（×decido は誤り）。nunca を文頭に置く場合は no が不要。<br>📖 語句：decir「言う」／nunca「一度も〜ない」／mentira「嘘」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Han roto"></span>) la ventana del aula. <span class="qz-hint">(romper)</span>',
+            ja: '（彼らは）教室の窓を割ってしまった。',
+            exp: '<b>現在完了（完了）</b>。主語は不明（3複）→ haber の3複 <b>han</b> + romper の不規則過去分詞 <b>roto</b>。<br>⚠️ romper の過去分詞は不規則形 roto（×rompido は誤り）。現在完了の過去分詞は性数変化しない（rota にしない）。<br>📖 語句：romper「割る・壊す」／ventana「窓」／aula「教室」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Habéis puesto"></span>) la mesa para la cena? <span class="qz-hint">(poner)</span>',
+            ja: '君たちは夕食のためにテーブルをセットしましたか？',
+            exp: '<b>現在完了（完了）</b>。haber の2複 <b>habéis</b> + poner の不規則過去分詞 <b>puesto</b>。poner la mesa「テーブルをセットする」。<br>⚠️ poner の過去分詞は不規則形 puesto（×ponido は誤り）。habéis のアクセント記号も必須。<br>📖 語句：poner la mesa「食卓を整える」／cena「夕食」'
+          },
+          {
+            t: 'Los científicos (<span class="qz-b" data-a="han descubierto"></span>) una nueva especie de pez. <span class="qz-hint">(descubrir)</span>',
+            ja: '科学者たちは新種の魚を発見した。',
+            exp: '<b>現在完了（完了）</b>。haber の3複 <b>han</b> + descubrir の不規則過去分詞 <b>descubierto</b>。<br>⚠️ descubrir → descubierto（cubrir→cubierto と同じ -to 型。×descubrido は誤り）。<br>📖 語句：descubrir「発見する」／científico「科学者」／especie「種」／pez「魚」'
+          },
+          {
+            t: 'Esta semana (<span class="qz-b" data-a="he leído"></span>) tres libros. <span class="qz-hint">(leer)</span>',
+            ja: '今週私は3冊の本を読んだ。',
+            exp: '<b>現在完了（現在と関わりの深い時を表す語句との共起）</b>。esta semana「今週」があるのでスペインのスペイン語では現在完了を使う。haber の1単 <b>he</b> + leer の過去分詞 <b>leído</b>（語根が母音 e で終わるため -ído にアクセント記号が必要）。<br>⚠️ leer の過去分詞は leído（アクセント記号必須。×leido は誤り）。esta semana は「現在と関わりの深い時を表す語句」。<br>📖 語句：leer「読む」／esta semana「今週」'
+          },
+          {
+            t: 'Mi hijo todavía no (<span class="qz-b" data-a="ha vuelto"></span>) del colegio. <span class="qz-hint">(volver)</span>',
+            ja: '私の息子はまだ学校から帰っていない。',
+            exp: '<b>現在完了（完了の否定）</b>。todavía no「まだ〜ない」は現在完了の完了用法でよく用いる。haber の3単 <b>ha</b> + volver の不規則過去分詞 <b>vuelto</b>。<br>⚠️ volver → vuelto（devolver→devuelto と同じパターン。×volvido は誤り）。<br>📖 語句：volver「帰る」／todavía no「まだ〜ない」／colegio「学校」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Has hecho"></span>) los deberes hoy? <span class="qz-hint">(hacer)</span>',
+            ja: '今日宿題はやった？',
+            exp: '<b>現在完了（現在と関わりの深い時を表す語句との共起）</b>。hoy「今日」があるのでスペインのスペイン語では現在完了を使う。haber の2単 <b>has</b> + hacer の不規則過去分詞 <b>hecho</b>。<br>⚠️ hacer の過去分詞は不規則形 hecho（×hacido は誤り）。hoy は「現在と関わりの深い時を表す語句」。<br>📖 語句：hacer「する」／los deberes「宿題（複数形で使うことが多い）」／hoy「今日」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Hemos reservado"></span>) habitaciones en el hotel. <span class="qz-hint">(reservar)</span>',
+            ja: '私たちはそのホテルの部屋を予約しました。',
+            exp: '練習問題の例文に接地。<b>現在完了（完了）</b>。haber の1複 <b>hemos</b> + reservar の規則過去分詞 <b>reservado</b>。<br>⚠️ reservar は -ar 動詞なので過去分詞は -ado（規則形）。haber の1複は hemos。<br>📖 語句：reservar「予約する」／habitación「部屋」／hotel「ホテル」'
+          }
+        ]
+      },
+      {
+        heading: '12. 再帰動詞（応用）',
+        instruction: '適切な再帰代名詞（me/te/se/nos/os）または再帰動詞の活用形を空所に入れなさい。',
+        items: [
+          {
+            t: '¿Siempre (<span class="qz-b" data-a="te miras"></span>) en el espejo antes de salir de casa? <span class="qz-hint">(mirarse)</span>',
+            ja: '家を出る前に、君はいつも鏡（で自分自身）を見るの？',
+            exp: '解説ページの例文そのまま。<b>mirarse（直接再帰）</b>「自分自身を見る」。主語 tú → 再帰代名詞 <b>te</b>、動詞 <b>miras</b>。<br>⚠️ 再帰代名詞 te は動詞 miras の前に置く。<br>📖 語句：mirarse「（鏡で）自分を見る」／espejo「鏡」／antes de「〜の前に」'
+          },
+          {
+            t: 'Mis hermanas menores casi no (<span class="qz-b" data-a="se peinan"></span>). <span class="qz-hint">(peinarse)</span>',
+            ja: '私の妹たちはほとんど髪をとかない。',
+            exp: '解説ページの例文そのまま。<b>peinarse（直接再帰）</b>「自分の髪を櫛でとく」。主語 mis hermanas menores（3複）→ 再帰代名詞 <b>se</b>、動詞 <b>peinan</b>。<br>⚠️ peinarse は -ar 規則動詞。3複 → peinan（peinen などとしない）。<br>📖 語句：peinarse「髪を櫛でとく」／hermana menor「妹」／casi「ほとんど」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Me pongo"></span>) el sombrero porque hoy hace mucho sol. <span class="qz-hint">(ponerse)</span>',
+            ja: '今日は日差しが強いので、私は帽子をかぶる。',
+            exp: '解説ページの例文そのまま。<b>ponerse（間接再帰）</b>「〜を身につける」。主語 yo → 再帰代名詞 <b>me</b>、動詞 poner の1単 <b>pongo</b>（-go 型）。<br>⚠️ poner は1単で -go → pongo。me pongo の語順（me が前）。<br>📖 語句：ponerse「〜を身につける」／sombrero「帽子」／hacer sol「日差しがある」'
+          },
+          {
+            t: 'Mis hijos siempre (<span class="qz-b" data-a="se lavan"></span>) los dientes después de comer. <span class="qz-hint">(lavarse)</span>',
+            ja: '私の子供たちは食後はいつも歯を磨く。',
+            exp: '解説ページの例文そのまま。<b>lavarse（間接再帰）</b>「（体の一部を）洗う」。主語 mis hijos（3複）→ 再帰代名詞 <b>se</b>、動詞 <b>lavan</b>。los dientes「歯」が直接目的語。<br>⚠️ lavarse は -ar 規則動詞。los dientes は直接目的語（所有格ではなく定冠詞 los を使う）。<br>📖 語句：lavarse「洗う」／dientes「歯」／después de「〜の後に」'
+          },
+          {
+            t: 'Mis abuelos (<span class="qz-b" data-a="se aman"></span>) mucho todavía. <span class="qz-hint">(amarse)</span>',
+            ja: '私の祖父母はいまだにとても愛し合っている。',
+            exp: '解説ページの例文そのまま。<b>amarse（相互再帰）</b>「愛し合う」。主語 mis abuelos（3複）→ 再帰代名詞 <b>se</b>、動詞 <b>aman</b>。<br>⚠️ 相互再帰は主語が必ず複数。amar は規則 -ar 動詞（3複 aman）。<br>📖 語句：amarse「愛し合う」／todavía「いまだに・まだ」'
+          },
+          {
+            t: 'Mi tío (<span class="qz-b" data-a="se bebe"></span>) una botella de whisky cada noche. <span class="qz-hint">(beberse)</span>',
+            ja: '私のおじは毎晩ウイスキーをボトル1本飲み干す。',
+            exp: '解説ページの例文そのまま。<b>beberse（強意・転意用法）</b>「飲み干す」。主語 mi tío（3単）→ 再帰代名詞 <b>se</b>、動詞 <b>bebe</b>。<br>⚠️ beber（飲む）に se を付けると「飲み干す（完飲）」という強意になる。<br>📖 語句：beberse「飲み干す」／botella「ボトル」／whisky「ウイスキー」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Me muero"></span>) de hambre. <span class="qz-hint">(morirse)</span>',
+            ja: '私は空腹で死にそうだ。',
+            exp: '解説ページの例文そのまま。<b>morirse（強意・転意用法）</b>「死にそうだ（誇張）」。morir は o→ue 型 → 1単 <b>muero</b>。再帰代名詞 <b>me</b>。<br>⚠️ morir は o→ue 型（muero）。1単の -go 型ではない。morirse は誇張表現に使われる。<br>📖 語句：morirse「死にそうだ（誇張）」／hambre「空腹」'
+          },
+          {
+            t: 'Por el momento, no (<span class="qz-b" data-a="nos atrevemos"></span>) a decirle la verdad. <span class="qz-hint">(atreverse)</span>',
+            ja: '今のところ我々は彼女に本当のことを言うのはやめておこう。',
+            exp: '解説ページの例文そのまま。<b>atreverse a 不定詞（本来的再帰）</b>「あえて〜する」。主語 nosotros → 再帰代名詞 <b>nos</b>、動詞 <b>atrevemos</b>。<br>⚠️ atreverse は常に再帰代名詞を伴う（本来的再帰）。atreverse a「あえて〜する」の a を忘れない。<br>📖 語句：atreverse a「あえて〜する」／verdad「真実」／por el momento「今のところ」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Me arrepiento"></span>) mucho de mi actitud de anoche. <span class="qz-hint">(arrepentirse)</span>',
+            ja: '私は昨夜の自分の態度についてとても後悔している。',
+            exp: '解説ページの例文そのまま。<b>arrepentirse de（本来的再帰）</b>「〜を後悔する」。主語 yo → 再帰代名詞 <b>me</b>、動詞 arrepentir は e→ie 型 → 1単 <b>arrepiento</b>。<br>⚠️ arrepentirse は常に再帰代名詞を伴う（本来的再帰）。e→ie 変化（arrepiento）。arrepentirse de「〜を後悔する」の de を忘れない。<br>📖 語句：arrepentirse de「〜を後悔する」／actitud「態度」／anoche「昨夜」'
+          },
+          {
+            t: 'Hoy me tengo que acostar a las diez para (<span class="qz-b" data-a="levantarme"></span>) a las cuatro mañana. <span class="qz-hint">(levantarse → yo)</span>',
+            ja: '明日4時に起きるために今日は10時に就寝しなければならない。',
+            exp: '解説ページのボックス内の例文に接地。不定詞として用いる場合は<b>-se を主語に応じた再帰代名詞に変える</b>。para + 不定詞「〜するために」。主語 yo なので -se → <b>me</b> → <b>levantarme</b>。<br>⚠️ levantarse をそのまま不定詞にしない（-se を yo の再帰代名詞 me に変えて levantarme）。<br>📖 語句：levantarse「起床する」／para「〜するために」／mañana「明日」'
+          },
+          {
+            t: 'En Nagoya no (<span class="qz-b" data-a="se respetan"></span>) mucho las reglas de tránsito. <span class="qz-hint">(respetar)</span>',
+            ja: '名古屋では交通ルールがあまり守られない。',
+            exp: '解説ページの例文そのまま。<b>受身再帰用法</b>「〜される」。主語は las reglas de tránsito（複数）→ 動詞は3複 <b>se respetan</b>。<br>⚠️ 受身再帰は「por 行為主体」を付けられない。主語（守られるもの）は複数なので respetan（3複）。<br>📖 語句：respetar「尊重する・守る」／reglas de tránsito「交通ルール」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Se tarda"></span>) diez minutos de la universidad a la estación. <span class="qz-hint">(tardarse)</span>',
+            ja: '大学から駅までは10分の道のりです。',
+            exp: '解説ページの例文そのまま。<b>不定主語用法（無人称用法）</b>「（一般的に）〜かかる」。動詞は必ず3人称単数形 <b>se tarda</b>（主語なし）。<br>⚠️ 不定主語用法は常に3単（se tardan などとしない。主語は「時間」ではなく無主語）。<br>📖 語句：tardarse「（時間が）かかる」／minuto「分」'
+          }
+        ]
+      }
+    ]
+  };
+
 })();

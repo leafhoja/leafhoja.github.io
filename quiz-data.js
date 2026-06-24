@@ -158,6 +158,112 @@ var QUIZ_DATA = {
     ]
   },
 
+  /* ── 一列 Lección 4 小テスト（不規則活用・比較・関係詞）──────── */
+  'Spanish1_lesson4.html': {
+    title: 'Lección 4 小テスト',
+    intro: '【共通の注意】文字は丁寧に、かつアクセント記号は明確に書くこと！不明瞭な場合は不正解とします。空所をタップすると解答が、「答えを確認」で解説が表示されます。',
+    sections: [
+      {
+        heading: '1. 動詞の活用',
+        instruction: '囲みから適切な動詞を選び、会話が成立するよう、正しい形に活用させ（&nbsp;）を埋めなさい。各動詞は１度ずつ用いること。（1点×7）<br><span style="font-size:13px;background:#f5f5f0;padding:4px 10px;border-radius:6px;display:inline-block;margin-top:4px;">tener &nbsp;&nbsp; salir &nbsp;&nbsp; ir &nbsp;&nbsp; poner &nbsp;&nbsp; saber &nbsp;&nbsp; conocer &nbsp;&nbsp; ver</span>',
+        items: [
+          {
+            t: '¿(<span class="qz-b" data-a="Ven"></span>) ustedes la televisión por la mañana? — No, leemos el periódico.',
+            ja: '午前中テレビをご覧になりますか？ — いいえ、新聞を読んでいます。',
+            exp: '<b>ver</b>（見る・見える）は完全不規則。ustedes は3複なので <b>ven</b>。<br>⚠️ ver の活用：veo / ves / ve / vemos / veis / ven（アクセント記号不要）。<br>📖 <b>語句</b>：televisión「テレビ」／por la mañana「午前中に」／leer「読む」／periódico「新聞」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Conocéis"></span>) (vosotros) a Emilia? — Sí, es nuestra profesora de español.',
+            ja: 'あなたたちはエミリアを知っていますか？ — はい、スペイン語の先生です。',
+            exp: '<b>conocer</b>（知っている・面識がある）は母音+cer型。1単のみ conozco、2複 <b>conocéis</b>（他は規則活用。アクセント記号 é に注意）。<br>⚠️ 人を目的語にとるとき前置詞 a が必要（a Emilia）。<br>📖 <b>語句</b>：profesora「（女性の）先生」／español「スペイン語」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Vamos"></span>) (nosotros) al cine? — Sí, yo quiero ver la nueva película de Tim Burton.',
+            ja: '映画を見に行きましょうか？ — はい、ティム・バートンの新作が見たいです。',
+            exp: '<b>ir</b>（行く）は完全不規則。1複 <b>vamos</b>。疑問文で「〜しましょうか（提案）」のニュアンスになる。<br>⚠️ ir a + 不定詞で近接未来にも使う（Vamos a ver... など）。<br>📖 <b>語句</b>：cine「映画館」／querer + 不定詞「〜したい」／nueva「新しい」／película「映画」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Tienes"></span>) (tú) hermanos? — Sí, un hermano y una hermana.',
+            ja: '兄弟はいますか？ — はい、兄一人と姉一人います。',
+            exp: '<b>tener</b>（持つ・いる）は -go + e→ie 型。2単 <b>tienes</b>（e→ie 変化あり）。<br>⚠️ 1単は tengo（-go のみ、×tiengo）。2単 tienes は語根変化する点に注意。<br>📖 <b>語句</b>：hermano「兄・弟」／hermana「姉・妹」'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Sabe"></span>) usted dónde está el restaurante? — Sí, está cerca de la estación de Ginza.',
+            ja: 'レストランがどこにあるかご存知ですか？ — はい、銀座の駅の近くにあります。',
+            exp: '<b>saber</b>（知っている＝知識・情報）は完全不規則。1単 sé、3単 <b>sabe</b>（規則）。saber + dónde で「どこにあるか知っている」。<br>⚠️ conocer（体験・面識）と saber（知識・情報）の使い分けに注意。<br>📖 <b>語句</b>：restaurante「レストラン」／cerca de「〜の近くに」／estación「駅」'
+          },
+          {
+            t: '¿A qué hora (<span class="qz-b" data-a="sale"></span>) este tren? — A las seis en punto.',
+            ja: 'この電車は何時に出発しますか？ — 6時ちょうどです。',
+            exp: '<b>salir</b>（出る・出発する）は -go 型。1単のみ salgo、3単 <b>sale</b>（規則活用）。<br>⚠️ -go 型は1単のみ不規則。3単は通常の活用 sale（×salgo）。<br>📖 <b>語句</b>：a qué hora「何時に」／tren「電車・列車」／en punto「ちょうど・きっかり」'
+          },
+          {
+            t: '¿Dónde (<span class="qz-b" data-a="pongo"></span>) (yo) tu café? — Aquí, por favor.',
+            ja: 'あなたのコーヒーをどこに置きましょうか？ — ここに、お願いします。',
+            exp: '<b>poner</b>（置く・つける）は -go 型。1単 <b>pongo</b>、2単以降は規則活用（pones / pone…）。<br>⚠️ -go 型の共通パターン：hago / salgo / pongo / tengo / vengo など、1単だけ -go。<br>📖 <b>語句</b>：dónde「どこに」／café「コーヒー」／aquí「ここに」'
+          }
+        ]
+      },
+      {
+        heading: '2. 比較表現',
+        instruction: '下線部に適切な語句を補い、和訳に合うような比較表現を完成させなさい。（1点×6）',
+        items: [
+          {
+            t: 'María es (<span class="qz-b" data-a="más"></span>) (<span class="qz-b" data-a="alta"></span>) (<span class="qz-b" data-a="que"></span>) su prima.',
+            ja: 'マリアは従姉妹よりも背が高い。',
+            exp: '優等比較：<b>más</b> + 形容詞 + <b>que</b>。形容詞 alto は主語 María（女性単数）に一致して <b>alta</b>（×alto）。<br>⚠️ 比較の相手は que（de ではない）。形容詞の性数一致を忘れずに。<br>📖 <b>語句</b>：prima「いとこ（女性）」／alto「背の高い」'
+          },
+          {
+            t: 'Este hotel es (<span class="qz-b" data-a="el"></span>) (<span class="qz-b" data-a="mejor"></span>) (<span class="qz-b" data-a="de"></span>) la ciudad.',
+            ja: 'このホテルは街で一番良い。',
+            exp: 'bueno の不規則最上級 <b>mejor</b>。定冠詞は hotel（男性単数）に合わせて <b>el</b>。範囲は <b>de</b>（de la ciudad）。<br>⚠️ 最上級の範囲は que ではなく de。mejor は性変化なし（男女同形）。<br>📖 <b>語句</b>：hotel「ホテル」／ciudad「街・都市」'
+          },
+          {
+            t: 'Estas corbatas son (<span class="qz-b" data-a="tan"></span>) (<span class="qz-b" data-a="caras"></span>) (<span class="qz-b" data-a="como"></span>) esas.',
+            ja: 'これらのネクタイはそれらと同じくらい高い（caro）。',
+            exp: '同等比較（形容詞）：<b>tan</b> + 形容詞 + <b>como</b>。形容詞 cara は corbatas（女性複数）に一致して <b>caras</b>。<br>⚠️ 名詞の量を比べる tanto/tanta/tantos/tantas と混同しない。形容詞・副詞には tan を使う。<br>📖 <b>語句</b>：corbata「ネクタイ」／caro「高い・高価な」／estas「これらの」／esas「それらの」'
+          },
+          {
+            t: 'Mis padres comen (<span class="qz-b" data-a="menos"></span>) (<span class="qz-b" data-a="que"></span>) yo.',
+            ja: '両親は私より食が細い（食べる量が少ない）。',
+            exp: '劣等比較：<b>menos</b> + que。ここでは comer（食べる量）を比べているので動詞の後に menos que を置く。<br>⚠️ menos que の que を de にしない（名詞・代名詞との比較は que）。<br>📖 <b>語句</b>：padres「両親」／comer「食べる」'
+          },
+          {
+            t: 'Trabajamos (<span class="qz-b" data-a="tanto"></span>) (<span class="qz-b" data-a="como"></span>) ellos.',
+            ja: '私たちは彼らと同じくらいよく働く。',
+            exp: '動詞（働く量）の同等比較：<b>tanto</b> + <b>como</b>。動詞を修飾するときは tanto（性数変化なし）。<br>⚠️ 形容詞・副詞は tan、名詞の量は tanto/tanta/tantos/tantas、動詞の量は tanto（変化なし）の3種を区別する。<br>📖 <b>語句</b>：trabajar「働く」'
+          },
+          {
+            t: 'Los candidatos de estas elecciones son (<span class="qz-b" data-a="los"></span>) (<span class="qz-b" data-a="peores"></span>) (<span class="qz-b" data-a="de"></span>) esta década.',
+            ja: '今回の選挙の候補者たちはこの10年で最悪だ。',
+            exp: 'malo の不規則最上級 <b>peor</b>（複数 <b>peores</b>）。定冠詞は candidatos（男性複数）に合わせて <b>los</b>。範囲は <b>de</b>（de esta década）。<br>⚠️ peores は性変化なし（男女同形）、数変化のみ。más malo は誤り（peor を使う）。<br>📖 <b>語句</b>：candidato「候補者」／elección「選挙」（複数 elecciones）／década「10年・年代」'
+          }
+        ]
+      },
+      {
+        heading: '3. 関係詞',
+        instruction: '下線部に、関係詞を含む適切な語句を入れて、和訳に合うような文を完成させなさい。（1点×3）',
+        items: [
+          {
+            t: 'Los niños (<span class="qz-b" data-a="a los que"></span>) enseño japonés son muy bonitos.',
+            ja: '私が日本語を教えてあげている子供たちはとても可愛い。',
+            exp: 'enseñar a（〜に教える）の前置詞 a + 先行詞 los niños（男性複数）→ <b>a los que</b>。<br>⚠️ 前置詞 a を落とさない。「人に教える」enseñar a の a は関係詞の前にも必要。<br>📖 <b>語句</b>：niño「子供」／enseñar「教える」／japonés「日本語」／bonito「可愛い・きれいな」'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Los que"></span>) están al lado de Micaela son Mario y Elena.',
+            ja: 'ミカエラの横にいるのはマリオとエレーナだ。',
+            exp: '先行詞なしの独立用法。「横にいる人たち（男性・混性複数）」＝ <b>Los que</b>（定冠詞 los + que）。<br>⚠️ lo que（中性：抽象的なこと）ではなく Los que（具体的な人：男性・混性複数）。<br>📖 <b>語句</b>：al lado de「〜の横に・隣に」'
+          },
+          {
+            t: 'En Buenos Aires vive una mujer (<span class="qz-b" data-a="para la que"></span>) puedo morir.',
+            ja: 'ブエノスアイレスに、私がそのためなら死んでもいいと思っている1人の女性が住んでいる。',
+            exp: 'morir para（〜のために死ぬ）の前置詞 para + 先行詞 una mujer（女性単数）→ <b>para la que</b>。<br>⚠️ 前置詞 para をつける。mujer が女性単数なので la que（×para que・×para el que）。<br>📖 <b>語句</b>：Buenos Aires「ブエノスアイレス」／mujer「女性」／morir「死ぬ」'
+          }
+        ]
+      }
+    ]
+  },
+
   /* ── 二列 Lección 2 小テスト（作文・和文西訳）──────────────── */
   'Spanish2_lesson2.html': {
     title: 'Lección 2 小テスト（作文）',
