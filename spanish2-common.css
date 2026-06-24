@@ -360,6 +360,61 @@ body.is-printing #tab-renshu { break-before: always; page-break-before: always; 
   .trans-sent[data-num]::before { content: "(" attr(data-num) ") "; font-weight: 700; color: #000; }
 }
 
+/* ── フレーズ内単語確認パネル（Spanish2） ── */
+.pb-clickable {
+  cursor: pointer; border-radius: 3px; transition: background .1s;
+  padding: 1px 3px; margin: -1px -3px;
+}
+.pb-clickable:hover { background: rgba(27,122,104,.09); }
+.pb-clickable.pb-active { background: rgba(27,122,104,.18); }
+
+.pb-wrap {
+  margin: 2px 0 10px;
+  border: 1px solid #cfc0e5;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.pb-inner { display: flex; flex-direction: column; }
+
+.pb-word {
+  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  padding: 4px 10px; font-size: 12.5px;
+  border-bottom: 1px solid #ece6f5;
+}
+.pb-word:last-child { border-bottom: none; }
+.pb-word:nth-child(odd)  { background: #faf8fd; }
+.pb-word:nth-child(even) { background: #f5f2fb; }
+.pb-word.pb-unknown { opacity: .4; }
+
+.pb-form { font-family: var(--mono); font-weight: 700; font-size: 13px; color: var(--accent); min-width: 80px; }
+.pb-base { font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+.pb-pos {
+  font-size: 10px; font-weight: 700; white-space: nowrap;
+  padding: 1px 6px; border-radius: 3px;
+  background: #ede8f5; color: var(--rd);
+}
+.pb-pos[data-pos*="動詞"]   { background: var(--ex-bg); color: var(--accent); }
+.pb-pos[data-pos*="再帰"]   { background: var(--ex-bg); color: var(--accent); }
+.pb-pos[data-pos*="名詞"]   { background: #ede8f5; color: var(--rd); }
+.pb-pos[data-pos*="形容詞"] { background: #fff4e6; color: #9a4500; }
+.pb-pos[data-pos*="前置詞"] { background: #e0f5f8; color: #0e7490; }
+.pb-pos[data-pos*="副詞"]   { background: #f5f0fc; color: #6d28d9; }
+.pb-pos[data-pos*="代名詞"] { background: #eff4ff; color: #2563eb; }
+.pb-pos[data-pos*="冠詞"]   { background: #e8f5e9; color: #1b6b3a; }
+.pb-pos[data-pos*="接続詞"] { background: #fef8ec; color: #b45309; }
+.pb-pos[data-pos*="間投詞"], .pb-pos[data-pos*="感嘆"] { background: #fef0f0; color: #dc2626; }
+
+.pb-ja { font-size: 12px; color: var(--mid); flex: 1; }
+
+.pb-ja-head {
+  font-size: 12.5px; color: var(--mid); font-style: italic;
+  padding: 5px 10px;
+  background: #ede8f5; border-bottom: 1px solid #cfc0e5;
+}
+.pb-word.pb-found { cursor: pointer; }
+.pb-word.pb-found:hover { filter: brightness(.93); }
+
 @media (max-width: 620px) {
   body { padding: 14px 12px 72px; }
   .word-item { grid-template-columns: 120px 1fr; }

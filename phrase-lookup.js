@@ -103,13 +103,16 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  function buildPanel(spanEl) {
+  function buildPanel(spanEl, jaText) {
     var text = spanEl.textContent || '';
     var tokens = text.match(/[A-Za-záéíóúüñÁÉÍÓÚÜÑ]+/g) || [];
     if (!tokens.length) return null;
 
-    var html = '<div class="pb-wrap">'
-      + '<div class="pb-inner">';
+    var html = '<div class="pb-wrap">';
+    if (jaText) {
+      html += '<div class="pb-ja-head">' + esc(jaText) + '</div>';
+    }
+    html += '<div class="pb-inner">';
 
     for (var i = 0; i < tokens.length; i++) {
       var t = tokens[i];
@@ -118,13 +121,16 @@
         var showBase = res.base.toLowerCase() !== t.toLowerCase();
         var posLabel = res.data[0] || '';
         var meaning  = res.data[1] || '';
-        html += '<div class="pb-word pb-found">'
+        html += '<div class="pb-word pb-found"'
+          + ' data-word="' + esc(res.base) + '"'
+          + ' data-pos="'  + esc(posLabel)  + '"'
+          + ' data-def="'  + esc(meaning)   + '">'
           + '<span class="pb-form">' + esc(t) + '</span>';
         if (showBase) {
           html += '<span class="pb-base">← ' + esc(res.base) + '</span>';
         }
         if (posLabel) {
-          html += '<span class="pb-pos">' + esc(posLabel) + '</span>';
+          html += '<span class="pb-pos" data-pos="' + esc(posLabel) + '">' + esc(posLabel) + '</span>';
         }
         if (meaning) {
           html += '<span class="pb-ja">' + esc(meaning) + '</span>';
@@ -164,12 +170,32 @@
           return;
         }
 
-        var html = buildPanel(sp);
+        // 日本語訳を取得（.utt-body/.sent-body の最初の子要素）
+        var jaText = '';
+        var sibling = anchor.nextElementSibling;
+        if (sibling) {
+          var jaEl = sibling.querySelector('.utt-ja, .sent-ja');
+          if (jaEl) jaText = jaEl.textContent.trim();
+        }
+
+        var html = buildPanel(sp, jaText);
         if (!html) return;
         sp.classList.add('pb-active');
         var tmp = document.createElement('div');
         tmp.innerHTML = html;
-        anchor.parentNode.insertBefore(tmp.firstChild, anchor.nextSibling);
+        var panel = tmp.firstChild;
+        anchor.parentNode.insertBefore(panel, anchor.nextSibling);
+
+        // 各単語クリックで辞書モーダルを開く
+        panel.querySelectorAll('.pb-word.pb-found').forEach(function (wordEl) {
+          wordEl.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var word = wordEl.dataset.word;
+            if (typeof window.openDictByWord === 'function') {
+              window.openDictByWord(word);
+            }
+          });
+        });
       });
     });
   }
