@@ -123,6 +123,7 @@
         var meaning  = res.data[1] || '';
         html += '<div class="pb-word pb-found"'
           + ' data-word="' + esc(res.base) + '"'
+          + ' data-form="' + esc(t) + '"'
           + ' data-pos="'  + esc(posLabel)  + '"'
           + ' data-def="'  + esc(meaning)   + '">'
           + '<span class="pb-form">' + esc(t) + '</span>';
@@ -191,8 +192,10 @@
           wordEl.addEventListener('click', function (e) {
             e.stopPropagation();
             var word = wordEl.dataset.word;
+            var form = wordEl.dataset.form || '';
+            var hl = form.toLowerCase() !== word.toLowerCase() ? form : null;
             if (typeof window.openDictByWord === 'function') {
-              window.openDictByWord(word);
+              window.openDictByWord(word, null, hl);
             }
           });
         });
@@ -206,15 +209,58 @@
     attachClickable('.sent-es', '.sent-header');
   }
 
+  // ── インデックス構築 ─────────────────────────
+  // dict-data.js (RAW) と dict-conj.js (DICT_CONJ) から
+  // WORD_IDX / FORM_IDX を動的に生成する
+
+  function buildIndexes() {
+    window.WORD_IDX = {};
+    window.FORM_IDX = {};
+    // WORD_IDX: RAW の各エントリから構築
+    for (var i = 0; i < RAW.length; i++) {
+      var e = RAW[i];
+      var w = e[F.word];
+      WORD_IDX[w] = [e[F.pos], e[F.meaning], e[F.vtype] || e[F.gender] || ''];
+      FORM_IDX[w] = w;
+    }
+    // FORM_IDX: DICT_CONJ の活用形・複数形・形容詞変化形から構築
+    var conj = DICT_CONJ;
+    var tenses = ['pres', 'pret', 'imp', 'fut', 'cond', 'subj'];
+    for (var key in conj) {
+      if (!conj.hasOwnProperty(key)) continue;
+      var entry = conj[key];
+      // 動詞活用形
+      for (var ti = 0; ti < tenses.length; ti++) {
+        var forms = entry[tenses[ti]];
+        if (forms) {
+          for (var fi = 0; fi < forms.length; fi++) {
+            var form = forms[fi];
+            if (form && !FORM_IDX[form]) FORM_IDX[form] = key;
+          }
+        }
+      }
+      // 名詞複数形
+      if (entry.plural && !FORM_IDX[entry.plural]) FORM_IDX[entry.plural] = key;
+      // 形容詞変化形
+      if (entry.adj) {
+        for (var ai = 0; ai < entry.adj.length; ai++) {
+          var af = entry.adj[ai];
+          if (af && !FORM_IDX[af]) FORM_IDX[af] = key;
+        }
+      }
+    }
+  }
+
   // ── 遅延ロード ──────────────────────────────
-  // phrase-dict.js は初回クリック時に動的ロードする
+  // dict-data.js / dict-conj.js は初回クリック時に動的ロードする
 
   function setup() {
     var candidates = document.querySelectorAll('.ex-sp, .utt-es, .sent-es');
     if (!candidates.length) return;
 
     // データ既ロード済み（html側で script タグ書いた場合など）
-    if (typeof WORD_IDX !== 'undefined' && typeof FORM_IDX !== 'undefined') {
+    if (typeof RAW !== 'undefined' && typeof DICT_CONJ !== 'undefined') {
+      buildIndexes();
       attachAll();
       return;
     }
@@ -231,19 +277,38 @@
       loading = true;
       var originalEl = e.currentTarget;
       // すでにロード済みなら即セットアップ
-      if (typeof WORD_IDX !== 'undefined' && typeof FORM_IDX !== 'undefined') {
+      if (typeof RAW !== 'undefined' && typeof DICT_CONJ !== 'undefined') {
+        buildIndexes();
         attachAll();
         setTimeout(function () { originalEl.click(); }, 0);
         return;
       }
-      var s = document.createElement('script');
-      s.src = 'phrase-dict.js';
-      s.onload = function () {
-        attachAll();
-        // 最初のクリックを再発火して結果を即表示
-        setTimeout(function () { originalEl.click(); }, 0);
-      };
-      document.head.appendChild(s);
+      var loaded = 0;
+      var srcs = ['dict-data.js', 'dict-conj.js'];
+      srcs.forEach(function (src) {
+        // すでにロード済みのスクリプトはスキップ
+        if (document.querySelector('script[src="' + src + '"]')) {
+          loaded++;
+          if (loaded === srcs.length) {
+            buildIndexes();
+            attachAll();
+            setTimeout(function () { originalEl.click(); }, 0);
+          }
+          return;
+        }
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function () {
+          loaded++;
+          if (loaded === srcs.length) {
+            buildIndexes();
+            attachAll();
+            // 最初のクリックを再発火して結果を即表示
+            setTimeout(function () { originalEl.click(); }, 0);
+          }
+        };
+        document.head.appendChild(s);
+      });
     }
 
     candidates.forEach(function (el) {

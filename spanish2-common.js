@@ -373,6 +373,11 @@ function s2EscHtml(s) {
   function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
+  function makeBadge(form, hl) {
+    var cls = 'dict-conj-badge';
+    if (hl && strip(form.trim()) === strip(hl)) cls += ' dict-conj-badge--active';
+    return '<span class="' + cls + '">' + esc(form.trim()) + '</span>';
+  }
   function hlEs(text, q) {
     var n = strip(q), t = strip(text);
     var i = t.indexOf(n);
@@ -438,16 +443,17 @@ function s2EscHtml(s) {
         else if (wn.startsWith(norm)) score = 1;
         else if (wn.includes(norm))   score = 2;
         // 活用形マッチ
+        var matchedForm = null;
         if (score > 2 && conj) {
           var forms = conj.split(/,\s*/);
           for (var f = 0; f < forms.length; f++) {
             var fn = strip(forms[f].trim());
-            if (fn === norm)         { score = Math.min(score, 0.5); break; }
+            if (fn === norm)         { score = Math.min(score, 0.5); matchedForm = q; break; }
             if (fn.startsWith(norm)) { score = Math.min(score, 1.5); }
           }
         }
       }
-      if (score < 50) { results.push({idx: i, word: word, meaning: meaning, pos: e[F.pos], score: score}); seen[word] = 1; }
+      if (score < 50) { results.push({idx: i, word: word, meaning: meaning, pos: e[F.pos], score: score, matchedForm: matchedForm}); seen[word] = 1; }
     }
     results.sort(function(a,b){ return a.score - b.score; });
     return results.slice(0, 15);
@@ -524,7 +530,7 @@ function s2EscHtml(s) {
       var idx = parseInt(el.dataset.dict);
       el.addEventListener('click', function() {
         closeSearch();
-        openDictModal(_dictHits[idx].idx);
+        openDictModal(_dictHits[idx].idx, _dictHits[idx].matchedForm);
       });
     });
   }
@@ -554,7 +560,7 @@ function s2EscHtml(s) {
   }
 
   /* ── 辞書モーダル ── */
-  function openDictModal(rawIdx) {
+  function openDictModal(rawIdx, highlightForm) {
     if (typeof RAW === 'undefined' || !RAW[rawIdx]) return;
     var e = RAW[rawIdx];
     var word    = e[F.word]    || '';
@@ -589,19 +595,17 @@ function s2EscHtml(s) {
 
     var presConj = (_dc && _dc.pres) ? _dc.pres.join(', ') : conj;
     if (presConj) {
-      var cHtml = presConj.split(/,\s*/).map(function(f) {
-        return '<span class="dict-conj-badge">' + esc(f.trim()) + '</span>';
-      }).join('');
+      var cHtml = presConj.split(/,\s*/).map(function(f) { return makeBadge(f, highlightForm); }).join('');
       body += '<div class="dict-row"><span class="dict-label">現在活用</span><span class="dict-val">' + cHtml + '</span></div>';
     }
 
     if (_dc && _dc.pret) {
-      var pretHtml = _dc.pret.map(function(f) { return '<span class="dict-conj-badge">' + esc(f) + '</span>'; }).join('');
+      var pretHtml = _dc.pret.map(function(f) { return makeBadge(f, highlightForm); }).join('');
       body += '<div class="dict-row"><span class="dict-label">点過去</span><span class="dict-val">' + pretHtml + '</span></div>';
     }
 
     if (_dc && _dc.imp) {
-      var impHtml = _dc.imp.map(function(f) { return '<span class="dict-conj-badge">' + esc(f) + '</span>'; }).join('');
+      var impHtml = _dc.imp.map(function(f) { return makeBadge(f, highlightForm); }).join('');
       body += '<div class="dict-row"><span class="dict-label">線過去</span><span class="dict-val">' + impHtml + '</span></div>';
     }
 
@@ -613,15 +617,13 @@ function s2EscHtml(s) {
       else if (end2 === 'er' || end2 === 'ir') { ger = stem + 'iendo'; pp = stem + 'ido'; }
     }
     if (ger || pp) {
-      var partHtml = (ger ? '<span class="dict-conj-badge">' + esc(ger) + '</span>' : '')
-                   + (pp  ? '<span class="dict-conj-badge">' + esc(pp)  + '</span>' : '');
+      var partHtml = (ger ? makeBadge(ger, highlightForm) : '')
+                   + (pp  ? makeBadge(pp,  highlightForm) : '');
       body += '<div class="dict-row"><span class="dict-label">分詞形</span><span class="dict-val">' + partHtml + '</span></div>';
     }
 
     if (adj) {
-      var aHtml = adj.split(/,\s*/).map(function(f) {
-        return '<span class="dict-conj-badge">' + esc(f.trim()) + '</span>';
-      }).join('');
+      var aHtml = adj.split(/,\s*/).map(function(f) { return makeBadge(f, highlightForm); }).join('');
       body += '<div class="dict-row"><span class="dict-label">形容詞変化</span><span class="dict-val">' + aHtml + '</span></div>';
     }
 
@@ -652,26 +654,116 @@ function s2EscHtml(s) {
     document.getElementById('dict-overlay').classList.remove('open');
   }
 
+  /* ── WORD_IDX（phrase-dict）のデータでモーダルを開く ── */
+  function openDictModalFromWordIdx(baseWord, data, displayForm) {
+    var pos     = data[0] || '';
+    var meaning = data[1] || '';
+    var extra   = data[2] || '';
+
+    var header = displayForm && displayForm !== baseWord
+      ? displayForm + '（← ' + baseWord + '）' : baseWord;
+    document.getElementById('dict-modal-word').textContent = header;
+    document.getElementById('dict-modal-pos').textContent  = pos;
+
+    var body = '<div class="dict-ja-big">' + esc(meaning) + '</div>';
+
+    if (extra === 'm' || extra === 'f') {
+      var gStyle = extra === 'm' ? 'background:#dbeafe;color:#1e40af' : 'background:#fce7f3;color:#9d174d';
+      var gLabel = extra === 'm' ? '男性 (m)' : '女性 (f)';
+      body += '<div class="dict-row"><span class="dict-label">性</span><span class="dict-val"><span class="dict-tag" style="' + gStyle + '">' + gLabel + '</span></span></div>';
+    } else if (extra) {
+      body += '<div class="dict-row"><span class="dict-label">動詞型</span><span class="dict-val">' + esc(extra) + '</span></div>';
+    }
+
+    var _dc = (typeof DICT_CONJ !== 'undefined') ? (DICT_CONJ[baseWord] || null) : null;
+    if (_dc && _dc.pres) {
+      var cHtml = _dc.pres.map(function(f) { return makeBadge(f, displayForm); }).join('');
+      body += '<div class="dict-row"><span class="dict-label">現在活用</span><span class="dict-val">' + cHtml + '</span></div>';
+    }
+    if (_dc && _dc.pret) {
+      var ptHtml = _dc.pret.map(function(f) { return makeBadge(f, displayForm); }).join('');
+      body += '<div class="dict-row"><span class="dict-label">点過去</span><span class="dict-val">' + ptHtml + '</span></div>';
+    }
+    if (_dc && _dc.imp) {
+      var imHtml = _dc.imp.map(function(f) { return makeBadge(f, displayForm); }).join('');
+      body += '<div class="dict-row"><span class="dict-label">線過去</span><span class="dict-val">' + imHtml + '</span></div>';
+    }
+    if (_dc && _dc.adj) {
+      var aHtml = _dc.adj.map(function(f) { return makeBadge(f, displayForm); }).join('');
+      body += '<div class="dict-row"><span class="dict-label">形容詞変化</span><span class="dict-val">' + aHtml + '</span></div>';
+    }
+    if (typeof DICT_EXAMPLES !== 'undefined' && DICT_EXAMPLES[baseWord]) {
+      var ex = DICT_EXAMPLES[baseWord];
+      body += '<div class="dict-example"><div class="dict-example-label">例文</div>' +
+        '<div class="dict-example-es">' + esc(ex.es) + '</div>' +
+        '<div class="dict-example-ja">' + esc(ex.ja) + '</div></div>';
+    }
+    if (typeof DICT_BOOST !== 'undefined' && DICT_BOOST[baseWord]) {
+      body += '<div class="dict-boost">🔗 ' + esc(DICT_BOOST[baseWord]) + '</div>';
+    }
+    if (typeof DICT_TRIVIA !== 'undefined' && DICT_TRIVIA[baseWord]) {
+      body += '<div class="dict-trivia">💡 ' + esc(DICT_TRIVIA[baseWord]) + '</div>';
+    }
+
+    document.getElementById('dict-modal-body').innerHTML = body;
+    document.getElementById('dict-overlay').classList.add('open');
+  }
+
   /* ── 単語を辞書で開く（phrase-lookupからも呼び出し可能なグローバル関数） ── */
-  // fallback: 辞書で見つからなかった場合に呼ぶ関数（省略可）
-  window.openDictByWord = function (word, fallback) {
+  // fallback: どこにも見つからなかった場合に呼ぶ関数（省略可）
+  window.openDictByWord = function (word, fallback, highlightForm) {
     function doOpen() {
-      if (typeof RAW === 'undefined') { if (fallback) fallback(); return; }
       var norm = strip(word.toLowerCase());
-      // 直接一致
-      for (var i = 0; i < RAW.length; i++) {
-        if (strip(RAW[i][F.word]) === norm) { openDictModal(i); return; }
-      }
-      // 活用形 → 原形 (FORM_IDX)
-      if (typeof FORM_IDX !== 'undefined' && FORM_IDX[norm]) {
-        var base = FORM_IDX[norm];
-        for (var j = 0; j < RAW.length; j++) {
-          if (strip(RAW[j][F.word]) === base) { openDictModal(j); return; }
+      var hl = highlightForm || null;
+
+      // 0. strip() でアクセント・ñ が除去される語は完全一致（小文字）を優先
+      if (norm !== word.toLowerCase()) {
+        var exact = word.toLowerCase();
+        if (typeof RAW !== 'undefined') {
+          for (var k = 0; k < RAW.length; k++) {
+            if (RAW[k][F.word].toLowerCase() === exact) { openDictModal(k, hl); return; }
+          }
+        }
+        if (typeof WORD_IDX !== 'undefined') {
+          if (WORD_IDX[exact]) { openDictModalFromWordIdx(exact, WORD_IDX[exact], hl); return; }
+          if (typeof FORM_IDX !== 'undefined' && FORM_IDX[exact] && WORD_IDX[FORM_IDX[exact]]) {
+            var b0 = FORM_IDX[exact];
+            openDictModalFromWordIdx(b0, WORD_IDX[b0], hl || exact);
+            return;
+          }
         }
       }
+
+      // 1. RAW に直接一致
+      if (typeof RAW !== 'undefined') {
+        for (var i = 0; i < RAW.length; i++) {
+          if (strip(RAW[i][F.word]) === norm) { openDictModal(i, hl); return; }
+        }
+        // 2. FORM_IDX 経由で原形を RAW から探す
+        if (typeof FORM_IDX !== 'undefined' && FORM_IDX[norm]) {
+          var base1 = FORM_IDX[norm];
+          for (var j = 0; j < RAW.length; j++) {
+            if (strip(RAW[j][F.word]) === base1) { openDictModal(j, hl || word); return; }
+          }
+        }
+      }
+
+      // 3. WORD_IDX から直接（RAW にない語: hola, ser など）
+      if (typeof WORD_IDX !== 'undefined') {
+        if (WORD_IDX[norm]) {
+          openDictModalFromWordIdx(norm, WORD_IDX[norm], hl);
+          return;
+        }
+        if (typeof FORM_IDX !== 'undefined' && FORM_IDX[norm] && WORD_IDX[FORM_IDX[norm]]) {
+          var base2 = FORM_IDX[norm];
+          openDictModalFromWordIdx(base2, WORD_IDX[base2], hl || norm);
+          return;
+        }
+      }
+
       if (fallback) fallback();
     }
-    var srcs = ['dict-data.js', 'dict-examples.js', 'dict-boost.js', 'dict-trivia.js', 'dict-meanings.js', 'dict-conj.js', 'phrase-dict.js'];
+    var srcs = ['dict-data.js', 'dict-examples.js', 'dict-boost.js', 'dict-trivia.js', 'dict-meanings.js', 'dict-conj.js'];
     var needed = srcs.filter(function(s) { return !document.querySelector('script[src="' + s + '"]'); });
     if (!needed.length) { doOpen(); return; }
     var done = 0;
