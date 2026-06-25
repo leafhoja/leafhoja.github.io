@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script src="../access-control.js"></script>
+<script src="../ga.js"></script>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2a5298">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="スペ語辞書">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<link rel="manifest" href="../manifest.json">
+<title>スペイン語辞書</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+:root {
+  --ink:#1c1c1e; --mid:#48484a; --muted:#8e8e93;
+  --accent:#2a5298; --accent2:#1b7a68; --warn:#a8281a;
+  --gold:#6b5418; --bg:#f5f5f0; --surface:#ffffff;
+  --rule:#d6d6ce; --head-bg:#ebeff8; --alt-bg:#f0f0eb;
+  --ex-bg:#ecf3fa; --tip-bg:#eef6ee;
+  --serif:'Noto Serif JP',serif; --sans:'Noto Sans JP',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);font-size:14px;line-height:1.7;color:var(--ink);background:var(--bg);min-height:100vh}
+
+/* ── Dict modal (同 common.css) ── */
+#dict-overlay{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.38);align-items:center;justify-content:center}
+#dict-overlay.open{display:flex}
+#dict-modal{background:var(--surface);border-top:4px solid var(--accent);box-shadow:0 8px 32px rgba(0,0,0,.22);width:min(480px,calc(100vw - 28px));max-height:80vh;overflow-y:auto;position:relative;animation:dictSlideIn .15s ease}
+@keyframes dictSlideIn{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+#dict-modal-head{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--surface);z-index:1}
+#dict-modal-word{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent);flex:1}
+#dict-modal-pos{font-size:11px;color:var(--muted);background:var(--alt-bg);padding:2px 7px;border-radius:2px;white-space:nowrap}
+#dict-modal-close{background:none;border:none;cursor:pointer;font-size:18px;color:var(--muted);padding:2px 8px;line-height:1;transition:color .1s;flex-shrink:0}
+#dict-modal-close:hover{color:var(--ink)}
+#dict-modal-body{padding:14px 16px 20px}
+.dict-ja-big{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.4;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.dict-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;font-size:13px}
+.dict-label{font-size:10px;font-weight:700;color:var(--muted);background:var(--alt-bg);padding:2px 6px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.dict-val{color:var(--ink);line-height:1.75}
+.dict-tag{display:inline-block;font-size:10.5px;background:var(--head-bg);color:var(--accent);padding:2px 7px;margin-right:4px;margin-bottom:4px}
+.dict-conj-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;min-width:0}
+.dict-conj-table th{background:var(--head-bg);color:var(--accent);padding:4px 8px;border:1px solid var(--rule);font-size:11px;text-align:center}
+.dict-conj-table td{padding:4px 8px;border:1px solid var(--rule);text-align:center;font-family:var(--mono);font-size:12.5px}
+.dict-conj-table tr:nth-child(even) td{background:var(--alt-bg)}
+.dict-conj-row-hi td{background:#fff3a0!important;font-weight:700;color:var(--warn)}
+.dict-jump-btn{display:inline-flex;align-items:center;gap:5px;margin-top:14px;background:var(--accent);color:#fff;border:none;padding:7px 16px;font-size:12px;font-weight:700;font-family:var(--sans);cursor:pointer;transition:background .1s}
+.dict-jump-btn:hover{background:#1d3e72}
+.conj-list{display:flex;flex-wrap:wrap;gap:4px}
+.dict-conj-badge{background:var(--ex-bg);color:var(--accent2);font-size:12px;font-family:var(--mono);font-weight:600;padding:1px 7px;display:inline-block;border-radius:2px}
+.dict-conj-badge--active{background:var(--accent);color:#fff}
+.dict-note{font-size:12px;color:var(--gold);background:var(--tip-bg);border-left:3px solid #6bab6b;padding:7px 10px;margin-top:8px;line-height:1.65}
+.dict-example{margin-top:10px;padding:8px 12px;background:var(--ex-bg);border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
+.dict-example-label{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.dict-example-es{font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:2px}
+.dict-example-ja{font-size:12px;color:var(--muted);font-style:italic}
+.dict-boost{margin-top:7px;padding:7px 10px;background:#e8f5ec;border-left:3px solid #2e7d50;border-radius:0 4px 4px 0;font-size:12px;color:#1a4d30;line-height:1.6}
+.dict-trivia{margin-top:7px;padding:7px 10px;background:#fef8ec;border-left:3px solid #c9941a;border-radius:0 4px 4px 0;font-size:12px;color:#6b4818;line-height:1.6}
+
+/* ── トップナビ ── */
+#top-nav{
+  position:sticky;top:0;z-index:900;
+  background:var(--surface);border-bottom:2px solid var(--accent);
+  display:flex;align-items:center;gap:8px;
+  padding:6px 16px;box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+#nav-home{
+  background:var(--accent2);color:#fff;border:none;border-radius:3px;
+  padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:var(--sans);text-decoration:none;transition:background .12s;
+  white-space:nowrap;display:inline-flex;align-items:center;gap:4px;
+}
+#nav-home:hover{background:#155f50}
+#nav-title{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--accent);flex:1}
+#nav-count{font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* ── 検索セクション ── */
+.search-section{
+  background:var(--head-bg);border-bottom:1px solid var(--rule);
+  padding:12px 16px;position:sticky;top:45px;z-index:800;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.search-inner{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.search-row{display:flex;gap:8px;align-items:stretch}
+.search-box-wrap{position:relative;flex:1;min-width:0}
+.search-icon-dec{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.4;pointer-events:none;font-size:14px}
+#dict-main-input{
+  width:100%;padding:9px 36px 9px 34px;
+  border:1.5px solid var(--rule);border-radius:4px;
+  background:var(--surface);color:var(--ink);
+  font-family:var(--mono);font-size:16px;outline:none;transition:border-color .15s;
+  -webkit-appearance:none;
+}
+#dict-main-input:focus{border-color:var(--accent)}
+#dict-main-input::placeholder{color:var(--muted);font-family:var(--sans);font-size:13px}
+#dict-clear-btn{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;
+  font-size:14px;color:var(--muted);padding:4px;line-height:1;
+  transition:color .1s;
+}
+#dict-clear-btn:hover{color:var(--ink)}
+.lang-toggle{display:flex;border:1.5px solid var(--rule);border-radius:4px;overflow:hidden}
+.lang-btn{
+  padding:8px 12px;border:none;background:transparent;
+  color:var(--muted);cursor:pointer;font-family:var(--sans);
+  font-size:12px;font-weight:700;transition:all .15s;white-space:nowrap;
+}
+.lang-btn.active{background:var(--accent);color:#fff}
+.lang-btn:hover:not(.active){background:var(--head-bg);color:var(--accent)}
+
+/* ── 品詞フィルター ── */
+.pos-filter-bar{
+  background:var(--surface);border-bottom:1px solid var(--rule);
+  padding:8px 16px;display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;position:sticky;top:108px;z-index:700;
+}
+.pos-filter-bar::-webkit-scrollbar{display:none}
+.pos-filter-inner{max-width:860px;margin:0 auto;display:flex;gap:6px}
+.pos-chip{
+  padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;
+  cursor:pointer;border:1.5px solid var(--rule);background:transparent;
+  color:var(--muted);transition:all .15s;font-family:var(--sans);white-space:nowrap;
+  flex-shrink:0;
+}
+.pos-chip:hover{border-color:var(--accent);color:var(--accent)}
+.pos-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ── メインコンテンツ ── */
+main{max-width:860px;margin:0 auto;padding:0 0 80px}
+.stats-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:7px 16px;font-size:12.5px;color:var(--muted);
+  border-bottom:1px solid var(--rule);
+}
+.stats-row strong{color:var(--ink);font-weight:700}
+
+/* ── ローディング ── */
+#dict-loading{text-align:center;padding:60px 20px}
+.loading-inner{display:inline-block}
+.loading-spinner{
+  width:32px;height:32px;border:3px solid var(--rule);
+  border-top-color:var(--accent);border-radius:50%;
+  animation:spin .8s linear infinite;margin:0 auto 14px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-msg{font-size:13px;color:var(--muted);line-height:1.8}
+.loading-msg small{font-size:11px}
+
+/* ── ウェルカム ── */
+#dict-welcome{display:none;text-align:center;padding:40px 20px 20px}
+.welcome-icon{font-size:48px;margin-bottom:12px}
+#dict-welcome h2{font-family:var(--serif);font-size:20px;color:var(--accent);margin-bottom:6px}
+.welcome-count{font-size:14px;color:var(--mid);margin-bottom:8px;font-weight:700}
+.welcome-sub{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.8}
+.usage-tips{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:10px;max-width:680px;margin:0 auto 24px;text-align:left;
+}
+.tip-item{
+  display:flex;gap:10px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--rule);
+  border-radius:6px;padding:10px 12px;font-size:12.5px;line-height:1.6;
+}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.browse-hint{font-size:13px;color:var(--muted);margin-top:6px}
+.browse-hint a{color:var(--accent);cursor:pointer;text-decoration:underline}
+
+/* ── エントリーカード ── */
+#entry-list{background:var(--surface);border-top:1px solid var(--rule)}
+.entry-card{
+  display:grid;
+  grid-template-areas:"word badges" "meaning meaning";
+  grid-template-columns:1fr auto;
+  padding:10px 16px;
+  background:transparent;border:none;border-bottom:1px solid var(--rule);
+  cursor:pointer;width:100%;text-align:left;font-family:var(--sans);
+  gap:2px 8px;transition:background .1s;
+  -webkit-tap-highlight-color:rgba(42,82,152,.08);
+}
+.entry-card:hover,.entry-card:focus-visible{background:var(--head-bg);outline:none}
+.entry-card:active{background:#dde7f5}
+.entry-word{
+  grid-area:word;
+  font-family:var(--mono);font-size:15px;font-weight:700;color:var(--accent);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.entry-word mark{background:#fff3a0;color:var(--ink);border-radius:2px;padding:0 1px}
+.entry-meaning{
+  grid-area:meaning;
+  font-size:12.5px;color:var(--mid);line-height:1.5;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.entry-badges{
+  grid-area:badges;
+  display:flex;align-items:center;gap:4px;flex-shrink:0;
+}
+.pos-badge{font-size:10px;font-weight:700;padding:2px 7px;white-space:nowrap;border-radius:2px}
+.pos-noun{background:var(--head-bg);color:var(--accent)}
+.pos-verb{background:#e4f0ec;color:var(--accent2)}
+.pos-adj {background:#ede8f5;color:#6b4f9e}
+.pos-adv {background:#fff8ec;color:var(--gold)}
+.pos-prep{background:var(--alt-bg);color:var(--muted)}
+.pos-other{background:var(--alt-bg);color:var(--muted)}
+.gender-badge{font-size:10px;font-weight:700;padding:2px 5px;border-radius:2px}
+.gender-m{background:var(--head-bg);color:var(--accent)}
+.gender-f{background:#fdecea;color:var(--warn)}
+
+/* ── もっと見る ── */
+#load-more-btn{
+  display:block;margin:18px auto 0;padding:10px 32px;
+  background:transparent;border:1.5px solid var(--rule);border-radius:20px;
+  color:var(--muted);font-family:var(--sans);font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+}
+#load-more-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── 検索なし ── */
+.no-result{text-align:center;padding:48px 20px;color:var(--muted)}
+.no-result h3{font-family:var(--serif);font-size:18px;margin-bottom:8px;color:var(--ink)}
+
+@media(min-width:560px){
+  .entry-card{
+    grid-template-areas:"word meaning badges";
+    grid-template-columns:140px 1fr auto;
+    align-items:center;padding:9px 16px;
+  }
+  .entry-meaning{font-size:13px}
+  .search-section{top:45px}
+  .pos-filter-bar{top:111px}
+}
+@media(max-width:400px){
+  .search-section{padding:10px 12px}
+  #dict-main-input{font-size:16px;padding-left:30px}
+  .lang-btn{padding:8px 9px;font-size:11px}
+  .pos-chip{padding:4px 9px;font-size:11px}
+}
+</style>
+
+<!-- 辞書データ（同フォルダ内） -->
+<script src="dict-data.js" defer></script>
+<script src="dict-conj.js" defer></script>
+<script src="dict-meanings.js" defer></script>
+<script src="dict-examples.js" defer></script>
+<script src="dict-trivia.js" defer></script>
+<script src="dict-boost.js" defer></script>
+<!-- 検索エンジン（親フォルダ） -->
+<script src="../spanish1-search.js" defer></script>
+</head>
+<body>
+
+<!-- ── _ensureSearchUI の二重注入を防ぐ ── -->
+<div id="dict-overlay" onclick="if(event.target===this)closeDictModal()">
+  <div id="dict-modal" role="dialog" aria-modal="true">
+    <div id="dict-modal-head">
+      <span id="dict-modal-word"></span>
+      <span id="dict-modal-pos"></span>
+      <button id="dict-modal-close" onclick="closeDictModal()" title="閉じる">✕</button>
+    </div>
+    <div id="dict-modal-body"></div>
+  </div>
+</div>
+<!-- hidden: _ensureSearchUI が注入しないよう先占 -->
+<div id="search-bar" style="display:none"><label>検索</label><input id="search-input" type="text"><button id="search-close">✕</button></div>
+<div id="search-results" style="display:none"></div>
+<button id="top-search-btn" style="display:none"></button>
+
+<!-- ===== ページ本体 ===== -->
+
+<nav id="top-nav">
+  <a href="../index.html" id="nav-home">🏠 ホーム</a>
+  <span id="nav-title">🇪🇸 スペイン語辞書</span>
+  <span id="nav-count"></span>
+</nav>
+
+<div class="search-section">
+  <div class="search-inner">
+    <div class="search-row">
+      <div class="search-box-wrap">
+        <span class="search-icon-dec">🔍</span>
+        <input type="search" id="dict-main-input"
+               placeholder="単語・意味で検索… (hablar / 話す / hablo)"
+               autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
+        <button id="dict-clear-btn" aria-label="クリア" style="display:none">✕</button>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="both">全て</button>
+        <button class="lang-btn" data-lang="es">ES→</button>
+        <button class="lang-btn" data-lang="ja">←JP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pos-filter-bar">
+  <div class="pos-filter-inner">
+    <button class="pos-chip active" data-pos="">全品詞</button>
+    <button class="pos-chip" data-pos="名詞">名詞</button>
+    <button class="pos-chip" data-pos="動詞">動詞</button>
+    <button class="pos-chip" data-pos="形容詞">形容詞</button>
+    <button class="pos-chip" data-pos="副詞">副詞</button>
+    <button class="pos-chip" data-pos="前置詞">前置詞</button>
+    <button class="pos-chip" data-pos="接続詞">接続詞</button>
+  </div>
+</div>
+
+<main>
+  <div class="stats-row">
+    <span id="stats-text">読み込み中…</span>
+  </div>
+
+  <div id="dict-loading">
+    <div class="loading-inner">
+      <div class="loading-spinner"></div>
+      <p class="loading-msg">辞書データを読み込み中…<br><small>初回は少し時間がかかることがあります</small></p>
+    </div>
+  </div>
+
+  <div id="dict-welcome">
+    <div class="welcome-icon">📖</div>
+    <h2>スペイン語辞書</h2>
+    <p class="welcome-count"></p>
+    <p class="welcome-sub">スペイン語または日本語で検索できます。<br>活用形・複数形・形容詞変化形でも検索可能です。</p>
+    <div class="usage-tips">
+      <div class="tip-item"><span class="tip-icon">🔤</span><div><strong>全て</strong> で両言語同時検索</div></div>
+      <div class="tip-item"><span class="tip-icon">🇪🇸</span><div><strong>ES→</strong> 活用形・分詞も対応</div></div>
+      <div class="tip-item"><span class="tip-icon">🈶</span><div><strong>←JP</strong> 日本語で意味を検索</div></div>
+      <div class="tip-item"><span class="tip-icon">👆</span><div>単語をタップで詳細・活用表示</div></div>
+    </div>
+    <p class="browse-hint">または <a id="browse-link">全単語一覧を表示する（<span id="total-count">…</span>語）</a></p>
+  </div>
+
+  <div id="entry-list"></div>
+  <button id="load-more-btn" style="display:none">さらに表示する</button>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── FORM_IDX / WORD_IDX 構築（phrase-lookup.js の代わりにインライン定義） ── */
+  window.buildDictIndexes = function () {
+    if (typeof RAW === 'undefined' || typeof DICT_CONJ === 'undefined') return;
+    window.WORD_IDX = {};
+    window.FORM_IDX = {};
+    var i, w, e, key, dc, ti, fi, ai;
+    for (i = 0; i < RAW.length; i++) {
+      e = RAW[i]; w = e[0];
+      WORD_IDX[w] = [e[1], e[2], e[6] || e[3] || ''];
+      FORM_IDX[w] = w;
+    }
+    var tenses = ['pres', 'pret', 'imp', 'fut', 'cond', 'subj'];
+    for (key in DICT_CONJ) {
+      if (!DICT_CONJ.hasOwnProperty(key)) continue;
+      dc = DICT_CONJ[key];
+      for (ti = 0; ti < tenses.length; ti++) {
+        var forms = dc[tenses[ti]];
+        if (forms) for (fi = 0; fi < forms.length; fi++) {
+          var f = forms[fi];
+          if (f && !FORM_IDX[f]) FORM_IDX[f] = key;
+        }
+      }
+      if (dc.plural && !FORM_IDX[dc.plural]) FORM_IDX[dc.plural] = key;
+      if (dc.adj) for (ai = 0; ai < dc.adj.length; ai++) {
+        if (dc.adj[ai] && !FORM_IDX[dc.adj[ai]]) FORM_IDX[dc.adj[ai]] = key;
+      }
+      if (dc.ger && !FORM_IDX[dc.ger]) FORM_IDX[dc.ger] = key;
+      if (dc.pp  && !FORM_IDX[dc.pp])  FORM_IDX[dc.pp]  = key;
+    }
+  };
+
+  /* ── フィールドインデックス ── */
+  var F_WORD = 0, F_POS = 1, F_MEANING = 2, F_GENDER = 3;
+
+  var PAGE_SIZE  = 60;
+  var _posFilter = '';
+  var _langMode  = 'both';
+  var _query     = '';
+  var _filtered  = [];
+  var _shown     = 0;
+  var _browseMode = false;
+  var _debounce  = null;
+
+  /* ── ユーティリティ ── */
+  function deacc(s) {
+    return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function hlWord(word, q) {
+    if (!q) return esc(word);
+    var wN = deacc(word), qN = deacc(q);
+    var idx = wN.indexOf(qN);
+    if (idx === -1) return esc(word);
+    return esc(word.slice(0, idx)) + '<mark>' + esc(word.slice(idx, idx + q.length)) + '</mark>' + esc(word.slice(idx + q.length));
+  }
+  function getPosClass(pos) {
+    if (!pos) return 'pos-other';
+    if (pos.includes('名詞'))   return 'pos-noun';
+    if (pos.includes('動詞'))   return 'pos-verb';
+    if (pos.includes('形容詞')) return 'pos-adj';
+    if (pos.includes('副詞'))   return 'pos-adv';
+    if (pos.includes('前置詞')) return 'pos-prep';
+    return 'pos-other';
+  }
+
+  /* ── フィルター適用 ── */
+  function applyFilter() {
+    if (typeof RAW === 'undefined') return;
+    var q  = _query.trim();
+    var qL = q.toLowerCase();
+    var qN = deacc(q);
+
+    _filtered = RAW.filter(function (e) {
+      if (_posFilter && !(e[F_POS] || '').includes(_posFilter)) return false;
+      if (!q && !_browseMode) return false;
+      if (!q) return true;
+      var wL = (e[F_WORD] || '').toLowerCase();
+      var wN = deacc(e[F_WORD] || '');
+      var mL = (e[F_MEANING] || '').toLowerCase();
+      if (_langMode === 'es') return wN.includes(qN) || wL.includes(qL);
+      if (_langMode === 'ja') return mL.includes(qL);
+      if (wN.includes(qN) || wL.includes(qL)) return true;
+      if (mL.includes(qL)) return true;
+      if (typeof FORM_IDX !== 'undefined') {
+        var base = FORM_IDX[qN] || FORM_IDX[qL];
+        if (base && deacc((e[F_WORD] || '').toLowerCase()) === deacc(base.toLowerCase())) return true;
+      }
+      return false;
+    });
+
+    if (q) {
+      _filtered.sort(function (a, b) {
+        var aN = deacc((a[F_WORD] || '').toLowerCase());
+        var bN = deacc((b[F_WORD] || '').toLowerCase());
+        var as = aN === qN ? 0 : aN.startsWith(qN) ? 1 : 2;
+        var bs = bN === qN ? 0 : bN.startsWith(qN) ? 1 : 2;
+        if (as !== bs) return as - bs;
+        return aN < bN ? -1 : aN > bN ? 1 : 0;
+      });
+    }
+
+    _shown = 0;
+    renderEntries(true);
+    updateStats();
+  }
+
+  /* ── エントリー描画 ── */
+  function renderEntries(reset) {
+    var list = document.getElementById('entry-list');
+    if (!list) return;
+    if (reset) list.innerHTML = '';
+
+    if (_shown === 0 && _filtered.length === 0 && (_query || _browseMode)) {
+      list.innerHTML = '<div class="no-result"><h3>見つかりませんでした</h3><p>別のキーワードや表記でお試しください</p></div>';
+      document.getElementById('load-more-btn').style.display = 'none';
+      return;
+    }
+
+    var end  = Math.min(_shown + PAGE_SIZE, _filtered.length);
+    var frag = document.createDocumentFragment();
+
+    for (var i = _shown; i < end; i++) {
+      var e    = _filtered[i];
+      var word = e[F_WORD] || '';
+      var pos  = e[F_POS]  || '';
+
+      var meaning = (typeof DICT_MEANINGS !== 'undefined' && DICT_MEANINGS[word] && DICT_MEANINGS[word].meaning)
+        ? DICT_MEANINGS[word].meaning : (e[F_MEANING] || '');
+      var gender = (typeof DICT_MEANINGS !== 'undefined' && DICT_MEANINGS[word] && DICT_MEANINGS[word].gender)
+        ? DICT_MEANINGS[word].gender : (e[F_GENDER] || '');
+
+      var card = document.createElement('button');
+      card.className = 'entry-card';
+      card.type = 'button';
+      card.setAttribute('aria-label', word + ' ' + meaning);
+
+      var gHtml = gender === 'm' ? '<span class="gender-badge gender-m">m</span>'
+                : gender === 'f' ? '<span class="gender-badge gender-f">f</span>' : '';
+
+      card.innerHTML =
+        '<span class="entry-word">' + hlWord(word, _query) + '</span>' +
+        '<span class="entry-meaning">' + esc(meaning) + '</span>' +
+        '<span class="entry-badges">' +
+          (pos ? '<span class="pos-badge ' + getPosClass(pos) + '">' + esc(pos) + '</span>' : '') +
+          gHtml +
+        '</span>';
+
+      (function (w) {
+        card.addEventListener('click', function () {
+          if (typeof window.openDictByWord === 'function') window.openDictByWord(w);
+        });
+      })(word);
+
+      frag.appendChild(card);
+    }
+
+    list.appendChild(frag);
+    _shown = end;
+
+    var btn = document.getElementById('load-more-btn');
+    if (btn) btn.style.display = _shown < _filtered.length ? 'block' : 'none';
+  }
+
+  /* ── 統計バー更新 ── */
+  function updateStats() {
+    var el = document.getElementById('stats-text');
+    if (!el) return;
+    var total = typeof RAW !== 'undefined' ? RAW.length : 0;
+    if (!_query && !_posFilter && !_browseMode) {
+      el.innerHTML = '全 <strong>' + total + '</strong> 語収録';
+      return;
+    }
+    if (_posFilter && !_query && !_browseMode) {
+      el.innerHTML = _posFilter + ' <strong>' + _filtered.length + '</strong> 語';
+      return;
+    }
+    el.innerHTML = '<strong>' + _filtered.length + '</strong> 件' +
+      (_filtered.length < total ? ' / 全 <strong>' + total + '</strong> 語' : '');
+  }
+
+  function setWelcome(show) {
+    var w = document.getElementById('dict-welcome');
+    if (w) w.style.display = show ? 'block' : 'none';
+  }
+
+  function enterBrowseMode() {
+    _browseMode = true;
+    setWelcome(false);
+    applyFilter();
+  }
+
+  /* ── 初期化 ── */
+  function init() {
+    if (typeof RAW === 'undefined') {
+      setTimeout(init, 100);
+      return;
+    }
+
+    window.buildDictIndexes();
+
+    var loader = document.getElementById('dict-loading');
+    if (loader) loader.style.display = 'none';
+
+    var total = RAW.length;
+    var navCount = document.getElementById('nav-count');
+    if (navCount) navCount.textContent = total + '語';
+    var wc = document.querySelector('.welcome-count');
+    if (wc) wc.textContent = total + '語収録';
+    var tc = document.getElementById('total-count');
+    if (tc) tc.textContent = total;
+
+    var params = new URLSearchParams(location.search);
+    var initQ = params.get('q') || params.get('word') || '';
+    if (initQ) {
+      var inp = document.getElementById('dict-main-input');
+      if (inp) inp.value = initQ;
+      _query = initQ;
+      var cb = document.getElementById('dict-clear-btn');
+      if (cb) cb.style.display = 'block';
+      setWelcome(false);
+      applyFilter();
+    } else {
+      setWelcome(true);
+      updateStats();
+    }
+  }
+
+  /* ── イベント設定 ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    var input    = document.getElementById('dict-main-input');
+    var clearBtn = document.getElementById('dict-clear-btn');
+    var moreBtn  = document.getElementById('load-more-btn');
+    var browseLink = document.getElementById('browse-link');
+
+    if (input) {
+      input.addEventListener('input', function () {
+        _query = this.value;
+        if (clearBtn) clearBtn.style.display = _query ? 'block' : 'none';
+        clearTimeout(_debounce);
+        _debounce = setTimeout(function () {
+          if (_query) {
+            _browseMode = false;
+            setWelcome(false);
+            applyFilter();
+          } else {
+            _browseMode = false;
+            document.getElementById('entry-list').innerHTML = '';
+            document.getElementById('load-more-btn').style.display = 'none';
+            setWelcome(true);
+            updateStats();
+          }
+        }, 160);
+      });
+
+      input.addEventListener('focus', function () {
+        setTimeout(function () { input.scrollIntoView({block:'nearest',behavior:'smooth'}); }, 300);
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
+        if (input) { input.value = ''; input.focus(); }
+        _query = '';
+        _browseMode = false;
+        this.style.display = 'none';
+        document.getElementById('entry-list').innerHTML = '';
+        document.getElementById('load-more-btn').style.display = 'none';
+        setWelcome(true);
+        updateStats();
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        _langMode = this.dataset.lang;
+        if (_query || _browseMode) applyFilter();
+      });
+    });
+
+    document.querySelectorAll('.pos-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        document.querySelectorAll('.pos-chip').forEach(function (c) { c.classList.remove('active'); });
+        this.classList.add('active');
+        _posFilter = this.dataset.pos;
+        if (_query) {
+          applyFilter();
+        } else if (_browseMode || _posFilter) {
+          _browseMode = true;
+          setWelcome(false);
+          applyFilter();
+        } else {
+          setWelcome(true);
+          updateStats();
+        }
+      });
+    });
+
+    if (moreBtn) moreBtn.addEventListener('click', function () { renderEntries(false); });
+    if (browseLink) browseLink.addEventListener('click', enterBrowseMode);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && typeof closeDictModal === 'function') closeDictModal();
+    });
+
+    init();
+  });
+})();
+</script>
+</body>
+</html>

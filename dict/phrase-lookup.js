@@ -248,6 +248,9 @@
           if (af && !FORM_IDX[af]) FORM_IDX[af] = key;
         }
       }
+      // 現在分詞・過去分詞
+      if (entry.ger && !FORM_IDX[entry.ger]) FORM_IDX[entry.ger] = key;
+      if (entry.pp  && !FORM_IDX[entry.pp])  FORM_IDX[entry.pp]  = key;
     }
   }
 
@@ -284,7 +287,7 @@
         return;
       }
       var loaded = 0;
-      var srcs = ['dict-data.js', 'dict-conj.js'];
+      var srcs = ['dict/dict-data.js', 'dict/dict-conj.js'];
       srcs.forEach(function (src) {
         // すでにロード済みのスクリプトはスキップ
         if (document.querySelector('script[src="' + src + '"]')) {
@@ -321,4 +324,9 @@
   } else {
     setup();
   }
+
+  // openDictByWord（spanish2-common.js）からスクリプト動的ロード後に呼び出せるよう公開
+  window.buildDictIndexes = function () {
+    if (typeof RAW !== 'undefined' && typeof DICT_CONJ !== 'undefined') buildIndexes();
+  };
 })();

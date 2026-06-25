@@ -4,7 +4,7 @@
 
   // ── サイト全体のロック確認 ──────────────────────────────────────────────
   if (localStorage.getItem('siteOpen') === '0') {
-    window.location.replace('blocked.html');
+    window.location.replace('blocked.html?reason=site');
     return;
   }
 
@@ -32,7 +32,7 @@
   // グループ別一括ロック確認（index.html の LOCK_S1G11 / LOCK_OTHER が書き込む）
   var lockKey = isS1G11 ? 'lockS1G11' : 'lockOther';
   if (localStorage.getItem(lockKey) === '0') {
-    window.location.replace('blocked.html');
+    window.location.replace('blocked.html?reason=group');
     return;
   }
 

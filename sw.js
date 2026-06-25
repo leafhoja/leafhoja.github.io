@@ -1,4 +1,4 @@
-const CACHE = 'es-study-v1';
+const CACHE = 'es-study-v2';
 
 const PRECACHE = [
   './',
@@ -28,6 +28,15 @@ const PRECACHE = [
   './Spanish2_lesson5.html',
   './Spanish2_lesson6.html',
   './spanish_dictionary.html',
+  './dict/',
+  './dict/index.html',
+  './dict/dict-data.js',
+  './dict/dict-conj.js',
+  './dict/dict-meanings.js',
+  './dict/dict-examples.js',
+  './dict/dict-trivia.js',
+  './dict/dict-boost.js',
+  './dict/phrase-lookup.js',
   './スペ語不規則活用動詞.html',
   './admin.html',
   './icon-192.png',

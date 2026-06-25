@@ -49,9 +49,13 @@
   </div>
 </div>
 <script>
-var reason = new URLSearchParams(window.location.search).get('reason');
+var reason   = new URLSearchParams(window.location.search).get('reason');
+var msgSite  = localStorage.getItem('lockMsgSite')  || 'このサイトは現在閲覧できません';
+var msgGroup = localStorage.getItem('lockMsgGroup') || 'このサイトは現在閲覧できません';
 document.getElementById('msg').textContent =
-  reason === 'page' ? 'このページは現在閲覧できません' : 'このサイトは現在閲覧できません';
+  reason === 'group' ? msgGroup :
+  reason === 'page'  ? 'このページは現在閲覧できません' :
+  msgSite;
 </script>
 </body>
 </html>

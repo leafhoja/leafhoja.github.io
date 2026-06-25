@@ -225,7 +225,8 @@ td { padding: 7px 10px; }
 .q-content { gap: 6px; }
 .q-instruction { font-size: 13.5px; color: var(--ink); line-height: 1.75; }
 .q-hint { font-size: 12px; color: var(--muted); }
-.q-answer-row { padding: 7px 12px; border-radius: 0 4px 4px 0; margin-top: 4px; }
+.q-answer-row { display: none; padding: 7px 12px; border-radius: 0 4px 4px 0; margin-top: 4px; }
+.q-answer-row.visible { display: block; }
 .ans-text  { font-size: 13px; }
 .ans-fill  { font-size: 13px; border-radius: 2px; padding: 1px 6px; }
 .ans-toggle-btn {
@@ -242,6 +243,7 @@ td { padding: 7px 10px; }
 
 /* ── 印刷：二列追加 ── */
 body.is-printing .ans-exp    { display: block !important; color: #444; }
+body.is-printing .q-answer-row { display: block !important; }
 body.is-printing #tab-dokkai { break-before: always; page-break-before: always; }
 body.is-printing #tab-renshu { break-before: always; page-break-before: always; }
 

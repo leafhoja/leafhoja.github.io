@@ -421,10 +421,11 @@ body.is-printing #top-nav      { display: none  !important; }
   font-family: var(--sans); cursor: pointer; transition: background .1s;
 }
 .dict-jump-btn:hover { background: #1d3e72; }
+.conj-list { display: flex; flex-wrap: wrap; gap: 4px; }
 .dict-conj-badge {
-  background: var(--alt-bg); color: var(--mid); font-size: 12px;
-  font-family: var(--mono); font-weight: 600; padding: 2px 7px;
-  display: inline-block; margin-bottom: 12px; border-radius: 3px;
+  background: var(--ex-bg); color: var(--accent2); font-size: 12px;
+  font-family: var(--mono); font-weight: 600; padding: 1px 7px;
+  display: inline-block; border-radius: 2px;
 }
 .dict-conj-badge--active {
   background: var(--accent); color: #fff;

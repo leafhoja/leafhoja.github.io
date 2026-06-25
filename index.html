@@ -6,8 +6,10 @@
   ★ 公開設定 ★（変更箇所はここだけ）
   ============================================================
   PAGE_OPEN       : 1 = サイト全体を公開, 0 = サイト全体をロック
+  LOCK_MSG_SITE   : PAGE_OPEN=0 のときに表示するメッセージ（空文字 = デフォルト）
   LOCK_S1G11      : 1 = 個別設定に従う, 0 = 11組の全ページを一括ロック
   LOCK_OTHER      : 1 = 個別設定に従う, 0 = それ以外の全ページを一括ロック
+  LOCK_MSG_GROUP  : グループ別一括ロック時に表示するメッセージ（空文字 = デフォルト）
   CARD_ACCESS     : ページごとの個別アクセス設定（s1g11/other = 1 or 0）
   KAKOMON_ACCESS  : 過去問タブの表示設定（s1g11/other = 1=表示, 0=非表示）
   PREDICTED_ACCESS: 予想問題タブの表示設定（s1g11/other = 1=表示, 0=非表示）
@@ -17,11 +19,13 @@
   ============================================================ -->
 <script>
 /* ★ サイト公開設定 ★ */
-var PAGE_OPEN  = 1; // 1 = 公開, 0 = サイト全体をロック
+var PAGE_OPEN      = 1;  // 1 = 公開, 0 = サイト全体をロック
+var LOCK_MSG_SITE  = ''; // ロック時の表示メッセージ（例：'試験期間中は閲覧できません'）空文字 = デフォルト
 
 /* ★ グループ別一括ロック ★  0 = そのグループの全ページをロック */
-var LOCK_S1G11 = 1; // 理科一類11組
-var LOCK_OTHER = 1; // それ以外
+var LOCK_S1G11     = 1;  // 理科一類11組
+var LOCK_OTHER     = 1;  // それ以外
+var LOCK_MSG_GROUP = ''; // グループロック時の表示メッセージ（例：'授業後に公開します'）空文字 = デフォルト
 
 /* ★ ページ別アクセス設定 ★  s1g11/other: 1=公開, 0=ロック */
 var CARD_ACCESS = {
@@ -37,7 +41,7 @@ var CARD_ACCESS = {
   'Spanish2_lesson4.html':  { s1g11: 0, other: 0 },
   'Spanish2_lesson5.html':  { s1g11: 0, other: 0 },
   'Spanish2_lesson6.html':  { s1g11: 0, other: 0 },
-  'spanish_dictionary.html':       { s1g11: 1, other: 1 },
+  'dict/':                         { s1g11: 1, other: 1 },
   'スペ語不規則活用動詞.html':     { s1g11: 0, other: 0 },
 };
 
@@ -561,10 +565,10 @@ var QUIZ_ACCESS = {
 <!-- ── 単語帳 ── -->
 <div class="section-block">
   <div class="section-title tango">単語帳<span class="section-sub">Vocabulario</span></div>
-  <a href="spanish_dictionary.html" class="tango-card">
+  <a href="dict/" class="tango-card">
     <div class="tango-title">スペイン語辞書・単語帳</div>
     <div class="tango-desc">授業で登場した語彙を検索・確認できます。スペイン語・日本語どちらでも検索可能。</div>
-    <div class="tango-tag">単語帳/ フォルダ → spanish_dictionary.html</div>
+    <div class="tango-tag">単語帳 → dict/</div>
   </a>
   <a href="スペ語不規則活用動詞.html" class="tango-card">
     <div class="tango-title">不規則活用動詞一覧（現在形）</div>
@@ -715,6 +719,8 @@ function checkAndShowOverlay() {
   localStorage.setItem('siteOpen',        PAGE_OPEN  === 1 ? '1' : '0');
   localStorage.setItem('lockS1G11',       String(LOCK_S1G11));
   localStorage.setItem('lockOther',       String(LOCK_OTHER));
+  localStorage.setItem('lockMsgSite',     LOCK_MSG_SITE  || '');
+  localStorage.setItem('lockMsgGroup',    LOCK_MSG_GROUP || '');
   localStorage.setItem('cardAccess',      JSON.stringify(CARD_ACCESS));
   localStorage.setItem('quizAccess',      JSON.stringify(QUIZ_ACCESS));
   localStorage.setItem('quizBulkS1G11',   QUIZ_BULK_S1G11);
@@ -723,7 +729,7 @@ function checkAndShowOverlay() {
   localStorage.setItem('predictedAccess', JSON.stringify(PREDICTED_ACCESS));
 
   if (PAGE_OPEN !== 1) {
-    document.getElementById('blocked-msg').textContent = 'このサイトは現在閲覧できません';
+    document.getElementById('blocked-msg').textContent = LOCK_MSG_SITE || 'このサイトは現在閲覧できません';
     document.getElementById('site-blocked-overlay').style.display = 'flex';
     return;
   }
