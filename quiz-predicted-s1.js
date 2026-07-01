@@ -1021,4 +1021,590 @@
     ]
   };
 
+
+  /* ── 一列 Lección 6 予想問題（点過去形）──
+     接地：Spanish1_lesson6.html の例文・活用表・語彙リスト
+     （規則活用 -ar/-er/-ir・語根母音変化 -ir・3人称語尾変化 i→y・
+      強変化動詞・j語根・hubo・1人称綴り変化・dar/ser/ir/ver・
+      再帰受身・不定主語） */
+  QUIZ_DATA['Spanish1_lesson6.html'] = {
+    adminOnly: true,
+    title: 'Lección 6 小テスト（予想問題）',
+    intro: 'この課の文法事項（点過去形・規則活用・各種不規則活用・再帰動詞の3人称用法）からの予想問題です。空所をタップすると解答が、「答えを確認」で解説が表示されます。',
+    sections: [
+      {
+        heading: '1. 規則活用（-ar 動詞）',
+        instruction: '（&nbsp;）内の不定詞を主語に合わせて点過去形に活用させなさい。',
+        items: [
+          {
+            t: 'Ayer yo (<span class="qz-b" data-a="hablé"></span>) con mi profesora sobre el examen. <span class="qz-hint">(hablar)</span>',
+            ja: '昨日私は試験について先生と話した。',
+            exp: 'hablar（-ar動詞）の点過去1人称単数：<b>hablé</b>（語尾 -é、アクセント記号あり）。<br>⚠️ アクセント記号を忘れない（habló と区別するためにも重要）。<br>🔤 hablar：hablé / hablaste / habló / hablamos / hablasteis / hablaron'
+          },
+          {
+            t: 'El sábado pasado nosotros (<span class="qz-b" data-a="cenamos"></span>) en un restaurante italiano. <span class="qz-hint">(cenar)</span>',
+            ja: '先週の土曜日、私たちはイタリアンレストランで夕食をとった。',
+            exp: 'cenar（-ar動詞）の点過去1人称複数：<b>cenamos</b>（語尾 -amos）。<br>⚠️ -ar/-ir 動詞の nosotros 形は現在形と同形（cen<b>amos</b>）。文脈で点過去か現在かを判断する。'
+          },
+          {
+            t: 'Anoche ella (<span class="qz-b" data-a="bailó"></span>) toda la noche en la discoteca. <span class="qz-hint">(bailar)</span>',
+            ja: '昨夜彼女はナイトクラブで一晩中踊った。',
+            exp: 'bailar（-ar動詞）の点過去3人称単数：<b>bailó</b>（語尾 -ó、アクセント記号あり）。<br>💡 anoche「昨夜」は点過去の典型的な時間表現。'
+          },
+          {
+            t: '¿Cuánto (<span class="qz-b" data-a="tardaste"></span>) en llegar a la estación? <span class="qz-hint">(tardar / tú)</span>',
+            ja: '駅に着くのにどのくらいかかりましたか？',
+            exp: 'tardar（-ar動詞）の点過去2人称単数：<b>tardaste</b>（語尾 -aste、アクセント記号なし）。<br>💡 tardar en + 不定詞「〜するのに（時間が）かかる」。'
+          },
+          {
+            t: 'Los estudiantes (<span class="qz-b" data-a="escucharon"></span>) la conferencia con mucha atención. <span class="qz-hint">(escuchar)</span>',
+            ja: '学生たちは講義をとても注意深く聴いた。',
+            exp: 'escuchar（-ar動詞）の点過去3人称複数：<b>escucharon</b>（語尾 -aron、アクセント記号なし）。'
+          },
+          {
+            t: 'Vosotros (<span class="qz-b" data-a="comprasteis"></span>) las entradas con antelación. <span class="qz-hint">(comprar)</span>',
+            ja: '君たちはチケットを前もって購入した。',
+            exp: 'comprar（-ar動詞）の点過去2人称複数：<b>comprasteis</b>（語尾 -asteis）。<br>⚠️ vosotros 形にアクセント記号はつかない。'
+          },
+          {
+            t: 'Ayer yo (<span class="qz-b" data-a="saludé"></span>) al señor López en la calle. <span class="qz-hint">(saludar)</span>',
+            ja: '昨日私は街でロペス氏に挨拶した。',
+            exp: 'saludar（-ar動詞）の点過去1人称単数：<b>saludé</b>（語尾 -é、アクセント記号あり）。'
+          },
+          {
+            t: 'Al verme, el señor se (<span class="qz-b" data-a="quitó"></span>) el sombrero. <span class="qz-hint">(quitarse)</span>',
+            ja: '私に会うと、その紳士は帽子を脱いだ。',
+            exp: 'quitarse（再帰動詞、-ar）の点過去3人称単数：se <b>quitó</b>（アクセント記号あり）。<br>💡 al + 不定詞「〜すると・〜した時」。解説ページの例文に接地。'
+          },
+          {
+            t: 'Unos amigos me (<span class="qz-b" data-a="invitaron"></span>) a comer ceviche. <span class="qz-hint">(invitar)</span>',
+            ja: '何人かの友人がセビチェを食べようと誘ってくれた。',
+            exp: 'invitar（-ar動詞）の点過去3人称複数：<b>invitaron</b>（語尾 -aron）。<br>💡 invitar a + 不定詞「〜するように誘う」。解説ページの例文に接地。'
+          },
+          {
+            t: 'Ayer nosotros (<span class="qz-b" data-a="reservamos"></span>) las entradas para el concierto. <span class="qz-hint">(reservar)</span>',
+            ja: '昨日私たちはコンサートのチケットを予約した。',
+            exp: 'reservar（-ar動詞）の点過去1人称複数：<b>reservamos</b>（現在形と同形）。文脈「ayer（昨日）」で点過去と判断。'
+          },
+          {
+            t: 'El año pasado ellos (<span class="qz-b" data-a="viajaron"></span>) por toda América del Sur. <span class="qz-hint">(viajar)</span>',
+            ja: '昨年彼らは南米全土を旅した。',
+            exp: 'viajar（-ar動詞）の点過去3人称複数：<b>viajaron</b>（語尾 -aron）。<br>💡 el año pasado「昨年」は点過去の典型的な時間表現。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="quedé"></span>) con mis amigos en la plaza mayor. <span class="qz-hint">(quedar)</span>',
+            ja: '私は友人たちと市の広場で待ち合わせた。',
+            exp: 'quedar（-ar動詞）の点過去1人称単数：<b>quedé</b>（語尾 -é、アクセント記号あり）。<br>💡 quedar con + 人「（約束して）〜と会う・待ち合わせる」。'
+          }
+        ]
+      },
+      {
+        heading: '2. 規則活用（-er / -ir 動詞）',
+        instruction: '（&nbsp;）内の不定詞を主語に合わせて点過去形に活用させなさい。',
+        items: [
+          {
+            t: 'Ayer yo (<span class="qz-b" data-a="comí"></span>) paella en un restaurante valenciano. <span class="qz-hint">(comer)</span>',
+            ja: '昨日私はバレンシアのレストランでパエリアを食べた。',
+            exp: 'comer（-er動詞）の点過去1人称単数：<b>comí</b>（語尾 -í、アクセント記号あり）。<br>🔤 comer：comí / comiste / comió / comimos / comisteis / comieron'
+          },
+          {
+            t: 'El escritor (<span class="qz-b" data-a="nació"></span>) en Madrid en el siglo XVI. <span class="qz-hint">(nacer)</span>',
+            ja: 'その作家は16世紀にマドリードで生まれた。',
+            exp: 'nacer（-er動詞）の点過去3人称単数：<b>nació</b>（語尾 -ió、アクセント記号あり）。<br>⚠️ 現在形yo形はnazco（不規則）だが、点過去は規則活用。'
+          },
+          {
+            t: 'Ellos (<span class="qz-b" data-a="comieron"></span>) demasiado en la fiesta. <span class="qz-hint">(comer)</span>',
+            ja: '彼らはパーティーで食べ過ぎた。',
+            exp: 'comer（-er動詞）の点過去3人称複数：<b>comieron</b>（語尾 -ieron、アクセント記号なし）。'
+          },
+          {
+            t: '(<span class="qz-b" data-a="Viví"></span>) varios años en el extranjero. <span class="qz-hint">(vivir / yo)</span>',
+            ja: '私は何年も外国に住んだ。',
+            exp: 'vivir（-ir動詞）の点過去1人称単数：<b>viví</b>（語尾 -í、アクセント記号あり）。解説ページの例文そのまま。<br>🔤 vivir：viví / viviste / vivió / vivimos / vivisteis / vivieron'
+          },
+          {
+            t: 'Los niños (<span class="qz-b" data-a="crecieron"></span>) mucho ese verano. <span class="qz-hint">(crecer)</span>',
+            ja: 'その夏、子供たちはとても速く成長した。',
+            exp: 'crecer（-er動詞）の点過去3人称複数：<b>crecieron</b>（語尾 -ieron）。<br>⚠️ 現在形yo形はcrezco（不規則）だが、点過去は規則活用。'
+          },
+          {
+            t: 'Nosotros (<span class="qz-b" data-a="vivimos"></span>) en Barcelona durante tres años. <span class="qz-hint">(vivir)</span>',
+            ja: '私たちは3年間バルセロナに住んだ。',
+            exp: 'vivir（-ir動詞）の点過去1人称複数：<b>vivimos</b>（語尾 -imos）。<br>⚠️ -ar/-ir 動詞のnosotros形は現在形と同形。durante「〜の間」などの文脈で判断。'
+          },
+          {
+            t: '¿Cuándo (<span class="qz-b" data-a="saliste"></span>) de casa esta mañana? <span class="qz-hint">(salir / tú)</span>',
+            ja: '今朝あなたは何時に家を出ましたか？',
+            exp: 'salir（-ir動詞）の点過去2人称単数：<b>saliste</b>（語尾 -iste、規則活用）。<br>⚠️ 現在形yo形はsalgo（不規則）だが、点過去は全て規則活用。'
+          },
+          {
+            t: 'El tren (<span class="qz-b" data-a="salió"></span>) puntual a las ocho. <span class="qz-hint">(salir)</span>',
+            ja: '電車は8時に定刻通りに出発した。',
+            exp: 'salir（-ir動詞）の点過去3人称単数：<b>salió</b>（語尾 -ió、アクセント記号あり）。'
+          }
+        ]
+      },
+      {
+        heading: '3. 不規則①　語根母音変化動詞（-ir 動詞）',
+        instruction: '（&nbsp;）内の不定詞を主語に合わせて点過去形に活用させなさい。3人称（3単・3複）のみ語根母音が変化する（e→i、o→u）ことに注意。',
+        items: [
+          {
+            t: 'El bebé (<span class="qz-b" data-a="durmió"></span>) toda la noche sin despertarse. <span class="qz-hint">(dormir)</span>',
+            ja: '赤ちゃんは夜通し目を覚まさずに眠った。',
+            exp: 'dormir（o→u 型語根母音変化、-ir動詞）の点過去3人称単数：<b>durmió</b>（語根 dorm- → durm-）。<br>⚠️ 語根母音変化は3人称（3単・3複）のみ。1・2人称は変化しない。'
+          },
+          {
+            t: 'Los pacientes (<span class="qz-b" data-a="durmieron"></span>) mal en el hospital. <span class="qz-hint">(dormir)</span>',
+            ja: '患者たちは病院でよく眠れなかった。',
+            exp: 'dormir の点過去3人称複数：<b>durmieron</b>（o→u 語根変化、語尾 -ieron）。アクセント記号なし。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="dormí"></span>) diez horas ayer por el cansancio. <span class="qz-hint">(dormir)</span>',
+            ja: '疲れのせいで昨日私は10時間眠った。',
+            exp: 'dormir の点過去1人称単数：<b>dormí</b>（1人称は語根変化なし、語尾 -í）。<br>⚠️ 1・2人称には語根母音変化が起きない。dormí（○）、durmí（×）。'
+          },
+          {
+            t: 'El niño (<span class="qz-b" data-a="pidió"></span>) un helado de chocolate. <span class="qz-hint">(pedir)</span>',
+            ja: '男の子はチョコレートアイスクリームを頼んだ。',
+            exp: 'pedir（e→i 型語根母音変化、-ir動詞）の点過去3人称単数：<b>pidió</b>（語根 ped- → pid-）。'
+          },
+          {
+            t: 'Los comensales (<span class="qz-b" data-a="pidieron"></span>) la cuenta al mismo tiempo. <span class="qz-hint">(pedir)</span>',
+            ja: '食事客たちは一斉に会計を頼んだ。',
+            exp: 'pedir の点過去3人称複数：<b>pidieron</b>（e→i 語根変化）。'
+          },
+          {
+            t: 'Ella (<span class="qz-b" data-a="sintió"></span>) mucho frío al salir del edificio. <span class="qz-hint">(sentir)</span>',
+            ja: '彼女はビルを出たとき非常に寒さを感じた。',
+            exp: 'sentir（e→i 型語根母音変化）の点過去3人称単数：<b>sintió</b>（語根 sent- → sint-）。'
+          },
+          {
+            t: 'Nosotros (<span class="qz-b" data-a="sentimos"></span>) mucha pena por la noticia. <span class="qz-hint">(sentir)</span>',
+            ja: '私たちはその知らせにとても悲しんだ。',
+            exp: 'sentir の点過去1人称複数：<b>sentimos</b>（語根変化なし）。<br>⚠️ 語根母音変化は3人称のみ。nosotros は sentimos（○）、sintimos（×）。'
+          },
+          {
+            t: 'El camarero nos (<span class="qz-b" data-a="sirvió"></span>) la paella enseguida. <span class="qz-hint">(servir)</span>',
+            ja: 'ウェイターがすぐにパエリアを持ってきた。',
+            exp: 'servir（e→i 型語根母音変化）の点過去3人称単数：<b>sirvió</b>（語根 serv- → sirv-）。'
+          },
+          {
+            t: 'Los soldados (<span class="qz-b" data-a="siguieron"></span>) al general sin dudar. <span class="qz-hint">(seguir)</span>',
+            ja: '兵士たちは迷わず将軍に従った。',
+            exp: 'seguir（e→i 型語根母音変化）の点過去3人称複数：<b>siguieron</b>（語根 segu- → sigu-）。'
+          },
+          {
+            t: 'La madre (<span class="qz-b" data-a="vistió"></span>) al niño con ropa abrigada. <span class="qz-hint">(vestir)</span>',
+            ja: '母は子供に暖かい服を着せた。',
+            exp: 'vestir（e→i 型語根母音変化）の点過去3人称単数：<b>vistió</b>（語根 vest- → vist-）。'
+          },
+          {
+            t: 'El jurado (<span class="qz-b" data-a="eligió"></span>) a la candidata más preparada. <span class="qz-hint">(elegir)</span>',
+            ja: '審査員は最も準備の整った候補者を選んだ。',
+            exp: 'elegir（e→i 型語根母音変化）の点過去3人称単数：<b>eligió</b>（語根 eleg- → elig-）。'
+          },
+          {
+            t: 'Dos personas (<span class="qz-b" data-a="murieron"></span>) en el accidente de tráfico. <span class="qz-hint">(morir)</span>',
+            ja: 'その交通事故で2人が亡くなった。',
+            exp: 'morir（o→u 型語根母音変化）の点過去3人称複数：<b>murieron</b>（語根 mor- → mur-）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="repetí"></span>) la pregunta pero nadie contestó. <span class="qz-hint">(repetir)</span>',
+            ja: '私は質問を繰り返したが、誰も答えなかった。',
+            exp: 'repetir の点過去1人称単数：<b>repetí</b>（1人称は語根変化なし、語尾 -í）。<br>⚠️ repití（×）。1人称は変化しない。'
+          },
+          {
+            t: 'El profesor (<span class="qz-b" data-a="repitió"></span>) la explicación tres veces. <span class="qz-hint">(repetir)</span>',
+            ja: '先生は説明を3回繰り返した。',
+            exp: 'repetir（e→i 型語根母音変化）の点過去3人称単数：<b>repitió</b>（語根 repet- → repit-）。'
+          },
+          {
+            t: 'El futbolista (<span class="qz-b" data-a="hirió"></span>) accidentalmente a su compañero. <span class="qz-hint">(herir)</span>',
+            ja: 'そのサッカー選手は誤ってチームメイトを怪我させた。',
+            exp: 'herir（e→i 型語根母音変化）の点過去3人称単数：<b>hirió</b>（語根 her- → hir-）。'
+          }
+        ]
+      },
+      {
+        heading: '4. 不規則①（続き）　reír / sonreír / freír',
+        instruction: '（&nbsp;）内の不定詞を主語に合わせて点過去形に活用させなさい。',
+        items: [
+          {
+            t: 'Cuando los vio, ella (<span class="qz-b" data-a="sonrió"></span>) amablemente. <span class="qz-hint">(sonreír)</span>',
+            ja: '彼らを見ると彼女は愛想よく微笑んだ。',
+            exp: 'sonreír の点過去3人称単数：<b>sonrió</b>（語根 re- → r-、e→i 変化で sonri- + ó = sonrió）。アクセント記号なし（1音節の ó）。'
+          },
+          {
+            t: 'Los niños (<span class="qz-b" data-a="rieron"></span>) a carcajadas al ver el payaso. <span class="qz-hint">(reír)</span>',
+            ja: '子供たちはピエロを見てげらげらと笑った。',
+            exp: 'reír の点過去3人称複数：<b>rieron</b>（語根 re- → r-、語尾 -ieron の i は脱落せず: ri+eron = rieron）。アクセント記号なし。<br>⚠️ j語根とは異なり -ieron の形。ri- で始まるため i の重複なし。'
+          },
+          {
+            t: 'Mi abuela (<span class="qz-b" data-a="frió"></span>) los huevos en aceite de oliva. <span class="qz-hint">(freír)</span>',
+            ja: '祖母はオリーブオイルで卵を炒めた。',
+            exp: 'freír の点過去3人称単数：<b>frió</b>（e→i 変化で fri- + ó = frió）。アクセント記号なし（単音節）。'
+          }
+        ]
+      },
+      {
+        heading: '5. 不規則②　3人称語尾変化（-ió→-yó、-ieron→-yeron）',
+        instruction: '語根が母音で終わる -er/-ir 動詞は、3人称で i が y に変化します。（&nbsp;）を正しい形に活用させなさい。',
+        items: [
+          {
+            t: 'Él (<span class="qz-b" data-a="leyó"></span>) la novela en una sola semana. <span class="qz-hint">(leer)</span>',
+            ja: '彼は1週間でその小説を読んだ。',
+            exp: 'leer（語根が e- の -er動詞）の点過去3人称単数：<b>leyó</b>（-ió → -yó）。<br>⚠️ leó（×）。語根末の母音 + 語尾の母音の衝突を避けるため y が挿入される。'
+          },
+          {
+            t: 'Ellos (<span class="qz-b" data-a="leyeron"></span>) el mismo artículo para el debate. <span class="qz-hint">(leer)</span>',
+            ja: '彼らはディベートのために同じ記事を読んだ。',
+            exp: 'leer の点過去3人称複数：<b>leyeron</b>（-ieron → -yeron）。'
+          },
+          {
+            t: 'Nadie (<span class="qz-b" data-a="creyó"></span>) su versión de los hechos. <span class="qz-hint">(creer)</span>',
+            ja: '誰も彼の話を信じなかった。',
+            exp: 'creer（語根が e- の -er動詞）の点過去3人称単数：<b>creyó</b>（-ió → -yó）。'
+          },
+          {
+            t: 'Todos (<span class="qz-b" data-a="creyeron"></span>) que sería fácil. <span class="qz-hint">(creer)</span>',
+            ja: '誰もがそれは簡単だと思った。',
+            exp: 'creer の点過去3人称複数：<b>creyeron</b>（-ieron → -yeron）。'
+          },
+          {
+            t: 'El vaso (<span class="qz-b" data-a="cayó"></span>) de la mesa y se rompió. <span class="qz-hint">(caer)</span>',
+            ja: 'コップが机から落ちて割れた。',
+            exp: 'caer（語根が a- の -er動詞）の点過去3人称単数：<b>cayó</b>（-ió → -yó）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="leí"></span>) el periódico esta mañana. <span class="qz-hint">(leer)</span>',
+            ja: '今朝私は新聞を読んだ。',
+            exp: 'leer の点過去1人称単数：<b>leí</b>（語根末の e と語尾の i が隣接するため、二重母音を防ぐアクセント記号必須 → leí）。<br>⚠️ 1人称（lei、×）とは書かない。アクセント記号が必須。'
+          },
+          {
+            t: 'Nosotros (<span class="qz-b" data-a="oímos"></span>) la noticia por la radio. <span class="qz-hint">(oír)</span>',
+            ja: '私たちはラジオでそのニュースを聞いた。',
+            exp: 'oír の点過去1人称複数：<b>oímos</b>（oi + mos で二重母音を防ぐためアクセント記号が必須）。3人称は oyó / oyeron（y 挿入）。'
+          },
+          {
+            t: 'El ladrón (<span class="qz-b" data-a="huyó"></span>) cuando vio a la policía. <span class="qz-hint">(huir)</span>',
+            ja: '泥棒は警察を見ると逃げた。',
+            exp: 'huir（語根が u- の -ir動詞）の点過去3人称単数：<b>huyó</b>（-ió → -yó）。'
+          },
+          {
+            t: 'Los obreros (<span class="qz-b" data-a="construyeron"></span>) el puente en tiempo récord. <span class="qz-hint">(construir)</span>',
+            ja: '労働者たちは記録的な速さで橋を建設した。',
+            exp: 'construir の点過去3人称複数：<b>construyeron</b>（-ieron → -yeron）。'
+          },
+          {
+            t: 'El precio (<span class="qz-b" data-a="incluyó"></span>) el desayuno y la cena. <span class="qz-hint">(incluir)</span>',
+            ja: '料金には朝食と夕食が含まれていた。',
+            exp: 'incluir の点過去3人称単数：<b>incluyó</b>（-ió → -yó）。'
+          }
+        ]
+      },
+      {
+        heading: '6. 不規則③　強変化動詞',
+        instruction: 'yo 形の語根を覚えれば他の人称は語尾 -e/-iste/-o/-imos/-isteis/-ieron をつけるだけ。アクセント記号はつかない。（&nbsp;）を正しい形に活用させなさい。',
+        items: [
+          {
+            t: 'Yo no (<span class="qz-b" data-a="supe"></span>) la respuesta hasta el final. <span class="qz-hint">(saber)</span>',
+            ja: '私は最後まで答えが分からなかった。',
+            exp: 'saber（強変化動詞）の点過去1人称単数：<b>supe</b>（語根 sup-、アクセント記号なし）。<br>⚠️ 強変化動詞のyo形・él形にはアクセント記号がつかない（語根にアクセントがあるため）。'
+          },
+          {
+            t: 'Ella (<span class="qz-b" data-a="supo"></span>) la verdad recién ayer. <span class="qz-hint">(saber)</span>',
+            ja: '彼女はほんの昨日真実を知った。',
+            exp: 'saber の点過去3人称単数：<b>supo</b>（語根 sup-、アクセント記号なし）。解説ページの例文に接地。'
+          },
+          {
+            t: 'Nosotros (<span class="qz-b" data-a="estuvimos"></span>) en el museo toda la tarde. <span class="qz-hint">(estar)</span>',
+            ja: '私たちは午後中ずっと美術館にいた。',
+            exp: 'estar（強変化動詞）の点過去1人称複数：<b>estuvimos</b>（語根 estuv-）。'
+          },
+          {
+            t: '¿Dónde (<span class="qz-b" data-a="estuviste"></span>) anoche? — (<span class="qz-b" data-a="Estuve"></span>) en el cine. <span class="qz-hint">(estar)</span>',
+            ja: '昨夜どこにいましたか？ — 映画館にいました。',
+            exp: 'estar の点過去2人称単数：<b>estuviste</b>、1人称単数：<b>estuve</b>（ともに語根 estuv-）。解説ページの練習問題に接地。'
+          },
+          {
+            t: 'Ellas (<span class="qz-b" data-a="tuvieron"></span>) problemas con la reserva del hotel. <span class="qz-hint">(tener)</span>',
+            ja: '彼女たちはホテルの予約に問題が生じた。',
+            exp: 'tener（強変化動詞）の点過去3人称複数：<b>tuvieron</b>（語根 tuv-）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="tuve"></span>) que esperar una hora en la consulta. <span class="qz-hint">(tener)</span>',
+            ja: '私は診察室で1時間待たなければならなかった。',
+            exp: 'tener の点過去1人称単数：<b>tuve</b>（語根 tuv-、アクセント記号なし）。<br>💡 tuve que + 不定詞「〜しなければならなかった」。'
+          },
+          {
+            t: 'Él (<span class="qz-b" data-a="pudo"></span>) terminar el informe a tiempo. <span class="qz-hint">(poder)</span>',
+            ja: '彼は時間内にレポートを終えることができた。',
+            exp: 'poder（強変化動詞）の点過去3人称単数：<b>pudo</b>（語根 pud-、アクセント記号なし）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="puse"></span>) las llaves sobre la mesa al llegar. <span class="qz-hint">(poner)</span>',
+            ja: '到着すると私は鍵をテーブルの上に置いた。',
+            exp: 'poner（強変化動詞）の点過去1人称単数：<b>puse</b>（語根 pus-、アクセント記号なし）。'
+          },
+          {
+            t: 'Pilar se (<span class="qz-b" data-a="puso"></span>) pálida cuando oyó la noticia. <span class="qz-hint">(ponerse)</span>',
+            ja: 'ピラルはその知らせを聞くと青ざめた。',
+            exp: 'ponerse の点過去3人称単数：se <b>puso</b>（語根 pus-、アクセント記号なし）。解説ページの例文そのまま。<br>💡 ponerse + 形容詞「〜になる（状態変化）」。'
+          },
+          {
+            t: '¿Quién (<span class="qz-b" data-a="hizo"></span>) esta tarta tan deliciosa? <span class="qz-hint">(hacer)</span>',
+            ja: 'こんなにおいしいタルトを誰が作ったの？',
+            exp: 'hacer（強変化動詞）の点過去3人称単数：<b>hizo</b>（語根 hic- だが3単のみ z に変化：hizo）。<br>⚠️ hico（×）。c → z の変化は音の保持のため。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="hice"></span>) la tarea antes de cenar. <span class="qz-hint">(hacer)</span>',
+            ja: '私は夕食前に宿題をした。',
+            exp: 'hacer の点過去1人称単数：<b>hice</b>（語根 hic-、アクセント記号なし）。'
+          },
+          {
+            t: 'Tú (<span class="qz-b" data-a="quisiste"></span>) salir pero no pudiste por la lluvia. <span class="qz-hint">(querer)</span>',
+            ja: '君は出かけようとしたが、雨でできなかった。',
+            exp: 'querer（強変化動詞）の点過去2人称単数：<b>quisiste</b>（語根 quis-）。'
+          },
+          {
+            t: 'Ella (<span class="qz-b" data-a="vino"></span>) desde Osaka solo para verme. <span class="qz-hint">(venir)</span>',
+            ja: '彼女は私に会うためだけに大阪からやってきた。',
+            exp: 'venir（強変化動詞）の点過去3人称単数：<b>vino</b>（語根 vin-、アクセント記号なし）。'
+          },
+          {
+            t: 'Nosotros (<span class="qz-b" data-a="anduvimos"></span>) por el parque durante horas. <span class="qz-hint">(andar)</span>',
+            ja: '私たちは何時間も公園を歩き回った。',
+            exp: 'andar（強変化動詞）の点過去1人称複数：<b>anduvimos</b>（語根 anduv-）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="vine"></span>) a la fiesta porque me lo pediste. <span class="qz-hint">(venir)</span>',
+            ja: '頼まれたのでパーティーに来たんだ。',
+            exp: 'venir の点過去1人称単数：<b>vine</b>（語根 vin-、アクセント記号なし）。'
+          }
+        ]
+      },
+      {
+        heading: '7. 不規則③（続き）　j 語根の強変化動詞',
+        instruction: 'decir・conducir・traer はyo形が j で終わる。3人称複数の語尾は -ieron ではなく <b>-eron</b>（i が脱落）になることに注意。',
+        items: [
+          {
+            t: 'Ella me (<span class="qz-b" data-a="dijo"></span>) que vendría a la reunión. <span class="qz-hint">(decir)</span>',
+            ja: '彼女は会議に来ると言っていた。',
+            exp: 'decir（j語根強変化動詞）の点過去3人称単数：<b>dijo</b>（語根 dij-、アクセント記号なし）。'
+          },
+          {
+            t: '¿Qué te (<span class="qz-b" data-a="dijeron"></span>) ellos de mí? <span class="qz-hint">(decir)</span>',
+            ja: '彼らは私についてあなたに何を言ったの？',
+            exp: 'decir の点過去3人称複数：<b>dijeron</b>（語根 dij-、語尾 <b>-eron</b>）。<br>⚠️ j語根は3複が -ieron ではなく -eron（i が脱落）。dijieron（×）。解説ページの練習問題に接地。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="dije"></span>) la verdad desde el principio. <span class="qz-hint">(decir)</span>',
+            ja: '私は最初から真実を言った。',
+            exp: 'decir の点過去1人称単数：<b>dije</b>（語根 dij-、アクセント記号なし）。'
+          },
+          {
+            t: 'El conductor (<span class="qz-b" data-a="condujo"></span>) el autobús durante diez horas sin parar. <span class="qz-hint">(conducir)</span>',
+            ja: '運転手は10時間ぶっ通しでバスを運転した。',
+            exp: 'conducir（j語根強変化動詞）の点過去3人称単数：<b>condujo</b>（語根 conduj-）。'
+          },
+          {
+            t: 'Ellos (<span class="qz-b" data-a="trajeron"></span>) flores y vino para la fiesta. <span class="qz-hint">(traer)</span>',
+            ja: '彼らはパーティーに花とワインを持ってきた。',
+            exp: 'traer（j語根強変化動詞）の点過去3人称複数：<b>trajeron</b>（語根 traj-、語尾 -eron）。<br>⚠️ trajieron（×）。j語根は -eron。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="traje"></span>) un pastel de cumpleaños para ti. <span class="qz-hint">(traer)</span>',
+            ja: '私は君のために誕生日ケーキを持ってきた。',
+            exp: 'traer の点過去1人称単数：<b>traje</b>（語根 traj-、アクセント記号なし）。'
+          }
+        ]
+      },
+      {
+        heading: '8. 不規則③（続き）　haber の点過去（hubo）',
+        instruction: 'haber の点過去は現代では3人称単数形 hubo のみ使われる。（&nbsp;）に hubo を入れなさい。',
+        items: [
+          {
+            t: 'Anoche (<span class="qz-b" data-a="hubo"></span>) un apagón en el barrio durante dos horas. <span class="qz-hint">(haber)</span>',
+            ja: '昨夜その地区では2時間の停電があった。',
+            exp: 'haber の点過去：<b>hubo</b>（3人称単数のみ使用）。「（不特定の）〜があった・いた」を表す。解説ページの例文に接地。<br>💡 hay（現在）→ hubo（点過去）。'
+          },
+          {
+            t: 'Ayer (<span class="qz-b" data-a="hubo"></span>) un gran terremoto en el norte del país. <span class="qz-hint">(haber)</span>',
+            ja: '昨日その国の北部で大地震があった。',
+            exp: 'haber の点過去：<b>hubo</b>。<br>⚠️ hubieron（×）。現代語では主語の数にかかわらず常に単数形 hubo のみ。'
+          }
+        ]
+      },
+      {
+        heading: '9. 不規則④　1人称単数のみ綴りが変わる動詞',
+        instruction: '活用語尾は規則通りだが、yo 形の綴りだけが変化する。（&nbsp;）を正しい形に活用させなさい。',
+        items: [
+          {
+            t: 'Ayer yo (<span class="qz-b" data-a="jugué"></span>) al fútbol con mis amigos del colegio. <span class="qz-hint">(jugar / yo)</span>',
+            ja: '昨日私は学校の友人たちとサッカーをした。',
+            exp: 'jugar（-ar動詞）の点過去1人称単数：<b>jugué</b>（g→gu 変化）。<br>⚠️ jugé（×）。e の前では g の硬音 /g/ を保つために gu が必要（そのままだと /x/ に読まれる）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="llegué"></span>) tarde a la reunión por el tráfico. <span class="qz-hint">(llegar / yo)</span>',
+            ja: '私は渋滞のせいで会議に遅れて到着した。',
+            exp: 'llegar の点過去1人称単数：<b>llegué</b>（g→gu 変化）。<br>⚠️ llegé（×）。同様の理由：e の前で g の硬音を保つ。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="pagué"></span>) la cuenta con tarjeta de crédito. <span class="qz-hint">(pagar / yo)</span>',
+            ja: '私はクレジットカードで会計を支払った。',
+            exp: 'pagar の点過去1人称単数：<b>pagué</b>（g→gu 変化）。解説ページの練習問題に接地。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="busqué"></span>) las llaves por toda la casa pero no las encontré. <span class="qz-hint">(buscar / yo)</span>',
+            ja: '私は家中で鍵を探したが、見つからなかった。',
+            exp: 'buscar の点過去1人称単数：<b>busqué</b>（c→qu 変化）。<br>⚠️ buscé（×）。e の前では /k/ の音を qu で表す（ce だと /θe/ になる）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="crucé"></span>) la calle con mucho cuidado. <span class="qz-hint">(cruzar / yo)</span>',
+            ja: '私は注意して道路を横断した。',
+            exp: 'cruzar の点過去1人称単数：<b>crucé</b>（z→c 変化）。<br>⚠️ cruzé（×）。現代スペイン語正書法では ze/zi の綴りはほぼ使われない（e の前では c）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="cargué"></span>) todas las bolsas de la compra yo solo. <span class="qz-hint">(cargar / yo)</span>',
+            ja: '私は一人で買い物袋を全部運んだ。',
+            exp: 'cargar の点過去1人称単数：<b>cargué</b>（g→gu 変化）。'
+          },
+          {
+            t: 'Yo (<span class="qz-b" data-a="averigüé"></span>) la dirección del hotel en internet. <span class="qz-hint">(averiguar / yo)</span>',
+            ja: '私はインターネットでホテルの住所を調べた。',
+            exp: 'averiguar の点過去1人称単数：<b>averigüé</b>（gu→gü 変化）。<br>⚠️ averigué（×）。averiguar の u は /w/ として発音される。e の前でこの u の発音を保つには分音符（¨）が必要。最も注意が必要な綴り変化。'
+          },
+          {
+            t: 'Él (<span class="qz-b" data-a="llegó"></span>) al aeropuerto con tiempo suficiente. <span class="qz-hint">(llegar / él)</span>',
+            ja: '彼は空港に十分な時間的余裕をもって到着した。',
+            exp: 'llegar の点過去3人称単数：<b>llegó</b>（綴り変化なし）。<br>⚠️ 綴り変化はyo形のみ。3人称は規則通り llegó（g のまま、アクセント記号あり）。'
+          }
+        ]
+      },
+      {
+        heading: '10. 不規則⑤　dar / ser / ir / ver',
+        instruction: '特殊な活用をする動詞を正しい点過去形に活用させなさい。',
+        items: [
+          {
+            t: 'Anoche me (<span class="qz-b" data-a="dio"></span>) un fuerte dolor de cabeza. <span class="qz-hint">(dar)</span>',
+            ja: '昨夜、私はひどい頭痛になった。',
+            exp: 'dar（-ar動詞だが -er/-ir 型語尾）の点過去3人称単数：<b>dio</b>（アクセント記号なし：単音節語）。解説ページの例文そのまま。<br>💡 dar（与える）は「（人に）起こる・感じられる」の意味でも使われる。me dio un dolor「頭痛が生じた」。'
+          },
+          {
+            t: 'Yo le (<span class="qz-b" data-a="di"></span>) las gracias por su generosa ayuda. <span class="qz-hint">(dar)</span>',
+            ja: '私は彼の寛大な助けに感謝した。',
+            exp: 'dar の点過去1人称単数：<b>di</b>（単音節のためアクセント記号なし）。<br>🔤 dar：di / diste / dio / dimos / disteis / dieron'
+          },
+          {
+            t: 'El año pasado yo (<span class="qz-b" data-a="fui"></span>) a México de vacaciones. <span class="qz-hint">(ir)</span>',
+            ja: '昨年私はメキシコに休暇で行った。',
+            exp: 'ir の点過去1人称単数：<b>fui</b>（ser と同形。文脈「a México」で ir と判断）。<br>🔤 ir/ser：fui / fuiste / fue / fuimos / fuisteis / fueron'
+          },
+          {
+            t: 'Ayer ella (<span class="qz-b" data-a="fue"></span>) al médico por primera vez. <span class="qz-hint">(ir)</span>',
+            ja: '昨日彼女は初めて医者に行った。',
+            exp: 'ir の点過去3人称単数：<b>fue</b>（ser と同形。文脈「al médico」で ir と判断）。アクセント記号なし（単音節）。'
+          },
+          {
+            t: 'El señor García (<span class="qz-b" data-a="fue"></span>) mi profesor de español durante dos años. <span class="qz-hint">(ser)</span>',
+            ja: 'ガルシア先生は2年間私のスペイン語の先生だった。',
+            exp: 'ser の点過去3人称単数：<b>fue</b>（ir と同形。文脈「mi profesor」で ser と判断）。<br>💡 ser と ir の点過去は全ての人称で同形。文脈だけで区別する。'
+          },
+          {
+            t: 'Ayer yo (<span class="qz-b" data-a="vi"></span>) una película muy emocionante en el cine. <span class="qz-hint">(ver)</span>',
+            ja: '昨日私は映画館でとても感動的な映画を見た。',
+            exp: 'ver の点過去1人称単数：<b>vi</b>（単音節のためアクセント記号なし）。<br>🔤 ver：vi / viste / vio / vimos / visteis / vieron'
+          },
+          {
+            t: '¿(<span class="qz-b" data-a="Fuiste"></span>) al concierto el viernes pasado? <span class="qz-hint">(ir / tú)</span>',
+            ja: '先週金曜日のコンサートに行きましたか？',
+            exp: 'ir の点過去2人称単数：<b>fuiste</b>。'
+          },
+          {
+            t: 'Ellos (<span class="qz-b" data-a="vieron"></span>) el partido de fútbol juntos en casa. <span class="qz-hint">(ver)</span>',
+            ja: '彼らは一緒に家でサッカーの試合を見た。',
+            exp: 'ver の点過去3人称複数：<b>vieron</b>（アクセント記号なし）。'
+          }
+        ]
+      },
+      {
+        heading: '11. 再帰動詞の3人称用法①　再帰受身',
+        instruction: 'se + 他動詞（3人称）+ 物の主語。主語の数に動詞の数を一致させること。（&nbsp;）を正しい形にしなさい。',
+        items: [
+          {
+            t: 'En esta feria (<span class="qz-b" data-a="se vende"></span>) artesanía indígena de toda clase. <span class="qz-hint">(vender)</span>',
+            ja: 'この市では、あらゆる種類の先住民の手工芸品が売られている。',
+            exp: '再帰受身：se + 動詞（主語に一致）。主語 artesanía（単数）→ <b>se vende</b>（3単）。解説ページの例文そのまま。<br>⚠️ 主語（物）の数に動詞を合わせる。artesanía は単数なので se venden（×）。'
+          },
+          {
+            t: 'En esa tienda (<span class="qz-b" data-a="se venden"></span>) productos artesanales muy bonitos. <span class="qz-hint">(vender)</span>',
+            ja: 'その店ではとても美しい手工芸品が売られている。',
+            exp: '再帰受身：主語 productos artesanales（複数）→ <b>se venden</b>（3複）。<br>⚠️ se vende（×）。複数の主語には複数形の動詞。'
+          },
+          {
+            t: 'Aquí no (<span class="qz-b" data-a="se respetan"></span>) las reglas de tránsito. <span class="qz-hint">(respetar)</span>',
+            ja: 'ここでは交通ルールが尊重されない。',
+            exp: '再帰受身：主語 las reglas（複数）→ <b>se respetan</b>（3複）。解説ページの例文そのまま。'
+          },
+          {
+            t: 'En esta ciudad (<span class="qz-b" data-a="se habla"></span>) catalán además del español. <span class="qz-hint">(hablar)</span>',
+            ja: 'この街ではスペイン語のほかにカタルーニャ語も話されている。',
+            exp: '再帰受身：主語 catalán（単数）→ <b>se habla</b>（3単）。'
+          },
+          {
+            t: 'En muchos países (<span class="qz-b" data-a="se hablan"></span>) lenguas indígenas además del español. <span class="qz-hint">(hablar)</span>',
+            ja: '多くの国ではスペイン語のほかに先住民の言語も話されている。',
+            exp: '再帰受身：主語 lenguas indígenas（複数）→ <b>se hablan</b>（3複）。'
+          },
+          {
+            t: 'En esa empresa (<span class="qz-b" data-a="se busca"></span>) un programador con experiencia. <span class="qz-hint">(buscar)</span>',
+            ja: 'その会社では経験豊富なプログラマーを探している。',
+            exp: '再帰受身：主語 un programador（単数）→ <b>se busca</b>（3単）。'
+          },
+          {
+            t: 'En esa librería (<span class="qz-b" data-a="se venden"></span>) libros de segunda mano a buen precio. <span class="qz-hint">(vender)</span>',
+            ja: 'その本屋では古本が安く売られている。',
+            exp: '再帰受身：主語 libros（複数）→ <b>se venden</b>（3複）。'
+          }
+        ]
+      },
+      {
+        heading: '12. 再帰動詞の3人称用法②　不定主語（無人称用法）',
+        instruction: 'se + 動詞（常に3人称単数）で「（一般的に）人は〜する」を表す。主語は常に単数固定。（&nbsp;）を正しい形にしなさい。',
+        items: [
+          {
+            t: '¿Cuánto tiempo (<span class="qz-b" data-a="se tarda"></span>) de Madrid a Barcelona en AVE? <span class="qz-hint">(tardar)</span>',
+            ja: 'マドリードからバルセロナまで新幹線でどのくらいかかりますか？',
+            exp: '不定主語：se + 動詞（常に3単）= <b>se tarda</b>。「（人は一般に）〜かかる」。解説ページの例文を応用。<br>⚠️ 不定主語は主語の「もの」がなく、常に3単固定。'
+          },
+          {
+            t: 'En esta ciudad (<span class="qz-b" data-a="se vive"></span>) muy bien. <span class="qz-hint">(vivir)</span>',
+            ja: 'この街は暮らし向きが良い。',
+            exp: '不定主語：se + 動詞（常に3単）= <b>se vive</b>。解説ページの例文そのまま。<br>💡「この街では（人は）良く暮らしている」という一般的な「人」を表す。'
+          },
+          {
+            t: 'Aquí (<span class="qz-b" data-a="se come"></span>) muy bien y a buen precio. <span class="qz-hint">(comer)</span>',
+            ja: 'ここではとても美味しく、しかも安く食べられる。',
+            exp: '不定主語：se + 動詞（常に3単）= <b>se come</b>。「人は〜する」という一般的な人を表す。'
+          },
+          {
+            t: 'En España (<span class="qz-b" data-a="se cena"></span>) tarde, generalmente a las diez. <span class="qz-hint">(cenar)</span>',
+            ja: 'スペインでは一般に夜10時頃と遅く夕食をとる。',
+            exp: '不定主語：se + 動詞（常に3単）= <b>se cena</b>。「スペインでは（人は一般に）〜する」。'
+          },
+          {
+            t: 'En este museo (<span class="qz-b" data-a="se puede"></span>) fotografiar las obras. <span class="qz-hint">(poder)</span>',
+            ja: 'この美術館では作品を撮影できる。',
+            exp: '不定主語：se + 動詞（常に3単）= <b>se puede</b>。<br>⚠️ obras が複数でも動詞は3単固定（se pueden と間違えやすい）。不定主語は常に単数。'
+          },
+          {
+            t: 'Cuando (<span class="qz-b" data-a="se trabaja"></span>) mucho, es importante descansar bien. <span class="qz-hint">(trabajar)</span>',
+            ja: 'たくさん働くときは、よく休むことが大切だ。',
+            exp: '不定主語：se + 動詞（常に3単）= <b>se trabaja</b>。「（一般に）人は〜するとき」。<br>💡 再帰受身との区別：不定主語は「人が主体」、再帰受身は「物が主語（主語の数に一致）」。'
+          }
+        ]
+      }
+    ]
+  };
+
 })();

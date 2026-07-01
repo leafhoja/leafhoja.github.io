@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
 
-
 <script src="access-control.js"></script>
 <script src="ga.js" defer></script>
 <script src="common.js" defer></script>
@@ -22,6 +21,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://stats.g.doubleclick.net;">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#1a365d">
 <title>Lección 7 文法解説</title>
 <link rel="stylesheet" href="spanish1-common.css">
 </head>
@@ -48,15 +48,16 @@
 <div id="top-nav">
   <div id="top-toc-menu">
     <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;">📚 文法解説タブ</span>
-    <a class="fn-item" href="#sec1" data-tab="grammar" onclick="jumpToSection('sec1'); closeToc(); return false;">① 未来形の規則活用</a>
-    <a class="fn-item" href="#sec2" data-tab="grammar" onclick="jumpToSection('sec2'); closeToc(); return false;">② 未来形の不規則・推量用法</a>
-    <a class="fn-item" href="#sec3" data-tab="grammar" onclick="jumpToSection('sec3'); closeToc(); return false;">③ 接続法現在の規則活用</a>
-    <a class="fn-item" href="#sec4" data-tab="grammar" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 接続法の用法</a>
+    <a class="fn-item" href="#sec1" data-tab="grammar" onclick="jumpToSection('sec1'); closeToc(); return false;">① 線過去の規則活用</a>
+    <a class="fn-item" href="#sec2" data-tab="grammar" onclick="jumpToSection('sec2'); closeToc(); return false;">② 線過去の不規則活用</a>
+    <a class="fn-item" href="#sec3" data-tab="grammar" onclick="jumpToSection('sec3'); closeToc(); return false;">③ 線過去の用法</a>
+    <a class="fn-item" href="#sec4" data-tab="grammar" onclick="jumpToSection('sec4'); closeToc(); return false;">④ 過去完了</a>
+    <a class="fn-item" href="#sec5" data-tab="grammar" onclick="jumpToSection('sec5'); closeToc(); return false;">⑤ 序数</a>
     <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">✏️ 練習問題タブ</span>
-    <a class="fn-item" href="#sec5" data-tab="renshu" onclick="jumpToSection('sec5'); closeToc(); return false;">⑤ 練習問題</a>
+    <a class="fn-item" href="#sec6" data-tab="renshu" onclick="jumpToSection('sec6'); closeToc(); return false;">⑥ 練習問題</a>
     <span style="font-size:11px;color:var(--muted);padding:4px 8px;font-weight:700;width:100%;">📖 語彙・まとめタブ</span>
-    <a class="fn-item" href="#sec6" data-tab="vocab" onclick="jumpToSection('sec6'); closeToc(); return false;">⑥ 語彙リスト</a>
-    <a class="fn-item" href="#sec7" data-tab="vocab" onclick="jumpToSection('sec7'); closeToc(); return false;">⑦ まとめ</a>
+    <a class="fn-item" href="#sec7" data-tab="vocab" onclick="jumpToSection('sec7'); closeToc(); return false;">⑦ 語彙リスト</a>
+    <a class="fn-item" href="#sec8" data-tab="vocab" onclick="jumpToSection('sec8'); closeToc(); return false;">⑧ まとめ</a>
   </div>
   <a id="home-btn" href="index.html">🏠 ホーム</a>
   <span id="top-nav-title">Lección 7 文法解説</span>
@@ -67,9 +68,7 @@
 
 <!-- ══ 表紙 ══ -->
 <div class="cover-title-block">
-
-  <div class="cover-title">Lección 7　文法解説
-  </div>
+  <div class="cover-title">Lección 7　文法解説</div>
   <div class="cover-sub">スペイン語一列　Gramática</div>
 </div>
 
@@ -81,18 +80,19 @@
 
 <div class="cover">
   <div class="toc">
-    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 未来形の規則活用</a>
-    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 未来形の不規則・推量用法</a>
-    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ 接続法現在の規則活用</a>
-    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 接続法の用法</a>
-    <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 練習問題</a>
-    <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 語彙リスト</a>
-    <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ まとめ</a>
+    <a class="toc-item" href="#sec1" onclick="jumpToSection('sec1'); return false;">① 線過去の規則活用</a>
+    <a class="toc-item" href="#sec2" onclick="jumpToSection('sec2'); return false;">② 線過去の不規則活用</a>
+    <a class="toc-item" href="#sec3" onclick="jumpToSection('sec3'); return false;">③ 線過去の用法</a>
+    <a class="toc-item" href="#sec4" onclick="jumpToSection('sec4'); return false;">④ 過去完了</a>
+    <a class="toc-item" href="#sec5" onclick="jumpToSection('sec5'); return false;">⑤ 序数</a>
+    <a class="toc-item" href="#sec6" onclick="jumpToSection('sec6'); return false;">⑥ 練習問題</a>
+    <a class="toc-item" href="#sec7" onclick="jumpToSection('sec7'); return false;">⑦ 語彙リスト</a>
+    <a class="toc-item" href="#sec8" onclick="jumpToSection('sec8'); return false;">⑧ まとめ</a>
   </div>
   <div class="cover-search">
     <div class="cover-search-label">単語・活用形・文法用語を検索</div>
     <input id="cover-search-input" type="text" class="cover-search-box"
-      placeholder="例：tendré　／　接続法　／　ojalá…"
+      placeholder="例：tenía　／　過去完了　／　primer…"
       autocomplete="off" autocorrect="off" spellcheck="false">
     <span class="cover-search-hint">スペイン語・日本語・文法用語で検索 → タッチで該当箇所へジャンプ</span>
   </div>
@@ -103,362 +103,352 @@
 
 <div id="tab-grammar" class="tab-content active">
 
-<!-- ① 未来形の規則活用 -->
+<!-- ① 線過去の規則活用 -->
 <div id="sec1" class="sec-heading">
   <span class="sec-num">①</span>
-  <span class="sec-title">未来形の規則活用</span>
-  <span class="sec-es">Futuro simple: conjugación regular</span>
+  <span class="sec-title">線過去の規則活用</span>
+  <span class="sec-es">Pretérito imperfecto: conjugación regular</span>
 </div>
 
-<p>未来形は<span class="hi">将来の行為・予定・推量</span>を表します。規則活用では<span class="hi2">不定詞（原形）</span>に語尾を直接付けます。英語の <span class="mono hi2">"will"</span> に相当します。</p>
+<p>線過去（<span class="mono hi">pretérito imperfecto</span>）は、過去における<span class="hi">継続中の状態・習慣的行為・背景描写</span>を表します。6課で学んだ点過去が「完結した出来事」を示すのに対し、線過去は「過去の場面を描写する時制」です。</p>
 
-<div class="sub">未来形の語尾（-ar / -er / -ir 動詞すべて共通）</div>
+<div class="sub">-ar 動詞の線過去語尾</div>
 
 <div class="tbl-wrap">
 <table>
   <thead>
     <tr>
       <th colspan="2">人称</th>
-      <th style="background:#dde8f5;color:var(--accent)">語尾</th>
-      <th style="background:#d8eeea;color:var(--accent2)">備考</th>
+      <th style="background:#dde8f5;color:var(--accent)">語尾（-ar）</th>
+      <th style="background:#d8eeea;color:var(--accent2)">hablar の例</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono hi-r"><b>-é</b></td><td class="td-ja">アクセント記号付き</td></tr>
-    <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono hi-r"><b>-ás</b></td><td class="td-ja">アクセント記号付き</td></tr>
-    <tr><td class="td-key td-c">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono hi-r"><b>-á</b></td><td class="td-ja">アクセント記号付き</td></tr>
-    <tr><td class="td-key td-c">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono"><b>-emos</b></td><td class="td-ja">アクセント記号なし（唯一）</td></tr>
-    <tr><td class="td-key td-c">vosotros/as</td><td class="td-ja">君たち</td><td class="td-c mono hi-r"><b>-éis</b></td><td class="td-ja">アクセント記号付き</td></tr>
-    <tr><td class="td-key td-c">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono hi-r"><b>-án</b></td><td class="td-ja">アクセント記号付き</td></tr>
+    <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono hi-r"><b>-aba</b></td><td class="td-c mono">habl<b>aba</b></td></tr>
+    <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono hi-r"><b>-abas</b></td><td class="td-c mono">habl<b>abas</b></td></tr>
+    <tr><td class="td-key td-c">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono hi-r"><b>-aba</b></td><td class="td-c mono">habl<b>aba</b></td></tr>
+    <tr><td class="td-key td-c">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono hi2"><b>-ábamos</b></td><td class="td-c mono">habl<b>ábamos</b></td></tr>
+    <tr><td class="td-key td-c">vosotros/as</td><td class="td-ja">君たち</td><td class="td-c mono hi-r"><b>-abais</b></td><td class="td-c mono">habl<b>abais</b></td></tr>
+    <tr><td class="td-key td-c">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono hi-r"><b>-aban</b></td><td class="td-c mono">habl<b>aban</b></td></tr>
   </tbody>
 </table>
 </div>
 
-<div class="sub">活用例（hablar / comer / vivir）</div>
+<div class="sub">-er / -ir 動詞の線過去語尾</div>
 
 <div class="tbl-wrap">
 <table>
   <thead>
     <tr>
-      <th>人称</th>
-      <th style="background:#dde8f5;color:var(--accent)">hablar（話す）</th>
-      <th style="background:#d8eeea;color:var(--accent2)">comer（食べる）</th>
-      <th style="background:#f0e8dd;color:#8b5020">vivir（住む）</th>
+      <th colspan="2">人称</th>
+      <th style="background:#d8eeea;color:var(--accent2)">語尾（-er/-ir）</th>
+      <th style="background:#d8eeea;color:var(--accent2)">comer の例</th>
+      <th style="background:#f0e8dd;color:#8b5020">vivir の例</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td class="td-key td-c">yo</td><td class="td-c mono">hablar<b>é</b></td><td class="td-c mono">comer<b>é</b></td><td class="td-c mono">vivir<b>é</b></td></tr>
-    <tr><td class="td-key td-c">tú</td><td class="td-c mono">hablar<b>ás</b></td><td class="td-c mono">comer<b>ás</b></td><td class="td-c mono">vivir<b>ás</b></td></tr>
-    <tr><td class="td-key td-c">él/ella</td><td class="td-c mono">hablar<b>á</b></td><td class="td-c mono">comer<b>á</b></td><td class="td-c mono">vivir<b>á</b></td></tr>
-    <tr><td class="td-key td-c">nosotros</td><td class="td-c mono">hablar<b>emos</b></td><td class="td-c mono">comer<b>emos</b></td><td class="td-c mono">vivir<b>emos</b></td></tr>
-    <tr><td class="td-key td-c">vosotros</td><td class="td-c mono">hablar<b>éis</b></td><td class="td-c mono">comer<b>éis</b></td><td class="td-c mono">vivir<b>éis</b></td></tr>
-    <tr><td class="td-key td-c">ellos/ellas</td><td class="td-c mono">hablar<b>án</b></td><td class="td-c mono">comer<b>án</b></td><td class="td-c mono">vivir<b>án</b></td></tr>
+    <tr><td class="td-key td-c">yo</td><td class="td-ja">私</td><td class="td-c mono hi-r"><b>-ía</b></td><td class="td-c mono">com<b>ía</b></td><td class="td-c mono">viv<b>ía</b></td></tr>
+    <tr><td class="td-key td-c">tú</td><td class="td-ja">君</td><td class="td-c mono hi-r"><b>-ías</b></td><td class="td-c mono">com<b>ías</b></td><td class="td-c mono">viv<b>ías</b></td></tr>
+    <tr><td class="td-key td-c">él/ella/usted</td><td class="td-ja">彼/彼女/あなた</td><td class="td-c mono hi-r"><b>-ía</b></td><td class="td-c mono">com<b>ía</b></td><td class="td-c mono">viv<b>ía</b></td></tr>
+    <tr><td class="td-key td-c">nosotros/as</td><td class="td-ja">私たち</td><td class="td-c mono hi2"><b>-íamos</b></td><td class="td-c mono">com<b>íamos</b></td><td class="td-c mono">viv<b>íamos</b></td></tr>
+    <tr><td class="td-key td-c">vosotros/as</td><td class="td-ja">君たち</td><td class="td-c mono hi-r"><b>-íais</b></td><td class="td-c mono">com<b>íais</b></td><td class="td-c mono">viv<b>íais</b></td></tr>
+    <tr><td class="td-key td-c">ellos/ellas/uds.</td><td class="td-ja">彼ら/あなたがた</td><td class="td-c mono hi-r"><b>-ían</b></td><td class="td-c mono">com<b>ían</b></td><td class="td-c mono">viv<b>ían</b></td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="box">
-  <div class="box-title">規則活用の重要ポイント</div>
+  <div class="box-title">線過去の重要ポイント</div>
   <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.9">
-    <li>規則形は<span class="hi2">不定詞全体 ＋ 語尾</span>（語根の変化なし）</li>
-    <li><span class="hi">nosotros 形だけアクセント記号なし</span>（hablaremos, comeremos, viviremos）</li>
-    <li>yo・tú・él・vosotros・ellos 形はすべてアクセント記号付き</li>
-    <li>-ar / -er / -ir のすべての動詞で語尾は同じ</li>
+    <li><span class="hi">-ar 動詞</span>：語根に <span class="mono hi-r">-aba / -abas / -aba / -ábamos / -abais / -aban</span>（nosotros 形のみアクセント記号付き）</li>
+    <li><span class="hi">-er / -ir 動詞</span>：語根に <span class="mono hi-r">-ía / -ías / -ía / -íamos / -íais / -ían</span>（すべてアクセント記号付き）</li>
+    <li>点過去と異なり、<span class="hi2">yo 形と él/ella 形が同形</span>（-aba / -ía）</li>
+    <li>6課で学んだ語根母音変化・強変化は線過去では起きない（規則形のみ）</li>
   </ul>
 </div>
 
-<div class="sub">未来形 vs <span class="mono">ir a</span> ＋ 原形</div>
-
-<div class="tbl-wrap">
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th style="background:#dde8f5;color:var(--accent)">未来形（hablaré）</th>
-      <th style="background:#d8eeea;color:var(--accent2)">ir a ＋ 原形（voy a hablar）</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="td-rule">ニュアンス</td>
-      <td>より客観的・フォーマル・遠い未来</td>
-      <td>より口語的・個人的意図・近い未来</td>
-    </tr>
-    <tr>
-      <td class="td-rule">例文</td>
-      <td><span class="mono">Mañana lloverá.</span><br><span class="td-ja">明日雨が降るだろう。</span></td>
-      <td><span class="mono">Mañana voy a ir al médico.</span><br><span class="td-ja">明日医者へ行くつもり。</span></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<!-- ② 未来形の不規則活用と推量用法 -->
+<!-- ② 線過去の不規則活用 -->
 <div id="sec2" class="sec-heading">
   <span class="sec-num">②</span>
-  <span class="sec-title">未来形の不規則活用と推量用法</span>
-  <span class="sec-es">Futuro irregular y uso de probabilidad</span>
+  <span class="sec-title">線過去の不規則活用</span>
+  <span class="sec-es">Imperfecto irregular: ser / ir / ver</span>
 </div>
 
-<p>不規則動詞では<span class="hi-r">語根（stem）が変化</span>しますが、語尾は規則動詞と同じ（-é/-ás/-á/-emos/-éis/-án）です。</p>
-
-<div class="sub">主要な不規則動詞（語根が変化する）</div>
-
-<div class="tbl-wrap">
-<table>
-  <thead>
-    <tr>
-      <th>動詞（不定詞）</th>
-      <th style="background:#dde8f5;color:var(--accent)">変化後の語根</th>
-      <th style="background:#d8eeea;color:var(--accent2)">yo 形</th>
-      <th>意味</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td class="td-key mono">tener</td><td class="td-c mono hi-r">tendr-</td><td class="td-c mono hi">tendré</td><td class="td-ja">持つ</td></tr>
-    <tr><td class="td-key mono">venir</td><td class="td-c mono hi-r">vendr-</td><td class="td-c mono hi">vendré</td><td class="td-ja">来る</td></tr>
-    <tr><td class="td-key mono">poner</td><td class="td-c mono hi-r">pondr-</td><td class="td-c mono hi">pondré</td><td class="td-ja">置く</td></tr>
-    <tr><td class="td-key mono">salir</td><td class="td-c mono hi-r">saldr-</td><td class="td-c mono hi">saldré</td><td class="td-ja">出る</td></tr>
-    <tr><td class="td-key mono">poder</td><td class="td-c mono hi-r">podr-</td><td class="td-c mono hi">podré</td><td class="td-ja">できる</td></tr>
-    <tr><td class="td-key mono">querer</td><td class="td-c mono hi-r">querr-</td><td class="td-c mono hi">querré</td><td class="td-ja">欲する</td></tr>
-    <tr><td class="td-key mono">saber</td><td class="td-c mono hi-r">sabr-</td><td class="td-c mono hi">sabré</td><td class="td-ja">知る</td></tr>
-    <tr><td class="td-key mono">hacer</td><td class="td-c mono hi-r">har-</td><td class="td-c mono hi">haré</td><td class="td-ja">する</td></tr>
-    <tr><td class="td-key mono">decir</td><td class="td-c mono hi-r">dir-</td><td class="td-c mono hi">diré</td><td class="td-ja">言う</td></tr>
-    <tr><td class="td-key mono">haber</td><td class="td-c mono hi-r">habr-</td><td class="td-c mono hi">habrá ★</td><td class="td-ja">ある（存在）</td></tr>
-  </tbody>
-</table>
-</div>
-<p class="note">★ haber は主に3人称単数 habrá（〜があるだろう）の形で使われます。</p>
-
-<div class="box">
-  <div class="box-title">不規則語根のパターン</div>
-  <div class="tbl-wrap" style="margin-top:6px">
-  <table>
-    <thead><tr><th>グループ</th><th>変化のしくみ</th><th>動詞</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="td-rule">グループ1</td>
-        <td>原形の母音 e を削除して <span class="hi-r">-dr-</span> を挿入</td>
-        <td class="mono">tener→tendr-, venir→vendr-, poner→pondr-, salir→saldr-, poder→podr-</td>
-      </tr>
-      <tr>
-        <td class="td-rule">グループ2</td>
-        <td>原形の語根を短縮</td>
-        <td class="mono">querer→querr-, saber→sabr-</td>
-      </tr>
-      <tr>
-        <td class="td-rule">グループ3</td>
-        <td>完全に変わる</td>
-        <td class="mono">hacer→har-, decir→dir-</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-
-<div class="sub">推量の未来形</div>
-
-<div class="box" style="border-left-color:var(--accent2);background:#edf6f4;">
-  <div class="box-title">未来形は「現在の推量」を表すこともできる</div>
-  <p style="font-size:13px;margin-bottom:10px;">未来形には<span class="hi2">現在の事柄に対する推量・推測</span>を表す用法があります。英語の "must be" や "I wonder" に相当します。</p>
-  <div class="tbl-wrap">
-  <table>
-    <thead><tr><th>文脈</th><th>例文</th><th>意味</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="td-rule">現在の推量</td>
-        <td class="mono">¿Qué hora <span class="hi-r">será</span>?</td>
-        <td class="td-ja">今何時だろう？（現在の状況への推測）</td>
-      </tr>
-      <tr>
-        <td class="td-rule">相手の状況への推測</td>
-        <td class="mono"><span class="hi-r">Tendrás</span> hambre.</td>
-        <td class="td-ja">お腹が空いているだろう。（相手の状態への推測）</td>
-      </tr>
-      <tr>
-        <td class="td-rule">不確かな場所</td>
-        <td class="mono">¿Dónde <span class="hi-r">estará</span> mi llave?</td>
-        <td class="td-ja">鍵はどこにあるんだろう？（現在の場所への推測）</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-
-<div class="trivia">
-  <span class="trivia-icon">💡</span>
-  <span><span class="trivia-label">TRIVIA</span>　この「推量の未来」は英語の <b>"He must be hungry"</b> や <b>"I wonder where it is"</b> に相当し、確信ではなく「おそらく〜だろう」という推量を表します。現在の推量には未来形、過去の推量には条件形（<span class="mono">-ría</span>）を使います。</span>
-</div>
-
-<!-- ③ 接続法現在の規則活用 -->
-<div id="sec3" class="sec-heading">
-  <span class="sec-num">③</span>
-  <span class="sec-title">接続法現在の規則活用</span>
-  <span class="sec-es">Presente de subjuntivo: conjugación regular</span>
-</div>
-
-<p>接続法（<span class="mono hi">Subjuntivo</span>）は<span class="hi">主観的・感情的・意志的・非現実的な内容を従属節で表す</span>動詞形です。英語の仮定法に近いですが、使用範囲がはるかに広いです。</p>
-
-<div id="subjuntivo-tsukurikata" class="box box-rule">
-  <div class="box-title">接続法現在の作り方（重要！）</div>
-  <p style="font-size:13.5px;margin-bottom:8px;"><strong>yo 現在形の1人称から -o を取り、「反対」の語尾を付ける</strong></p>
-  <div class="tbl-wrap" style="margin-top:6px">
-  <table>
-    <thead><tr><th>動詞の種類</th><th>yo 現在形の語尾</th><th>接続法の語尾（yo形から）</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="td-rule">-ar 動詞</td>
-        <td class="td-c mono">-o を取る</td>
-        <td class="mono hi2"><b>-e / -es / -e / -emos / -éis / -en</b></td>
-      </tr>
-      <tr>
-        <td class="td-rule">-er / -ir 動詞</td>
-        <td class="td-c mono">-o を取る</td>
-        <td class="mono hi"><b>-a / -as / -a / -amos / -áis / -an</b></td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note" style="margin-top:8px;">-ar 動詞は -e 系語尾、-er/-ir 動詞は -a 系語尾 → 現在形と「反対」の母音になる</p>
-</div>
-
-<div class="sub">規則活用表（hablar / comer / vivir）</div>
+<p>線過去の不規則動詞は<span class="hi-r">ser・ir・ver の3語のみ</span>です。スペイン語の時制の中で最も少ない不規則例外です。</p>
 
 <div class="tbl-wrap">
 <table>
   <thead>
     <tr>
       <th>人称</th>
-      <th style="background:#dde8f5;color:var(--accent)">hablar<br><small>yo現在形: hablo</small></th>
-      <th style="background:#d8eeea;color:var(--accent2)">comer<br><small>yo現在形: como</small></th>
-      <th style="background:#f0e8dd;color:#8b5020">vivir<br><small>yo現在形: vivo</small></th>
+      <th style="background:#dde8f5;color:var(--accent)">ser（〜である）</th>
+      <th style="background:#d8eeea;color:var(--accent2)">ir（行く）</th>
+      <th style="background:#f0e8dd;color:#8b5020">ver（見る）</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td class="td-key td-c">yo</td><td class="td-c mono hi2">hable</td><td class="td-c mono hi">coma</td><td class="td-c mono hi">viva</td></tr>
-    <tr><td class="td-key td-c">tú</td><td class="td-c mono hi2">hables</td><td class="td-c mono hi">comas</td><td class="td-c mono hi">vivas</td></tr>
-    <tr><td class="td-key td-c">él/ella</td><td class="td-c mono hi2">hable</td><td class="td-c mono hi">coma</td><td class="td-c mono hi">viva</td></tr>
-    <tr><td class="td-key td-c">nosotros</td><td class="td-c mono hi2">hablemos</td><td class="td-c mono hi">comamos</td><td class="td-c mono hi">vivamos</td></tr>
-    <tr><td class="td-key td-c">vosotros</td><td class="td-c mono hi2">habléis</td><td class="td-c mono hi">comáis</td><td class="td-c mono hi">viváis</td></tr>
-    <tr><td class="td-key td-c">ellos/ellas</td><td class="td-c mono hi2">hablen</td><td class="td-c mono hi">coman</td><td class="td-c mono hi">vivan</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="box" id="yo-form-rule">
-  <div class="box-title">「yo形の法則」</div>
-  <p style="font-size:13.5px;margin-bottom:8px;">yo形が不規則な動詞は、<span class="hi-r">接続法の語根も同じ不規則語根になります</span>。</p>
-  <div class="tbl-wrap">
-  <table>
-    <thead><tr><th>動詞</th><th>yo 現在形</th><th>接続法（全人称）</th></tr></thead>
-    <tbody>
-      <tr><td class="td-key mono">tener</td><td class="td-c mono">tengo</td><td class="mono hi-r">tenga, tengas, tenga, tengamos, tengáis, tengan</td></tr>
-      <tr><td class="td-key mono">hacer</td><td class="td-c mono">hago</td><td class="mono hi-r">haga, hagas, haga, hagamos, hagáis, hagan</td></tr>
-      <tr><td class="td-key mono">poner</td><td class="td-c mono">pongo</td><td class="mono hi-r">ponga, pongas, ponga, pongamos, pongáis, pongan</td></tr>
-      <tr><td class="td-key mono">salir</td><td class="td-c mono">salgo</td><td class="mono hi-r">salga, salgas, salga, salgamos, salgáis, salgan</td></tr>
-      <tr><td class="td-key mono">traer</td><td class="td-c mono">traigo</td><td class="mono hi-r">traiga, traigas, traiga, traigamos, traigáis, traigan</td></tr>
-      <tr><td class="td-key mono">decir</td><td class="td-c mono">digo</td><td class="mono hi-r">diga, digas, diga, digamos, digáis, digan</td></tr>
-      <tr><td class="td-key mono">conocer</td><td class="td-c mono">conozco</td><td class="mono hi-r">conozca, conozcas, conozca, conozcamos, conozcáis, conozcan</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-
-<div class="sub">完全不規則動詞（接続法現在）</div>
-
-<div class="tbl-wrap">
-<table>
-  <thead>
-    <tr>
-      <th>動詞</th>
-      <th style="background:#dde8f5;color:var(--accent)" colspan="2">接続法現在（全活用）</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td class="td-key mono">ser</td><td class="mono hi-r">sea, seas, sea,</td><td class="mono">seamos, seáis, sean</td></tr>
-    <tr><td class="td-key mono">estar</td><td class="mono hi-r">esté, estés, esté,</td><td class="mono">estemos, estéis, estén</td></tr>
-    <tr><td class="td-key mono">ir</td><td class="mono hi-r">vaya, vayas, vaya,</td><td class="mono">vayamos, vayáis, vayan</td></tr>
-    <tr><td class="td-key mono">saber</td><td class="mono hi-r">sepa, sepas, sepa,</td><td class="mono">sepamos, sepáis, sepan</td></tr>
-    <tr><td class="td-key mono">haber</td><td class="mono hi-r">haya, hayas, haya,</td><td class="mono">hayamos, hayáis, hayan</td></tr>
-    <tr><td class="td-key mono">dar</td><td class="mono hi-r">dé, des, dé,</td><td class="mono">demos, deis, den</td></tr>
-  </tbody>
-</table>
-</div>
-<p class="note">※ dar の yo/él形 <span class="mono">dé</span> は直説法現在 <span class="mono">de</span>（前置詞「の」）と区別するためアクセント記号付き。</p>
-
-<!-- ④ 接続法の主な用法 -->
-<div id="sec4" class="sec-heading">
-  <span class="sec-num">④</span>
-  <span class="sec-title">接続法の主な用法</span>
-  <span class="sec-es">Usos del subjuntivo</span>
-</div>
-
-<div class="sub">用法 A：感情・意志・欲求（主語が異なるとき）</div>
-
-<div class="box box-center">
-  <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px;">
-    主節（感情・意志動詞）　＋　<span class="hi-r">que</span>　＋　従属節（<span class="hi">接続法</span>）
-  </div>
-  <div style="font-size:12.5px;color:var(--muted);">→ 主節と従属節の<b>主語が異なるとき</b>に接続法を使う</div>
-</div>
-
-<div class="tbl-wrap" style="margin-top:10px">
-<table>
-  <thead><tr><th>表現</th><th>意味</th><th>例文</th></tr></thead>
-  <tbody>
-    <tr><td class="td-key mono">querer que</td><td class="td-rule">〜してほしい</td><td><span class="mono">Quiero que <span class="hi">vengas</span>.</span>　<span class="td-ja">来てほしい。</span></td></tr>
-    <tr><td class="td-key mono">esperar que</td><td class="td-rule">〜を望む</td><td><span class="mono">Espero que <span class="hi">llueva</span>.</span>　<span class="td-ja">雨が降ることを望む。</span></td></tr>
-    <tr><td class="td-key mono">desear que</td><td class="td-rule">〜を願う</td><td><span class="mono">Deseo que <span class="hi">tengas</span> éxito.</span>　<span class="td-ja">成功を願う。</span></td></tr>
-    <tr><td class="td-key mono">pedir que</td><td class="td-rule">〜するよう頼む</td><td><span class="mono">Te pido que <span class="hi">escuches</span>.</span>　<span class="td-ja">聞いてほしいと頼む。</span></td></tr>
-    <tr><td class="td-key mono">recomendar que</td><td class="td-rule">〜を勧める</td><td><span class="mono">Te recomiendo que <span class="hi">descanses</span>.</span>　<span class="td-ja">休むことを勧める。</span></td></tr>
-    <tr><td class="td-key mono">aconsejar que</td><td class="td-rule">〜するよう勧告</td><td><span class="mono">Te aconsejo que <span class="hi">estudies</span> más.</span>　<span class="td-ja">もっと勉強するよう勧める。</span></td></tr>
+    <tr><td class="td-key td-c">yo</td><td class="td-c mono hi-r"><b>era</b></td><td class="td-c mono hi-r"><b>iba</b></td><td class="td-c mono hi2"><b>veía</b></td></tr>
+    <tr><td class="td-key td-c">tú</td><td class="td-c mono">eras</td><td class="td-c mono">ibas</td><td class="td-c mono">veías</td></tr>
+    <tr><td class="td-key td-c">él/ella</td><td class="td-c mono hi-r">era</td><td class="td-c mono hi-r">iba</td><td class="td-c mono hi2">veía</td></tr>
+    <tr><td class="td-key td-c">nosotros</td><td class="td-c mono"><b>éramos</b></td><td class="td-c mono"><b>íbamos</b></td><td class="td-c mono"><b>veíamos</b></td></tr>
+    <tr><td class="td-key td-c">vosotros</td><td class="td-c mono">erais</td><td class="td-c mono">ibais</td><td class="td-c mono">veíais</td></tr>
+    <tr><td class="td-key td-c">ellos/ellas</td><td class="td-c mono">eran</td><td class="td-c mono">iban</td><td class="td-c mono">veían</td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="box box-warn">
-  <div class="box-title" style="color:var(--warn)">同じ主語 vs 異なる主語</div>
-  <div class="ex"><span class="ex-sp">Quiero <span class="hi2">descansar</span>.</span><span class="ex-ja">（私が）休みたい。← <b>同じ主語</b>（yo）→ que なし、不定詞</span></div>
-  <div class="ex"><span class="ex-sp">Quiero que tú <span class="hi">descanses</span>.</span><span class="ex-ja">（君に）休んでほしい。← <b>主語が異なる</b>（yo/tú）→ que ＋ 接続法</span></div>
-</div>
-
-<div class="sub">用法 B：感情表現</div>
-
-<div class="box" style="border-left-color:var(--accent2);background:#edf6f4;">
-  <div class="box-title">感情動詞 ＋ que ＋ 接続法</div>
-  <div class="ex"><span class="ex-sp">Me <span class="hi2">alegra</span> que <span class="hi">estés</span> bien.</span><span class="ex-ja">君が元気で嬉しい。</span></div>
-  <div class="ex"><span class="ex-sp">Es una <span class="hi-r">lástima</span> que no <span class="hi">puedas</span> venir.</span><span class="ex-ja">来られないのは残念。</span></div>
-  <div class="ex"><span class="ex-sp">Me <span class="hi2">sorprende</span> que <span class="hi">hable</span> tan bien.</span><span class="ex-ja">そんなに上手に話せることに驚く。</span></div>
-</div>
-
-<div class="sub" id="ojala-usage">用法 C：ojalá</div>
-
-<div class="box">
-  <div class="box-title">ojalá（〜だといいのだが）＋ 接続法</div>
-  <div class="ex"><span class="ex-sp">Ojalá <span class="hi">llueva</span> mañana.</span><span class="ex-ja">明日雨が降るといいな。</span></div>
-  <div class="ex"><span class="ex-sp">Ojalá que <span class="hi">tengas</span> buena suerte.</span><span class="ex-ja">幸運を祈る。</span></div>
-  <p class="note" style="margin-top:8px;">ojalá の後ろに <span class="mono">que</span> を付けても付けなくても可。</p>
+  <div class="box-title">覚えるポイント</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.9">
+    <li><span class="mono hi-r">ser</span>：era / eras / era / éramos / erais / eran — 語根が <span class="mono">er-</span> になる完全不規則形</li>
+    <li><span class="mono hi-r">ir</span>：iba / ibas / iba / íbamos / ibais / iban — 語根 <span class="mono">ib-</span> に <span class="hi2">-ar 型語尾（-aba 系）</span>が付く</li>
+    <li><span class="mono hi-r">ver</span>：veía / veías … — 語根 <span class="mono">ve-</span> に規則の <span class="hi">-er/-ir 型語尾（-ía 系）</span>が付く（語根のみ不規則）</li>
+  </ul>
 </div>
 
 <div class="trivia">
   <span class="trivia-icon">💡</span>
-  <span><span class="trivia-label">TRIVIA</span>　<b>ojalá</b> はアラビア語の「インシャーアッラー（Inshallah：神の御心のままに）」に由来します。スペインのイスラム支配時代（8〜15世紀）に入ってきた言葉で、スペイン語の中に残るアラビア語の痕跡の一つです。他にもアラビア語由来のスペイン語には <span class="mono">alcohol</span>（アルコール）、<span class="mono">algodón</span>（木綿）、<span class="mono">almohada</span>（枕）などがあります。</span>
+  <span><span class="trivia-label">TRIVIA</span>　なぜ線過去の不規則は3語しかないのか？　線過去の語尾 <span class="mono">-aba / -ía</span> はラテン語の不完了過去（imperfectum）から極めて規則的に進化したものです。<b>ser</b> の <span class="mono">era</span> はラテン語 <span class="mono">eram</span> に直接由来する最古の形。<b>ir</b> が <span class="mono">iba</span> という形を持つのは、<span class="mono">ir</span> がラテン語 <span class="mono">ire</span>（行く）と <span class="mono">vadere</span>（進む）の合体動詞だったためで、線過去は <span class="mono">ire</span> の不完了形 <span class="mono">ibam</span> から来ています。<b>ver</b> の <span class="mono">veía</span> は、ラテン語 <span class="mono">videre</span>（見る）が縮まって <span class="mono">ver</span> になった際に本来の語根 <span class="mono">ve-</span> が残ったためです。</span>
+</div>
+
+<!-- ③ 線過去の用法 -->
+<div id="sec3" class="sec-heading">
+  <span class="sec-num">③</span>
+  <span class="sec-title">線過去の用法</span>
+  <span class="sec-es">Usos del pretérito imperfecto</span>
+</div>
+
+<div class="sub" id="youho1">用法 1：過去のある時点における継続中の状態・行為</div>
+
+<p>点過去（完結した出来事）が起きた<span class="hi">「その時」の背景・状態</span>を描写します。</p>
+
+<div class="ex"><span class="ex-sp">Cuando Kalina se decidió a estudiar en Buenos Aires, <span class="hi">tenía</span> veintitrés años de edad.</span><span class="ex-ja">カリーナはブエノスアイレスで学ぶことを決意した時、23歳だった。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono hi-r">se decidió</span>（点過去）：「決意した」という完結した出来事</li>
+    <li><span class="mono hi">tenía</span>（線過去）：決意した「その時点での状態」（23歳という継続する状態）</li>
+    <li><span class="mono hi2">decidirse a ＋ 不定詞</span>：（再）（〜することを）決心する</li>
+    <li><span class="mono">edad</span>（女）年齢　／　<span class="mono">…, tenía veintitrés años.</span> とだけ言っても可</li>
+  </ul>
+</div>
+
+<div class="ex"><span class="ex-sp">Anoche, cuando <span class="hi-r">tembló</span>, <span class="hi">estábamos haciendo</span> un asado en el patio.</span><span class="ex-ja">昨夜、地震が起きた時、私たちは中庭でバーベキューをしていた。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono hi-r">tembló</span>（点過去）：「地震が起きた」という一回の出来事</li>
+    <li><span class="mono hi">estábamos haciendo</span>（線過去進行形）：その瞬間に進行中だった行為。<span class="mono">estar の線過去 ＋ 現在分詞</span>で作る</li>
+    <li><span class="mono">anoche</span>（副）昨夜 ／ <span class="mono">temblar</span>（動）震える・揺れる</li>
+    <li><span class="mono">asado</span>（男）丸焼き・バーベキュー ／ <span class="mono">patio</span>（男）中庭</li>
+  </ul>
+</div>
+
+<div class="sub" id="youho2">用法 2：過去の習慣・反復的行為</div>
+
+<p>「昔はよく〜した」「〜したものだ」という<span class="hi">過去の習慣・繰り返し</span>を表します。英語の "used to" や "would often" に相当します。</p>
+
+<div class="ex"><span class="ex-sp">Anteriormente en esta comunidad solo unos pocos <span class="hi">hablaban</span> español e <span class="hi">iban</span> a la escuela.</span><span class="ex-ja">かつてこの共同体では、ごく一握りの人たちがスペイン語を話したり学校へ通ったりしていただけだった。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono">anteriormente</span>（副）前には・昔は</li>
+    <li><span class="mono">comunidad</span>（女）共同体 ／ <span class="mono">poco/ca</span>（代名）わずかな物・人</li>
+    <li><span class="mono hi2">sólo</span>（副）ただ〜だけ。形容詞 <span class="mono">solo/la</span>「唯一の」と同音異義。副詞は正式にはアクセント記号付きだが、文脈で明らかな場合は省略も可</li>
+    <li>接続詞 <span class="mono">y</span> は直後に <span class="mono hi-r">i-</span> または <span class="mono hi-r">hi-</span> で始まる語が続くとき <span class="mono hi-r">e</span> に変化する（<span class="mono">iban</span> の前の <span class="mono">e</span>）</li>
+  </ul>
+</div>
+
+<div class="ex"><span class="ex-sp">De joven mi padre <span class="hi">fumaba</span> mucho, aunque ahora detesta a los fumadores.</span><span class="ex-ja">私の父は、今では喫煙者たちを嫌っているが、若い頃は盛んにタバコを吸っていた。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono hi2">de joven</span>：若い頃（前置詞 <span class="mono">de</span> が「様態・時期」を表す用法）。他例：<span class="mono">de pequeño/a</span> 子供の頃 ／ <span class="mono">de golpe</span> 一撃で</li>
+    <li><span class="mono">fumar</span>（動）タバコを吸う ／ <span class="mono">detestar</span>（動）嫌う ／ <span class="mono">fumador/ra</span>（名）喫煙者</li>
+    <li><span class="mono">aunque</span>（接）〜ではあるが（逆接）</li>
+  </ul>
+</div>
+
+<div class="sub" id="youho3">用法 3：時制の一致（間接話法）</div>
+
+<p>主節の動詞が<span class="hi">過去時制</span>のとき、従属節の「現在の状態・行為」には線過去を使います。これを<span class="hi2">時制の一致</span>と呼びます。</p>
+
+<div class="ex"><span class="ex-sp">Le dije al doctor que <span class="hi">estaba</span> mal del estómago.</span><span class="ex-ja">胃の調子が悪いのだと私は医者に言った。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li>直接話法：<span class="mono">Le dije al doctor, "Estoy mal del estómago."</span>（現在形）</li>
+    <li>間接話法：<span class="mono">Le dije … que <span class="hi-r">estaba</span> mal del estómago.</span>（主節が過去 → 従属節も線過去）</li>
+    <li><span class="mono">estómago</span>（男）胃 ／ <span class="mono">estar mal de 〜</span>：〜の具合が悪い</li>
+  </ul>
+  <div class="box" style="background:#f0f5fb;border-left-color:var(--accent);margin-top:8px">
+    <div class="box-title">時制の一致のパターン</div>
+    <table style="font-size:12.5px;width:100%;border-collapse:collapse">
+      <thead><tr style="background:#e0e8f5"><th style="padding:4px 8px">主節（過去）</th><th style="padding:4px 8px">直接話法（従属節）</th><th style="padding:4px 8px">間接話法（従属節）</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:4px 8px;font-family:monospace">dije / dijo</td><td style="padding:4px 8px;font-family:monospace">"Estoy…"（現在）</td><td style="padding:4px 8px;font-family:monospace">que estaba…（線過去）</td></tr>
+        <tr style="background:#f5f8fd"><td style="padding:4px 8px;font-family:monospace">dijeron</td><td style="padding:4px 8px;font-family:monospace">"Nos gusta…"（現在）</td><td style="padding:4px 8px;font-family:monospace">que les gustaba…（線過去）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　<b>点過去 vs 線過去</b>の対比は、物語の「骨格（frame）」と「背景（background）」の違いとして捉えると理解しやすい。点過去は物語を前進させる出来事の連鎖（場面が変わる・行動が完結する）を担い、線過去はその場面の状態・雰囲気・継続する状況を描写します。スペイン語の小説や新聞記事では、点過去と線過去が交互に現れることで、読み手に場面の動きと背景が同時に伝わります。</span>
+</div>
+
+<!-- ④ 過去完了 -->
+<div id="sec4" class="sec-heading">
+  <span class="sec-num">④</span>
+  <span class="sec-title">過去完了</span>
+  <span class="sec-es">Pretérito pluscuamperfecto</span>
+</div>
+
+<p>過去完了は「過去のある出来事よりも<span class="hi">さらに前</span>に起きたこと・完了していたこと」を表します。英語の "had done" に相当します。</p>
+
+<div class="box box-rule" id="kakan-tsukurikata">
+  <div class="box-title">過去完了の作り方</div>
+  <div style="text-align:center;font-size:15px;margin:10px 0 8px;font-weight:700;">
+    <span class="hi-r">haber の線過去</span>　＋　<span class="hi2">過去分詞</span>
+  </div>
+  <div class="tbl-wrap" style="margin-top:6px">
+  <table>
+    <thead><tr><th>人称</th><th style="background:#dde8f5;color:var(--accent)">haber の線過去</th><th>活用例</th></tr></thead>
+    <tbody>
+      <tr><td class="td-key td-c">yo</td><td class="td-c mono hi-r"><b>había</b></td><td class="td-c mono">había hablado / comido / vivido</td></tr>
+      <tr><td class="td-key td-c">tú</td><td class="td-c mono hi-r"><b>habías</b></td><td class="td-c mono">habías llegado / visto / hecho</td></tr>
+      <tr><td class="td-key td-c">él/ella</td><td class="td-c mono hi-r"><b>había</b></td><td class="td-c mono">había salido / puesto</td></tr>
+      <tr><td class="td-key td-c">nosotros</td><td class="td-c mono hi2"><b>habíamos</b></td><td class="td-c mono">habíamos vivido / dicho</td></tr>
+      <tr><td class="td-key td-c">vosotros</td><td class="td-c mono hi-r"><b>habíais</b></td><td class="td-c mono">habíais visto / escrito</td></tr>
+      <tr><td class="td-key td-c">ellos/ellas</td><td class="td-c mono hi-r"><b>habían</b></td><td class="td-c mono">habían acostado / abierto</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note" style="margin-top:8px;">過去分詞は規則形 <span class="mono">-ar → -ado / -er/-ir → -ido</span>。主な不規則分詞：<span class="mono">visto, hecho, dicho, puesto, abierto, escrito, vuelto</span></p>
+</div>
+
+<div class="ex"><span class="ex-sp">Cuando volví a casa, ya se <span class="hi">habían acostado</span> todos.</span><span class="ex-ja">私が家に帰った時、既に皆横になってしまっていた。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono hi-r">volví</span>（点過去）：「帰った」という出来事　← それより前に</li>
+    <li><span class="mono hi">se habían acostado</span>（過去完了）：皆がすでに横になっていた</li>
+    <li><span class="mono">ya</span>（副）すでに・もう ／ <span class="mono">todos</span>（代）皆</li>
+  </ul>
+</div>
+
+<div class="ex"><span class="ex-sp">Hasta entonces el coche nunca <span class="hi">había fallado</span>.</span><span class="ex-ja">その時まで、その車は一度も故障したことはなかった。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono">hasta entonces</span>：その時まで ／ <span class="mono">entonces</span>（副）その時・当時</li>
+    <li><span class="mono">nunca</span>（副）一度も〜しない（否定語）</li>
+    <li><span class="mono">fallar</span>（動）故障する・失敗する</li>
+    <li><span class="mono">nunca había ＋ 過去分詞</span>：「一度も〜したことがなかった」という経験の否定</li>
+  </ul>
+</div>
+
+<div class="ex"><span class="ex-sp">Yo <span class="hi-r">creía</span> que siempre <span class="hi">habíais vivido</span> con vuestros padres.</span><span class="ex-ja">君たちはずっとご両親と暮らしてきたのだと私は思っていた。</span></div>
+
+<div class="box">
+  <div class="box-title">例文解説</div>
+  <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8">
+    <li><span class="mono hi-r">creía</span>（線過去）：「思っていた」という継続的な信念・状態</li>
+    <li><span class="mono hi">habíais vivido</span>（過去完了 2人称複数）：「思っていた」時点よりさらに前から続いていた状態</li>
+    <li><span class="mono">siempre</span>（副）いつも・ずっと ／ <span class="mono">vuestros padres</span>：君たちのご両親（vosotros 対応の所有格）</li>
+  </ul>
+</div>
+
+<!-- ⑤ 序数 -->
+<div id="sec5" class="sec-heading">
+  <span class="sec-num">⑤</span>
+  <span class="sec-title">序数（1〜10）</span>
+  <span class="sec-es">Números ordinales</span>
+</div>
+
+<p>序数（順序を表す数詞）は<span class="hi">形容詞</span>として働くため、修飾する名詞の性・数に合わせて変化します。</p>
+
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>数</th>
+      <th style="background:#dde8f5;color:var(--accent)">男性形</th>
+      <th style="background:#f5e8f0;color:#8b2060">女性形</th>
+      <th>例（PDFより）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="td-c">1</td><td class="td-c mono hi-r"><b>primero（primer）</b></td><td class="td-c mono hi-r"><b>primera</b></td><td class="mono">primer curso　第1学年</td></tr>
+    <tr><td class="td-c">2</td><td class="td-c mono">segundo</td><td class="td-c mono">segunda</td><td class="mono">segunda hija　次女</td></tr>
+    <tr><td class="td-c">3</td><td class="td-c mono hi-r"><b>tercero（tercer）</b></td><td class="td-c mono hi-r"><b>tercera</b></td><td class="mono">tercer lugar　第3位</td></tr>
+    <tr><td class="td-c">4</td><td class="td-c mono">cuarto</td><td class="td-c mono">cuarta</td><td class="mono">cuarta fila　4列目</td></tr>
+    <tr><td class="td-c">5</td><td class="td-c mono">quinto</td><td class="td-c mono">quinta</td><td class="mono">Carlos V　カルロス5世</td></tr>
+    <tr><td class="td-c">6</td><td class="td-c mono">sexto</td><td class="td-c mono">sexta</td><td class="mono">sexto viaje　6度目の旅</td></tr>
+    <tr><td class="td-c">7</td><td class="td-c mono">séptimo</td><td class="td-c mono">séptima</td><td class="mono">séptimo piso　7階（スペイン式8階）</td></tr>
+    <tr><td class="td-c">8</td><td class="td-c mono">octavo</td><td class="td-c mono">octava</td><td class="mono">octava vez　8回目</td></tr>
+    <tr><td class="td-c">9</td><td class="td-c mono">noveno</td><td class="td-c mono">novena</td><td class="mono">Novena Sinfonía　第九交響曲</td></tr>
+    <tr><td class="td-c">10</td><td class="td-c mono">décimo</td><td class="td-c mono">décima</td><td class="mono">décimo título　第10編</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box box-rule" id="primer-tercer">
+  <div class="box-title">primero・tercero の語尾省略（重要！）</div>
+  <p style="font-size:13.5px;margin-bottom:8px;"><span class="mono hi-r">primero → primer</span>　／　<span class="mono hi-r">tercero → tercer</span>：<span class="hi">男性単数名詞の直前</span>に置くとき、語末の <span class="mono">-o</span> が省略される</p>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>省略形（男性名詞の前）</th><th>完全形（述語位置など）</th><th>女性形（変化なし）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="mono hi-r">primer curso（第1学年）<br>primer piso（1階）</td>
+        <td class="mono">el primero（1番目のもの）<br>el día primero（1日）</td>
+        <td class="mono">la primera vez（初回）<br>primera hija（長女）</td>
+      </tr>
+      <tr>
+        <td class="mono hi-r">tercer lugar（第3位）<br>tercer piso（3階）</td>
+        <td class="mono">el tercero（3番目のもの）</td>
+        <td class="mono">la tercera semana（3週目）<br>tercera fila（3列目）</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="box">
+  <div class="box-title">王・教皇・法令などの序数表記</div>
+  <div class="ex"><span class="ex-sp">Carlos V</span><span class="ex-ja">カルロス5世（＝ Carlos quinto）← 称号では名前の後ろにローマ数字</span></div>
+  <div class="ex"><span class="ex-sp">décimo título</span><span class="ex-ja">（法令の）第10編</span></div>
+  <p class="note" style="margin-top:8px;">★ <span class="mono">séptimo piso</span> はスペインでは日本の8階に当たります。スペインでは地上階を <span class="mono">planta baja</span>（0階）と呼び、その上から <span class="mono">primer piso</span>（日本の2階）と数えます。ラテンアメリカは日本と同じ数え方。</p>
+</div>
+
+<div class="trivia">
+  <span class="trivia-icon">💡</span>
+  <span><span class="trivia-label">TRIVIA</span>　<b>primer / tercer</b> の語尾省略はラテン語の伝統に由来します。序数がある名詞の直前に置かれる際、発音が短縮される傾向はラテン語時代からありました。現代スペイン語でも<b>男性単数名詞の直前</b>という特定の位置のみで短縮が起きます。<span class="mono">primer</span> の形はラテン語 <span class="mono">primarius</span> の縮小形 <span class="mono">primero</span> から、さらに語末が削れたもの。「省略形は名詞の前だけ」——述語や名詞なしの場合は <span class="mono">el primero</span>（完全形）が必要です。</span>
 </div>
 
 </div><!-- /tab-grammar -->
 
 <div id="tab-renshu" class="tab-content">
 
-<!-- ⑤ 練習問題 -->
-<div id="sec5" class="sec-heading">
-  <span class="sec-num">⑤</span>
+<!-- ⑥ 練習問題 -->
+<div id="sec6" class="sec-heading">
+  <span class="sec-num">⑥</span>
   <span class="sec-title">練習問題と解答</span>
   <span class="sec-es">Ejercicios y soluciones</span>
 </div>
 
 <div class="daimon">
   <span class="daimon-num">1.</span>
-  <span class="daimon-title">（　）内の動詞を未来形に活用させなさい。</span>
+  <span class="daimon-title">（　）内の動詞を線過去または過去完了に活用させなさい。</span>
 </div>
 
 <div class="ex-block">
@@ -467,59 +457,59 @@
   <div class="q-item">
     <span class="q-badge blue">1</span>
     <div class="q-content">
-      <div class="q-sentence">Mañana (yo) <span class="blank">______</span> (tener) tiempo libre.</div>
-      <div class="q-ja">明日私は暇になるだろう。</div>
+      <div class="q-sentence">En el pasado la gran mayoría de la población <span class="blank">______</span> (ser) católica e <span class="blank">______</span> (ir) a misa cada domingo.</div>
+      <div class="q-ja">昔は人口の大半がカトリック信者であり、毎週日曜にはミサへ行ったものだ。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Mañana (yo) <span class="ans-fill">tendré</span> tiempo libre.</span>
+        <span class="ans-text"><span class="ans-fill">era</span> … <span class="ans-fill">iba</span></span>
       </div>
-      <div class="q-exp">tener の未来形1人称単数。不規則語根 <b>tendr-</b> ＋ <b>-é</b>（アクセント記号付き）。</div>
+      <div class="q-exp"><b>era</b>：ser の線過去3単（不規則）。人口の大半が「カトリック信者だった」という過去の状態を描写。<b>iba</b>：ir の線過去3単（不規則）。<span class="mono">cada domingo</span>（毎週日曜）という繰り返しを表す表現が線過去（習慣用法）の根拠。<br>※ <span class="mono">población</span> は単数名詞。「mayoría de ＋ 複数名詞」の場合、動詞は3人称単数・複数どちらも可。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge blue">2</span>
     <div class="q-content">
-      <div class="q-sentence">¿Cuándo <span class="blank">______</span> (venir) tus padres?</div>
-      <div class="q-ja">君のご両親はいつ来るだろうか？</div>
+      <div class="q-sentence">Cuando nosotros <span class="blank">______</span> (ser) jóvenes, casi nadie <span class="blank">______</span> (tener) celular.</div>
+      <div class="q-ja">私たちが若かった頃は、ほとんど誰も携帯電話を持っていなかった。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">¿Cuándo <span class="ans-fill">vendrán</span> tus padres?</span>
+        <span class="ans-text"><span class="ans-fill">éramos</span> … <span class="ans-fill">tenía</span></span>
       </div>
-      <div class="q-exp">venir の未来形3人称複数（tus padres＝ellos）。不規則語根 <b>vendr-</b> ＋ <b>-án</b>。</div>
+      <div class="q-exp"><b>éramos</b>：ser の線過去1複（nosotros 形、アクセント記号付き）。「若かった頃」という過去の継続的な状態。<b>tenía</b>：tener の線過去3単（規則活用：ten- ＋ -ía）。<span class="mono">casi nadie</span>（ほとんど誰も〜しない）と組み合わさり、過去の一般的状況を描写。<br>※ <span class="mono">nadie</span> は否定語で「誰も〜しない」の意。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge blue">3</span>
     <div class="q-content">
-      <div class="q-sentence">El año que viene nosotros <span class="blank">______</span> (vivir) en España.</div>
-      <div class="q-ja">来年私たちはスペインに住むだろう。</div>
+      <div class="q-sentence">Cuando dejó de llover, ya se <span class="blank">______</span> el concierto. (cancelar — 過去完了・受身用法)</div>
+      <div class="q-ja">雨が止んだ時には、すでにコンサートは中止になっていた。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">El año que viene nosotros <span class="ans-fill">viviremos</span> en España.</span>
+        <span class="ans-text">ya se <span class="ans-fill">había cancelado</span> el concierto</span>
       </div>
-      <div class="q-exp">vivir の未来形1人称複数（規則活用）。不定詞全体 vivir ＋ <b>-emos</b>（nosotros 形だけアクセント記号なし）。</div>
+      <div class="q-exp"><b>se había cancelado</b>：過去完了の再帰用法（受身）。「雨が止んだ」（点過去 <span class="mono">dejó</span>）より前にコンサートはすでに中止になっていた。<span class="mono">se ＋ haber線過去 ＋ 過去分詞</span>で受身的な完了を表す（→ 6課「再帰動詞の3人称用法」参照）。<br>※ <span class="mono">dejar de ＋ 不定詞</span>：〜するのをやめる ／ <span class="mono">ya</span>（副）すでに・もう</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge blue">4</span>
     <div class="q-content">
-      <div class="q-sentence">Seguramente <span class="blank">______</span> (hacer) buen tiempo el fin de semana.</div>
-      <div class="q-ja">おそらく週末は天気がいいだろう。</div>
+      <div class="q-sentence">Me dijeron que Cristina y José se <span class="blank">______</span> hacía cinco años. (separar — 過去完了)</div>
+      <div class="q-ja">クリスティーナとホセは5年前に別れてしまったということだった。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Seguramente <span class="ans-fill">hará</span> buen tiempo el fin de semana.</span>
+        <span class="ans-text">se <span class="ans-fill">habían separado</span></span>
       </div>
-      <div class="q-exp">hacer の未来形3人称単数。不規則語根 <b>har-</b> ＋ <b>-á</b>。推量用法（おそらく〜だろう）も兼ねる。</div>
+      <div class="q-exp"><b>se habían separado</b>：過去完了3複（「言われた」時点よりさらに前に別れていた）。主節 <span class="mono">dijeron</span>（点過去）に対し、従属節の出来事はそれより前。<br>※ <span class="mono">hacía</span>（線過去）：「過去のある時点から〜前に」。現在からなら <span class="mono">hace ＋ 期間</span>、過去のある時点からなら <span class="mono">hacía ＋ 期間</span>。例：<span class="mono">hacía siete años</span>（7年前に） ／ <span class="mono">hacía ocho horas</span>（8時間前に）</div>
     </div>
   </div>
 </div>
 
 <div class="daimon">
   <span class="daimon-num">2.</span>
-  <span class="daimon-title">（　）内の動詞を接続法現在に活用させなさい。</span>
+  <span class="daimon-title">次の文の（　）内から正しい時制を選びなさい。（点過去または線過去）</span>
 </div>
 
 <div class="ex-block">
@@ -528,95 +518,150 @@
   <div class="q-item">
     <span class="q-badge teal">1</span>
     <div class="q-content">
-      <div class="q-sentence">Quiero que tú <span class="blank">______</span> (estudiar) más.</div>
-      <div class="q-ja">君にもっと勉強してほしい。</div>
+      <div class="q-sentence">Cuando yo (estudiaba / estudié) en Sevilla, (vino / venía) a visitarme toda la familia.</div>
+      <div class="q-ja">私がセビーリャで学んでいた時、家族一同が私に会いに来てくれた。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Quiero que tú <span class="ans-fill">estudies</span> más.</span>
+        <span class="ans-text">Cuando yo <span class="ans-fill">estudiaba</span> en Sevilla, <span class="ans-fill">vino</span> a visitarme toda la familia.</span>
       </div>
-      <div class="q-exp">querer que ＋ 接続法（主語が異なる: yo→quiero、tú→estudies）。estudiar は -ar 動詞 → 接続法語尾 <b>-es</b>（tú）。</div>
+      <div class="q-exp"><b>estudiaba</b>（線過去）：「学んでいた」という背景の継続的状態。<b>vino</b>（点過去）：「来てくれた」という完結した一回の出来事。→「背景（線過去）＋ 出来事（点過去）」の典型パターン。<br>Sevilla：スペイン南部アンダルシア地方の都市。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge teal">2</span>
     <div class="q-content">
-      <div class="q-sentence">Espero que <span class="blank">______</span> (hacer) buen tiempo mañana.</div>
-      <div class="q-ja">明日天気がいいことを望んでいる。</div>
+      <div class="q-sentence">El viernes pasado, cuando usted nos (vio / veía) en la calle, (íbamos / fuimos) en peregrinación a Chalma.</div>
+      <div class="q-ja">先週の金曜日、あなたが私たちを通りで見かけた時、私たちはチャルマへ巡礼に行くところだったんです。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Espero que <span class="ans-fill">haga</span> buen tiempo mañana.</span>
+        <span class="ans-text">cuando usted <span class="ans-fill">vio</span> … <span class="ans-fill">íbamos</span> en peregrinación</span>
       </div>
-      <div class="q-exp">esperar que ＋ 接続法。hacer の yo 形は <b>hago</b> → yo形の法則で接続法語根も <b>hag-</b> → <b>haga</b>（él/ella形）。</div>
+      <div class="q-exp"><b>vio</b>（点過去）：「見かけた」という一時的・完結した出来事。<b>íbamos</b>（線過去）：その瞬間に進行中だった移動（背景の継続状態）。→「出来事（点過去）の時点での進行中の状態（線過去）」。<br>※ <span class="mono">peregrinación</span>（女）巡礼。Chalma：メキシコシティ南西のカトリック聖地。</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge teal">3</span>
     <div class="q-content">
-      <div class="q-sentence">Te recomiendo que <span class="blank">______</span> (dormir) ocho horas.</div>
-      <div class="q-ja">8時間眠ることを勧めます。</div>
+      <div class="q-sentence">Ayer Charo no (asistió / asistía) a la clase porque (estaba / estuvo) enferma.</div>
+      <div class="q-ja">病気だったので、チャロは昨日授業に出席しなかった。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Te recomiendo que <span class="ans-fill">duermas</span> ocho horas.</span>
+        <span class="ans-text">no <span class="ans-fill">asistió</span> … porque <span class="ans-fill">estaba</span> enferma</span>
       </div>
-      <div class="q-exp">recomendar que ＋ 接続法。dormir は ue 語幹変化動詞（duermo → duerma/duermas...）。tú の接続法 <b>-as</b> 語尾。</div>
+      <div class="q-exp"><b>asistió</b>（点過去）：「出席しなかった」という完結した出来事（<span class="mono">ayer</span> 昨日という特定の時を指す）。<b>estaba</b>（線過去）：「病気だった」という継続的な状態（原因・背景）。<br><span class="mono">asistir a</span>：〜に出席する ／ <span class="mono">enfermo/a</span>（形）病気の</div>
     </div>
   </div>
 
   <div class="q-item">
     <span class="q-badge teal">4</span>
     <div class="q-content">
-      <div class="q-sentence">Ojalá que mis padres <span class="blank">______</span> (estar) bien.</div>
-      <div class="q-ja">両親が元気でいることを願っている。</div>
+      <div class="q-sentence">Unos amigos paraguayos me (dijeron / decían) que no les (gustó / gustaba) el pescado crudo.</div>
+      <div class="q-ja">生の魚は好きではないと、何人かのパラグアイ人の友人たちが私に言った。</div>
       <div class="q-answer-row">
         <span class="ans-label">答え</span>
-        <span class="ans-text">Ojalá que mis padres <span class="ans-fill">estén</span> bien.</span>
+        <span class="ans-text"><span class="ans-fill">dijeron</span> … que no les <span class="ans-fill">gustaba</span></span>
       </div>
-      <div class="q-exp">ojalá（que）＋ 接続法。estar の接続法は完全不規則（esté, estés, esté, estemos, estéis, <b>estén</b>）。mis padres＝3人称複数 → <b>estén</b>（アクセント記号付き）。</div>
+      <div class="q-exp"><b>dijeron</b>（点過去）：「言った」という完結した発話行為。<b>gustaba</b>（線過去）：時制の一致——主節 <span class="mono">dijeron</span>（過去）に引っ張られ、従属節の「好きではない」という現在の状態も線過去になる（直接話法 "no nos gusta" → 間接話法 "que no les gustaba"）。<br>※ <span class="mono">paraguayo/ya</span>（形・名）パラグアイの ／ <span class="mono">pescado crudo</span>：生魚</div>
     </div>
   </div>
+</div>
+
+<div class="daimon">
+  <span class="daimon-num">3.</span>
+  <span class="daimon-title">例文・練習問題の重要語彙</span>
+</div>
+
+<div class="vocab-pills" style="padding:8px 12px">
+  <span class="pill"><span class="pill-es">anoche</span><span class="pill-pos">副</span><span class="pill-ja">昨夜</span></span>
+  <span class="pill"><span class="pill-es">anteriormente</span><span class="pill-pos">副</span><span class="pill-ja">以前は</span></span>
+  <span class="pill"><span class="pill-es">edad</span><span class="pill-pos">女</span><span class="pill-ja">年齢</span></span>
+  <span class="pill"><span class="pill-es">estómago</span><span class="pill-pos">男</span><span class="pill-ja">胃</span></span>
+  <span class="pill"><span class="pill-es">entonces</span><span class="pill-pos">副</span><span class="pill-ja">その時</span></span>
+  <span class="pill"><span class="pill-es">aunque</span><span class="pill-pos">接</span><span class="pill-ja">〜ではあるが</span></span>
+  <span class="pill"><span class="pill-es">ya</span><span class="pill-pos">副</span><span class="pill-ja">すでに</span></span>
+  <span class="pill"><span class="pill-es">nunca</span><span class="pill-pos">副</span><span class="pill-ja">一度も〜ない</span></span>
+  <span class="pill"><span class="pill-es">siempre</span><span class="pill-pos">副</span><span class="pill-ja">いつも</span></span>
+  <span class="pill"><span class="pill-es">nadie</span><span class="pill-pos">代</span><span class="pill-ja">誰も〜ない</span></span>
+  <span class="pill"><span class="pill-es">celular</span><span class="pill-pos">男</span><span class="pill-ja">携帯電話</span></span>
+  <span class="pill"><span class="pill-es">misa</span><span class="pill-pos">女</span><span class="pill-ja">ミサ</span></span>
+  <span class="pill"><span class="pill-es">peregrinación</span><span class="pill-pos">女</span><span class="pill-ja">巡礼</span></span>
+  <span class="pill"><span class="pill-es">pescado crudo</span><span class="pill-pos">名</span><span class="pill-ja">生魚</span></span>
 </div>
 
 </div><!-- /tab-renshu -->
 
 <div id="tab-vocab" class="tab-content">
 
-<!-- ⑥ 語彙リスト -->
-<div id="sec6" class="sec-heading">
-  <span class="sec-num">⑥</span>
+<!-- ⑦ 語彙リスト -->
+<div id="sec7" class="sec-heading">
+  <span class="sec-num">⑦</span>
   <span class="sec-title">語彙リスト</span>
   <span class="sec-es">Vocabulario</span>
 </div>
 
-<div class="vocab-category">未来・予定を表す表現</div>
+<div class="vocab-category">動詞</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">mañana</span><span class="pill-pos">副</span><span class="pill-ja">明日</span></span>
-  <span class="pill"><span class="pill-es">pasado mañana</span><span class="pill-pos">副</span><span class="pill-ja">明後日</span></span>
-  <span class="pill"><span class="pill-es">la próxima semana</span><span class="pill-pos">副</span><span class="pill-ja">来週</span></span>
-  <span class="pill"><span class="pill-es">el próximo mes</span><span class="pill-pos">副</span><span class="pill-ja">来月</span></span>
-  <span class="pill"><span class="pill-es">el año que viene</span><span class="pill-pos">副</span><span class="pill-ja">来年</span></span>
-  <span class="pill"><span class="pill-es">en el futuro</span><span class="pill-pos">副</span><span class="pill-ja">将来</span></span>
-  <span class="pill"><span class="pill-es">algún día</span><span class="pill-pos">副</span><span class="pill-ja">いつか</span></span>
-  <span class="pill"><span class="pill-es">pronto</span><span class="pill-pos">副</span><span class="pill-ja">すぐに</span></span>
+  <span class="pill"><span class="pill-es">decidirse a＋inf.</span><span class="pill-pos">再動</span><span class="pill-ja">〜することを決心する</span></span>
+  <span class="pill"><span class="pill-es">temblar</span><span class="pill-pos">動</span><span class="pill-ja">震える・揺れる</span></span>
+  <span class="pill"><span class="pill-es">fumar</span><span class="pill-pos">動</span><span class="pill-ja">タバコを吸う</span></span>
+  <span class="pill"><span class="pill-es">detestar</span><span class="pill-pos">動</span><span class="pill-ja">嫌う</span></span>
+  <span class="pill"><span class="pill-es">fallar</span><span class="pill-pos">動</span><span class="pill-ja">故障する・失敗する</span></span>
+  <span class="pill"><span class="pill-es">acostarse</span><span class="pill-pos">再動</span><span class="pill-ja">横になる・就寝する</span></span>
+  <span class="pill"><span class="pill-es">volver</span><span class="pill-pos">動</span><span class="pill-ja">戻る・帰る</span></span>
+  <span class="pill"><span class="pill-es">creer</span><span class="pill-pos">動</span><span class="pill-ja">思う・信じる</span></span>
+  <span class="pill"><span class="pill-es">cancelar</span><span class="pill-pos">動</span><span class="pill-ja">キャンセルする・中止する</span></span>
+  <span class="pill"><span class="pill-es">separarse</span><span class="pill-pos">再動</span><span class="pill-ja">別れる・離れる</span></span>
+  <span class="pill"><span class="pill-es">asistir a</span><span class="pill-pos">動</span><span class="pill-ja">〜に出席する</span></span>
+  <span class="pill"><span class="pill-es">dejar de＋inf.</span><span class="pill-pos">動</span><span class="pill-ja">〜するのをやめる</span></span>
 </div>
 
-<div class="vocab-category">接続法を誘導する表現</div>
+<div class="vocab-category">名詞</div>
 <div class="vocab-pills">
-  <span class="pill"><span class="pill-es">querer que</span><span class="pill-pos">動</span><span class="pill-ja">〜してほしい</span></span>
-  <span class="pill"><span class="pill-es">esperar que</span><span class="pill-pos">動</span><span class="pill-ja">〜を望む</span></span>
-  <span class="pill"><span class="pill-es">desear que</span><span class="pill-pos">動</span><span class="pill-ja">〜を願う</span></span>
-  <span class="pill"><span class="pill-es">recomendar que</span><span class="pill-pos">動</span><span class="pill-ja">〜を勧める</span></span>
-  <span class="pill"><span class="pill-es">pedir que</span><span class="pill-pos">動</span><span class="pill-ja">〜するよう頼む</span></span>
-  <span class="pill"><span class="pill-es">aconsejar que</span><span class="pill-pos">動</span><span class="pill-ja">〜するよう勧告</span></span>
-  <span class="pill"><span class="pill-es">alegrarse de que</span><span class="pill-pos">動</span><span class="pill-ja">〜を喜ぶ</span></span>
-  <span class="pill"><span class="pill-es">sorprender que</span><span class="pill-pos">動</span><span class="pill-ja">〜に驚く</span></span>
-  <span class="pill"><span class="pill-es">ojalá</span><span class="pill-pos">感嘆</span><span class="pill-ja">〜だといいな</span></span>
+  <span class="pill"><span class="pill-es">edad</span><span class="pill-pos">女</span><span class="pill-ja">年齢</span></span>
+  <span class="pill"><span class="pill-es">asado</span><span class="pill-pos">男</span><span class="pill-ja">丸焼き・バーベキュー</span></span>
+  <span class="pill"><span class="pill-es">patio</span><span class="pill-pos">男</span><span class="pill-ja">中庭</span></span>
+  <span class="pill"><span class="pill-es">comunidad</span><span class="pill-pos">女</span><span class="pill-ja">共同体・コミュニティ</span></span>
+  <span class="pill"><span class="pill-es">fumador/ra</span><span class="pill-pos">名</span><span class="pill-ja">喫煙者</span></span>
+  <span class="pill"><span class="pill-es">estómago</span><span class="pill-pos">男</span><span class="pill-ja">胃</span></span>
+  <span class="pill"><span class="pill-es">coche</span><span class="pill-pos">男</span><span class="pill-ja">車</span></span>
+  <span class="pill"><span class="pill-es">población</span><span class="pill-pos">女</span><span class="pill-ja">人口・住民</span></span>
+  <span class="pill"><span class="pill-es">misa</span><span class="pill-pos">女</span><span class="pill-ja">ミサ（カトリックの礼拝）</span></span>
+  <span class="pill"><span class="pill-es">celular</span><span class="pill-pos">男</span><span class="pill-ja">携帯電話</span></span>
+  <span class="pill"><span class="pill-es">peregrinación</span><span class="pill-pos">女</span><span class="pill-ja">巡礼</span></span>
+  <span class="pill"><span class="pill-es">pescado</span><span class="pill-pos">男</span><span class="pill-ja">魚（食材）</span></span>
 </div>
 
-<!-- ⑦ まとめ -->
-<div id="sec7" class="sec-heading">
-  <span class="sec-num">⑦</span>
+<div class="vocab-category">副詞・接続詞</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">anoche</span><span class="pill-pos">副</span><span class="pill-ja">昨夜</span></span>
+  <span class="pill"><span class="pill-es">anteriormente</span><span class="pill-pos">副</span><span class="pill-ja">以前は・昔は</span></span>
+  <span class="pill"><span class="pill-es">entonces</span><span class="pill-pos">副</span><span class="pill-ja">その時・当時</span></span>
+  <span class="pill"><span class="pill-es">ya</span><span class="pill-pos">副</span><span class="pill-ja">すでに・もう</span></span>
+  <span class="pill"><span class="pill-es">nunca</span><span class="pill-pos">副</span><span class="pill-ja">一度も〜ない</span></span>
+  <span class="pill"><span class="pill-es">siempre</span><span class="pill-pos">副</span><span class="pill-ja">いつも・常に</span></span>
+  <span class="pill"><span class="pill-es">aunque</span><span class="pill-pos">接</span><span class="pill-ja">〜ではあるが</span></span>
+  <span class="pill"><span class="pill-es">sólo</span><span class="pill-pos">副</span><span class="pill-ja">ただ〜だけ</span></span>
+</div>
+
+<div class="vocab-category">序数</div>
+<div class="vocab-pills">
+  <span class="pill"><span class="pill-es">primero/primer/primera</span><span class="pill-pos">序</span><span class="pill-ja">第1</span></span>
+  <span class="pill"><span class="pill-es">segundo/segunda</span><span class="pill-pos">序</span><span class="pill-ja">第2</span></span>
+  <span class="pill"><span class="pill-es">tercero/tercer/tercera</span><span class="pill-pos">序</span><span class="pill-ja">第3</span></span>
+  <span class="pill"><span class="pill-es">cuarto/cuarta</span><span class="pill-pos">序</span><span class="pill-ja">第4</span></span>
+  <span class="pill"><span class="pill-es">quinto/quinta</span><span class="pill-pos">序</span><span class="pill-ja">第5</span></span>
+  <span class="pill"><span class="pill-es">sexto/sexta</span><span class="pill-pos">序</span><span class="pill-ja">第6</span></span>
+  <span class="pill"><span class="pill-es">séptimo/séptima</span><span class="pill-pos">序</span><span class="pill-ja">第7</span></span>
+  <span class="pill"><span class="pill-es">octavo/octava</span><span class="pill-pos">序</span><span class="pill-ja">第8</span></span>
+  <span class="pill"><span class="pill-es">noveno/novena</span><span class="pill-pos">序</span><span class="pill-ja">第9</span></span>
+  <span class="pill"><span class="pill-es">décimo/décima</span><span class="pill-pos">序</span><span class="pill-ja">第10</span></span>
+</div>
+
+<!-- ⑧ まとめ -->
+<div id="sec8" class="sec-heading">
+  <span class="sec-num">⑧</span>
   <span class="sec-title">総まとめ：重要ポイント一覧</span>
   <span class="sec-es">Resumen</span>
 </div>
@@ -625,16 +670,18 @@
 <table class="summary">
   <thead><tr><th style="width:32%">テーマ</th><th>重要ポイント</th></tr></thead>
   <tbody>
-    <tr><td class="td-rule">未来形語尾</td><td class="mono">-é / -ás / -á / -emos / -éis / -án（不定詞に直接付ける；nosotros のみアクセント記号なし）</td></tr>
-    <tr><td class="td-rule">未来形不規則（グループ1）</td><td class="mono">tendr-, vendr-, pondr-, saldr-, podr-（母音 e を -dr- に変える）</td></tr>
-    <tr><td class="td-rule">未来形不規則（グループ2/3）</td><td class="mono">querr-, sabr-, har-, dir-（語根短縮・完全変化）</td></tr>
-    <tr><td class="td-rule">推量の未来</td><td><span class="mono">¿Qué hora será?</span>（現在の状況への推測）← 英語 "must be / I wonder"</td></tr>
-    <tr><td class="td-rule">接続法の作り方</td><td>yo 現在形から -o を取り ＋ 反対語尾（-ar → -e系；-er/-ir → -a系）</td></tr>
-    <tr><td class="td-rule">yo形の法則</td><td>yo形が不規則 → 接続法語根も同じ（例: tengo → tenga）</td></tr>
-    <tr><td class="td-rule">接続法完全不規則</td><td class="mono">ser（sea）, estar（esté）, ir（vaya）, saber（sepa）, haber（haya）, dar（dé）</td></tr>
-    <tr><td class="td-rule">接続法の用法①</td><td>querer / esperar / recomendar que ＋ 接続法（主語が異なるとき）</td></tr>
-    <tr><td class="td-rule">接続法の用法②</td><td>感情動詞（alegrarse, sorprender など） ＋ que ＋ 接続法</td></tr>
-    <tr><td class="td-rule">ojalá</td><td>アラビア語由来の感嘆詞。接続法と使う願望表現（<span class="mono">Ojalá llueva.</span>）</td></tr>
+    <tr><td class="td-rule">線過去 -ar 語尾</td><td class="mono">-aba / -abas / -aba / -ábamos / -abais / -aban（nosotros のみアクセント記号付き）</td></tr>
+    <tr><td class="td-rule">線過去 -er/-ir 語尾</td><td class="mono">-ía / -ías / -ía / -íamos / -íais / -ían（すべてアクセント記号付き）</td></tr>
+    <tr><td class="td-rule">線過去の不規則（3語のみ）</td><td><span class="mono">ser</span>：era / eras / era / éramos / erais / eran<br><span class="mono">ir</span>：iba / ibas / iba / íbamos / ibais / iban<br><span class="mono">ver</span>：veía / veías / veía / veíamos / veíais / veían</td></tr>
+    <tr><td class="td-rule">線過去の用法①</td><td>過去のある時点での継続中の状態（<span class="mono">tenía 23 años</span>「23歳だった」）</td></tr>
+    <tr><td class="td-rule">線過去の用法②</td><td>過去の習慣・反復（<span class="mono">cada domingo iba</span>「毎週日曜に行っていた」）</td></tr>
+    <tr><td class="td-rule">線過去の用法③</td><td>時制の一致（主節が過去 → 従属節の現在状態は線過去。例：<span class="mono">dije que estaba</span>）</td></tr>
+    <tr><td class="td-rule">過去完了の作り方</td><td><span class="mono">haber の線過去（había / habías / había / habíamos / habíais / habían）＋ 過去分詞</span></td></tr>
+    <tr><td class="td-rule">過去完了の意味</td><td>「さらに前に起きた出来事・完了した状態」を表す（英語の "had done"）</td></tr>
+    <tr><td class="td-rule">序数の変化</td><td>修飾する名詞の性に一致（男性形・女性形）</td></tr>
+    <tr><td class="td-rule">primer / tercer の省略</td><td>男性単数名詞の直前のみ <span class="mono">-o</span> が省略（例：<span class="mono">primer curso / tercer lugar</span>）</td></tr>
+    <tr><td class="td-rule">点過去 vs 線過去</td><td>点過去＝完結した出来事（物語を前進） ／ 線過去＝継続・状態・習慣・背景描写</td></tr>
+    <tr><td class="td-rule">y → e の変化</td><td>接続詞 <span class="mono">y</span> は直後に <span class="mono">i-</span> または <span class="mono">hi-</span> で始まる語が来るとき <span class="mono">e</span> に変化</td></tr>
   </tbody>
 </table>
 </div>
@@ -646,107 +693,96 @@
 <div id="float-nav">
   <div id="float-nav-menu">
     <button class="fn-search-btn" id="fn-search-btn">単語を検索</button>
-    <a class="fn-item" href="#sec1">① 未来形の規則活用</a>
-    <a class="fn-item" href="#sec2">② 未来形の不規則・推量用法</a>
-    <a class="fn-item" href="#sec3">③ 接続法現在の規則活用</a>
-    <a class="fn-item" href="#sec4">④ 接続法の用法</a>
-    <a class="fn-item" href="#sec5">⑤ 練習問題</a>
-    <a class="fn-item" href="#sec6">⑥ 語彙リスト</a>
-    <a class="fn-item" href="#sec7">⑦ まとめ</a>
+    <a class="fn-item" href="#sec1">① 線過去の規則活用</a>
+    <a class="fn-item" href="#sec2">② 線過去の不規則活用</a>
+    <a class="fn-item" href="#sec3">③ 線過去の用法</a>
+    <a class="fn-item" href="#sec4">④ 過去完了</a>
+    <a class="fn-item" href="#sec5">⑤ 序数</a>
+    <a class="fn-item" href="#sec6">⑥ 練習問題</a>
+    <a class="fn-item" href="#sec7">⑦ 語彙リスト</a>
+    <a class="fn-item" href="#sec8">⑧ まとめ</a>
   </div>
   <button id="float-nav-toggle">目次</button>
 </div>
 
 <script>
 const GRAMMAR_TERMS = [
-  { terms: ['未来形','futuro','futuro simple'], id: 'sec1', label: '未来形の規則活用（①節）' },
-  { terms: ['未来形不規則','不規則未来','推量'], id: 'sec2', label: '未来形の不規則・推量用法（②節）' },
-  { terms: ['接続法','subjuntivo','接続法現在'], id: 'sec3', label: '接続法現在の規則活用（③節）' },
-  { terms: ['yo形','yo形の法則'], id: 'yo-form-rule', label: 'yo形の法則（③節）' },
-  { terms: ['接続法の作り方','反対語尾'], id: 'subjuntivo-tsukurikata', label: '接続法の作り方（③節）' },
-  { terms: ['querer que','esperar que','接続法の用法','意志','感情'], id: 'sec4', label: '接続法の用法（④節）' },
-  { terms: ['ojalá','ojala'], id: 'ojala-usage', label: 'ojalá の用法（④節）' },
-  { terms: ['練習問題','練習'], id: 'sec5', label: '練習問題（⑤節）' },
-  { terms: ['語彙','Vocabulario'], id: 'sec6', label: '語彙リスト（⑥節）' },
-  { terms: ['まとめ','Resumen'], id: 'sec7', label: 'まとめ（⑦節）' },
+  { terms: ['線過去','pretérito imperfecto','imperfecto','線過去規則'], id: 'sec1', label: '線過去の規則活用（①節）' },
+  { terms: ['線過去不規則','ser imperfecto','ir imperfecto','ver imperfecto'], id: 'sec2', label: '線過去の不規則活用（②節）' },
+  { terms: ['線過去の用法','継続','習慣','時制の一致','背景'], id: 'sec3', label: '線過去の用法（③節）' },
+  { terms: ['用法1','継続中','過去の状態'], id: 'youho1', label: '線過去用法①：継続中の状態（③節）' },
+  { terms: ['用法2','習慣','反復'], id: 'youho2', label: '線過去用法②：習慣・反復（③節）' },
+  { terms: ['用法3','時制の一致','間接話法'], id: 'youho3', label: '線過去用法③：時制の一致（③節）' },
+  { terms: ['過去完了','pluscuamperfecto','había','habían','過去完了の作り方'], id: 'sec4', label: '過去完了（④節）' },
+  { terms: ['過去完了の構造','haber線過去'], id: 'kakan-tsukurikata', label: '過去完了の作り方（④節）' },
+  { terms: ['序数','ordinal','primer','segundo','tercero','tercer','cuarto','quinto','séptimo','octavo','noveno','décimo'], id: 'sec5', label: '序数（⑤節）' },
+  { terms: ['primer tercer省略','語尾省略'], id: 'primer-tercer', label: 'primer/tercer の省略ルール（⑤節）' },
+  { terms: ['練習問題','練習'], id: 'sec6', label: '練習問題（⑥節）' },
+  { terms: ['語彙','Vocabulario'], id: 'sec7', label: '語彙リスト（⑦節）' },
+  { terms: ['まとめ','Resumen'], id: 'sec8', label: 'まとめ（⑧節）' },
 ];
 
 const VOCAB_BASE = [
-  // 未来形 規則動詞
-  {es:"hablar",      ja:"話す",                   pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
-  {es:"comer",       ja:"食べる",                 pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec1"},
-  {es:"vivir",       ja:"住む・生きる",           pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec1"},
-  // 未来形 不規則動詞
-  {es:"tener",       ja:"持つ",                   pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"tengo", tu:"tienes", el:"tiene", nos:"tenemos", vos:"tenéis", ellos:"tienen"}},
-  {es:"venir",       ja:"来る",                   pos:"動詞", tag:"不規則動詞（未来）", type:"verb_ir", anchor:"sec2",
-    irreg:{yo:"vengo", tu:"vienes", el:"viene", nos:"venemos", vos:"venís", ellos:"vienen"}},
-  {es:"poner",       ja:"置く",                   pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"pongo", tu:"pones", el:"pone", nos:"ponemos", vos:"ponéis", ellos:"ponen"}},
-  {es:"salir",       ja:"出る・出発する",         pos:"動詞", tag:"不規則動詞（未来）", type:"verb_ir", anchor:"sec2",
-    irreg:{yo:"salgo", tu:"sales", el:"sale", nos:"salimos", vos:"salís", ellos:"salen"}},
-  {es:"poder",       ja:"できる",                 pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"puedo", tu:"puedes", el:"puede", nos:"podemos", vos:"podéis", ellos:"pueden"}},
-  {es:"querer",      ja:"欲する・望む",           pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"quiero", tu:"quieres", el:"quiere", nos:"queremos", vos:"queréis", ellos:"quieren"}},
-  {es:"saber",       ja:"知る・わかる",           pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"sé", tu:"sabes", el:"sabe", nos:"sabemos", vos:"sabéis", ellos:"saben"}},
-  {es:"hacer",       ja:"する・作る",             pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"hago", tu:"haces", el:"hace", nos:"hacemos", vos:"hacéis", ellos:"hacen"}},
-  {es:"decir",       ja:"言う",                   pos:"動詞", tag:"不規則動詞（未来）", type:"verb_ir", anchor:"sec2",
-    irreg:{yo:"digo", tu:"dices", el:"dice", nos:"decimos", vos:"decís", ellos:"dicen"}},
-  {es:"haber",       ja:"ある・いる（存在）",     pos:"動詞", tag:"不規則動詞（未来）", type:"verb_er", anchor:"sec2",
-    irreg:{yo:"he", tu:"has", el:"ha", nos:"hemos", vos:"habéis", ellos:"han"}},
-  // 接続法関連動詞
-  {es:"traer",       ja:"持ってくる",             pos:"動詞", tag:"動詞（接続法）", type:"verb_er", anchor:"sec3",
-    irreg:{yo:"traigo", tu:"traes", el:"trae", nos:"traemos", vos:"traéis", ellos:"traen"}},
-  {es:"conocer",     ja:"知っている・知り合う",   pos:"動詞", tag:"動詞（接続法）", type:"verb_er", anchor:"sec3",
-    irreg:{yo:"conozco", tu:"conoces", el:"conoce", nos:"conocemos", vos:"conocéis", ellos:"conocen"}},
-  {es:"ser",         ja:"〜である（本質）",       pos:"動詞", tag:"不規則動詞（接続法）", type:"verb_er", anchor:"sec3",
-    irreg:{yo:"soy", tu:"eres", el:"es", nos:"somos", vos:"sois", ellos:"son"}},
-  {es:"estar",       ja:"〜にいる・〜の状態",     pos:"動詞", tag:"不規則動詞（接続法）", type:"verb_ar", anchor:"sec3",
-    irreg:{yo:"estoy", tu:"estás", el:"está", nos:"estamos", vos:"estáis", ellos:"están"}},
-  {es:"ir",          ja:"行く",                   pos:"動詞", tag:"不規則動詞（接続法）", type:"verb_ir", anchor:"sec3",
-    irreg:{yo:"voy", tu:"vas", el:"va", nos:"vamos", vos:"vais", ellos:"van"}},
-  {es:"dar",         ja:"与える・あげる",         pos:"動詞", tag:"不規則動詞（接続法）", type:"verb_ar", anchor:"sec3",
-    irreg:{yo:"doy", tu:"das", el:"da", nos:"damos", vos:"dais", ellos:"dan"}},
-  // 接続法を誘導する動詞
-  {es:"esperar",     ja:"望む・待つ",             pos:"動詞", tag:"接続法誘導動詞", type:"verb_ar", anchor:"sec4"},
-  {es:"desear",      ja:"願う・望む",             pos:"動詞", tag:"接続法誘導動詞", type:"verb_ar", anchor:"sec4"},
-  {es:"pedir",       ja:"頼む・求める",           pos:"動詞", tag:"接続法誘導動詞", type:"verb_ir", anchor:"sec4",
-    irreg:{yo:"pido", tu:"pides", el:"pide", nos:"pedimos", vos:"pedís", ellos:"piden"}},
-  {es:"recomendar",  ja:"勧める・推薦する",       pos:"動詞", tag:"接続法誘導動詞", type:"verb_ar", anchor:"sec4",
-    irreg:{yo:"recomiendo", tu:"recomiendas", el:"recomienda", nos:"recomendamos", vos:"recomendáis", ellos:"recomiendan"}},
-  {es:"aconsejar",   ja:"勧告する・アドバイスする",pos:"動詞", tag:"接続法誘導動詞", type:"verb_ar", anchor:"sec4"},
-  {es:"alegrarse",   ja:"喜ぶ・うれしい",         pos:"動詞", tag:"感情動詞（接続法）", type:"verb_ar", anchor:"sec4",
-    irreg:{yo:"me alegro", tu:"te alegras", el:"se alegra", nos:"nos alegramos", vos:"os alegráis", ellos:"se alegran"}},
-  {es:"sorprender",  ja:"驚かせる",               pos:"動詞", tag:"感情動詞（接続法）", type:"verb_er", anchor:"sec4"},
-  {es:"estudiar",    ja:"勉強する",               pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec5"},
-  {es:"dormir",      ja:"眠る",                   pos:"動詞", tag:"動詞 -ir（語幹変化）", type:"verb_ir", anchor:"sec5",
-    irreg:{yo:"duermo", tu:"duermes", el:"duerme", nos:"dormimos", vos:"dormís", ellos:"duermen"}},
-  // 語彙 副詞・表現
-  {es:"mañana",       ja:"明日",                  pos:"副詞", tag:"時間表現", anchor:"sec6"},
-  {es:"pasado mañana",ja:"明後日",                pos:"副詞", tag:"時間表現", anchor:"sec6"},
-  {es:"pronto",       ja:"すぐに",                pos:"副詞", tag:"時間表現", anchor:"sec6"},
-  {es:"algún día",    ja:"いつか",                pos:"副詞", tag:"時間表現", anchor:"sec6"},
-  {es:"ojalá",        ja:"〜だといいな（願望）",  pos:"感嘆詞", tag:"接続法表現", anchor:"ojala-usage"},
-  // 語彙 名詞
-  {es:"tiempo",      ja:"天気・時間",             pos:"名詞m.", tag:"例文の語", anchor:"sec1"},
-  {es:"tiempo libre",ja:"暇な時間・自由な時間",  pos:"名詞m.", tag:"例文の語", anchor:"sec5"},
-  {es:"buen tiempo", ja:"いい天気",               pos:"名詞m.", tag:"例文の語", anchor:"sec2"},
-  {es:"hambre",      ja:"空腹",                   pos:"名詞f.", tag:"例文の語", anchor:"sec2"},
-  {es:"llave",       ja:"鍵",                     pos:"名詞f.", tag:"例文の語", anchor:"sec2"},
-  {es:"éxito",       ja:"成功",                   pos:"名詞m.", tag:"例文の語", anchor:"sec4"},
-  {es:"suerte",      ja:"運・幸運",               pos:"名詞f.", tag:"例文の語", anchor:"sec4"},
-  {es:"lástima",     ja:"残念なこと",             pos:"名詞f.", tag:"例文の語", anchor:"sec4"},
-  {es:"lluvia",      ja:"雨",                     pos:"名詞f.", tag:"例文の語", anchor:"sec4"},
-  {es:"lluver",      ja:"雨が降る",               pos:"動詞", tag:"天気動詞", type:"verb_er", anchor:"sec4",
-    irreg:{yo:"—", tu:"—", el:"llueve", nos:"—", vos:"—", ellos:"—"}},
-  {es:"fin de semana",ja:"週末",                  pos:"名詞m.", tag:"例文の語", anchor:"sec5"},
-  {es:"padre",       ja:"父親",                   pos:"名詞m.", tag:"家族", anchor:"sec5"},
-  {es:"padres",      ja:"両親",                   pos:"名詞m.pl.", tag:"家族", anchor:"sec5"},
-  {es:"médico",      ja:"医者",                   pos:"名詞m.", tag:"職業", anchor:"sec1"},
-  {es:"España",      ja:"スペイン",               pos:"固有名詞", tag:"国名", anchor:"sec5"},
+  // 線過去 規則活用動詞
+  {es:"hablar",        ja:"話す",                    pos:"動詞", tag:"動詞 -ar", type:"verb_ar", anchor:"sec1"},
+  {es:"comer",         ja:"食べる",                  pos:"動詞", tag:"動詞 -er", type:"verb_er", anchor:"sec1"},
+  {es:"vivir",         ja:"住む・生きる",            pos:"動詞", tag:"動詞 -ir", type:"verb_ir", anchor:"sec1"},
+  // 線過去 不規則活用動詞
+  {es:"ser",           ja:"〜である（本質）",        pos:"動詞", tag:"不規則動詞（線過去）", type:"verb_er", anchor:"sec2",
+    irreg:{yo:"era", tu:"eras", el:"era", nos:"éramos", vos:"erais", ellos:"eran"}},
+  {es:"ir",            ja:"行く",                    pos:"動詞", tag:"不規則動詞（線過去）", type:"verb_ir", anchor:"sec2",
+    irreg:{yo:"iba", tu:"ibas", el:"iba", nos:"íbamos", vos:"ibais", ellos:"iban"}},
+  {es:"ver",           ja:"見る",                    pos:"動詞", tag:"不規則動詞（線過去）", type:"verb_er", anchor:"sec2",
+    irreg:{yo:"veía", tu:"veías", el:"veía", nos:"veíamos", vos:"veíais", ellos:"veían"}},
+  // 例文の動詞
+  {es:"decidirse",     ja:"決心する（a＋inf.）",     pos:"動詞(再)", tag:"例文の語", type:"verb_ir", anchor:"sec3"},
+  {es:"temblar",       ja:"震える・揺れる",          pos:"動詞", tag:"例文の語", type:"verb_ar", anchor:"sec3"},
+  {es:"fumar",         ja:"タバコを吸う",            pos:"動詞", tag:"例文の語", type:"verb_ar", anchor:"sec3"},
+  {es:"detestar",      ja:"嫌う",                    pos:"動詞", tag:"例文の語", type:"verb_ar", anchor:"sec3"},
+  {es:"fallar",        ja:"故障する・失敗する",      pos:"動詞", tag:"例文の語", type:"verb_ar", anchor:"sec4"},
+  {es:"acostarse",     ja:"横になる・就寝する",      pos:"動詞(再)", tag:"例文の語", type:"verb_ar", anchor:"sec4",
+    irreg:{yo:"me acuesto", tu:"te acuestas", el:"se acuesta", nos:"nos acostamos", vos:"os acostáis", ellos:"se acuestan"}},
+  {es:"volver",        ja:"戻る・帰る",              pos:"動詞", tag:"例文の語", type:"verb_er", anchor:"sec4",
+    irreg:{yo:"vuelvo", tu:"vuelves", el:"vuelve", nos:"volvemos", vos:"volvéis", ellos:"vuelven"}},
+  {es:"creer",         ja:"思う・信じる",            pos:"動詞", tag:"例文の語", type:"verb_er", anchor:"sec4"},
+  {es:"cancelar",      ja:"キャンセルする・中止する",pos:"動詞", tag:"例文の語", type:"verb_ar", anchor:"sec6"},
+  {es:"separarse",     ja:"別れる・離れる",          pos:"動詞(再)", tag:"例文の語", type:"verb_ar", anchor:"sec6"},
+  {es:"asistir",       ja:"出席する（a＋名詞）",    pos:"動詞", tag:"例文の語", type:"verb_ir", anchor:"sec6"},
+  {es:"dejar de",      ja:"〜するのをやめる",        pos:"動詞句", tag:"動詞句", anchor:"sec6"},
+  // 名詞
+  {es:"edad",          ja:"年齢",                    pos:"名詞f.", tag:"例文の語", anchor:"sec3"},
+  {es:"asado",         ja:"丸焼き・バーベキュー",    pos:"名詞m.", tag:"例文の語", anchor:"sec3"},
+  {es:"patio",         ja:"中庭",                    pos:"名詞m.", tag:"例文の語", anchor:"sec3"},
+  {es:"comunidad",     ja:"共同体・コミュニティ",    pos:"名詞f.", tag:"例文の語", anchor:"sec3"},
+  {es:"fumador",       ja:"喫煙者",                  pos:"名詞m.", tag:"例文の語", anchor:"sec3"},
+  {es:"estómago",      ja:"胃",                      pos:"名詞m.", tag:"例文の語", anchor:"sec3"},
+  {es:"coche",         ja:"車",                      pos:"名詞m.", tag:"例文の語", anchor:"sec4"},
+  {es:"población",     ja:"人口・住民",              pos:"名詞f.", tag:"例文の語", anchor:"sec6"},
+  {es:"misa",          ja:"ミサ（礼拝）",            pos:"名詞f.", tag:"例文の語", anchor:"sec6"},
+  {es:"celular",       ja:"携帯電話",                pos:"名詞m.", tag:"例文の語", anchor:"sec6"},
+  {es:"peregrinación", ja:"巡礼",                    pos:"名詞f.", tag:"例文の語", anchor:"sec6"},
+  {es:"pescado",       ja:"魚（食材）",              pos:"名詞m.", tag:"例文の語", anchor:"sec6"},
+  // 副詞・接続詞
+  {es:"anoche",        ja:"昨夜",                    pos:"副詞", tag:"時間表現", anchor:"sec3"},
+  {es:"anteriormente", ja:"以前は・昔は",            pos:"副詞", tag:"時間表現", anchor:"sec3"},
+  {es:"entonces",      ja:"その時・当時",            pos:"副詞", tag:"時間表現", anchor:"sec4"},
+  {es:"ya",            ja:"すでに・もう",            pos:"副詞", tag:"時間表現", anchor:"sec4"},
+  {es:"nunca",         ja:"一度も〜ない",            pos:"副詞", tag:"否定語", anchor:"sec4"},
+  {es:"siempre",       ja:"いつも・常に",            pos:"副詞", tag:"頻度", anchor:"sec4"},
+  {es:"aunque",        ja:"〜ではあるが",            pos:"接続詞", tag:"接続表現", anchor:"sec3"},
+  {es:"sólo",          ja:"ただ〜だけ",              pos:"副詞", tag:"副詞", anchor:"sec3"},
+  {es:"nadie",         ja:"誰も〜ない",              pos:"代名詞", tag:"否定語", anchor:"sec6"},
+  // 序数
+  {es:"primero",       ja:"第1・最初の",             pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"segundo",       ja:"第2",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"tercero",       ja:"第3",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"cuarto",        ja:"第4",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"quinto",        ja:"第5",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"sexto",         ja:"第6",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"séptimo",       ja:"第7",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"octavo",        ja:"第8",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"noveno",        ja:"第9",                     pos:"序数", tag:"序数", anchor:"sec5"},
+  {es:"décimo",        ja:"第10",                    pos:"序数", tag:"序数", anchor:"sec5"},
 ];
 </script>
 
