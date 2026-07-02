@@ -358,6 +358,90 @@ var QUIZ_DATA = {
         ]
       }
     ]
+  },
+
+  /* ── 二列 Lección 4 小テスト ──────────────── */
+  'Spanish2_lesson4.html': {
+    title: 'Lección 4 小テスト',
+    intro: '「あなたたち」は usted / ustedes を指すものとする。「答えを確認」で解答例と解説が表示されます。',
+    sections: [
+      {
+        heading: '動詞活用（直説法現在）',
+        items: [
+          {
+            ja: '君たちは始める',
+            hint: 'empezar',
+            a: 'empezáis',
+            exp: 'empezar は <b>e→ie 語根母音変化動詞</b>。ただし nosotros・vosotros 形には語根変化が起きない（靴型変化）。<br>vosotros: <b>empezáis</b>（変化なし）。empiezáis とはならない点に注意。<br>📖 <b>活用</b>：empiezo / empiezas / empieza / empezamos / <b>empezáis</b> / empiezan'
+          },
+          {
+            ja: '彼は建てる',
+            hint: 'construir',
+            a: 'construye',
+            exp: 'construir は <b>母音間の i → y 変化</b>動詞。語根が母音で終わるため、語尾の i が y に変化する。<br>él: <b>construye</b>。<br>📖 <b>活用</b>：construyo / construyes / <b>construye</b> / construimos / construís / construyen<br>💡 huir・incluir・distribuir なども同じパターン。'
+          },
+          {
+            ja: '彼女たちはおく',
+            hint: 'poner',
+            a: 'ponen',
+            exp: 'poner は yo 形のみ不規則（<b>go動詞</b>：pongo）。それ以外は規則変化。<br>ellas: <b>ponen</b>（規則的な -en 語尾）。<br>📖 <b>活用</b>：pongo / pones / pone / ponemos / ponéis / <b>ponen</b><br>💡 同じ go動詞：tener（tengo）・venir（vengo）・salir（salgo）・hacer（hago）。'
+          },
+          {
+            ja: '私は聞こえる',
+            hint: 'oír',
+            a: 'oigo',
+            exp: 'oír は <b>完全不規則動詞</b>。yo 形は <b>oigo</b>（go動詞 + y 挿入）。tú 以下では y が挿入される。<br>yo: <b>oigo</b>。<br>📖 <b>活用</b>：<b>oigo</b> / oyes / oye / oímos / oís / oyen<br>⚠️ oigo は「聞こえる・聞く」の両方に使える。意図的に「聞く」は escuchar を使うことが多い。'
+          },
+          {
+            ja: '君は続く',
+            hint: 'seguir',
+            a: 'sigues',
+            exp: 'seguir は <b>e→i 語根母音変化動詞</b>。また yo 形は gu→g 変化（sigo）。<br>tú: <b>sigues</b>（e→i 変化）。<br>📖 <b>活用</b>：sigo / <b>sigues</b> / sigue / seguimos / seguís / siguen<br>💡 pedir・servir・vestir なども e→i 変化。yo 形の gu→g は seguir 特有。'
+          },
+          {
+            ja: 'あなたは見つける',
+            hint: 'encontrar',
+            a: 'encuentra',
+            exp: 'encontrar は <b>o→ue 語根母音変化動詞</b>。usted は 3人称単数扱い。<br>usted: <b>encuentra</b>（o→ue 変化）。<br>📖 <b>活用</b>：encuentro / encuentras / <b>encuentra</b> / encontramos / encontráis / encuentran<br>💡 contar・volver・poder なども同じ o→ue 変化パターン。'
+          }
+        ]
+      },
+      {
+        heading: '和文西訳',
+        items: [
+          {
+            ja: 'メキシコで一番の観光都市はどこですか？',
+            a: '¿Cuál es la ciudad más turística de México?',
+            exp: '「どれ・どこ」の選択には <b>cuál</b>（限定選択）を使う。「最も〜な」= <b>la + más + 形容詞</b>（最上級）。<br>最上級の範囲は <b>de</b> で表す（de México「メキシコで」）。<br>⚠️ ¿Dónde está...?（場所を問う）と ¿Cuál es...?（どれかを問う）の使い分けに注意。<br>📖 turístico「観光の」／la ciudad más turística「最も観光都市化した都市」'
+          },
+          {
+            ja: '君が買いたい本はこれですか？',
+            a: '¿El libro que quieres comprar es este?',
+            exp: '「君が買いたい本」= el libro <b>que</b> quieres comprar（関係代名詞 que で名詞を修飾）。<br><b>quieres</b>（querer の tú 形、e→ie 語根変化）「〜したい」。<br>「これ」= <b>este</b>（男性単数の指示代名詞）。<br>📖 querer「欲しい・〜したい」（quiero / quieres / quiere）／comprar「買う」／este「これ（男性）」'
+          },
+          {
+            ja: '明日の9時に来てもいいですか？',
+            a: '¿Puedo venir mañana a las nueve?',
+            exp: '<b>poder + 原形</b>で許可・可能を表す（「〜してもよいですか」「〜できますか」）。<br>Puedo（poder の yo 形、o→ue 変化）+ venir（来る）。<br>時刻は <b>a las + 時刻</b>（a las nueve「9時に」）。<br>📖 poder「できる・してもよい」（puedo / puedes / puede）／mañana「明日」／a las nueve「9時に」'
+          },
+          {
+            ja: 'あなた方のうちのどなたかこの歌をご存知ですか？',
+            a: '¿Alguno de ustedes conoce esta canción?',
+            exp: '<b>alguno de + 複数名詞</b>「〜のうちの誰か」。alguno が主語なので動詞は <b>3人称単数</b>。<br><b>conocer</b>「（人・場所・物を）知っている」。saber との使い分け：saber は事実・方法を知る。<br>esta canción = 指示形容詞 esta（女性）+ canción「歌」。<br>📖 alguno「誰か（不定）」／conocer「知っている」（conozco / conoces / <b>conoce</b>）／canción「歌」（女性名詞）'
+          },
+          {
+            ja: 'マチュピチュは山の高いところにある要塞だ。',
+            a: 'Machu Picchu es una ciudadela que está en lo alto de una montaña.',
+            exp: '「要塞」= <b>ciudadela</b>（女性名詞 → una ciudadela）。「〜にある」= <b>estar</b>（所在）→ que está（関係代名詞 que + estar）。<br><b>en lo alto de</b>「〜の高いところに」。lo alto = 中性冠詞 lo + 形容詞 alto で「高いところ」を名詞化。<br>⚠️ 「要塞だ」（定義・特徴）= <b>ser</b> / 「高いところにある」（所在）= <b>estar</b>（同一文内での ser/estar 使い分け）。<br>📖 ciudadela「要塞・城塞」／en lo alto de「〜の高いところに」／montaña「山」'
+          },
+          {
+            ja: 'ペドロは私がイグアスの滝に行ったことがないということを知っている。',
+            a: 'Pedro sabe que no conozco las Cataratas del Iguazú.',
+            exp: '<b>saber que + 節</b>「〜ということを知っている」（saber は事実・内容を知る）。<br>「行ったことがない」→ <b>conocer の否定</b>（no conozco）で「知らない・訪れたことがない」を表現。<br>las Cataratas del Iguazú = cataratas「滝」（複数・女性）+ del Iguazú（固有名詞の属格）。<br>📖 saber que「〜ということを知っている」／conocer「（場所を）知っている・訪れたことがある」／las cataratas「滝」'
+          }
+        ]
+      }
+    ]
   }
 
 };
