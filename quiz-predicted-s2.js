@@ -12,6 +12,7 @@
   /* ── 二列 Lección 4 予想問題（ir a＋原形・pensar＋原形・querer＋原形・
      比較・最上級・hay que/deber＋原形・lo＋形容詞・quedar・感嘆文）──
      接地：Spanish2_lesson4.html の対話・読解・重要表現 */
+  if (!QUIZ_DATA['Spanish2_lesson4.html'] || QUIZ_DATA['Spanish2_lesson4.html'].adminOnly) {
   QUIZ_DATA['Spanish2_lesson4.html'] = {
     adminOnly: true,
     title: 'Lección 4 小テスト（予想問題）',
@@ -347,5 +348,6 @@
       }
     ]
   };
+  } // end if
 
 })();

@@ -13,6 +13,7 @@
      接地：Spanish1_lesson4.html の例文・活用表（語根母音変化 e→ie/o→ue/e→i/u→ue・
      -zco型・-go型・tener/venir/decir・完全不規則・que / lo que / donde /
      más…que / tan…como / 最上級 el más…de / 天候の無主語文 / hay que） */
+  if (!QUIZ_DATA['Spanish1_lesson4.html'] || QUIZ_DATA['Spanish1_lesson4.html'].adminOnly) {
   QUIZ_DATA['Spanish1_lesson4.html'] = {
     adminOnly: true,
     title: 'Lección 4 小テスト（予想問題）',
@@ -434,6 +435,7 @@
       }
     ]
   };
+  } // end if
 
 
   /* ── 一列 Lección 5 予想問題（不定詞・現在分詞・過去分詞・現在完了・再帰動詞）──
